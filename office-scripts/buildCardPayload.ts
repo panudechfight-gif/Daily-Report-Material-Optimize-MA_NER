@@ -285,7 +285,7 @@ function buildPayload(
     byZone[it.zone].push(it);
   }
   zoneNames.sort();
-  for (const z of zoneNames) byZone[z].sort(cmpItem);
+  for (const z of zoneNames) byZone[z].sort((a, b) => cmpItem(a, b));
 
   const shown: CardItem[] = [];
   let rank = 0;

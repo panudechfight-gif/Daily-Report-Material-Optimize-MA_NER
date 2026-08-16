@@ -290,7 +290,7 @@ function buildPayload(
     byZone[it.zone].push(it);
   }
   zoneNames.sort();
-  for (const z of zoneNames) byZone[z].sort(cmpItem);
+  for (const z of zoneNames) byZone[z].sort((a, b) => cmpItem(a, b));
 
   const shown: CardItem[] = [];
   let rank = 0;
@@ -1079,11 +1079,11 @@ function main(
   dashboardUrl: string = "",
   sourceFileUrl: string = "",
   generatedAt: string = ""
-): object {
+): (string | number | boolean | object) {
 
   const payload = buildPayload(workbook, period, topRows, dashboardUrl, sourceFileUrl);
   payload.meta.generatedAt = generatedAt || "";
 
   const card = acExpandNode(CARD_TEMPLATE, { data: payload, root: payload });
-  return card as object;
+  return card as (string | number | boolean | object);
 }

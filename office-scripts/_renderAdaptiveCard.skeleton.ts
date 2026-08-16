@@ -207,11 +207,11 @@ function main(
   dashboardUrl: string = "",
   sourceFileUrl: string = "",
   generatedAt: string = ""
-): object {
+): (string | number | boolean | object) {
 
   const payload = buildPayload(workbook, period, topRows, dashboardUrl, sourceFileUrl);
   payload.meta.generatedAt = generatedAt || "";
 
   const card = acExpandNode(CARD_TEMPLATE, { data: payload, root: payload });
-  return card as object;
+  return card as (string | number | boolean | object);
 }
