@@ -1,0 +1,971 @@
+<title>สร้าง Power Automate Flow</title>
+<style>
+  /* ---- tokens: light (bare :root = complete palette) ---- */
+  :root {
+    --ground:    #FFFFFF;
+    --surface:   #F2F6FA;
+    --raised:    #FFFFFF;
+    --ink:       #14202B;
+    --muted:     #5C6E80;
+    --line:      #DAE3EC;
+    --line-soft: #E9EFF5;
+
+    --brand:      #0F6CBD;
+    --brand-ink:  #0B4E8A;
+    --brand-soft: #E7F1FB;
+
+    --ok:      #0E7A3C;
+    --ok-ink:  #0B5B2D;
+    --ok-soft: #E6F4EC;
+
+    --warn:      #9A6700;
+    --warn-ink:  #7A5100;
+    --warn-soft: #FFF6E0;
+
+    --stop:      #B42318;
+    --stop-ink:  #8C1B12;
+    --stop-soft: #FDECEA;
+
+    --shadow: 0 1px 2px rgba(20, 32, 43, .06), 0 8px 24px rgba(20, 32, 43, .05);
+
+    --sans: "Segoe UI", "Sarabun", "IBM Plex Sans Thai", "Noto Sans Thai",
+            -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    --mono: "Cascadia Mono", ui-monospace, SFMono-Regular, "SF Mono",
+            Consolas, "Liberation Mono", monospace;
+  }
+
+  /* ---- tokens: dark via OS (default, un-stamped) ---- */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:    #0D151E;
+      --surface:   #16222F;
+      --raised:    #182635;
+      --ink:       #E7EEF6;
+      --muted:     #9CB0C4;
+      --line:      #2A3B4D;
+      --line-soft: #22303F;
+
+      --brand:      #6DB6F5;
+      --brand-ink:  #A8D3FA;
+      --brand-soft: #12304A;
+
+      --ok:      #6FD39B;
+      --ok-ink:  #9BE4BC;
+      --ok-soft: #10301F;
+
+      --warn:      #E8B54A;
+      --warn-ink:  #F3D089;
+      --warn-soft: #322709;
+
+      --stop:      #F5887A;
+      --stop-ink:  #FAB0A6;
+      --stop-soft: #3A1512;
+
+      --shadow: 0 1px 2px rgba(0, 0, 0, .35), 0 8px 24px rgba(0, 0, 0, .28);
+    }
+  }
+
+  /* ---- tokens: dark via explicit toggle ---- */
+  :root[data-theme="dark"] {
+    --ground:    #0D151E;
+    --surface:   #16222F;
+    --raised:    #182635;
+    --ink:       #E7EEF6;
+    --muted:     #9CB0C4;
+    --line:      #2A3B4D;
+    --line-soft: #22303F;
+
+    --brand:      #6DB6F5;
+    --brand-ink:  #A8D3FA;
+    --brand-soft: #12304A;
+
+    --ok:      #6FD39B;
+    --ok-ink:  #9BE4BC;
+    --ok-soft: #10301F;
+
+    --warn:      #E8B54A;
+    --warn-ink:  #F3D089;
+    --warn-soft: #322709;
+
+    --stop:      #F5887A;
+    --stop-ink:  #FAB0A6;
+    --stop-soft: #3A1512;
+
+    --shadow: 0 1px 2px rgba(0, 0, 0, .35), 0 8px 24px rgba(0, 0, 0, .28);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 940px;
+    margin: 0 auto;
+    padding: 48px 20px 72px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  /* ---- masthead ---- */
+  .masthead {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--line);
+  }
+  .eyebrow {
+    font-size: .74rem;
+    font-weight: 600;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    color: var(--brand);
+  }
+  .masthead h1 {
+    margin: 0;
+    font-size: clamp(1.85rem, 4.5vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -.015em;
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+  .masthead .lede {
+    margin: 0;
+    color: var(--muted);
+    max-width: 62ch;
+  }
+  .stamp {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    align-self: flex-start;
+    margin-top: 4px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: var(--brand-soft);
+    color: var(--brand-ink);
+    font-size: .8rem;
+    font-weight: 600;
+  }
+
+  /* ---- step rail ---- */
+  .rail {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+  }
+  .rail-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+  }
+  .rail-dot {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    font-size: .9rem;
+    background: var(--surface);
+    color: var(--muted);
+    border: 1px solid var(--line);
+  }
+  .rail-step.done .rail-dot { background: var(--ok); color: var(--ground); border-color: var(--ok); }
+  .rail-step.now  .rail-dot { background: var(--brand); color: var(--ground); border-color: var(--brand); }
+  .rail-label { font-size: .72rem; color: var(--muted); line-height: 1.35; }
+
+  /* ---- cards ---- */
+  .card {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--raised);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .card > summary {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 20px;
+    cursor: pointer;
+    background: var(--surface);
+    list-style: none;
+  }
+  .card > summary::-webkit-details-marker { display: none; }
+  .card > summary:focus-visible { outline: 2px solid var(--brand); outline-offset: -2px; }
+  .card[open] > summary { background: var(--brand-soft); }
+  .card-icon { font-size: 1.35rem; line-height: 1; }
+  .card-head { flex: 1; min-width: 0; }
+  .card-head h2 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 650;
+    letter-spacing: -.01em;
+  }
+  .card-head p { margin: 2px 0 0; font-size: .87rem; color: var(--muted); }
+  .chev { color: var(--muted); font-size: .8rem; transition: transform .2s ease; }
+  .card[open] .chev { transform: rotate(180deg); }
+  .card-body {
+    padding: 26px 20px 28px;
+    border-top: 1px solid var(--line-soft);
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .block { display: flex; flex-direction: column; gap: 12px; }
+  .block > h3 {
+    margin: 0;
+    font-size: .76rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--brand);
+  }
+
+  /* ---- steps list ---- */
+  ol.steps { margin: 0; padding: 0; list-style: none; counter-reset: s; display: flex; flex-direction: column; gap: 10px; }
+  ol.steps li { counter-increment: s; padding-left: 32px; position: relative; }
+  ol.steps li::before {
+    content: counter(s);
+    position: absolute;
+    left: 0; top: 2px;
+    width: 21px; height: 21px;
+    border-radius: 50%;
+    background: var(--brand-soft);
+    color: var(--brand-ink);
+    font-size: .74rem;
+    font-weight: 700;
+    display: grid; place-items: center;
+  }
+
+  /* ---- tables ---- */
+  .scroller { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; }
+  table { width: 100%; border-collapse: collapse; font-size: .89rem; min-width: 440px; }
+  th {
+    background: var(--surface);
+    text-align: left;
+    font-weight: 650;
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--line);
+    white-space: nowrap;
+  }
+  td { padding: 11px 14px; border-bottom: 1px solid var(--line-soft); vertical-align: top; }
+  tbody tr:last-child td { border-bottom: 0; }
+  td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  code {
+    font-family: var(--mono);
+    font-size: .86em;
+    background: var(--surface);
+    border: 1px solid var(--line-soft);
+    border-radius: 4px;
+    padding: 1px 5px;
+  }
+
+  /* ---- parameter fields ---- */
+  .field {
+    display: grid;
+    grid-template-columns: 170px 1fr;
+    gap: 0;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .field + .field { margin-top: -1px; }
+  .field dt {
+    background: var(--surface);
+    padding: 12px 14px;
+    font-family: var(--mono);
+    font-size: .84rem;
+    font-weight: 600;
+    border-right: 1px solid var(--line);
+    word-break: break-word;
+  }
+  .field dd { margin: 0; padding: 12px 14px; }
+  .field dd strong { display: block; font-family: var(--mono); font-size: .9rem; }
+  .field dd span { display: block; margin-top: 3px; font-size: .82rem; color: var(--muted); }
+
+  .formula {
+    border: 1px dashed var(--brand);
+    border-radius: 8px;
+    padding: 14px;
+    background: var(--surface);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .formula .cap { font-size: .74rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .formula pre {
+    margin: 0;
+    padding: 12px;
+    background: var(--raised);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--brand);
+    border-radius: 5px;
+    overflow-x: auto;
+    font-family: var(--mono);
+    font-size: .84rem;
+    line-height: 1.55;
+  }
+
+  /* ---- notes ---- */
+  .note {
+    display: flex;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    border-left: 4px solid;
+    font-size: .92rem;
+  }
+  .note .ico { flex-shrink: 0; font-size: 1.1rem; line-height: 1.5; }
+  .note > div:last-child { display: flex; flex-direction: column; gap: 7px; }
+  .note.info { background: var(--brand-soft); border-color: var(--brand); color: var(--brand-ink); }
+  .note.ok   { background: var(--ok-soft);    border-color: var(--ok);    color: var(--ok-ink); }
+  .note.warn { background: var(--warn-soft);  border-color: var(--warn);  color: var(--warn-ink); }
+  .note.stop { background: var(--stop-soft);  border-color: var(--stop);  color: var(--stop-ink); }
+  .note code { background: rgba(127, 127, 127, .18); border-color: transparent; color: inherit; }
+  .note strong { font-weight: 700; }
+
+  /* ---- changelog ---- */
+  ul.changes { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  ul.changes li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 12px;
+    align-items: start;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  ul.changes li:last-child { border-bottom: 0; padding-bottom: 0; }
+  ul.changes .tag {
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .04em;
+    padding: 3px 9px;
+    border-radius: 999px;
+    background: var(--brand-soft);
+    color: var(--brand-ink);
+    white-space: nowrap;
+  }
+  ul.changes b { display: block; font-weight: 650; }
+  ul.changes span { color: var(--muted); font-size: .88rem; }
+
+  /* ---- checklist ---- */
+  .checks { display: flex; flex-direction: column; gap: 7px; }
+  .check {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    padding: 11px 13px;
+    background: var(--surface);
+    border: 1px solid var(--line-soft);
+    border-radius: 7px;
+  }
+  .check input {
+    width: 17px; height: 17px;
+    margin: 3px 0 0;
+    flex-shrink: 0;
+    accent-color: var(--brand);
+    cursor: pointer;
+  }
+  .check input:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+  .check label { cursor: pointer; font-size: .91rem; }
+  .check input:checked + label { color: var(--muted); text-decoration: line-through; }
+
+  /* ---- footer ---- */
+  .foot {
+    border-top: 1px solid var(--line);
+    padding-top: 22px;
+    color: var(--muted);
+    font-size: .86rem;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+
+  @media (max-width: 620px) {
+    .rail { grid-template-columns: repeat(3, 1fr); row-gap: 18px; }
+    .field { grid-template-columns: 1fr; }
+    .field dt { border-right: 0; border-bottom: 1px solid var(--line); }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="eyebrow">Report Material Optimize&amp;MA_NER</div>
+    <h1>สร้าง Power Automate Flow</h1>
+    <p class="lede">
+      ส่งรายงานวัสดุคงคลังเข้าห้อง Teams อัตโนมัติทุกวันจันทร์ 08:00 น.
+      คู่มือทีละขั้นสำหรับมือใหม่ — ทำตามได้เองใน 4 Action
+    </p>
+    <div class="stamp">🔄 ปรับปรุงล่าสุด 16 ส.ค. 2026</div>
+  </header>
+
+  <!-- ===== WHAT CHANGED ===== -->
+  <details class="card" open>
+    <summary>
+      <span class="card-icon">🆕</span>
+      <span class="card-head">
+        <h2>มีอะไรเปลี่ยนในเวอร์ชันนี้</h2>
+        <p>อ่านก่อน 1 นาที — ถ้าเคยตั้ง Flow ไว้แล้วต้องแก้ 2 ช่อง</p>
+      </span>
+      <span class="chev">▼</span>
+    </summary>
+    <div class="card-body">
+
+      <div class="note stop">
+        <span class="ico">❗</span>
+        <div>
+          <strong>ถ้าคุณตั้ง Flow ไว้แล้ว ให้แก้ 2 ช่องนี้ใน Action 3</strong>
+          <div>
+            <code>period</code> เว้นว่างไม่ได้อีกแล้ว → ใส่ <code>-</code> &nbsp;·&nbsp;
+            <code>topRows</code> จาก <code>12</code> → <code>10</code>
+          </div>
+        </div>
+      </div>
+
+      <ul class="changes">
+        <li>
+          <span class="tag">พารามิเตอร์</span>
+          <div>
+            <b><code>period</code> ต้องใส่ <code>-</code> แทนการเว้นว่าง</b>
+            <span>Power Automate บังคับให้ทุกพารามิเตอร์มีค่า ถ้าเว้นว่างจะขึ้น error
+              <code>'ScriptParameters/period' is required</code> — สคริปต์อ่าน <code>-</code> ว่า "ไม่ระบุรอบ"
+              แล้วไปหยิบรอบล่าสุดให้เอง</span>
+          </div>
+        </li>
+        <li>
+          <span class="tag">พารามิเตอร์</span>
+          <div>
+            <b><code>topRows</code> ลดจาก 12 เหลือ 10</b>
+            <span>การ์ดแสดงหัวกลุ่มครบทุก Zone แล้ว ซึ่งกินที่ราว 1.5 KB ต่อ Zone
+              รอบที่มี 5 Zone จึงต้องเหลือที่ให้แถวน้อยลง เพื่อไม่ชนเพดาน 28 KB ของ Teams</span>
+          </div>
+        </li>
+        <li>
+          <span class="tag">การ์ด</span>
+          <div>
+            <b>ทุก Zone มีที่บนการ์ดเสมอ</b>
+            <span>เปลี่ยนวิธีเลือกแถวเป็นแบบวนรอบ — เอาอันดับ 1 ของทุก Zone ก่อน แล้วค่อยวนอันดับ 2
+              เดิมเรียงยาวรวดเดียวแล้วตัด ทำให้ Zone ท้าย ๆ หลุดหายไปทั้งกลุ่ม</span>
+          </div>
+        </li>
+        <li>
+          <span class="tag">การ์ด</span>
+          <div>
+            <b>คอลัมน์ "เบิกจาก Hub" เป็นจำนวนเต็ม</b>
+            <span>ยอดเบิกเป็นจำนวนหน่วยจริง จึงตัดทศนิยมออกทั้งคอลัมน์ ส่วนคอลัมน์อื่นยังคงทศนิยมตามเดิม</span>
+          </div>
+        </li>
+        <li>
+          <span class="tag">การ์ด</span>
+          <div>
+            <b>เอา Province ออกจากแถว และเปลี่ยนป้ายชุดข้อมูล</b>
+            <span>ที่ว่างที่ได้เอาไปใส่หัวกลุ่ม Zone แทน · ป้ายใหม่คือ 📦 <b>MA — Weekly Allocation</b>
+              และ 🗃️ <b>OPTIMIZE — Allocation Plan</b> · ตัดข้อความ "เฉพาะสายเคเบิล 53OF และตู้พักสาย 52CL" ทิ้ง</span>
+          </div>
+        </li>
+        <li>
+          <span class="tag">ข้อมูล</span>
+          <div>
+            <b>คัดรหัสวัสดุจากรายการตายตัว 10 รหัส</b>
+            <span>เดิมจับด้วยรูปแบบรหัส (ทุกอย่างที่ขึ้นต้น 53OF / 52CL) ตอนนี้ระบุเป็นรายการชัดเจน
+              ดูรายชื่อทั้งหมดในหัวข้อ "รหัสวัสดุที่รายงาน" ข้างล่าง</span>
+          </div>
+        </li>
+      </ul>
+
+      <div class="note info">
+        <span class="ico">💡</span>
+        <div>ยังไม่เคยตั้ง Flow มาก่อน? ข้ามส่วนนี้ไปเริ่มที่ Action 1 ได้เลย —
+          ค่าทุกช่องข้างล่างเป็นค่าที่ถูกต้องล่าสุดอยู่แล้ว</div>
+      </div>
+
+    </div>
+  </details>
+
+  <!-- ===== PROGRESS RAIL ===== -->
+  <nav class="rail" aria-label="ความคืบหน้า">
+    <div class="rail-step done"><div class="rail-dot">✓</div><div class="rail-label">Office Script<br>ติดตั้งแล้ว</div></div>
+    <div class="rail-step now"><div class="rail-dot">1</div><div class="rail-label">จับเวลา<br>Recurrence</div></div>
+    <div class="rail-step"><div class="rail-dot">2</div><div class="rail-label">เวลาไทย<br>Compose</div></div>
+    <div class="rail-step"><div class="rail-dot">3</div><div class="rail-label">สร้างการ์ด<br>Run script</div></div>
+    <div class="rail-step"><div class="rail-dot">4</div><div class="rail-label">โพสต์<br>เข้า Teams</div></div>
+  </nav>
+
+  <!-- ===== ACTION 1 ===== -->
+  <details class="card">
+    <summary>
+      <span class="card-icon">⏰</span>
+      <span class="card-head">
+        <h2>Action 1 — Recurrence (จับเวลา)</h2>
+        <p>ตั้งให้ Flow ยิงทุกวันจันทร์ 08:00 น. ตามเวลาไทย</p>
+      </span>
+      <span class="chev">▼</span>
+    </summary>
+    <div class="card-body">
+
+      <div class="note info">
+        <span class="ico">ℹ️</span>
+        <div>Flow สร้าง action นี้ให้อัตโนมัติตอนเลือก <b>Scheduled cloud flow</b> แล้ว
+          เราแค่เข้าไปปรับค่าให้ถูก</div>
+      </div>
+
+      <div class="block">
+        <h3>ขั้นตอน</h3>
+        <ol class="steps">
+          <li>กดที่ action <b>Recurrence</b></li>
+          <li>กด <b>Show advanced options</b> เพื่อเปิดช่องที่ซ่อนอยู่</li>
+          <li>ตั้งค่าตามตารางข้างล่าง</li>
+        </ol>
+      </div>
+
+      <div class="block">
+        <h3>ค่าที่ต้องตั้ง</h3>
+        <div class="scroller">
+          <table>
+            <thead><tr><th>ช่อง</th><th>ค่า</th><th>ทำไม</th></tr></thead>
+            <tbody>
+              <tr><td>Frequency</td><td><code>Week</code></td><td>ทุกสัปดาห์</td></tr>
+              <tr><td>Interval</td><td><code>1</code></td><td>ทุก 1 สัปดาห์</td></tr>
+              <tr><td>Time zone</td><td><code>(UTC+07:00) Bangkok, Hanoi, Jakarta</code></td>
+                  <td>ถ้าไม่ตั้ง Flow จะยิงตามเวลา UTC ซึ่งตรงกับบ่าย 3 บ้านเรา</td></tr>
+              <tr><td>On these days</td><td><code>Monday</code></td><td>วันจันทร์</td></tr>
+              <tr><td>At these hours</td><td><code>8</code></td><td>08:00 น.</td></tr>
+              <tr><td>At these minutes</td><td><code>0</code></td><td>ยิงนาทีที่ 0 ครั้งเดียว</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="note warn">
+        <span class="ico">⚠️</span>
+        <div><strong>ห้ามลืม At these minutes = 0</strong>
+          <div>ถ้าเว้นว่าง Flow จะยิงทุกนาทีในชั่วโมงนั้น คือ 60 การ์ดรัว ๆ เข้าห้อง Teams</div>
+        </div>
+      </div>
+
+      <div class="note ok">
+        <span class="ico">✓</span>
+        <div>ตั้งค่าเสร็จแล้วยังไม่ต้องกด Save — เพิ่ม Action ถัดไปต่อได้เลย</div>
+      </div>
+
+    </div>
+  </details>
+
+  <!-- ===== ACTION 2 ===== -->
+  <details class="card">
+    <summary>
+      <span class="card-icon">📅</span>
+      <span class="card-head">
+        <h2>Action 2 — Compose (เวลาที่สร้างรายงาน)</h2>
+        <p>สร้างข้อความวันเวลาแบบไทย เช่น "17 Aug 2569 08:00 น."</p>
+      </span>
+      <span class="chev">▼</span>
+    </summary>
+    <div class="card-body">
+
+      <div class="note info">
+        <span class="ico">ℹ️</span>
+        <div>ข้อความนี้ไปแสดงที่ท้ายการ์ดว่า
+          "🕗 สร้างรายงานเมื่อ <b>17 Aug 2569 08:00 น.</b>"</div>
+      </div>
+
+      <div class="block">
+        <h3>ขั้นตอน</h3>
+        <ol class="steps">
+          <li>กด <b>+ New step</b></li>
+          <li>ค้นหา <b>Compose</b> แล้วเลือก <b>Compose</b> (Data Operation)</li>
+          <li>คลิกจุดสามจุดที่หัว action → <b>Rename</b> → ตั้งชื่อว่า <code>GeneratedAt</code></li>
+          <li>ในช่อง <b>Inputs</b> กดไอคอน <b>fx</b> แล้ววางสูตรข้างล่าง</li>
+        </ol>
+      </div>
+
+      <div class="formula">
+        <div class="cap">วางลงในช่อง Inputs</div>
+        <pre>concat(
+  formatDateTime(convertFromUtc(utcNow(),'SE Asia Standard Time'),'d MMM '),
+  string(add(int(formatDateTime(convertFromUtc(utcNow(),'SE Asia Standard Time'),'yyyy')),543)),
+  ' ',
+  formatDateTime(convertFromUtc(utcNow(),'SE Asia Standard Time'),'HH:mm'),
+  ' น.'
+)</pre>
+      </div>
+
+      <div class="note info">
+        <span class="ico">💡</span>
+        <div><strong>อยากได้ปี ค.ศ. แบบสั้น ๆ?</strong>
+          <div>ใช้บรรทัดเดียวพอ:
+            <code>formatDateTime(convertFromUtc(utcNow(),'SE Asia Standard Time'),'dd/MM/yyyy HH:mm')</code></div>
+        </div>
+      </div>
+
+      <div class="note ok">
+        <span class="ico">✓</span>
+        <div>ชื่อ action ต้องเป็น <code>GeneratedAt</code> เป๊ะ ๆ เพราะ Action 3 จะมาดึงค่าจากตรงนี้</div>
+      </div>
+
+    </div>
+  </details>
+
+  <!-- ===== ACTION 3 ===== -->
+  <details class="card">
+    <summary>
+      <span class="card-icon">🔧</span>
+      <span class="card-head">
+        <h2>Action 3 — Run script (หัวใจของ Flow)</h2>
+        <p>เรียก renderAdaptiveCard เพื่ออ่าน Excel แล้วสร้าง JSON การ์ด</p>
+      </span>
+      <span class="chev">▼</span>
+    </summary>
+    <div class="card-body">
+
+      <div class="note info">
+        <span class="ico">ℹ️</span>
+        <div>Action เดียวนี้ทำครบ 3 อย่าง: อ่านชีต <code>MA&amp;Optimize NER</code> →
+          คัดเฉพาะ 10 รหัสที่กำหนด → คืน Adaptive Card ที่แทนค่าเสร็จแล้วพร้อมโพสต์</div>
+      </div>
+
+      <div class="block">
+        <h3>ขั้นตอน</h3>
+        <ol class="steps">
+          <li>กด <b>+ New step</b></li>
+          <li>ค้นหา <b>Run script</b> แล้วเลือก <b>Excel Online (Business) → Run script</b></li>
+          <li>ตั้งค่า Location, Document Library, File, Script ตามข้างล่าง</li>
+          <li>พอเลือก Script แล้ว ช่องพารามิเตอร์ 5 ช่องจะโผล่มาให้กรอก</li>
+        </ol>
+      </div>
+
+      <div class="block">
+        <h3>ชี้ไปที่ไฟล์และสคริปต์</h3>
+        <dl class="field"><dt>Location</dt><dd><strong>SharePoint Sites</strong></dd></dl>
+        <dl class="field"><dt>Document Library</dt><dd><strong>Documents</strong><span>หรือไลบรารีที่เก็บไฟล์ Excel ของคุณ</span></dd></dl>
+        <dl class="field"><dt>File</dt><dd><strong>Optimize_HiringMA_Full_Rebuild_V2.xlsx</strong><span>กดไอคอนโฟลเดอร์แล้วเลือกไฟล์ — ต้องเป็น .xlsx เท่านั้น Office Scripts ไม่รองรับ .xlsm</span></dd></dl>
+        <dl class="field"><dt>Script</dt><dd><strong>renderAdaptiveCard</strong></dd></dl>
+      </div>
+
+      <div class="block">
+        <h3>พารามิเตอร์ 5 ช่อง</h3>
+
+        <dl class="field">
+          <dt>period</dt>
+          <dd><strong>-</strong><span>ขีดเดียว = ไม่ระบุรอบ สคริปต์จะไปหยิบรอบ MA ล่าสุดให้เอง</span></dd>
+        </dl>
+
+        <div class="note stop">
+          <span class="ico">❗</span>
+          <div>
+            <strong>ช่อง period เว้นว่างไม่ได้</strong>
+            <div>ถ้าเว้นว่างจะขึ้น error ตอนกด Save:
+              <code>Invalid parameter for 'Run script'. Error: 'ScriptParameters/period' is required.</code></div>
+            <div>สคริปต์รู้จักค่าเหล่านี้ว่าแปลว่า "ไม่ระบุรอบ" ทั้งหมด (พิมพ์เล็กใหญ่ไม่สำคัญ):
+              <code>-</code> <code>auto</code> <code>latest</code> <code>null</code></div>
+            <div>อย่าใช้ <b>fx</b> แล้วใส่ <code>''</code> — Power Automate ยังนับว่าเป็นค่าว่างและ error เหมือนเดิม
+              ให้พิมพ์ <code>-</code> ลงในช่องตรง ๆ เป็นข้อความธรรมดา</div>
+          </div>
+        </div>
+
+        <dl class="field">
+          <dt>topRows</dt>
+          <dd><strong>10</strong><span>จำนวนแถวสูงสุดบนการ์ด — ห้ามเกิน 10</span></dd>
+        </dl>
+
+        <div class="note warn">
+          <span class="ico">⚠️</span>
+          <div>
+            <strong>ทำไม topRows ห้ามเกิน 10</strong>
+            <div>Teams ปฏิเสธ Adaptive Card ที่ใหญ่เกิน <b>28 KB</b> แบบเงียบ ๆ —
+              Flow ยังขึ้นเขียวแต่การ์ดไม่โผล่ ขนาดที่วัดจริงจากข้อมูลในไฟล์:</div>
+            <div class="scroller">
+              <table>
+                <thead><tr><th>จำนวนแถว</th><th>MA (4 Zone)</th><th>Optimize (5 Zone)</th></tr></thead>
+                <tbody>
+                  <tr><td class="num">8</td><td class="num">20.6 KB ✅</td><td class="num">22.5 KB ✅</td></tr>
+                  <tr><td class="num">10</td><td class="num">23.2 KB ✅</td><td class="num">25.0 KB ✅</td></tr>
+                  <tr><td class="num">11</td><td class="num">24.4 KB ✅</td><td class="num">26.3 KB ⚠️</td></tr>
+                  <tr><td class="num">12</td><td class="num">25.6 KB ✅</td><td class="num">27.5 KB ⚠️</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div>หัวกลุ่ม Zone กินที่คงที่ราว 1.5 KB ต่อ Zone รอบที่มี 5 Zone จึงเหลือที่ให้แถวข้อมูลน้อยกว่า
+              สคริปต์บีบค่าลงเหลือ 10 ให้เองอยู่แล้ว แต่ใส่ 10 ไว้จะชัดเจนกว่า</div>
+          </div>
+        </div>
+
+        <dl class="field">
+          <dt>dashboardUrl</dt>
+          <dd><strong>ลิงก์ Dashboard ของคุณ</strong><span>ใช้กับปุ่ม 📊 บนการ์ด</span></dd>
+        </dl>
+
+        <dl class="field">
+          <dt>sourceFileUrl</dt>
+          <dd><strong>ลิงก์ไฟล์ .xlsx บน SharePoint</strong><span>ใช้กับปุ่ม 📁 Open the source file — กด Copy link จากไฟล์มาวาง</span></dd>
+        </dl>
+
+        <dl class="field">
+          <dt>generatedAt</dt>
+          <dd><strong>Outputs ของ GeneratedAt</strong><span>กดในช่องแล้วเลือกแท็บ Dynamic content → หา Action ชื่อ GeneratedAt → เลือก Outputs</span></dd>
+        </dl>
+      </div>
+
+      <div class="block">
+        <h3>รหัสวัสดุที่รายงาน (10 รหัส)</h3>
+        <p style="margin:0; color: var(--muted); font-size: .9rem;">
+          สคริปต์คัดเฉพาะรหัสเหล่านี้เท่านั้น รหัสอื่นในชีตจะถูกข้ามไปทั้งหมด
+        </p>
+        <div class="scroller">
+          <table>
+            <thead><tr><th>Item Code</th><th>ชื่อวัสดุ</th></tr></thead>
+            <tbody>
+              <tr><td><code>50MT004BB</code></td><td>Name Plate (Aluminium)</td></tr>
+              <tr><td><code>52CL003BB</code></td><td>CLOSURE 12 C</td></tr>
+              <tr><td><code>52CL004BB</code></td><td>CLOSURE 24 C</td></tr>
+              <tr><td><code>52CL006BB</code></td><td>CLOSURE 48 C</td></tr>
+              <tr><td><code>52CL009BB</code></td><td>CLOSURE 12 C FOR OFC DROP WIRE (IN LINE)</td></tr>
+              <tr><td><code>52CL010BB</code></td><td>CLOSURE 60 C</td></tr>
+              <tr><td><code>53OF150BB</code></td><td>OPTICAL FIBER DROP CABLE 1C, FLAT TYPE (G.657A) 2 SC/UPC, 3m.</td></tr>
+              <tr><td><code>53OF157BB</code></td><td>ARSS OPTICAL FIBER CABLE 12c-FIBRE3</td></tr>
+              <tr><td><code>53OF158BB</code></td><td>ARSS OPTICAL FIBER CABLE 24c-FIBRE3</td></tr>
+              <tr><td><code>53OF160BB</code></td><td>ARSS OPTICAL FIBER CABLE 60c-FIBRE3</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note info">
+          <span class="ico">💡</span>
+          <div>อยากเพิ่มหรือลดรหัส แก้ที่ตัวแปร <code>TARGET_ITEMS</code>
+            ในไฟล์ <code>office-scripts/buildCardPayload.ts</code> ที่เดียว
+            แล้วรัน <code>node tools/build_office_script.js</code> เพื่อสร้างสคริปต์ใหม่</div>
+        </div>
+      </div>
+
+      <div class="note ok">
+        <span class="ico">✓</span>
+        <div>กรอกครบแล้วกด <b>Save</b> ถ้าไม่มี error แดงขึ้น แปลว่าผ่านจุดที่ยากที่สุดแล้ว</div>
+      </div>
+
+    </div>
+  </details>
+
+  <!-- ===== ACTION 4 ===== -->
+  <details class="card">
+    <summary>
+      <span class="card-icon">💬</span>
+      <span class="card-head">
+        <h2>Action 4 — Post adaptive card (โพสต์เข้า Teams)</h2>
+        <p>ส่ง JSON ที่ได้จาก Action 3 เข้าห้อง Teams</p>
+      </span>
+      <span class="chev">▼</span>
+    </summary>
+    <div class="card-body">
+
+      <div class="block">
+        <h3>ขั้นตอน</h3>
+        <ol class="steps">
+          <li>กด <b>+ New step</b></li>
+          <li>ค้นหา <b>Post adaptive card</b> แล้วเลือก
+            <b>Microsoft Teams → Post adaptive card in a chat or channel</b></li>
+          <li>ตั้งค่าปลายทาง 4 ช่อง</li>
+          <li>ช่อง <b>Adaptive Card</b> กดไอคอน <b>fx</b> แล้ววางสูตร</li>
+        </ol>
+      </div>
+
+      <div class="block">
+        <h3>ตั้งค่าปลายทาง</h3>
+        <dl class="field"><dt>Post as</dt><dd><strong>Flow bot</strong></dd></dl>
+        <dl class="field"><dt>Post in</dt><dd><strong>Channel</strong></dd></dl>
+        <dl class="field"><dt>Team</dt><dd><strong>เลือกทีมของคุณ</strong></dd></dl>
+        <dl class="field"><dt>Channel</dt><dd><strong>เลือกห้องปลายทาง</strong></dd></dl>
+      </div>
+
+      <div class="block">
+        <h3>ช่อง Adaptive Card</h3>
+        <div class="formula">
+          <div class="cap">กดไอคอน fx แล้ววางสูตรนี้</div>
+          <pre>string(body('Run_script')?['result'])</pre>
+        </div>
+
+        <div class="note stop">
+          <span class="ico">❌</span>
+          <div>
+            <strong>อย่าลืมครอบด้วย string(...)</strong>
+            <div>ถ้าใส่แค่ <code>body('Run_script')?['result']</code> Power Automate จะส่งเป็น object
+              แล้วการ์ดอาจไม่ขึ้น</div>
+          </div>
+        </div>
+
+        <div class="note info">
+          <span class="ico">💡</span>
+          <div>
+            <strong>สูตรขึ้นสีแดง?</strong>
+            <div>แปลว่าชื่อ action ของคุณไม่ใช่ <code>Run script</code> —
+              ให้ดูชื่อจริงที่หัว action แล้วเปลี่ยนช่องว่างเป็นขีดล่างในสูตร
+              เช่น <code>Run script 2</code> → <code>body('Run_script_2')</code></div>
+            <div>ทางลัด: กดแท็บ <b>Dynamic content</b> แล้วเลือก <b>result</b>
+              Power Automate จะเติมสูตรให้ จากนั้นค่อยครอบด้วย <code>string(...)</code></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="note warn">
+        <span class="ico">⚠️</span>
+        <div>
+          <strong>อย่าเอา 01_card-main.json ไปวางในช่องนี้</strong>
+          <div>ไฟล์นั้นเป็น template ที่ยังมี <code>${...}</code> อยู่ ซึ่ง Power Automate ไม่รู้จัก
+            การ์ดจะขึ้นเป็นข้อความ <code>${meta.period}</code> ตรง ๆ —
+            คนที่แทนค่าให้คือ Office Script ใน Action 3 แล้ว</div>
+        </div>
+      </div>
+
+      <div class="note ok">
+        <span class="ico">✓</span>
+        <div>
+          <strong>Flow ครบ 4 Action แล้ว</strong>
+          <div>1. Recurrence ⏰ → 2. GeneratedAt 📅 → 3. Run script 🔧 → 4. Post adaptive card 💬</div>
+          <div>ไม่ต้องมี Condition เช็ก "ไม่มีข้อมูล" — การ์ดจัดการเองด้วย <code>$when</code>
+            ถ้ารอบนั้นไม่มีรหัสที่กำหนดเลย จะแสดง empty state 📭 พร้อมคำแนะนำ 3 ข้อ</div>
+        </div>
+      </div>
+
+    </div>
+  </details>
+
+  <!-- ===== TEST ===== -->
+  <details class="card">
+    <summary>
+      <span class="card-icon">🧪</span>
+      <span class="card-head">
+        <h2>ขั้นตอนสุดท้าย — ทดสอบ</h2>
+        <p>รันด้วยมือ แล้วไล่เช็กการ์ดใน Teams ทีละข้อ</p>
+      </span>
+      <span class="chev">▼</span>
+    </summary>
+    <div class="card-body">
+
+      <div class="block">
+        <h3>รัน Flow ด้วยมือ</h3>
+        <ol class="steps">
+          <li>หน้า Flow กด <b>Test</b> มุมขวาบน</li>
+          <li>เลือก <b>Manually</b> แล้วกด <b>Test</b></li>
+          <li>กด <b>Run flow</b> → <b>Done</b></li>
+          <li>รอสักครู่ ทุก action ควรขึ้นเครื่องหมายถูกสีเขียว</li>
+        </ol>
+      </div>
+
+      <div class="block">
+        <h3>เช็กการ์ดใน Teams</h3>
+        <div class="checks">
+          <div class="check"><input type="checkbox" id="c1"><label for="c1">
+            หัวการ์ดเขียนว่า <b>Report Material Optimize&amp;MA_NER</b></label></div>
+          <div class="check"><input type="checkbox" id="c2"><label for="c2">
+            ป้ายชุดข้อมูลถูกต้อง — 📦 <b>MA — Weekly Allocation</b> (ฟ้า) หรือ
+            🗃️ <b>OPTIMIZE — Allocation Plan</b> (เขียว)</label></div>
+          <div class="check"><input type="checkbox" id="c3"><label for="c3">
+            แถบ 3 ช่อง: รอบจัดสรร / รอบก่อนหน้า / ชุดข้อมูล</label></div>
+          <div class="check"><input type="checkbox" id="c4"><label for="c4">
+            แถบตัวเลข 4 กล่อง: ⚠️ เสี่ยงขาด · 🟡 พอใช้ · ✅ ปกติ · 📦 รวม</label></div>
+          <div class="check"><input type="checkbox" id="c5"><label for="c5">
+            <b>เห็นหัวกลุ่มครบทุก Zone</b> พร้อม emoji —
+            🟦 RC2-NMA · 🟩 RC2-UBN · 🟨 RC3-KKN · 🟧 RC3-UDN · 🟪 RC3-SNK
+            (เท่าที่รอบนั้นมีข้อมูล)</label></div>
+          <div class="check"><input type="checkbox" id="c6"><label for="c6">
+            ตาราง 5 คอลัมน์: Item Code / OMC-Onhand / เบิกจาก Hub / Prev_Before / Prev_Received
+            — <b>ไม่มี Province</b></label></div>
+          <div class="check"><input type="checkbox" id="c7"><label for="c7">
+            คอลัมน์ <b>เบิกจาก Hub เป็นจำนวนเต็ม</b> ไม่มีจุดทศนิยม</label></div>
+          <div class="check"><input type="checkbox" id="c8"><label for="c8">
+            รายการเสี่ยงขาดขึ้นก่อนและเป็นตัวหนาในแต่ละ Zone</label></div>
+          <div class="check"><input type="checkbox" id="c9"><label for="c9">
+            บรรทัด "…และอีก N รายการ" ขึ้นถูก (N = ยอดรวม − 10)</label></div>
+          <div class="check"><input type="checkbox" id="c10"><label for="c10">
+            ปุ่ม 📊 Dashboard และ 📁 Open the source file. กดแล้วเปิดถูกที่</label></div>
+          <div class="check"><input type="checkbox" id="c11"><label for="c11">
+            เปิดดูบนมือถือ — เลย์เอาต์สลับเป็นแนวตั้ง ตัวเลขย้ายมาอยู่ใต้ชื่อรายการ</label></div>
+          <div class="check"><input type="checkbox" id="c12"><label for="c12">
+            ทดสอบ empty state: ตั้ง <code>period</code> เป็นชื่อรอบที่ไม่มีจริงชั่วคราว →
+            ต้องเห็นการ์ด 📭 พร้อมคำแนะนำ 3 ข้อ</label></div>
+          <div class="check"><input type="checkbox" id="c13"><label for="c13">
+            <b>คืนค่า <code>period</code> กลับเป็น <code>-</code> แล้ว</b> — ข้อที่ลืมกันบ่อยที่สุด</label></div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3>ถ้ายังไม่ผ่าน</h3>
+        <div class="scroller">
+          <table>
+            <thead><tr><th>อาการ</th><th>สาเหตุ</th><th>วิธีแก้</th></tr></thead>
+            <tbody>
+              <tr><td>กด Save แล้วขึ้น <code>'ScriptParameters/period' is required</code></td>
+                  <td>ช่อง <code>period</code> ว่าง</td><td>ใส่ <code>-</code> ลงไปตรง ๆ</td></tr>
+              <tr><td>การ์ดไม่ขึ้นเลย แต่ Flow เขียวหมด</td>
+                  <td>การ์ดใหญ่เกิน 28 KB</td>
+                  <td>Run history → action Run script → ดู OUTPUTS → result ถ้าเกิน 28,672 ไบต์ ให้ลด <code>topRows</code> เหลือ 8</td></tr>
+              <tr><td>การ์ดขึ้นเป็นข้อความ <code>${meta.period}</code></td>
+                  <td>เอา template ดิบไปวาง</td><td>ช่อง Adaptive Card ต้องเป็น <code>string(body('Run_script')?['result'])</code></td></tr>
+              <tr><td>Zone บางโซนหายไปทั้งกลุ่ม</td>
+                  <td>ใช้สคริปต์เวอร์ชันเก่า</td><td>คัดลอก <code>renderAdaptiveCard.ts</code> ตัวล่าสุดไปวางทับใน Excel</td></tr>
+              <tr><td>เบิกจาก Hub ยังมีทศนิยม</td>
+                  <td>ใช้สคริปต์เวอร์ชันเก่า</td><td>คัดลอก <code>renderAdaptiveCard.ts</code> ตัวล่าสุดไปวางทับใน Excel</td></tr>
+              <tr><td>Run script แดง: ไม่พบชีต</td>
+                  <td>ชื่อชีตไม่ตรง</td><td>ต้องเป็น <code>MA&amp;Optimize NER</code> เป๊ะ ๆ รวมเครื่องหมาย &amp; และช่องว่าง</td></tr>
+              <tr><td>Run script แดง: ไม่พบคอลัมน์</td>
+                  <td>หัวตารางไม่ได้อยู่แถว 7</td><td>ตรวจว่าเซลล์ A7 = <code>Distribution period</code></td></tr>
+              <tr><td>การ์ดขึ้น empty state ทั้งที่มีข้อมูล</td>
+                  <td>ไฟล์ .xlsx ยังเป็นข้อมูลเก่า</td><td>Refresh ใน .xlsm แล้ว Save As ทับ .xlsx ใหม่</td></tr>
+              <tr><td>Flow ยิงตอนบ่าย 3</td>
+                  <td>ไม่ได้ตั้ง Time zone</td><td>Recurrence → Time zone = Bangkok</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="note ok">
+        <span class="ico">🎉</span>
+        <div>
+          <strong>ครบทุกข้อแล้ว = เสร็จ</strong>
+          <div>Flow จะทำงานเองทุกวันจันทร์ 08:00 น. ตามที่ตั้งไว้ใน Recurrence</div>
+          <div>สิ่งเดียวที่ต้องทำทุกสัปดาห์คือ <b>Refresh ใน .xlsm แล้ว Save As ทับไฟล์ .xlsx บน SharePoint</b>
+            ถ้าลืม การ์ดจะยังมาตามเวลาแต่เป็นข้อมูลของสัปดาห์ก่อน</div>
+        </div>
+      </div>
+
+    </div>
+  </details>
+
+  <footer class="foot">
+    <p style="margin:0">📚 ปัญหาที่ไม่อยู่ในตารางข้างบน ดูที่ <code>docs/04-TROUBLESHOOTING.md</code></p>
+    <p style="margin:0">เอกสารนี้เป็นส่วนหนึ่งของโปรเจกต์ Report Material Optimize&amp;MA_NER</p>
+  </footer>
+
+</div>
+
+<script>
+  // จำสถานะเช็กลิสต์ไว้ที่เครื่องผู้อ่าน — ผูกกับ id ไม่ใช่ลำดับ
+  // เพื่อให้เพิ่ม/ลดข้อในอนาคตแล้วเครื่องหมายถูกไม่เลื่อนตาม
+  document.querySelectorAll('.check input[type="checkbox"]').forEach(function (box) {
+    var key = 'flowguide:' + box.id;
+    try {
+      if (localStorage.getItem(key) === '1') box.checked = true;
+    } catch (e) { /* localStorage ปิดอยู่ — ข้ามไป */ }
+    box.addEventListener('change', function () {
+      try { localStorage.setItem(key, box.checked ? '1' : '0'); } catch (e) {}
+    });
+  });
+</script>

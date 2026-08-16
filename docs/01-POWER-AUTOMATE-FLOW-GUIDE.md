@@ -1,8 +1,10 @@
 # คู่มือสร้าง Flow ส่ง Adaptive Card เข้า Microsoft Teams
 ### ฉบับมือใหม่ ทำตามได้เอง ทีละขั้น
 
-รายงานวัสดุคงคลัง MA & Optimize — NER
+Report Material Optimize&MA_NER
 เฉพาะรหัสวัสดุ **10 รหัส** ที่กำหนดไว้ (ดู [ข้อ 5.2](#52-เปลี่ยนรหัสวัสดุที่แสดง))
+
+> 📄 มีฉบับหน้าเว็บแบบพับเก็บได้ทีละ Action ที่ [`flow-guide-artifact.html`](flow-guide-artifact.html)
 
 ---
 
@@ -322,11 +324,16 @@ string(body('Run_script')?['result'])
 
 เปิดห้อง Teams ที่ตั้งไว้ ต้องเห็นการ์ดที่มี:
 
-- [ ] หัวการ์ดสีตาม Data_Set (🛠️ MA = ฟ้า / ⚙️ Optimize = เขียว)
+- [ ] หัวการ์ดเขียนว่า **Report Material Optimize&MA_NER**
+- [ ] ป้ายชุดข้อมูลถูกต้อง — 📦 **MA — Weekly Allocation** (ฟ้า)
+      หรือ 🗃️ **OPTIMIZE — Allocation Plan** (เขียว)
 - [ ] แถบ 3 ช่อง: รอบจัดสรร / รอบก่อนหน้า / ชุดข้อมูล
 - [ ] แถบตัวเลข 4 กล่อง: ⚠️ เสี่ยงขาด, 🟡 พอใช้, ✅ ปกติ, 📦 รวม
-- [ ] หัวกลุ่มแต่ละ Zone พร้อม emoji (🟦 RC2-NMA, 🟩 RC2-UBN, 🟨 RC3-KKN, 🟧 RC3-UDN)
+- [ ] **หัวกลุ่มขึ้นครบทุก Zone** พร้อม emoji
+      (🟦 RC2-NMA, 🟩 RC2-UBN, 🟨 RC3-KKN, 🟧 RC3-UDN, 🟪 RC3-SNK — เท่าที่รอบนั้นมีข้อมูล)
 - [ ] ตาราง 5 คอลัมน์: Item Code / OMC-Onhand / เบิกจาก Hub / Prev_Before / Prev_Received
+      — **ไม่มี Province**
+- [ ] คอลัมน์ **เบิกจาก Hub เป็นจำนวนเต็ม** ไม่มีจุดทศนิยม
 - [ ] บรรทัด "…และอีก N รายการ"
 - [ ] ปุ่ม **📊 Dashboard** และ **📁 Open the source file. (Excel / SharePoint)**
 
@@ -337,7 +344,10 @@ string(body('Run_script')?['result'])
 
 | อาการ | สาเหตุ | วิธีแก้ |
 |---|---|---|
+| กด Save แล้วขึ้น `'ScriptParameters/period' is required` | ช่อง `period` ว่าง | ใส่ `-` ลงไปตรง ๆ |
 | การ์ดไม่ขึ้นเลย แต่ Flow เขียว | การ์ดใหญ่เกิน 28 KB | ลด `topRows` เหลือ 8 |
+| Zone บางโซนหายไปทั้งกลุ่ม | ใช้สคริปต์เวอร์ชันเก่า | คัดลอก `renderAdaptiveCard.ts` ตัวล่าสุดไปวางทับใน Excel |
+| เบิกจาก Hub ยังมีทศนิยม | ใช้สคริปต์เวอร์ชันเก่า | คัดลอก `renderAdaptiveCard.ts` ตัวล่าสุดไปวางทับใน Excel |
 | การ์ดขึ้นเป็นข้อความ `${meta.period}` | เอา template ดิบไปวางในช่อง Adaptive Card | ต้องใช้ `string(body('Run_script')?['result'])` |
 | `Run script` แดง: ไม่พบชีต | ชื่อชีตไม่ตรง | ต้องเป็น `MA&Optimize NER` เป๊ะ ๆ |
 | `Run script` แดง: ไม่พบคอลัมน์ | หัวตารางไม่ได้อยู่แถว 7 | ตรวจว่า A7 = `Distribution period` |
@@ -419,8 +429,8 @@ const TARGET_ITEMS: { [k: string]: boolean } = {
 
 | ไฟล์ข้อมูล | ใช้ดูอะไร |
 |---|---|
-| `sample-data-main.json` | รอบล่าสุด MA (17 Aug 26) — 126 รายการ แสดง 12 |
-| `sample-data-risk.json` | รอบ MA (10 Aug 26) — มี 9 รายการเสี่ยงขาด ดูสีแดง/ส้ม |
+| `sample-data-main.json` | รอบล่าสุด MA (17 Aug 26) — 91 รายการ 4 Zone แสดง 10 |
+| `sample-data-risk.json` | รอบ MA (10 Aug 26) — 15 รายการ มี 9 รายการเสี่ยงขาด ดูสีแดง/ส้ม |
 | `sample-data-empty.json` | ไม่มีข้อมูล — ดู empty state |
 | `sample-data-flat.json` | ใช้กับ `02_card-simple-flat.json` |
 

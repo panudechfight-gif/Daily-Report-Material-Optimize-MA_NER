@@ -67,7 +67,7 @@ const CASES = [
   { name: "รอบ Optimize", period: "Optimize(3 Aug 26)", top: 12 },
   { name: "รอบที่ไม่มีข้อมูล -> empty state", period: "ไม่มีรอบนี้จริง", top: 12 },
   // ขอ 20 แถว แต่สคริปต์ต้องบีบลงเหลือ TOP_ROWS_MAX (12) เอง ไม่ให้การ์ดชนเพดาน
-  { name: "ขอเกินเพดาน (top=20) ต้องถูกบีบเหลือ 12", period: "Optimize(3 Aug 26)", top: 20 },
+  { name: "ขอเกินเพดาน (top=20) ต้องถูกบีบเหลือ 10", period: "Optimize(3 Aug 26)", top: 20 },
 ];
 
 for (const c of CASES) {
