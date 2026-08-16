@@ -2,7 +2,7 @@
   "type": "AdaptiveCard",
   "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
   "version": "1.5",
-  "fallbackText": "รายงานวัสดุคงคลัง MA & Optimize — NER (มือถือ)",
+  "fallbackText": "Report Material Optimize&MA_NER (มือถือ)",
   "body": [
     {
       "type": "Container",
@@ -100,7 +100,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "${statusEmoji} **${itemCode}** · ${province}",
+              "text": "${statusEmoji} **${itemCode}**",
               "wrap": true,
               "spacing": "none"
             },

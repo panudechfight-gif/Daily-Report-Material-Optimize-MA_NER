@@ -2,7 +2,7 @@
 ### ฉบับมือใหม่ ทำตามได้เอง ทีละขั้น
 
 รายงานวัสดุคงคลัง MA & Optimize — NER
-เฉพาะรหัส **53OF** (สายเคเบิลใยแก้ว) และ **52CL** (ตู้พักสาย)
+เฉพาะรหัสวัสดุ **10 รหัส** ที่กำหนดไว้ (ดู [ข้อ 5.2](#52-เปลี่ยนรหัสวัสดุที่แสดง))
 
 ---
 
@@ -33,7 +33,7 @@
       อ่านชีต "MA&Optimize NER"
             │
             ▼
-   🔍 คัดเฉพาะรหัส 53OFxxx และ 52CLxxx
+   🔍 คัดเฉพาะ 10 รหัสที่กำหนด
       ของรอบล่าสุด แล้วจัดกลุ่มตาม Zone
             │
             ▼
@@ -226,25 +226,37 @@ concat(
 
 | พารามิเตอร์ | ใส่ค่า | ความหมาย |
 |---|---|---|
-| `period` | *(เว้นว่าง)* | เว้นว่าง = ใช้รอบล่าสุดอัตโนมัติ |
-| `topRows` | `12` | จำนวนแถวบนการ์ด — **ห้ามเกิน 12** ดูเหตุผลข้างล่าง |
+| `period` | `-` | `-` = ใช้รอบล่าสุดอัตโนมัติ (ดูกล่องข้างล่าง) |
+| `topRows` | `10` | จำนวนแถวบนการ์ด — **ห้ามเกิน 10** ดูเหตุผลข้างล่าง |
 | `dashboardUrl` | ลิงก์ Dashboard ของคุณ | ใช้กับปุ่ม 📊 |
 | `sourceFileUrl` | ลิงก์ไฟล์ Excel จากข้อ 1.2 | ใช้กับปุ่ม 📁 |
 | `generatedAt` | เลือก **Outputs** ของ `GeneratedAt` | เวลาที่สร้างรายงาน |
 
-> ⚠️ **ทำไม `topRows` ห้ามเกิน 12**
+> ⚠️ **ช่อง `period` เว้นว่างไม่ได้**
+>
+> Power Automate บังคับให้พารามิเตอร์ของ Run script ต้องมีค่า ถ้าเว้นว่างจะขึ้น
+> `Invalid parameter for 'Run script'. Error: 'ScriptParameters/period' is required.`
+>
+> ให้ใส่ **`-`** แทน — สคริปต์รู้จักค่านี้ว่าแปลว่า "ไม่ระบุรอบ" แล้วไปหยิบรอบ MA
+> ล่าสุดให้เอง (ค่าที่ใช้แทนได้เหมือนกัน: `-`, `auto`, `latest`, `null`)
+>
+> ถ้าอยากเจาะจงรอบ ให้ใส่ชื่อรอบตรง ๆ เช่น `MA (17 Aug 26)` หรือ `Optimize(3 Aug 26)`
+
+> ⚠️ **ทำไม `topRows` ห้ามเกิน 10**
 >
 > Microsoft Teams ปฏิเสธ Adaptive Card ที่ใหญ่เกิน **28 KB** เงียบ ๆ
 > โดยไม่บอกสาเหตุ วัดจริงจากข้อมูลในไฟล์นี้:
 >
-> | จำนวนแถว | ชุด MA | ชุด Optimize |
+> | จำนวนแถว | ชุด MA (4 Zone) | ชุด Optimize (5 Zone) |
 > |---|---|---|
-> | 12 | 23.0 KB ✅ | 24.6 KB ✅ |
-> | 13 | 24.3 KB ✅ | 27.6 KB ⚠️ เฉียด |
-> | 14 | 25.6 KB ✅ | **28.9 KB ❌ ส่งไม่ออก** |
+> | 10 | 23.2 KB ✅ | 25.0 KB ✅ |
+> | 11 | 24.4 KB ✅ | 26.3 KB ⚠️ เริ่มเฉียด |
+> | 12 | 25.6 KB ✅ | 27.5 KB ⚠️ เฉียดมาก |
 >
-> ชุด Optimize มีข้อความไทยยาวกว่าจึงกินที่มากกว่า
-> สคริปต์บีบค่าลงเหลือ 12 ให้เองอยู่แล้ว แต่ใส่ 12 ไว้จะชัดเจนกว่า
+> การ์ดแสดงหัวกลุ่ม **ทุก Zone** ซึ่งกินที่คงที่ราว 1.5 KB ต่อ Zone
+> รอบที่มี 5 Zone จึงเหลือที่ให้แถวข้อมูลน้อยกว่า
+>
+> สคริปต์บีบค่าลงเหลือ 10 ให้เองอยู่แล้ว แต่ใส่ 10 ไว้จะชัดเจนกว่า
 >
 > รายการที่เกินจะถูกสรุปเป็นบรรทัด *"…และอีก N รายการ"* พร้อมปุ่มไป Dashboard
 
@@ -292,7 +304,7 @@ string(body('Run_script')?['result'])
 ```
 
 > 💬 **ไม่ต้องมี Condition เช็ก "ไม่มีข้อมูล"**
-> การ์ดจัดการเองด้วย `$when` — ถ้ารอบนั้นไม่มีรายการ 53OF/52CL เลย
+> การ์ดจัดการเองด้วย `$when` — ถ้ารอบนั้นไม่มีรหัสที่กำหนดเลย
 > จะแสดง **empty state** พร้อมคำแนะนำ 3 ข้อว่าต้องไปตรวจอะไรบ้าง
 
 ---
@@ -325,7 +337,7 @@ string(body('Run_script')?['result'])
 
 | อาการ | สาเหตุ | วิธีแก้ |
 |---|---|---|
-| การ์ดไม่ขึ้นเลย แต่ Flow เขียว | การ์ดใหญ่เกิน 28 KB | ลด `topRows` เหลือ 10 |
+| การ์ดไม่ขึ้นเลย แต่ Flow เขียว | การ์ดใหญ่เกิน 28 KB | ลด `topRows` เหลือ 8 |
 | การ์ดขึ้นเป็นข้อความ `${meta.period}` | เอา template ดิบไปวางในช่อง Adaptive Card | ต้องใช้ `string(body('Run_script')?['result'])` |
 | `Run script` แดง: ไม่พบชีต | ชื่อชีตไม่ตรง | ต้องเป็น `MA&Optimize NER` เป๊ะ ๆ |
 | `Run script` แดง: ไม่พบคอลัมน์ | หัวตารางไม่ได้อยู่แถว 7 | ตรวจว่า A7 = `Distribution period` |
@@ -347,22 +359,29 @@ Recurrence → แก้ **On these days** / **At these hours**
 
 ### 5.2 เปลี่ยนรหัสวัสดุที่แสดง
 
-แก้ในสคริปต์ `renderAdaptiveCard` ฟังก์ชัน `isTargetItem`:
+รหัสที่รายงานถูกกำหนดเป็นรายการตายตัวใน `TARGET_ITEMS` — แก้ที่นี่ที่เดียว:
 
 ```typescript
-function isTargetItem(code: string): boolean {
-  const c = (code || "").trim().toUpperCase();
-  return /^53OF\d{3}(BB|AS)$/.test(c) || /^52CL\d{3}(BB|AS)$/.test(c);
-}
+const TARGET_ITEMS: { [k: string]: boolean } = {
+  "50MT004BB": true,   // Name Plate (Aluminium)
+  "52CL003BB": true,   // CLOSURE 12 C
+  "52CL004BB": true,   // CLOSURE 24 C
+  "52CL006BB": true,   // CLOSURE 48 C
+  "52CL009BB": true,   // CLOSURE 12 C FOR OFC DROP WIRE (IN LINE)
+  "52CL010BB": true,   // CLOSURE 60 C
+  "53OF150BB": true,   // OPTICAL FIBER DROP CABLE 1C, FLAT TYPE
+  "53OF157BB": true,   // ARSS OPTICAL FIBER CABLE 12c-FIBRE3
+  "53OF158BB": true,   // ARSS OPTICAL FIBER CABLE 24c-FIBRE3
+  "53OF160BB": true,   // ARSS OPTICAL FIBER CABLE 60c-FIBRE3
+};
 ```
 
-เพิ่มกลุ่ม `66MA` เข้าไปด้วย:
+**เพิ่มรหัส** ให้ใส่บรรทัดใหม่เข้าไป เช่น `"53OF155BB": true,`
+**ลบรหัส** ให้ลบบรรทัดนั้นทิ้ง
 
-```typescript
-  return /^53OF\d{3}(BB|AS)$/.test(c)
-      || /^52CL\d{3}(BB|AS)$/.test(c)
-      || /^66MA\d{3}(BB|AS)$/.test(c);
-```
+> 💡 ถ้าแก้ในโปรเจกต์ (ไม่ใช่แก้ในกล่อง Excel ตรง ๆ) ให้แก้ที่
+> `office-scripts/buildCardPayload.ts` และ `tools/build_sample_data.py`
+> ให้ตรงกัน แล้วรัน `node tools/build_office_script.js` กับ `npm test`
 
 ### 5.3 ส่งรอบที่ต้องการแบบเจาะจง
 

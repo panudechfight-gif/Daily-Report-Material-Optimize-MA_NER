@@ -72,7 +72,7 @@
 | ☐ | D8. เพิ่ม **Excel Online (Business) → Run script** | |
 | ☐ | D9. Run script: เลือกไฟล์ `.xlsx` ถูกไฟล์ | ชื่อไฟล์ตรงกับที่ทำใน B3 |
 | ☐ | D10. Run script: Script = `renderAdaptiveCard` | มีช่องพารามิเตอร์ 5 ช่องโผล่มา |
-| ☐ | D11. `topRows` = `12` | **ห้ามเกิน 12** |
+| ☐ | D11. `topRows` = `10` | **ห้ามเกิน 10** |
 | ☐ | D12. `dashboardUrl` ใส่ลิงก์จริงแล้ว | ไม่ใช่ `CHANGE-ME` |
 | ☐ | D13. `sourceFileUrl` ใส่ลิงก์จาก B7 แล้ว | ไม่ใช่ `CHANGE-ME` |
 | ☐ | D14. `generatedAt` ผูกกับ Outputs ของ `GeneratedAt` | |

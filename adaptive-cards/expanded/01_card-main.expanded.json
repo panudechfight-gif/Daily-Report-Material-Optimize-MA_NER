@@ -5,8 +5,8 @@
   "msteams": {
     "width": "Full"
   },
-  "fallbackText": "รายงานวัสดุคงคลัง MA & Optimize — NER (อุปกรณ์ของคุณแสดงการ์ดนี้ไม่ได้ กรุณาเปิดจาก Dashboard)",
-  "speak": "รายงานวัสดุคงคลัง MA รอบ MA (17 Aug 26) มี 126 รายการ เสี่ยงขาด 0 รายการ",
+  "fallbackText": "Report Material Optimize&MA_NER (อุปกรณ์ของคุณแสดงการ์ดนี้ไม่ได้ กรุณาเปิดจาก Dashboard)",
+  "speak": "Report Material MA รอบ MA (17 Aug 26) มี 91 รายการ เสี่ยงขาด 0 รายการ",
   "body": [
     {
       "type": "Container",
@@ -23,7 +23,7 @@
               "items": [
                 {
                   "type": "TextBlock",
-                  "text": "🛠️",
+                  "text": "📦",
                   "size": "extraLarge",
                   "wrap": false
                 }
@@ -36,16 +36,9 @@
               "items": [
                 {
                   "type": "TextBlock",
-                  "text": "รายงานวัสดุคงคลัง MA & Optimize — NER",
+                  "text": "Report Material Optimize&MA_NER",
                   "weight": "bolder",
                   "size": "large",
-                  "wrap": true,
-                  "spacing": "none"
-                },
-                {
-                  "type": "TextBlock",
-                  "text": "เฉพาะสายเคเบิล 53OF และตู้พักสาย 52CL",
-                  "isSubtle": true,
                   "wrap": true,
                   "spacing": "none"
                 }
@@ -115,7 +108,7 @@
             },
             {
               "type": "TextBlock",
-              "text": "**MA (งานซ่อมบำรุง)**",
+              "text": "**MA — Weekly Allocation**",
               "color": "accent",
               "wrap": true,
               "spacing": "none"
@@ -195,7 +188,7 @@
                 },
                 {
                   "type": "TextBlock",
-                  "text": "126",
+                  "text": "91",
                   "size": "extraLarge",
                   "weight": "bolder",
                   "horizontalAlignment": "center",
@@ -219,7 +212,7 @@
                 },
                 {
                   "type": "TextBlock",
-                  "text": "126",
+                  "text": "91",
                   "size": "extraLarge",
                   "weight": "bolder",
                   "horizontalAlignment": "center",
@@ -254,7 +247,7 @@
                     },
                     {
                       "type": "TextBlock",
-                      "text": "แสดง 9 จาก 27 รายการ",
+                      "text": "แสดง 3 จาก 21 รายการ",
                       "size": "small",
                       "isSubtle": true,
                       "wrap": true,
@@ -379,7 +372,7 @@
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "🟡 **52CL003BB** · Chaiyaphum",
+                      "text": "🟡 **52CL003BB**",
                       "wrap": true,
                       "spacing": "none"
                     },
@@ -396,7 +389,7 @@
                     {
                       "type": "TextBlock",
                       "targetWidth": "atMost:narrow",
-                      "text": "คงเหลือ **0** · Hub **1.20** · ก่อน 0/รับ 0",
+                      "text": "คงเหลือ **0** · Hub **1** · ก่อน 0/รับ 0",
                       "size": "small",
                       "wrap": true,
                       "spacing": "none"
@@ -433,7 +426,7 @@
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "1.20",
+                      "text": "1",
                       "horizontalAlignment": "right"
                     }
                   ]
@@ -477,7 +470,7 @@
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "🟡 **52CL010BB** · Surin",
+                      "text": "🟡 **52CL010BB**",
                       "wrap": true,
                       "spacing": "none"
                     },
@@ -494,7 +487,7 @@
                     {
                       "type": "TextBlock",
                       "targetWidth": "atMost:narrow",
-                      "text": "คงเหลือ **0** · Hub **0.53** · ก่อน 0/รับ 0",
+                      "text": "คงเหลือ **0** · Hub **1** · ก่อน 0/รับ 0",
                       "size": "small",
                       "wrap": true,
                       "spacing": "none"
@@ -531,7 +524,7 @@
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "0.53",
+                      "text": "1",
                       "horizontalAlignment": "right"
                     }
                   ]
@@ -575,399 +568,7 @@
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "⚪ **53OF111BB** · Chaiyaphum",
-                      "wrap": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "targetWidth": "atLeast:standard",
-                      "text": "OPTICAL FIBER DROP CABLE 1C, OUTDOOR, FLAT TY",
-                      "size": "small",
-                      "isSubtle": true,
-                      "wrap": true,
-                      "maxLines": 2,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "targetWidth": "atMost:narrow",
-                      "text": "คงเหลือ **0** · Hub **53.33** · ก่อน 0/รับ 0",
-                      "size": "small",
-                      "wrap": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "ไม่มีรอบก่อน",
-                      "size": "small",
-                      "color": "default",
-                      "weight": "default",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right",
-                      "weight": "default",
-                      "color": "default"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "53.33",
-                      "horizontalAlignment": "right"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right",
-                      "isSubtle": true
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right",
-                      "isSubtle": true
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "ColumnSet",
-              "spacing": "small",
-              "separator": true,
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": 34,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "⚪ **53OF111BB** · NakhonRatchasima",
-                      "wrap": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "targetWidth": "atLeast:standard",
-                      "text": "OPTICAL FIBER DROP CABLE 1C, OUTDOOR, FLAT TY",
-                      "size": "small",
-                      "isSubtle": true,
-                      "wrap": true,
-                      "maxLines": 2,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "targetWidth": "atMost:narrow",
-                      "text": "คงเหลือ **0** · Hub **264** · ก่อน 0/รับ 0",
-                      "size": "small",
-                      "wrap": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "ไม่มีรอบก่อน",
-                      "size": "small",
-                      "color": "default",
-                      "weight": "default",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right",
-                      "weight": "default",
-                      "color": "default"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "264",
-                      "horizontalAlignment": "right"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right",
-                      "isSubtle": true
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right",
-                      "isSubtle": true
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "ColumnSet",
-              "spacing": "small",
-              "separator": true,
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": 34,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "⚪ **53OF121BB** · Chaiyaphum",
-                      "wrap": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "targetWidth": "atLeast:standard",
-                      "text": "OPTICAL FIBER DROP CABLE 1C, OUTDOOR, ROUND T",
-                      "size": "small",
-                      "isSubtle": true,
-                      "wrap": true,
-                      "maxLines": 2,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "targetWidth": "atMost:narrow",
-                      "text": "คงเหลือ **0** · Hub **26.67** · ก่อน 0/รับ 0",
-                      "size": "small",
-                      "wrap": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "ไม่มีรอบก่อน",
-                      "size": "small",
-                      "color": "default",
-                      "weight": "default",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right",
-                      "weight": "default",
-                      "color": "default"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "26.67",
-                      "horizontalAlignment": "right"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right",
-                      "isSubtle": true
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right",
-                      "isSubtle": true
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "ColumnSet",
-              "spacing": "small",
-              "separator": true,
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": 34,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "⚪ **53OF121BB** · NakhonRatchasima",
-                      "wrap": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "targetWidth": "atLeast:standard",
-                      "text": "OPTICAL FIBER DROP CABLE 1C, OUTDOOR, ROUND T",
-                      "size": "small",
-                      "isSubtle": true,
-                      "wrap": true,
-                      "maxLines": 2,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "targetWidth": "atMost:narrow",
-                      "text": "คงเหลือ **0** · Hub **69.33** · ก่อน 0/รับ 0",
-                      "size": "small",
-                      "wrap": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "ไม่มีรอบก่อน",
-                      "size": "small",
-                      "color": "default",
-                      "weight": "default",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right",
-                      "weight": "default",
-                      "color": "default"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "69.33",
-                      "horizontalAlignment": "right"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right",
-                      "isSubtle": true
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right",
-                      "isSubtle": true
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "ColumnSet",
-              "spacing": "small",
-              "separator": true,
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": 34,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "⚪ **53OF150BB** · Chaiyaphum",
+                      "text": "⚪ **53OF150BB**",
                       "wrap": true,
                       "spacing": "none"
                     },
@@ -984,7 +585,7 @@
                     {
                       "type": "TextBlock",
                       "targetWidth": "atMost:narrow",
-                      "text": "คงเหลือ **0** · Hub **14.13** · ก่อน 0/รับ 0",
+                      "text": "คงเหลือ **0** · Hub **14** · ก่อน 0/รับ 0",
                       "size": "small",
                       "wrap": true,
                       "spacing": "none"
@@ -1021,203 +622,7 @@
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "14.13",
-                      "horizontalAlignment": "right"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right",
-                      "isSubtle": true
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right",
-                      "isSubtle": true
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "ColumnSet",
-              "spacing": "small",
-              "separator": true,
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": 34,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "⚪ **53OF155BB** · NakhonRatchasima",
-                      "wrap": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "targetWidth": "atLeast:standard",
-                      "text": "ADSS OPTICAL FIBER CABLE 60c-FIBRE3 (Spare Pa",
-                      "size": "small",
-                      "isSubtle": true,
-                      "wrap": true,
-                      "maxLines": 2,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "targetWidth": "atMost:narrow",
-                      "text": "คงเหลือ **0** · Hub **172.53** · ก่อน 0/รับ 0",
-                      "size": "small",
-                      "wrap": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "ไม่มีรอบก่อน",
-                      "size": "small",
-                      "color": "default",
-                      "weight": "default",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right",
-                      "weight": "default",
-                      "color": "default"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "172.53",
-                      "horizontalAlignment": "right"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right",
-                      "isSubtle": true
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right",
-                      "isSubtle": true
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "ColumnSet",
-              "spacing": "small",
-              "separator": true,
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": 34,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "⚪ **53OF158BB** · Chaiyaphum",
-                      "wrap": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "targetWidth": "atLeast:standard",
-                      "text": "ARSS OPTICAL FIBER CABLE 24C-FIBRE3 (Spare Pa",
-                      "size": "small",
-                      "isSubtle": true,
-                      "wrap": true,
-                      "maxLines": 2,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "targetWidth": "atMost:narrow",
-                      "text": "คงเหลือ **0** · Hub **10.67** · ก่อน 0/รับ 0",
-                      "size": "small",
-                      "wrap": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "ไม่มีรอบก่อน",
-                      "size": "small",
-                      "color": "default",
-                      "weight": "default",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right",
-                      "weight": "default",
-                      "color": "default"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "10.67",
+                      "text": "14",
                       "horizontalAlignment": "right"
                     }
                   ]
@@ -1277,7 +682,7 @@
                     },
                     {
                       "type": "TextBlock",
-                      "text": "แสดง 3 จาก 10 รายการ",
+                      "text": "แสดง 3 จาก 5 รายการ",
                       "size": "small",
                       "isSubtle": true,
                       "wrap": true,
@@ -1402,14 +807,14 @@
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "⚪ **53OF121BB** · Sisaket",
+                      "text": "⚪ **50MT004BB**",
                       "wrap": true,
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
                       "targetWidth": "atLeast:standard",
-                      "text": "OPTICAL FIBER DROP CABLE 1C, OUTDOOR, ROUND T",
+                      "text": "Name Plate (Aluminium)",
                       "size": "small",
                       "isSubtle": true,
                       "wrap": true,
@@ -1419,7 +824,7 @@
                     {
                       "type": "TextBlock",
                       "targetWidth": "atMost:narrow",
-                      "text": "คงเหลือ **0** · Hub **2.67** · ก่อน 0/รับ 0",
+                      "text": "คงเหลือ **0** · Hub **1** · ก่อน 0/รับ 0",
                       "size": "small",
                       "wrap": true,
                       "spacing": "none"
@@ -1456,7 +861,7 @@
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "2.67",
+                      "text": "1",
                       "horizontalAlignment": "right"
                     }
                   ]
@@ -1500,7 +905,7 @@
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "⚪ **53OF150BB** · Sisaket",
+                      "text": "⚪ **53OF150BB**",
                       "wrap": true,
                       "spacing": "none"
                     },
@@ -1517,7 +922,7 @@
                     {
                       "type": "TextBlock",
                       "targetWidth": "atMost:narrow",
-                      "text": "คงเหลือ **0** · Hub **3.47** · ก่อน 0/รับ 0",
+                      "text": "คงเหลือ **0** · Hub **3** · ก่อน 0/รับ 0",
                       "size": "small",
                       "wrap": true,
                       "spacing": "none"
@@ -1554,7 +959,7 @@
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "3.47",
+                      "text": "3",
                       "horizontalAlignment": "right"
                     }
                   ]
@@ -1598,7 +1003,7 @@
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "⚪ **53OF150BB** · Yasothon",
+                      "text": "⚪ **53OF150BB**",
                       "wrap": true,
                       "spacing": "none"
                     },
@@ -1615,7 +1020,7 @@
                     {
                       "type": "TextBlock",
                       "targetWidth": "atMost:narrow",
-                      "text": "คงเหลือ **0** · Hub **6.40** · ก่อน 0/รับ 0",
+                      "text": "คงเหลือ **0** · Hub **6** · ก่อน 0/รับ 0",
                       "size": "small",
                       "wrap": true,
                       "spacing": "none"
@@ -1652,7 +1057,681 @@
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "6.40",
+                      "text": "6",
+                      "horizontalAlignment": "right"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 17,
+                  "targetWidth": "atLeast:standard",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "0",
+                      "horizontalAlignment": "right",
+                      "isSubtle": true
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 17,
+                  "targetWidth": "atLeast:standard",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "0",
+                      "horizontalAlignment": "right",
+                      "isSubtle": true
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Container",
+          "spacing": "large",
+          "separator": true,
+          "items": [
+            {
+              "type": "ColumnSet",
+              "style": "emphasis",
+              "bleed": true,
+              "columns": [
+                {
+                  "type": "Column",
+                  "width": "stretch",
+                  "verticalContentAlignment": "center",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "🟨 Zone RC3-KKN",
+                      "weight": "bolder",
+                      "size": "medium",
+                      "wrap": true,
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "แสดง 2 จาก 31 รายการ",
+                      "size": "small",
+                      "isSubtle": true,
+                      "wrap": true,
+                      "spacing": "none"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": "auto",
+                  "verticalContentAlignment": "center",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "✅ ไม่มีรายการเสี่ยง",
+                      "color": "good",
+                      "weight": "bolder",
+                      "size": "small",
+                      "horizontalAlignment": "right",
+                      "wrap": true,
+                      "spacing": "none"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "ColumnSet",
+              "targetWidth": "atLeast:standard",
+              "spacing": "small",
+              "separator": true,
+              "columns": [
+                {
+                  "type": "Column",
+                  "width": 34,
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "Item Code",
+                      "weight": "bolder",
+                      "size": "small",
+                      "color": "accent",
+                      "wrap": true,
+                      "spacing": "none"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 16,
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "OMC-Onhand",
+                      "weight": "bolder",
+                      "size": "small",
+                      "color": "accent",
+                      "horizontalAlignment": "right",
+                      "wrap": true,
+                      "spacing": "none"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 16,
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "เบิกจาก Hub",
+                      "weight": "bolder",
+                      "size": "small",
+                      "color": "accent",
+                      "horizontalAlignment": "right",
+                      "wrap": true,
+                      "spacing": "none"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 17,
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "Prev_Before",
+                      "weight": "bolder",
+                      "size": "small",
+                      "color": "accent",
+                      "horizontalAlignment": "right",
+                      "wrap": true,
+                      "spacing": "none"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 17,
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "Prev_Received",
+                      "weight": "bolder",
+                      "size": "small",
+                      "color": "accent",
+                      "horizontalAlignment": "right",
+                      "wrap": true,
+                      "spacing": "none"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "ColumnSet",
+              "spacing": "small",
+              "separator": true,
+              "columns": [
+                {
+                  "type": "Column",
+                  "width": 34,
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "🟡 **52CL003BB**",
+                      "wrap": true,
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "targetWidth": "atLeast:standard",
+                      "text": "Closure OFC 12 core",
+                      "size": "small",
+                      "isSubtle": true,
+                      "wrap": true,
+                      "maxLines": 2,
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "targetWidth": "atMost:narrow",
+                      "text": "คงเหลือ **0** · Hub **11** · ก่อน 0/รับ 0",
+                      "size": "small",
+                      "wrap": true,
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "จัดสรรเกิน",
+                      "size": "small",
+                      "color": "warning",
+                      "weight": "default",
+                      "wrap": true,
+                      "spacing": "none"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 16,
+                  "targetWidth": "atLeast:standard",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "0",
+                      "horizontalAlignment": "right",
+                      "weight": "default",
+                      "color": "warning"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 16,
+                  "targetWidth": "atLeast:standard",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "11",
+                      "horizontalAlignment": "right"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 17,
+                  "targetWidth": "atLeast:standard",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "0",
+                      "horizontalAlignment": "right",
+                      "isSubtle": true
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 17,
+                  "targetWidth": "atLeast:standard",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "0",
+                      "horizontalAlignment": "right",
+                      "isSubtle": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "ColumnSet",
+              "spacing": "small",
+              "separator": true,
+              "columns": [
+                {
+                  "type": "Column",
+                  "width": 34,
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "⚪ **52CL006BB**",
+                      "wrap": true,
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "targetWidth": "atLeast:standard",
+                      "text": "Closure OFC 48 core",
+                      "size": "small",
+                      "isSubtle": true,
+                      "wrap": true,
+                      "maxLines": 2,
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "targetWidth": "atMost:narrow",
+                      "text": "คงเหลือ **0** · Hub **0** · ก่อน 0/รับ 0",
+                      "size": "small",
+                      "wrap": true,
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "ไม่มีรอบก่อน",
+                      "size": "small",
+                      "color": "default",
+                      "weight": "default",
+                      "wrap": true,
+                      "spacing": "none"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 16,
+                  "targetWidth": "atLeast:standard",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "0",
+                      "horizontalAlignment": "right",
+                      "weight": "default",
+                      "color": "default"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 16,
+                  "targetWidth": "atLeast:standard",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "0",
+                      "horizontalAlignment": "right"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 17,
+                  "targetWidth": "atLeast:standard",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "0",
+                      "horizontalAlignment": "right",
+                      "isSubtle": true
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 17,
+                  "targetWidth": "atLeast:standard",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "0",
+                      "horizontalAlignment": "right",
+                      "isSubtle": true
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Container",
+          "spacing": "large",
+          "separator": true,
+          "items": [
+            {
+              "type": "ColumnSet",
+              "style": "emphasis",
+              "bleed": true,
+              "columns": [
+                {
+                  "type": "Column",
+                  "width": "stretch",
+                  "verticalContentAlignment": "center",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "🟧 Zone RC3-UDN",
+                      "weight": "bolder",
+                      "size": "medium",
+                      "wrap": true,
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "แสดง 2 จาก 34 รายการ",
+                      "size": "small",
+                      "isSubtle": true,
+                      "wrap": true,
+                      "spacing": "none"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": "auto",
+                  "verticalContentAlignment": "center",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "✅ ไม่มีรายการเสี่ยง",
+                      "color": "good",
+                      "weight": "bolder",
+                      "size": "small",
+                      "horizontalAlignment": "right",
+                      "wrap": true,
+                      "spacing": "none"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "ColumnSet",
+              "targetWidth": "atLeast:standard",
+              "spacing": "small",
+              "separator": true,
+              "columns": [
+                {
+                  "type": "Column",
+                  "width": 34,
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "Item Code",
+                      "weight": "bolder",
+                      "size": "small",
+                      "color": "accent",
+                      "wrap": true,
+                      "spacing": "none"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 16,
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "OMC-Onhand",
+                      "weight": "bolder",
+                      "size": "small",
+                      "color": "accent",
+                      "horizontalAlignment": "right",
+                      "wrap": true,
+                      "spacing": "none"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 16,
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "เบิกจาก Hub",
+                      "weight": "bolder",
+                      "size": "small",
+                      "color": "accent",
+                      "horizontalAlignment": "right",
+                      "wrap": true,
+                      "spacing": "none"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 17,
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "Prev_Before",
+                      "weight": "bolder",
+                      "size": "small",
+                      "color": "accent",
+                      "horizontalAlignment": "right",
+                      "wrap": true,
+                      "spacing": "none"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 17,
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "Prev_Received",
+                      "weight": "bolder",
+                      "size": "small",
+                      "color": "accent",
+                      "horizontalAlignment": "right",
+                      "wrap": true,
+                      "spacing": "none"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "ColumnSet",
+              "spacing": "small",
+              "separator": true,
+              "columns": [
+                {
+                  "type": "Column",
+                  "width": 34,
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "🟡 **52CL003BB**",
+                      "wrap": true,
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "targetWidth": "atLeast:standard",
+                      "text": "Closure OFC 12 core",
+                      "size": "small",
+                      "isSubtle": true,
+                      "wrap": true,
+                      "maxLines": 2,
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "targetWidth": "atMost:narrow",
+                      "text": "คงเหลือ **0** · Hub **1** · ก่อน 0/รับ 0",
+                      "size": "small",
+                      "wrap": true,
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "จัดสรรเกิน",
+                      "size": "small",
+                      "color": "warning",
+                      "weight": "default",
+                      "wrap": true,
+                      "spacing": "none"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 16,
+                  "targetWidth": "atLeast:standard",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "0",
+                      "horizontalAlignment": "right",
+                      "weight": "default",
+                      "color": "warning"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 16,
+                  "targetWidth": "atLeast:standard",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "1",
+                      "horizontalAlignment": "right"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 17,
+                  "targetWidth": "atLeast:standard",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "0",
+                      "horizontalAlignment": "right",
+                      "isSubtle": true
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 17,
+                  "targetWidth": "atLeast:standard",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "0",
+                      "horizontalAlignment": "right",
+                      "isSubtle": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "ColumnSet",
+              "spacing": "small",
+              "separator": true,
+              "columns": [
+                {
+                  "type": "Column",
+                  "width": 34,
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "🟡 **52CL003BB**",
+                      "wrap": true,
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "targetWidth": "atLeast:standard",
+                      "text": "Closure OFC 12 core",
+                      "size": "small",
+                      "isSubtle": true,
+                      "wrap": true,
+                      "maxLines": 2,
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "targetWidth": "atMost:narrow",
+                      "text": "คงเหลือ **0** · Hub **2** · ก่อน 0/รับ 0",
+                      "size": "small",
+                      "wrap": true,
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "จัดสรรเกิน",
+                      "size": "small",
+                      "color": "warning",
+                      "weight": "default",
+                      "wrap": true,
+                      "spacing": "none"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 16,
+                  "targetWidth": "atLeast:standard",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "0",
+                      "horizontalAlignment": "right",
+                      "weight": "default",
+                      "color": "warning"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 16,
+                  "targetWidth": "atLeast:standard",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "2",
                       "horizontalAlignment": "right"
                     }
                   ]
@@ -1689,7 +1768,7 @@
         },
         {
           "type": "TextBlock",
-          "text": "…และอีก 114 รายการ — กด “📊 Dashboard” เพื่อดูทั้งหมด",
+          "text": "…และอีก 81 รายการ — กด “📊 Dashboard” เพื่อดูทั้งหมด",
           "size": "small",
           "isSubtle": true,
           "horizontalAlignment": "center",
@@ -1701,7 +1780,7 @@
     },
     {
       "type": "TextBlock",
-      "text": "🕗 สร้างรายงานเมื่อ 16 ส.ค. 2569 08:00 น. • ที่มา: MA / MA (17 Aug 26) • เฉพาะรหัส 53OF & 52CL",
+      "text": "🕗 สร้างรายงานเมื่อ 16 ส.ค. 2569 08:00 น. • ที่มา: MA / MA (17 Aug 26)",
       "size": "small",
       "isSubtle": true,
       "wrap": true,

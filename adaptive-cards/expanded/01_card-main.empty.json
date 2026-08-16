@@ -5,8 +5,8 @@
   "msteams": {
     "width": "Full"
   },
-  "fallbackText": "รายงานวัสดุคงคลัง MA & Optimize — NER (อุปกรณ์ของคุณแสดงการ์ดนี้ไม่ได้ กรุณาเปิดจาก Dashboard)",
-  "speak": "รายงานวัสดุคงคลัง MA รอบ MA (17 Aug 26) มี 0 รายการ เสี่ยงขาด 0 รายการ",
+  "fallbackText": "Report Material Optimize&MA_NER (อุปกรณ์ของคุณแสดงการ์ดนี้ไม่ได้ กรุณาเปิดจาก Dashboard)",
+  "speak": "Report Material MA รอบ MA (17 Aug 26) มี 0 รายการ เสี่ยงขาด 0 รายการ",
   "body": [
     {
       "type": "Container",
@@ -23,7 +23,7 @@
               "items": [
                 {
                   "type": "TextBlock",
-                  "text": "🛠️",
+                  "text": "📦",
                   "size": "extraLarge",
                   "wrap": false
                 }
@@ -36,16 +36,9 @@
               "items": [
                 {
                   "type": "TextBlock",
-                  "text": "รายงานวัสดุคงคลัง MA & Optimize — NER",
+                  "text": "Report Material Optimize&MA_NER",
                   "weight": "bolder",
                   "size": "large",
-                  "wrap": true,
-                  "spacing": "none"
-                },
-                {
-                  "type": "TextBlock",
-                  "text": "เฉพาะสายเคเบิล 53OF และตู้พักสาย 52CL",
-                  "isSubtle": true,
                   "wrap": true,
                   "spacing": "none"
                 }
@@ -115,7 +108,7 @@
             },
             {
               "type": "TextBlock",
-              "text": "**MA (งานซ่อมบำรุง)**",
+              "text": "**MA — Weekly Allocation**",
               "color": "accent",
               "wrap": true,
               "spacing": "none"
@@ -131,7 +124,7 @@
       "items": [
         {
           "type": "TextBlock",
-          "text": "🗂️",
+          "text": "📭",
           "size": "extraLarge",
           "horizontalAlignment": "center",
           "wrap": false
@@ -147,7 +140,7 @@
         },
         {
           "type": "TextBlock",
-          "text": "ไม่พบรหัสวัสดุกลุ่ม **53OF** (สายเคเบิล) หรือ **52CL** (ตู้พักสาย) ในรอบ **MA (17 Aug 26)**",
+          "text": "ไม่พบรหัสวัสดุที่กำหนดไว้ในรอบ **MA (17 Aug 26)**",
           "horizontalAlignment": "center",
           "isSubtle": true,
           "wrap": true,
@@ -163,7 +156,7 @@
     },
     {
       "type": "TextBlock",
-      "text": "🕗 สร้างรายงานเมื่อ 16 ส.ค. 2569 08:00 น. • ที่มา: MA / MA (17 Aug 26) • เฉพาะรหัส 53OF & 52CL",
+      "text": "🕗 สร้างรายงานเมื่อ 16 ส.ค. 2569 08:00 น. • ที่มา: MA / MA (17 Aug 26)",
       "size": "small",
       "isSubtle": true,
       "wrap": true,

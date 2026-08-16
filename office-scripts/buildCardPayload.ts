@@ -30,17 +30,32 @@
 const SHEET_SOURCE = "MA&Optimize NER";
 const HEADER_ROW = 7;           // หัวตารางอยู่แถวที่ 7 (แถว 1-6 เป็นปุ่ม/คำอธิบาย)
 // เพดานแถวที่ปลอดภัย วัดจริงจากข้อมูลในไฟล์ (ดู tools/test_render_script.js):
-//   MA 12 แถว = 23.0 KB | Optimize 12 แถว = 24.6 KB | Optimize 13 แถว = 27.6 KB (เฉียด)
-//   Optimize 14 แถว = 28.9 KB -> Teams ปฏิเสธ
-// ชุด Optimize มีข้อความไทยยาวกว่า จึงกินที่มากกว่า MA ที่จำนวนแถวเท่ากัน
-const TOP_ROWS_MAX = 12;
+//   ชุด Optimize 10 แถว = 25.0 KB | 11 แถว = 26.3 KB | 12 แถว = 27.5 KB (เฉียดเพดาน)
+//   ชุด MA      10 แถว = 23.2 KB | 12 แถว = 25.6 KB
+// การ์ดกระจายแถวให้ทุก Zone จึงมีหัวกลุ่ม Zone หลายชุด ซึ่งกินที่คงที่ราว 1.5 KB ต่อ Zone
+// ตั้งไว้ที่ 10 เพื่อกันชนเพดาน 28 KB ของ Teams ในรอบที่มี 5 Zone
+const TOP_ROWS_MAX = 10;
 
 // ---------------------------------------------------------------------------
-// รหัสวัสดุที่การ์ดต้องแสดง: 53OFxxx (สายเคเบิล) และ 52CLxxx (ตู้พักสาย)
+// รหัสวัสดุที่การ์ดต้องแสดง — กำหนดเป็นรายการตายตัว 10 รหัส
+// เพิ่ม/ลดรหัส ให้แก้ที่นี่ที่เดียว
 // ---------------------------------------------------------------------------
+const TARGET_ITEMS: { [k: string]: boolean } = {
+  "50MT004BB": true,   // Name Plate (Aluminium)
+  "52CL003BB": true,   // CLOSURE 12 C
+  "52CL004BB": true,   // CLOSURE 24 C
+  "52CL006BB": true,   // CLOSURE 48 C
+  "52CL009BB": true,   // CLOSURE 12 C FOR OFC DROP WIRE (IN LINE)
+  "52CL010BB": true,   // CLOSURE 60 C
+  "53OF150BB": true,   // OPTICAL FIBER DROP CABLE 1C, FLAT TYPE
+  "53OF157BB": true,   // ARSS OPTICAL FIBER CABLE 12c-FIBRE3
+  "53OF158BB": true,   // ARSS OPTICAL FIBER CABLE 24c-FIBRE3
+  "53OF160BB": true,   // ARSS OPTICAL FIBER CABLE 60c-FIBRE3
+};
+
 function isTargetItem(code: string): boolean {
   const c = (code || "").trim().toUpperCase();
-  return /^53OF\d{3}(BB|AS)$/.test(c) || /^52CL\d{3}(BB|AS)$/.test(c);
+  return TARGET_ITEMS[c] === true;
 }
 
 const ZONE_EMOJI: { [k: string]: string } = {
@@ -69,15 +84,30 @@ function toNum(v: (string | number | boolean)): number {
   return isNaN(n) ? 0 : n;
 }
 
+/** ใส่คอมมาคั่นหลักพันให้ข้อความตัวเลข */
+function addThousandSep(text: string): string {
+  const parts = text.split(".");
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return parts.join(".");
+}
+
 /** จัดรูปแบบตัวเลขให้อ่านง่าย: มีคอมมา, ตัด .0, ทศนิยมไม่เกิน 2 */
 function fmtNum(v: (string | number | boolean)): string {
   const n = toNum(v);
   const isWhole = Math.abs(n - Math.round(n)) < 1e-9;
   // จำนวนเต็มแสดงไม่มีทศนิยม, มีเศษแสดง 2 ตำแหน่งเสมอ (1.2 -> "1.20")
   const text = isWhole ? String(Math.round(n)) : (Math.round(n * 100) / 100).toFixed(2);
-  const parts = text.split(".");
-  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  return parts.join(".");
+  return addThousandSep(text);
+}
+
+/**
+ * จัดรูปแบบเป็นจำนวนเต็มเสมอ — ใช้กับ "เบิกจาก Hub" ที่ต้องเป็นยอดจ่ายจริง
+ * ปัดครึ่งขึ้นแบบคณิตศาสตร์ (0.5 -> 1, -0.5 -> -1) ไม่ให้ค่าติดลบเพี้ยน
+ */
+function fmtInt(v: (string | number | boolean)): string {
+  const n = toNum(v);
+  const rounded = n < 0 ? -Math.round(Math.abs(n)) : Math.round(n);
+  return addThousandSep(String(rounded));
 }
 
 interface CardItem {
@@ -121,7 +151,7 @@ function buildPayload(
 ): CardPayload {
 
   if (topRows > TOP_ROWS_MAX) topRows = TOP_ROWS_MAX;
-  if (topRows < 1) topRows = 12;
+  if (topRows < 1) topRows = TOP_ROWS_MAX;
 
   const sheet = workbook.getWorksheet(SHEET_SOURCE);
   if (!sheet) throw new Error("ไม่พบชีต " + SHEET_SOURCE);
@@ -162,7 +192,13 @@ function buildPayload(
   }
 
   // ---- 2. เลือกรอบ: ถ้าไม่ระบุ ใช้รอบ MA ที่ Period_Seq สูงสุด ----
+  // Power Automate บังคับให้พารามิเตอร์ต้องมีค่า ส่งค่าว่างจริง ๆ ไม่ได้
+  // จึงรับค่าตัวแทน "ไม่ระบุ" ได้หลายแบบ แล้วแปลงเป็นค่าว่างให้เอง
   let targetPeriod = (period || "").trim();
+  const blank = targetPeriod.toLowerCase();
+  if (blank === "-" || blank === "auto" || blank === "latest" || blank === "null") {
+    targetPeriod = "";
+  }
   if (targetPeriod === "") {
     let bestSeq = -1;
     for (const row of picked) {
@@ -202,7 +238,7 @@ function buildPayload(
       period: targetPeriod,
       prevPeriod: pp || "-",
       onhand: fmtNum(col["OMC-Onhand"] !== undefined ? row[col["OMC-Onhand"]] : 0),
-      fromHub: fmtNum(col["เบิกจาก Hub"] !== undefined ? row[col["เบิกจาก Hub"]] : 0),
+      fromHub: fmtInt(col["เบิกจาก Hub"] !== undefined ? row[col["เบิกจาก Hub"]] : 0),
       prevBefore: fmtNum(col["Prev_Before"] !== undefined ? row[col["Prev_Before"]] : 0),
       prevReceived: fmtNum(col["Prev_Received"] !== undefined ? row[col["Prev_Received"]] : 0),
       status: (get(row, "Status") || "-").replace(/^-\s*/, "") || "-",
@@ -217,18 +253,19 @@ function buildPayload(
     });
   }
 
-  // ---- 4. เรียง: เสี่ยงขาดก่อน -> คงเหลือน้อยก่อน -> Zone -> รหัส ----
-  all.sort((a, b) => {
+  // ---- 4. เรียงความสำคัญ: เสี่ยงขาดก่อน -> คงเหลือน้อยก่อน -> รหัส ----
+  const cmpItem = (a: CardItem, b: CardItem): number => {
     if (a.isRisk !== b.isRisk) return a.isRisk ? -1 : 1;
     const na = toNum(a.onhand.replace(/,/g, ""));
     const nb = toNum(b.onhand.replace(/,/g, ""));
     if (na !== nb) return na - nb;
-    if (a.zone !== b.zone) return a.zone < b.zone ? -1 : 1;
     return a.itemCode < b.itemCode ? -1 : (a.itemCode > b.itemCode ? 1 : 0);
+  };
+  all.sort((a, b) => {
+    const c = cmpItem(a, b);
+    if (c !== 0) return c;
+    return a.zone < b.zone ? -1 : (a.zone > b.zone ? 1 : 0);
   });
-
-  const shown = all.slice(0, topRows);
-  const moreCount = all.length - shown.length;
 
   // ---- 5. จัดกลุ่มตาม Zone (นับยอดเต็มของแต่ละ Zone ไว้แสดงในหัวกลุ่ม) ----
   const zoneTotal: { [k: string]: number } = {};
@@ -237,6 +274,32 @@ function buildPayload(
     zoneTotal[it.zone] = (zoneTotal[it.zone] || 0) + 1;
     if (it.isRisk) zoneRisk[it.zone] = (zoneRisk[it.zone] || 0) + 1;
   }
+
+  // ---- 6. เลือกแถววนรอบทีละ Zone ----
+  // เลือกแบบ "เอาอันดับ 1 ของทุก Zone ก่อน แล้วค่อยวนอันดับ 2"
+  // ทำให้ทุก Zone มีที่บนการ์ดเสมอ แม้รายการเสี่ยงจะกระจุกอยู่ Zone เดียว
+  const byZone: { [k: string]: CardItem[] } = {};
+  const zoneNames: string[] = [];
+  for (const it of all) {
+    if (byZone[it.zone] === undefined) { byZone[it.zone] = []; zoneNames.push(it.zone); }
+    byZone[it.zone].push(it);
+  }
+  zoneNames.sort();
+  for (const z of zoneNames) byZone[z].sort(cmpItem);
+
+  const shown: CardItem[] = [];
+  let rank = 0;
+  while (shown.length < topRows) {
+    let addedThisRound = false;
+    for (const z of zoneNames) {
+      if (shown.length >= topRows) break;
+      const list = byZone[z];
+      if (rank < list.length) { shown.push(list[rank]); addedThisRound = true; }
+    }
+    if (!addedThisRound) break;      // ทุก Zone หมดรายการแล้ว
+    rank++;
+  }
+  const moreCount = all.length - shown.length;
 
   const grouped: { [k: string]: CardItem[] } = {};
   for (const it of shown) {
@@ -265,13 +328,13 @@ function buildPayload(
 
   const isMA = dataSet === "MA";
   const meta: CardMeta = {
-    title: "รายงานวัสดุคงคลัง MA & Optimize — NER",
-    subtitle: "เฉพาะสายเคเบิล 53OF และตู้พักสาย 52CL",
+    title: "Report Material Optimize&MA_NER",
+    subtitle: "",                          // ตัดบรรทัดคำอธิบายรหัสวัสดุออกแล้ว
     period: targetPeriod || "-",
     prevPeriod: prevPeriod || "-",
     dataSet: dataSet,
-    dataSetLabel: isMA ? "MA (งานซ่อมบำรุง)" : "Optimize (ปรับปรุงโครงข่าย)",
-    dataSetEmoji: isMA ? "🛠️" : "⚙️",
+    dataSetLabel: isMA ? "MA — Weekly Allocation" : "OPTIMIZE — Allocation Plan",
+    dataSetEmoji: isMA ? "📦" : "🗃️",
     dataSetStyle: isMA ? "accent" : "good",
     dataSetColor: isMA ? "accent" : "good",
     generatedAt: "",                       // Power Automate เติมด้วย convertTimeZone()

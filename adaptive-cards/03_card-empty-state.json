@@ -19,7 +19,7 @@
         },
         {
           "type": "TextBlock",
-          "text": "รายงานวัสดุคงคลัง MA & Optimize — NER",
+          "text": "Report Material Optimize&MA_NER",
           "isSubtle": true,
           "wrap": true,
           "spacing": "none"

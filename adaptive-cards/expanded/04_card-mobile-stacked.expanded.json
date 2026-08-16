@@ -2,7 +2,7 @@
   "type": "AdaptiveCard",
   "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
   "version": "1.5",
-  "fallbackText": "รายงานวัสดุคงคลัง MA & Optimize — NER (มือถือ)",
+  "fallbackText": "Report Material Optimize&MA_NER (มือถือ)",
   "body": [
     {
       "type": "Container",
@@ -11,7 +11,7 @@
       "items": [
         {
           "type": "TextBlock",
-          "text": "🛠️ วัสดุคงคลัง NER",
+          "text": "📦 วัสดุคงคลัง NER",
           "weight": "bolder",
           "size": "large",
           "wrap": true
@@ -108,7 +108,7 @@
       "items": [
         {
           "type": "TextBlock",
-          "text": "🟦 **Zone RC2-NMA** · แสดง 2 จาก 3 รายการ",
+          "text": "🟦 **Zone RC2-NMA** · 3 รายการ",
           "wrap": true,
           "spacing": "none"
         },
@@ -120,7 +120,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "🔴 **52CL003BB** · Chaiyaphum",
+              "text": "🔴 **52CL003BB**",
               "wrap": true,
               "spacing": "none"
             },
@@ -214,7 +214,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "🟡 **52CL010BB** · Surin",
+              "text": "🟡 **52CL010BB**",
               "wrap": true,
               "spacing": "none"
             },
@@ -299,6 +299,100 @@
               "spacing": "small"
             }
           ]
+        },
+        {
+          "type": "Container",
+          "style": "emphasis",
+          "spacing": "small",
+          "separator": true,
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "⚪ **52CL009BB**",
+              "wrap": true,
+              "spacing": "none"
+            },
+            {
+              "type": "TextBlock",
+              "text": "Closure FIBRE3_12F",
+              "size": "small",
+              "isSubtle": true,
+              "wrap": true,
+              "maxLines": 1,
+              "spacing": "none"
+            },
+            {
+              "type": "ColumnSet",
+              "spacing": "small",
+              "columns": [
+                {
+                  "type": "Column",
+                  "width": "stretch",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "OMC-Onhand",
+                      "size": "small",
+                      "isSubtle": true,
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "39",
+                      "weight": "bolder",
+                      "color": "default",
+                      "spacing": "none"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": "stretch",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "เบิกจาก Hub",
+                      "size": "small",
+                      "isSubtle": true,
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "0",
+                      "weight": "bolder",
+                      "spacing": "none"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": "stretch",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "รอบก่อน",
+                      "size": "small",
+                      "isSubtle": true,
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "0 / 0",
+                      "spacing": "none"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "TextBlock",
+              "text": "⚪ ไม่มีข้อมูลรอบก่อน",
+              "size": "small",
+              "color": "default",
+              "wrap": true,
+              "spacing": "small"
+            }
+          ]
         }
       ]
     },
@@ -309,7 +403,7 @@
       "items": [
         {
           "type": "TextBlock",
-          "text": "🟨 **Zone RC3-KKN** · แสดง 5 จาก 6 รายการ",
+          "text": "🟨 **Zone RC3-KKN** · แสดง 4 จาก 6 รายการ",
           "wrap": true,
           "spacing": "none"
         },
@@ -321,7 +415,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "🔴 **52CL003BB** · NakhonPhanom",
+              "text": "🔴 **52CL003BB**",
               "wrap": true,
               "spacing": "none"
             },
@@ -415,7 +509,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "🔴 **52CL009BB** · RoiEt",
+              "text": "🔴 **52CL009BB**",
               "wrap": true,
               "spacing": "none"
             },
@@ -509,7 +603,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "🔴 **52CL009BB** · NakhonPhanom",
+              "text": "🔴 **52CL009BB**",
               "wrap": true,
               "spacing": "none"
             },
@@ -603,7 +697,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "🔴 **52CL009BB** · Kalasin",
+              "text": "🔴 **52CL009BB**",
               "wrap": true,
               "spacing": "none"
             },
@@ -688,100 +782,6 @@
               "spacing": "small"
             }
           ]
-        },
-        {
-          "type": "Container",
-          "style": "emphasis",
-          "spacing": "small",
-          "separator": true,
-          "items": [
-            {
-              "type": "TextBlock",
-              "text": "🔴 **53OF157BB** · Kalasin",
-              "wrap": true,
-              "spacing": "none"
-            },
-            {
-              "type": "TextBlock",
-              "text": "ARSS OPTICAL FIBER CABLE 12C-FIBRE3 (Spare Pa",
-              "size": "small",
-              "isSubtle": true,
-              "wrap": true,
-              "maxLines": 1,
-              "spacing": "none"
-            },
-            {
-              "type": "ColumnSet",
-              "spacing": "small",
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "OMC-Onhand",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "900",
-                      "weight": "bolder",
-                      "color": "attention",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "เบิกจาก Hub",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "weight": "bolder",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "รอบก่อน",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "34,601 / 0",
-                      "spacing": "none"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "TextBlock",
-              "text": "🔴 ใช้เกินยอดรับ (ดึงสต็อกเดิม)",
-              "size": "small",
-              "color": "attention",
-              "wrap": true,
-              "spacing": "small"
-            }
-          ]
         }
       ]
     },
@@ -792,7 +792,7 @@
       "items": [
         {
           "type": "TextBlock",
-          "text": "🟧 **Zone RC3-UDN** · แสดง 5 จาก 6 รายการ",
+          "text": "🟧 **Zone RC3-UDN** · แสดง 3 จาก 6 รายการ",
           "wrap": true,
           "spacing": "none"
         },
@@ -804,7 +804,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "🔴 **52CL003BB** · NongKhai",
+              "text": "🔴 **52CL003BB**",
               "wrap": true,
               "spacing": "none"
             },
@@ -898,7 +898,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "🔴 **52CL004BB** · BuengKan",
+              "text": "🔴 **52CL004BB**",
               "wrap": true,
               "spacing": "none"
             },
@@ -992,7 +992,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "🔴 **52CL010BB** · BuengKan",
+              "text": "🔴 **52CL010BB**",
               "wrap": true,
               "spacing": "none"
             },
@@ -1077,200 +1077,12 @@
               "spacing": "small"
             }
           ]
-        },
-        {
-          "type": "Container",
-          "style": "emphasis",
-          "spacing": "small",
-          "separator": true,
-          "items": [
-            {
-              "type": "TextBlock",
-              "text": "🟡 **52CL003BB** · Loei",
-              "wrap": true,
-              "spacing": "none"
-            },
-            {
-              "type": "TextBlock",
-              "text": "Closure OFC 12 core",
-              "size": "small",
-              "isSubtle": true,
-              "wrap": true,
-              "maxLines": 1,
-              "spacing": "none"
-            },
-            {
-              "type": "ColumnSet",
-              "spacing": "small",
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "OMC-Onhand",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "weight": "bolder",
-                      "color": "warning",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "เบิกจาก Hub",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "weight": "bolder",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "รอบก่อน",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0 / 0",
-                      "spacing": "none"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "TextBlock",
-              "text": "🟡 จัดสรรเกิน (ไม่มีการใช้)",
-              "size": "small",
-              "color": "warning",
-              "wrap": true,
-              "spacing": "small"
-            }
-          ]
-        },
-        {
-          "type": "Container",
-          "style": "emphasis",
-          "spacing": "small",
-          "separator": true,
-          "items": [
-            {
-              "type": "TextBlock",
-              "text": "🟡 **52CL003BB** · NongBuaLamphu",
-              "wrap": true,
-              "spacing": "none"
-            },
-            {
-              "type": "TextBlock",
-              "text": "Closure OFC 12 core",
-              "size": "small",
-              "isSubtle": true,
-              "wrap": true,
-              "maxLines": 1,
-              "spacing": "none"
-            },
-            {
-              "type": "ColumnSet",
-              "spacing": "small",
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "OMC-Onhand",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "weight": "bolder",
-                      "color": "warning",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "เบิกจาก Hub",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "weight": "bolder",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "รอบก่อน",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0 / 0",
-                      "spacing": "none"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "TextBlock",
-              "text": "🟡 จัดสรรเกิน (ไม่มีการใช้)",
-              "size": "small",
-              "color": "warning",
-              "wrap": true,
-              "spacing": "small"
-            }
-          ]
         }
       ]
     },
     {
       "type": "TextBlock",
-      "text": "…และอีก 3 รายการ — กด “📊 Dashboard” เพื่อดูทั้งหมด",
+      "text": "…และอีก 5 รายการ — กด “📊 Dashboard” เพื่อดูทั้งหมด",
       "size": "small",
       "isSubtle": true,
       "horizontalAlignment": "center",

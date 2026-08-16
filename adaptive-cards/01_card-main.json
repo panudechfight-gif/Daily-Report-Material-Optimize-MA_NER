@@ -3,8 +3,8 @@
   "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
   "version": "1.5",
   "msteams": { "width": "Full" },
-  "fallbackText": "รายงานวัสดุคงคลัง MA & Optimize — NER (อุปกรณ์ของคุณแสดงการ์ดนี้ไม่ได้ กรุณาเปิดจาก Dashboard)",
-  "speak": "รายงานวัสดุคงคลัง ${meta.dataSet} รอบ ${meta.period} มี ${meta.totalItems} รายการ เสี่ยงขาด ${meta.riskCount} รายการ",
+  "fallbackText": "Report Material Optimize&MA_NER (อุปกรณ์ของคุณแสดงการ์ดนี้ไม่ได้ กรุณาเปิดจาก Dashboard)",
+  "speak": "Report Material ${meta.dataSet} รอบ ${meta.period} มี ${meta.totalItems} รายการ เสี่ยงขาด ${meta.riskCount} รายการ",
   "body": [
     {
       "type": "Container",
@@ -37,13 +37,6 @@
                   "text": "${meta.title}",
                   "weight": "bolder",
                   "size": "large",
-                  "wrap": true,
-                  "spacing": "none"
-                },
-                {
-                  "type": "TextBlock",
-                  "text": "${meta.subtitle}",
-                  "isSubtle": true,
                   "wrap": true,
                   "spacing": "none"
                 }
@@ -93,7 +86,7 @@
       "items": [
         {
           "type": "TextBlock",
-          "text": "🗂️",
+          "text": "📭",
           "size": "extraLarge",
           "horizontalAlignment": "center",
           "wrap": false
@@ -109,7 +102,7 @@
         },
         {
           "type": "TextBlock",
-          "text": "ไม่พบรหัสวัสดุกลุ่ม **53OF** (สายเคเบิล) หรือ **52CL** (ตู้พักสาย) ในรอบ **${meta.period}**",
+          "text": "ไม่พบรหัสวัสดุที่กำหนดไว้ในรอบ **${meta.period}**",
           "horizontalAlignment": "center",
           "isSubtle": true,
           "wrap": true,
@@ -255,7 +248,7 @@
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "${statusEmoji} **${itemCode}** · ${province}",
+                      "text": "${statusEmoji} **${itemCode}**",
                       "wrap": true,
                       "spacing": "none"
                     },
@@ -341,7 +334,7 @@
 
     {
       "type": "TextBlock",
-      "text": "🕗 สร้างรายงานเมื่อ ${meta.generatedAt} • ที่มา: ${meta.dataSet} / ${meta.period} • เฉพาะรหัส 53OF & 52CL",
+      "text": "🕗 สร้างรายงานเมื่อ ${meta.generatedAt} • ที่มา: ${meta.dataSet} / ${meta.period}",
       "size": "small",
       "isSubtle": true,
       "wrap": true,

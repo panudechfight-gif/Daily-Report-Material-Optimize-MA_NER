@@ -1,12 +1,12 @@
 {
   "meta": {
-    "title": "รายงานวัสดุคงคลัง MA & Optimize — NER",
-    "subtitle": "เฉพาะสายเคเบิล 53OF และตู้พักสาย 52CL",
+    "title": "Report Material Optimize&MA_NER",
+    "subtitle": "",
     "period": "MA (17 Aug 26)",
     "prevPeriod": "MA (10 Aug 26)",
     "dataSet": "MA",
-    "dataSetLabel": "MA (งานซ่อมบำรุง)",
-    "dataSetEmoji": "🛠️",
+    "dataSetLabel": "MA — Weekly Allocation",
+    "dataSetEmoji": "📦",
     "dataSetStyle": "accent",
     "dataSetColor": "accent",
     "cutoffDate": "",
