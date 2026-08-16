@@ -223,9 +223,11 @@ function main(
   topRows: number = 40,
   dashboardUrl: string = "",
   sourceFileUrl: string = "",
-  generatedAt: string = ""
+  generatedAt: string = "",
+  reportType: string = ""
 ): (string | number | boolean | object) {
 
+  // reportType ไม่ใช้ในรอบนี้ แต่ API ต้องการเพื่อความเข้ากันได้
   // สร้างการ์ดแล้ววัดขนาดจริง ถ้าเกินงบก็ลดแถวแล้วสร้างใหม่
   // ทำให้การ์ดปลอดภัยเองไม่ว่ารอบนั้นจะมีกี่ Zone กี่รายการ โดยไม่ต้องมาไล่ปรับ topRows ทีหลัง
   let rows = topRows;

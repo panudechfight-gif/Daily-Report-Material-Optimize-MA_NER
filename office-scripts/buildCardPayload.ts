@@ -17,9 +17,10 @@
  *   Script: buildCardPayload
  *   Parameters:
  *       period        (เว้นว่าง = ใช้รอบล่าสุดอัตโนมัติ)
- *       topRows       12   <- อย่าเกิน 15 การ์ด Teams จำกัด 28 KB
+ *       topRows       40   <- อย่าเกิน 40 การ์ด Teams จำกัด 28 KB
  *       dashboardUrl  https://...
  *       sourceFileUrl https://...
+ *       reportType    (ไม่ใช้ในรอบนี้ แต่ API ต้องการเพื่อความเข้ากันได้)
  *
  * ผลลัพธ์: body('Run_script')?['result'] คือ payload ที่เอาไปวางในการ์ดได้เลย
  *
@@ -523,7 +524,9 @@ function main(
   period: string = "",
   topRows: number = 40,
   dashboardUrl: string = "",
-  sourceFileUrl: string = ""
+  sourceFileUrl: string = "",
+  reportType: string = ""
 ): CardPayload {
+  // reportType ไม่ใช้ในรอบนี้ แต่ API ต้องการเพื่อความเข้ากันได้
   return buildPayload(workbook, period, topRows, dashboardUrl, sourceFileUrl);
 }

@@ -224,7 +224,7 @@ concat(
 | File | กดไอคอนโฟลเดอร์ แล้วเลือก `Optimize_HiringMA_Full_Rebuild_V2.xlsx` |
 | Script | `renderAdaptiveCard` |
 
-**พอเลือก Script แล้ว จะมีช่องพารามิเตอร์โผล่มาเพิ่ม 5 ช่อง:**
+**พอเลือก Script แล้ว จะมีช่องพารามิเตอร์โผล่มาเพิ่ม 6 ช่อง:**
 
 | พารามิเตอร์ | ใส่ค่า | ความหมาย |
 |---|---|---|
@@ -233,6 +233,7 @@ concat(
 | `dashboardUrl` | ลิงก์ Dashboard ของคุณ | ใช้กับปุ่ม 📊 |
 | `sourceFileUrl` | ลิงก์ไฟล์ Excel จากข้อ 1.2 | ใช้กับปุ่ม 📁 |
 | `generatedAt` | เลือก **Outputs** ของ `GeneratedAt` | เวลาที่สร้างรายงาน |
+| `reportType` | เว้นว่าง หรือพิมพ์ได้ | ไม่ใช้ในรอบนี้ — Power Automate บังคับให้มีเพื่อความเข้ากันได้ |
 
 > ⚠️ **ช่อง `period` เว้นว่างไม่ได้**
 >
