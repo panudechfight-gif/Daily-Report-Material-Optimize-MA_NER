@@ -19,12 +19,7 @@
               "width": "auto",
               "verticalContentAlignment": "center",
               "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "${meta.dataSetEmoji}",
-                  "size": "extraLarge",
-                  "wrap": false
-                }
+                { "type": "TextBlock", "text": "${meta.dataSetEmoji}", "size": "large", "wrap": false, "spacing": "none" }
               ]
             },
             {
@@ -32,14 +27,8 @@
               "width": "stretch",
               "verticalContentAlignment": "center",
               "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "${meta.title}",
-                  "weight": "bolder",
-                  "size": "large",
-                  "wrap": true,
-                  "spacing": "none"
-                }
+                { "type": "TextBlock", "text": "${meta.title}", "weight": "bolder", "size": "medium", "wrap": true, "spacing": "none" },
+                { "type": "TextBlock", "text": "${meta.dataSetLabel}", "size": "small", "isSubtle": true, "wrap": true, "spacing": "none" }
               ]
             }
           ]
@@ -49,30 +38,22 @@
 
     {
       "type": "ColumnSet",
-      "spacing": "medium",
+      "spacing": "small",
       "columns": [
         {
           "type": "Column",
           "width": "stretch",
           "items": [
-            { "type": "TextBlock", "text": "🗓️ รอบจัดสรร (Distribution period)", "size": "small", "isSubtle": true, "wrap": true, "spacing": "none" },
-            { "type": "TextBlock", "text": "**${meta.period}**", "color": "accent", "wrap": true, "spacing": "none" }
+            { "type": "TextBlock", "text": "🗓️ รอบจัดสรร", "size": "small", "isSubtle": true, "wrap": true, "spacing": "none" },
+            { "type": "TextBlock", "text": "**${meta.period}**", "size": "small", "color": "accent", "wrap": true, "spacing": "none" }
           ]
         },
         {
           "type": "Column",
           "width": "stretch",
           "items": [
-            { "type": "TextBlock", "text": "⏮️ รอบก่อนหน้า (Prev_Period)", "size": "small", "isSubtle": true, "wrap": true, "spacing": "none" },
-            { "type": "TextBlock", "text": "**${meta.prevPeriod}**", "isSubtle": true, "wrap": true, "spacing": "none" }
-          ]
-        },
-        {
-          "type": "Column",
-          "width": "stretch",
-          "items": [
-            { "type": "TextBlock", "text": "🏷️ ชุดข้อมูล (Data_Set)", "size": "small", "isSubtle": true, "wrap": true, "spacing": "none" },
-            { "type": "TextBlock", "text": "**${meta.dataSetLabel}**", "color": "${meta.dataSetColor}", "wrap": true, "spacing": "none" }
+            { "type": "TextBlock", "text": "⏮️ รอบก่อนหน้า", "size": "small", "isSubtle": true, "wrap": true, "spacing": "none" },
+            { "type": "TextBlock", "text": "**${meta.prevPeriod}**", "size": "small", "isSubtle": true, "wrap": true, "spacing": "none" }
           ]
         }
       ]
@@ -81,238 +62,100 @@
     {
       "type": "Container",
       "$when": "${meta.hasData == false}",
-      "spacing": "large",
+      "spacing": "medium",
       "style": "emphasis",
       "items": [
-        {
-          "type": "TextBlock",
-          "text": "📭",
-          "size": "extraLarge",
-          "horizontalAlignment": "center",
-          "wrap": false
-        },
-        {
-          "type": "TextBlock",
-          "text": "ไม่มีรายการวัสดุในรอบนี้",
-          "size": "large",
-          "weight": "bolder",
-          "horizontalAlignment": "center",
-          "wrap": true,
-          "spacing": "small"
-        },
-        {
-          "type": "TextBlock",
-          "text": "ไม่พบรหัสวัสดุที่กำหนดไว้ในรอบ **${meta.period}**",
-          "horizontalAlignment": "center",
-          "isSubtle": true,
-          "wrap": true,
-          "spacing": "small"
-        },
-        {
-          "type": "TextBlock",
-          "text": "สิ่งที่ควรตรวจสอบ:\n\n1. กดปุ่ม **Refresh Data New Sheet** ในไฟล์ Excel แล้วรัน **BuildExportTable** ใหม่\n2. ตรวจว่าเลือก Sheet ต้นทางถูกรอบหรือยัง (เซลล์ C2 / C4 ของชีต MA&Optimize NER)\n3. ตรวจว่าไฟล์ถูกบันทึกกลับขึ้น SharePoint แล้ว",
-          "wrap": true,
-          "spacing": "medium"
-        }
+        { "type": "TextBlock", "text": "📭", "size": "extraLarge", "horizontalAlignment": "center", "wrap": false },
+        { "type": "TextBlock", "text": "ไม่มีรายการวัสดุในรอบนี้", "size": "large", "weight": "bolder", "horizontalAlignment": "center", "wrap": true, "spacing": "small" },
+        { "type": "TextBlock", "text": "ไม่พบรหัสวัสดุที่กำหนดไว้ในรอบ **${meta.period}**", "horizontalAlignment": "center", "isSubtle": true, "wrap": true, "spacing": "small" },
+        { "type": "TextBlock", "text": "สิ่งที่ควรตรวจสอบ:\n\n1. กดปุ่ม **Refresh Data New Sheet** ในไฟล์ Excel แล้วรัน **BuildExportTable** ใหม่\n2. ตรวจว่าเลือก Sheet ต้นทางถูกรอบหรือยัง (เซลล์ C2 / C4 ของชีต MA&Optimize NER)\n3. ตรวจว่าไฟล์ถูกบันทึกกลับขึ้น SharePoint แล้ว", "wrap": true, "spacing": "medium" }
       ]
     },
 
     {
       "type": "Container",
       "$when": "${meta.hasData}",
-      "spacing": "medium",
+      "spacing": "small",
       "items": [
         {
           "type": "ColumnSet",
+          "style": "emphasis",
+          "bleed": true,
+          "spacing": "small",
           "columns": [
             {
               "type": "Column",
               "width": "stretch",
-              "style": "attention",
-              "spacing": "small",
               "items": [
                 { "type": "TextBlock", "text": "⚠️ เสี่ยงขาด", "size": "small", "horizontalAlignment": "center", "wrap": true, "spacing": "none" },
-                { "type": "TextBlock", "text": "${string(meta.riskCount)}", "size": "extraLarge", "weight": "bolder", "horizontalAlignment": "center", "spacing": "none" }
+                { "type": "TextBlock", "text": "${string(meta.riskCount)}", "size": "large", "weight": "bolder", "color": "attention", "horizontalAlignment": "center", "spacing": "none" }
               ]
             },
             {
               "type": "Column",
               "width": "stretch",
-              "style": "warning",
-              "spacing": "small",
               "items": [
                 { "type": "TextBlock", "text": "🟡 พอใช้", "size": "small", "horizontalAlignment": "center", "wrap": true, "spacing": "none" },
-                { "type": "TextBlock", "text": "${string(meta.watchCount)}", "size": "extraLarge", "weight": "bolder", "horizontalAlignment": "center", "spacing": "none" }
+                { "type": "TextBlock", "text": "${string(meta.watchCount)}", "size": "large", "weight": "bolder", "color": "warning", "horizontalAlignment": "center", "spacing": "none" }
               ]
             },
             {
               "type": "Column",
               "width": "stretch",
-              "style": "good",
-              "spacing": "small",
               "items": [
                 { "type": "TextBlock", "text": "✅ ปกติ", "size": "small", "horizontalAlignment": "center", "wrap": true, "spacing": "none" },
-                { "type": "TextBlock", "text": "${string(meta.okCount)}", "size": "extraLarge", "weight": "bolder", "horizontalAlignment": "center", "spacing": "none" }
+                { "type": "TextBlock", "text": "${string(meta.okCount)}", "size": "large", "weight": "bolder", "color": "good", "horizontalAlignment": "center", "spacing": "none" }
               ]
             },
             {
               "type": "Column",
               "width": "stretch",
-              "style": "emphasis",
-              "spacing": "small",
               "items": [
                 { "type": "TextBlock", "text": "📦 รวม", "size": "small", "horizontalAlignment": "center", "wrap": true, "spacing": "none" },
-                { "type": "TextBlock", "text": "${string(meta.totalItems)}", "size": "extraLarge", "weight": "bolder", "horizontalAlignment": "center", "spacing": "none" }
+                { "type": "TextBlock", "text": "${string(meta.totalItems)}", "size": "large", "weight": "bolder", "horizontalAlignment": "center", "spacing": "none" }
               ]
             }
           ]
         },
 
         {
+          "type": "ColumnSet",
+          "spacing": "medium",
+          "separator": true,
+          "columns": [
+            { "type": "Column", "width": 32, "items": [ { "type": "TextBlock", "text": "Item Code", "weight": "bolder", "size": "small", "color": "accent", "wrap": true, "spacing": "none" } ] },
+            { "type": "Column", "width": 17, "items": [ { "type": "TextBlock", "text": "Onhand", "weight": "bolder", "size": "small", "color": "accent", "horizontalAlignment": "right", "wrap": true, "spacing": "none" } ] },
+            { "type": "Column", "width": 17, "items": [ { "type": "TextBlock", "text": "เบิก Hub", "weight": "bolder", "size": "small", "color": "accent", "horizontalAlignment": "right", "wrap": true, "spacing": "none" } ] },
+            { "type": "Column", "width": 17, "items": [ { "type": "TextBlock", "text": "Prev_Before", "weight": "bolder", "size": "small", "color": "accent", "horizontalAlignment": "right", "wrap": true, "spacing": "none" } ] },
+            { "type": "Column", "width": 17, "items": [ { "type": "TextBlock", "text": "Prev_Recv", "weight": "bolder", "size": "small", "color": "accent", "horizontalAlignment": "right", "wrap": true, "spacing": "none" } ] }
+          ]
+        },
+
+        {
           "type": "Container",
           "$data": "${zones}",
-          "spacing": "large",
-          "separator": true,
+          "spacing": "none",
           "items": [
             {
-              "type": "ColumnSet",
-              "style": "emphasis",
-              "bleed": true,
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "verticalContentAlignment": "center",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "${zoneEmoji} Zone ${zone}",
-                      "weight": "bolder",
-                      "size": "medium",
-                      "wrap": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "${countLabel}",
-                      "size": "small",
-                      "isSubtle": true,
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": "auto",
-                  "verticalContentAlignment": "center",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "${riskBadge}",
-                      "color": "${riskColor}",
-                      "weight": "bolder",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                }
-              ]
+              "type": "TextBlock",
+              "text": "${zoneHeadline}",
+              "size": "small",
+              "weight": "bolder",
+              "color": "${riskColor}",
+              "wrap": true,
+              "spacing": "small",
+              "separator": true
             },
 
             {
               "type": "ColumnSet",
-              "targetWidth": "atLeast:standard",
-              "spacing": "small",
-              "separator": true,
+              "spacing": "none",
               "columns": [
-                { "type": "Column", "width": 34, "items": [ { "type": "TextBlock", "text": "Item Code", "weight": "bolder", "size": "small", "color": "accent", "wrap": true, "spacing": "none" } ] },
-                { "type": "Column", "width": 16, "items": [ { "type": "TextBlock", "text": "OMC-Onhand", "weight": "bolder", "size": "small", "color": "accent", "horizontalAlignment": "right", "wrap": true, "spacing": "none" } ] },
-                { "type": "Column", "width": 16, "items": [ { "type": "TextBlock", "text": "เบิกจาก Hub", "weight": "bolder", "size": "small", "color": "accent", "horizontalAlignment": "right", "wrap": true, "spacing": "none" } ] },
-                { "type": "Column", "width": 17, "items": [ { "type": "TextBlock", "text": "Prev_Before", "weight": "bolder", "size": "small", "color": "accent", "horizontalAlignment": "right", "wrap": true, "spacing": "none" } ] },
-                { "type": "Column", "width": 17, "items": [ { "type": "TextBlock", "text": "Prev_Received", "weight": "bolder", "size": "small", "color": "accent", "horizontalAlignment": "right", "wrap": true, "spacing": "none" } ] }
-              ]
-            },
-
-            {
-              "type": "ColumnSet",
-              "$data": "${items}",
-              "spacing": "small",
-              "separator": true,
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": 34,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "${statusEmoji} **${itemCode}**",
-                      "wrap": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "targetWidth": "atLeast:standard",
-                      "text": "${itemName}",
-                      "size": "small",
-                      "isSubtle": true,
-                      "wrap": true,
-                      "maxLines": 2,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "targetWidth": "atMost:narrow",
-                      "text": "คงเหลือ **${onhand}** · Hub **${fromHub}** · ก่อน ${prevBefore}/รับ ${prevReceived}",
-                      "size": "small",
-                      "wrap": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "${statusShort}",
-                      "size": "small",
-                      "color": "${statusColor}",
-                      "weight": "${rowWeight}",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    { "type": "TextBlock", "text": "${onhand}", "horizontalAlignment": "right", "weight": "${rowWeight}", "color": "${statusColor}" }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    { "type": "TextBlock", "text": "${fromHub}", "horizontalAlignment": "right" }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    { "type": "TextBlock", "text": "${prevBefore}", "horizontalAlignment": "right", "isSubtle": true }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    { "type": "TextBlock", "text": "${prevReceived}", "horizontalAlignment": "right", "isSubtle": true }
-                  ]
-                }
+                { "type": "Column", "width": 32, "items": [ { "type": "TextBlock", "$data": "${items}", "text": "${statusEmoji} ${itemCode}${provinceTag}", "size": "small", "spacing": "none" } ] },
+                { "type": "Column", "width": 17, "items": [ { "type": "TextBlock", "$data": "${items}", "text": "${onhand}", "size": "small", "weight": "${rowWeight}", "color": "${statusColor}", "horizontalAlignment": "right", "spacing": "none" } ] },
+                { "type": "Column", "width": 17, "items": [ { "type": "TextBlock", "$data": "${items}", "text": "${fromHub}", "size": "small", "horizontalAlignment": "right", "spacing": "none" } ] },
+                { "type": "Column", "width": 17, "items": [ { "type": "TextBlock", "$data": "${items}", "text": "${prevBefore}", "size": "small", "horizontalAlignment": "right", "spacing": "none" } ] },
+                { "type": "Column", "width": 17, "items": [ { "type": "TextBlock", "$data": "${items}", "text": "${prevReceived}", "size": "small", "horizontalAlignment": "right", "spacing": "none" } ] }
               ]
             }
           ]
@@ -326,9 +169,20 @@
           "isSubtle": true,
           "horizontalAlignment": "center",
           "wrap": true,
-          "spacing": "medium",
+          "spacing": "small",
           "separator": true
         }
+      ]
+    },
+
+    {
+      "type": "Container",
+      "$when": "${meta.hasLegend}",
+      "spacing": "small",
+      "separator": true,
+      "items": [
+        { "type": "TextBlock", "text": "รหัสวัสดุในรายงานนี้", "size": "small", "weight": "bolder", "color": "accent", "wrap": true, "spacing": "none" },
+        { "type": "TextBlock", "$data": "${legend}", "text": "**${itemCode}** · ${itemName}", "size": "small", "isSubtle": true, "wrap": true, "spacing": "none" }
       ]
     },
 
@@ -338,7 +192,7 @@
       "size": "small",
       "isSubtle": true,
       "wrap": true,
-      "spacing": "medium",
+      "spacing": "small",
       "separator": true
     }
   ],

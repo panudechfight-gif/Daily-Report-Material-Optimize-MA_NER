@@ -34,33 +34,30 @@
 // ===========================================================================
 const SHEET_SOURCE = "MA&Optimize NER";
 const HEADER_ROW = 7;           // หัวตารางอยู่แถวที่ 7 (แถว 1-6 เป็นปุ่ม/คำอธิบาย)
-// เพดานแถวที่ปลอดภัย วัดจริงจากข้อมูลในไฟล์ (ดู tools/test_render_script.js):
-//   ชุด Optimize 10 แถว = 25.0 KB | 11 แถว = 26.3 KB | 12 แถว = 27.5 KB (เฉียดเพดาน)
-//   ชุด MA      10 แถว = 23.2 KB | 12 แถว = 25.6 KB
-// การ์ดกระจายแถวให้ทุก Zone จึงมีหัวกลุ่ม Zone หลายชุด ซึ่งกินที่คงที่ราว 1.5 KB ต่อ Zone
-// ตั้งไว้ที่ 10 เพื่อกันชนเพดาน 28 KB ของ Teams ในรอบที่มี 5 Zone
-const TOP_ROWS_MAX = 10;
+// เพดานแถวที่ปลอดภัย วัดจริงจากข้อมูลในไฟล์ (ดู tools/test_render_script.js)
+// การ์ดรวมแถวซ้ำของแต่ละ Zone แล้ว จำนวนแถวจริงจึงน้อยกว่าจำนวนแถวดิบมาก
+// (เช่น MA (17 Aug 26) 74 แถวดิบ -> 24 แถวหลังรวม) เพดานนี้จึงครอบคลุมทั้งรอบได้
+const TOP_ROWS_MAX = 40;
 
 // ---------------------------------------------------------------------------
-// รหัสวัสดุที่การ์ดต้องแสดง — กำหนดเป็นรายการตายตัว 10 รหัส
-// เพิ่ม/ลดรหัส ให้แก้ที่นี่ที่เดียว
+// รหัสวัสดุที่การ์ดต้องแสดง — กำหนดเป็นรายการตายตัว 8 รหัส
+// เพิ่ม/ลดรหัส ให้แก้ที่นี่ที่เดียว (แล้วแก้ TARGET_ITEMS ใน tools/build_sample_data.py ตามกัน)
+// ค่าของแต่ละรหัสคือชื่อที่ใช้แสดงในตารางอธิบายท้ายการ์ด
 // ---------------------------------------------------------------------------
-const TARGET_ITEMS: { [k: string]: boolean } = {
-  "50MT004BB": true,   // Name Plate (Aluminium)
-  "52CL003BB": true,   // CLOSURE 12 C
-  "52CL004BB": true,   // CLOSURE 24 C
-  "52CL006BB": true,   // CLOSURE 48 C
-  "52CL009BB": true,   // CLOSURE 12 C FOR OFC DROP WIRE (IN LINE)
-  "52CL010BB": true,   // CLOSURE 60 C
-  "53OF150BB": true,   // OPTICAL FIBER DROP CABLE 1C, FLAT TYPE
-  "53OF157BB": true,   // ARSS OPTICAL FIBER CABLE 12c-FIBRE3
-  "53OF158BB": true,   // ARSS OPTICAL FIBER CABLE 24c-FIBRE3
-  "53OF160BB": true,   // ARSS OPTICAL FIBER CABLE 60c-FIBRE3
+const TARGET_ITEMS: { [k: string]: string } = {
+  "53OF150BB": "OPTICAL FIBER DROP CABLE 1C, FLAT TYPE (G.657A) WITH 2 SC/UPC PRE-CONNECTOR, 3m.",
+  "53OF157BB": "ARSS OPTICAL FIBER CABLE 12c-FIBRE3",
+  "53OF158BB": "ARSS OPTICAL FIBER CABLE 24c-FIBRE3",
+  "53OF160BB": "ARSS OPTICAL FIBER CABLE 60c-FIBRE3",
+  "50MT004BB": "Name Plate (Aluminium)",
+  "52CL003BB": "CLOSURE 12 C",
+  "52CL004BB": "CLOSURE 24 C",
+  "52CL010BB": "CLOSURE 60 C",
 };
 
 function isTargetItem(code: string): boolean {
   const c = (code || "").trim().toUpperCase();
-  return TARGET_ITEMS[c] === true;
+  return TARGET_ITEMS[c] !== undefined;
 }
 
 const ZONE_EMOJI: { [k: string]: string } = {
@@ -73,14 +70,29 @@ const ZONE_EMOJI: { [k: string]: string } = {
 
 interface StatusTheme { emoji: string; color: string; short: string; }
 
+/**
+ * สีและ emoji ประจำสถานะ
+ * short = "" แปลว่าไม่ต้องพิมพ์คำอธิบายซ้ำบนการ์ด (emoji สื่อความหมายพอแล้ว)
+ * ตัดคำอธิบายของ "จัดสรรเกิน" และ "ไม่มีรอบก่อน" ออก เพื่อเหลือที่ให้ข้อมูลจริง
+ */
 function statusTheme(status: string): StatusTheme {
   const s = status || "";
-  if (s.indexOf("ปกติ") >= 0) return { emoji: "✅", color: "good", short: "ปกติ" };
-  if (s.indexOf("จัดสรรเกิน") >= 0) return { emoji: "🟡", color: "warning", short: "จัดสรรเกิน" };
+  if (s.indexOf("ปกติ") >= 0) return { emoji: "✅", color: "good", short: "" };
+  if (s.indexOf("จัดสรรเกิน") >= 0) return { emoji: "🟡", color: "warning", short: "" };
   if (s.indexOf("ใช้เกินยอดรับ") >= 0) return { emoji: "🔴", color: "attention", short: "ใช้เกินยอดรับ" };
   if (s.indexOf("ยอดไม่ตรง") >= 0) return { emoji: "🟠", color: "warning", short: "ยอดไม่ตรง" };
-  if (s.indexOf("ไม่มีข้อมูลรอบก่อน") >= 0) return { emoji: "⚪", color: "default", short: "ไม่มีรอบก่อน" };
-  return { emoji: "⚪", color: "default", short: "ไม่ระบุ" };
+  if (s.indexOf("ไม่มีข้อมูลรอบก่อน") >= 0) return { emoji: "⚪", color: "default", short: "" };
+  return { emoji: "⚪", color: "default", short: "" };
+}
+
+/** ลำดับความรุนแรงของสถานะ ใช้เลือกสถานะตัวแทนตอนรวมหลายจังหวัดเป็นแถวเดียว */
+function statusRank(status: string): number {
+  const s = status || "";
+  if (s.indexOf("ใช้เกินยอดรับ") >= 0) return 4;
+  if (s.indexOf("ยอดไม่ตรง") >= 0) return 3;
+  if (s.indexOf("จัดสรรเกิน") >= 0) return 2;
+  if (s.indexOf("ปกติ") >= 0) return 1;
+  return 0;
 }
 
 function toNum(v: (string | number | boolean)): number {
@@ -117,6 +129,7 @@ function fmtInt(v: (string | number | boolean)): string {
 
 interface CardItem {
   itemCode: string; itemName: string; unit: string; province: string;
+  provinceCount: number; provinceTag: string;
   dataSet: string; period: string; prevPeriod: string;
   onhand: string; fromHub: string; prevBefore: string; prevReceived: string;
   status: string; statusShort: string; statusEmoji: string; statusColor: string;
@@ -127,11 +140,16 @@ interface CardItem {
 interface CardZone {
   zone: string; zoneEmoji: string; itemCount: number; shownCount: number;
   riskCount: number; riskBadge: string; riskColor: string; countLabel: string;
+  totalOnhand: string; totalHub: string; totalLabel: string; zoneHeadline: string;
   items: CardItem[];
 }
 
+/** ตารางอธิบายรหัสวัสดุท้ายการ์ด — พิมพ์ครั้งเดียวแทนการซ้ำชื่อยาวทุกแถว */
+interface CardLegend { itemCode: string; itemName: string; }
+
 interface CardMeta {
-  title: string; subtitle: string; period: string; prevPeriod: string;
+  title: string; subtitle: string; hasLegend: boolean;
+  period: string; prevPeriod: string;
   dataSet: string; dataSetLabel: string; dataSetEmoji: string;
   dataSetStyle: string; dataSetColor: string;
   generatedAt: string;
@@ -141,7 +159,9 @@ interface CardMeta {
   dashboardUrl: string; sourceFileUrl: string;
 }
 
-interface CardPayload { meta: CardMeta; zones: CardZone[]; items: CardItem[]; }
+interface CardPayload {
+  meta: CardMeta; zones: CardZone[]; items: CardItem[]; legend: CardLegend[];
+}
 
 // ---------------------------------------------------------------------------
 // ตรรกะหลัก แยกออกจาก main() เพื่อให้ renderAdaptiveCard.ts นำไปใช้ซ้ำได้
@@ -183,6 +203,41 @@ function buildPayload(
   const missing = need.filter(n => col[n] === undefined);
   if (missing.length > 0) throw new Error("ไม่พบคอลัมน์: " + missing.join(", "));
 
+  // -------------------------------------------------------------------------
+  // แก้แนวคอลัมน์เลื่อนในชีตต้นทาง
+  //
+  // ชีต MA&Optimize NER มีคอลัมน์ว่างที่ไม่มีหัวตารางแทรกอยู่หลัง OMC-Onhand
+  // ทำให้ข้อมูลของบล็อก จัดสรร / เบิกจาก Hub / จัดสรรเพิ่ม / รวม 3 รายการ
+  // ไปอยู่ทางขวาของหัวตารางตัวเองอยู่ 1 ช่อง ถ้าอ่านตามชื่อหัวตารางตรง ๆ
+  // ค่าที่ได้ในช่อง "เบิกจาก Hub" จะเป็นค่าของ "จัดสรร" แทน
+  //
+  // ตรวจด้วยกฎที่ชีตคำนวณไว้เอง:  จัดสรร + เบิกจาก Hub + จัดสรรเพิ่ม = รวม 3 รายการ
+  // ลองทั้งแบบไม่เลื่อนและเลื่อน 1 ช่อง แล้วเลือกแบบที่กฎนี้เป็นจริงทุกแถวที่สุ่มมา
+  // ถ้าวันหนึ่งชีตต้นทางถูกแก้ให้ตรงแล้ว ตัวตรวจนี้จะเลือกแบบไม่เลื่อนเองอัตโนมัติ
+  // -------------------------------------------------------------------------
+  const shiftNames = ["จัดสรร", "เบิกจาก Hub", "จัดสรรเพิ่ม", "รวม 3 รายการ"];
+  const haveAll = shiftNames.every(n => col[n] !== undefined);
+  if (haveAll) {
+    let bestOffset = 0;
+    for (let off = 0; off <= 1; off++) {
+      let checked = 0, agree = 0;
+      for (let r = hdrIdx + 1; r < values.length && checked < 300; r++) {
+        const row = values[r];
+        if (row === undefined) continue;
+        const ia = col["จัดสรร"] + off, ib = col["เบิกจาก Hub"] + off;
+        const ic = col["จัดสรรเพิ่ม"] + off, is = col["รวม 3 รายการ"] + off;
+        if (is >= row.length) continue;
+        checked++;
+        const total = toNum(row[ia]) + toNum(row[ib]) + toNum(row[ic]);
+        if (Math.abs(total - toNum(row[is])) < 1e-9) agree++;
+      }
+      if (checked > 0 && agree === checked) { bestOffset = off; break; }
+    }
+    if (bestOffset > 0) {
+      for (const n of shiftNames) col[n] = col[n] + bestOffset;
+    }
+  }
+
   const get = (row: (string | number | boolean)[], name: string): string => {
     const i = col[name];
     if (i === undefined) return "";
@@ -196,65 +251,136 @@ function buildPayload(
     if (isTargetItem(get(values[r], "Item Code"))) picked.push(values[r]);
   }
 
-  // ---- 2. เลือกรอบ: ถ้าไม่ระบุ ใช้รอบ MA ที่ Period_Seq สูงสุด ----
+  // ---- 2. เลือกรอบ: ถ้าไม่ระบุ ใช้รอบ Optimize ที่ Period_Seq สูงสุด ----
   // Power Automate บังคับให้พารามิเตอร์ต้องมีค่า ส่งค่าว่างจริง ๆ ไม่ได้
   // จึงรับค่าตัวแทน "ไม่ระบุ" ได้หลายแบบ แล้วแปลงเป็นค่าว่างให้เอง
+  //
+  // ค่าตั้งต้นคือชุด Optimize (รอบเดือน) ตามที่กำหนดให้เป็นรายงานหลัก
+  // ถ้าอยากได้ชุด MA (รอบสัปดาห์) ให้ส่ง period = "MA" หรือชื่อรอบ MA ตรง ๆ
   let targetPeriod = (period || "").trim();
   const blank = targetPeriod.toLowerCase();
   if (blank === "-" || blank === "auto" || blank === "latest" || blank === "null") {
     targetPeriod = "";
   }
+  // ส่งชื่อชุดข้อมูลมาแทนชื่อรอบได้ = "รอบล่าสุดของชุดนั้น"
+  let wantSet = "Optimize";
+  if (blank === "ma") { wantSet = "MA"; targetPeriod = ""; }
+  else if (blank === "optimize") { wantSet = "Optimize"; targetPeriod = ""; }
+
   if (targetPeriod === "") {
     let bestSeq = -1;
     for (const row of picked) {
-      if (get(row, "Data_Set") !== "MA") continue;
+      if (get(row, "Data_Set") !== wantSet) continue;
       const seq = toNum(col["Period_Seq"] !== undefined ? row[col["Period_Seq"]] : 0);
       if (seq > bestSeq) { bestSeq = seq; targetPeriod = get(row, "Distribution period"); }
+    }
+    // ถ้าไม่มีชุดที่ขอเลย ถอยไปใช้รอบล่าสุดเท่าที่มี เพื่อไม่ให้การ์ดว่างโดยไม่จำเป็น
+    if (targetPeriod === "") {
+      for (const row of picked) {
+        const seq = toNum(col["Period_Seq"] !== undefined ? row[col["Period_Seq"]] : 0);
+        if (seq > bestSeq) { bestSeq = seq; targetPeriod = get(row, "Distribution period"); }
+      }
     }
   }
   const inPeriod = picked.filter(row => get(row, "Distribution period") === targetPeriod);
 
-  // ---- 3. แปลงเป็น item + นับสถานะ ----
-  const all: CardItem[] = [];
-  let riskCount = 0, watchCount = 0, okCount = 0;
-  let dataSet = "MA";
+  // ---- 3. รวมแถวซ้ำ: 1 Zone + 1 Item Code = 1 แถว ----
+  // ชีตต้นทางแตกแถวตามจังหวัด รหัสเดียวกันจึงโผล่หลายครั้งในโซนเดียว
+  // การ์ดไม่ได้แสดงจังหวัด การเห็นรหัสซ้ำจึงอ่านไม่รู้เรื่องและกินที่เปล่า ๆ
+  // จึงบวกยอดของทุกจังหวัดเข้าด้วยกัน แล้วเก็บจำนวนจังหวัดไว้บอกที่มา
+  const numOf = (row: (string | number | boolean)[], name: string): number => {
+    const i = col[name];
+    return i === undefined ? 0 : toNum(row[i]);
+  };
+
+  interface Agg {
+    zone: string; itemCode: string; itemName: string; unit: string;
+    onhand: number; fromHub: number; prevBefore: number; prevReceived: number;
+    provinces: { [k: string]: boolean }; provinceCount: number;
+    status: string; statusRank: number; isRisk: boolean; riskFlag: string;
+  }
+
+  const aggMap: { [k: string]: Agg } = {};
+  const aggOrder: string[] = [];
+  let dataSet = "Optimize";
   let prevPeriod = "";
 
   for (const row of inPeriod) {
-    const ds = get(row, "Data_Set") || "MA";
+    const ds = get(row, "Data_Set") || "Optimize";
     dataSet = ds;
     const pp = get(row, "Prev_Period");
     if (pp !== "" && prevPeriod === "") prevPeriod = pp;
 
-    const st = statusTheme(get(row, "Status"));
-    const risk = get(row, "Risk_Flag");
-    const isRisk = risk.indexOf("เสี่ยง") >= 0;
-    if (isRisk) riskCount++; else if (risk !== "") watchCount++; else okCount++;
-
     const zone = get(row, "Zone") || "-";
-    const desc = get(row, "Description") || get(row, "Art No");
+    const code = get(row, "Item Code").toUpperCase();
+    const key = zone + "|" + code;
+
+    if (aggMap[key] === undefined) {
+      aggMap[key] = {
+        zone: zone, itemCode: code,
+        itemName: TARGET_ITEMS[code] || get(row, "Description") || get(row, "Art No"),
+        unit: get(row, "Unit"),
+        onhand: 0, fromHub: 0, prevBefore: 0, prevReceived: 0,
+        provinces: {}, provinceCount: 0,
+        status: "", statusRank: -1, isRisk: false, riskFlag: "",
+      };
+      aggOrder.push(key);
+    }
+    const a = aggMap[key];
+
+    a.onhand += numOf(row, "OMC-Onhand");
+    a.fromHub += numOf(row, "เบิกจาก Hub");
+    a.prevBefore += numOf(row, "Prev_Before");
+    a.prevReceived += numOf(row, "Prev_Received");
+
+    const prov = get(row, "Province");
+    if (prov !== "" && a.provinces[prov] === undefined) {
+      a.provinces[prov] = true;
+      a.provinceCount++;
+    }
+
+    // สถานะตัวแทน = อันที่รุนแรงที่สุดในกลุ่ม
+    const stText = get(row, "Status");
+    const rank = statusRank(stText);
+    if (rank > a.statusRank) { a.statusRank = rank; a.status = stText; }
+
+    const risk = get(row, "Risk_Flag");
+    if (risk.indexOf("เสี่ยง") >= 0) { a.isRisk = true; a.riskFlag = risk; }
+    else if (risk !== "" && a.riskFlag === "") { a.riskFlag = risk; }
+  }
+
+  const all: CardItem[] = [];
+  let riskCount = 0, watchCount = 0, okCount = 0;
+
+  for (const key of aggOrder) {
+    const a = aggMap[key];
+    const st = statusTheme(a.status);
+    if (a.isRisk) riskCount++; else if (a.riskFlag !== "") watchCount++; else okCount++;
 
     all.push({
-      itemCode: get(row, "Item Code"),
-      itemName: desc.length > 45 ? desc.substring(0, 45) : desc,
-      unit: get(row, "Unit"),
-      province: get(row, "Province") || "-",
-      dataSet: ds,
+      itemCode: a.itemCode,
+      itemName: a.itemName.length > 45 ? a.itemName.substring(0, 45) : a.itemName,
+      unit: a.unit,
+      province: a.provinceCount > 0 ? String(a.provinceCount) + " จังหวัด" : "-",
+      provinceCount: a.provinceCount,
+      // ต่อท้ายรหัสเฉพาะตอนที่ยอดนี้รวมมาจากหลายจังหวัด จะได้รู้ว่าตัวเลขมาจากไหน
+      provinceTag: a.provinceCount > 1 ? " ·" + String(a.provinceCount) + "จว." : "",
+      dataSet: dataSet,
       period: targetPeriod,
-      prevPeriod: pp || "-",
-      onhand: fmtNum(col["OMC-Onhand"] !== undefined ? row[col["OMC-Onhand"]] : 0),
-      fromHub: fmtInt(col["เบิกจาก Hub"] !== undefined ? row[col["เบิกจาก Hub"]] : 0),
-      prevBefore: fmtNum(col["Prev_Before"] !== undefined ? row[col["Prev_Before"]] : 0),
-      prevReceived: fmtNum(col["Prev_Received"] !== undefined ? row[col["Prev_Received"]] : 0),
-      status: (get(row, "Status") || "-").replace(/^-\s*/, "") || "-",
+      prevPeriod: prevPeriod || "-",
+      onhand: fmtNum(a.onhand),
+      fromHub: fmtInt(a.fromHub),
+      prevBefore: fmtNum(a.prevBefore),
+      prevReceived: fmtNum(a.prevReceived),
+      status: (a.status || "-").replace(/^-\s*/, "") || "-",
       statusShort: st.short,
       statusEmoji: st.emoji,
       statusColor: st.color,
-      riskFlag: risk || "-",
-      isRisk: isRisk,
-      rowWeight: isRisk ? "bolder" : "default",
-      zone: zone,
-      zoneEmoji: ZONE_EMOJI[zone] || "🔷",
+      riskFlag: a.riskFlag || "-",
+      isRisk: a.isRisk,
+      rowWeight: a.isRisk ? "bolder" : "default",
+      zone: a.zone,
+      zoneEmoji: ZONE_EMOJI[a.zone] || "🔷",
     });
   }
 
@@ -312,6 +438,14 @@ function buildPayload(
     grouped[it.zone].push(it);
   }
 
+  // ยอดรวมของแต่ละ Zone = บวกทุกจังหวัดในโซนนั้น (ไม่ใช่แค่แถวที่แสดง)
+  const zoneOnhand: { [k: string]: number } = {};
+  const zoneHub: { [k: string]: number } = {};
+  for (const it of all) {
+    zoneOnhand[it.zone] = (zoneOnhand[it.zone] || 0) + toNum(it.onhand.replace(/,/g, ""));
+    zoneHub[it.zone] = (zoneHub[it.zone] || 0) + toNum(it.fromHub.replace(/,/g, ""));
+  }
+
   const zones: CardZone[] = Object.keys(grouped).sort().map(z => {
     const items = grouped[z];
     const nRisk = zoneRisk[z] || 0;
@@ -322,19 +456,41 @@ function buildPayload(
       itemCount: nAll,
       shownCount: items.length,
       riskCount: nRisk,
-      riskBadge: nRisk > 0 ? "⚠️ เสี่ยงขาด " + nRisk + " รายการ" : "✅ ไม่มีรายการเสี่ยง",
+      // ไม่มีรายการเสี่ยง = ไม่ต้องขึ้นป้ายอะไรเลย ปล่อยว่างให้การ์ดโล่ง
+      riskBadge: nRisk > 0 ? "⚠️ เสี่ยงขาด " + nRisk : "",
       riskColor: nRisk > 0 ? "attention" : "good",
       countLabel: items.length === nAll
         ? nAll + " รายการ"
         : "แสดง " + items.length + " จาก " + nAll + " รายการ",
+      // ยอดรวมทั้งโซน แสดงคู่กับหัวกลุ่ม
+      totalOnhand: fmtNum(zoneOnhand[z] || 0),
+      totalHub: fmtInt(zoneHub[z] || 0),
+      totalLabel: "คงเหลือ " + fmtNum(zoneOnhand[z] || 0) + " · Hub " + fmtInt(zoneHub[z] || 0),
+      // หัวกลุ่มรวมเป็นบรรทัดเดียว — ประหยัดพื้นที่การ์ดได้ราว 0.5 KB ต่อ Zone
+      zoneHeadline: (ZONE_EMOJI[z] || "🔷") + " " + z
+        + " · " + (items.length === nAll ? nAll + " รายการ" : "แสดง " + items.length + "/" + nAll)
+        + " · คงเหลือ " + fmtNum(zoneOnhand[z] || 0)
+        + " · Hub " + fmtInt(zoneHub[z] || 0)
+        + (nRisk > 0 ? " · ⚠️ เสี่ยงขาด " + nRisk : ""),
       items: items,
     };
+  });
+
+  // ตารางอธิบายรหัสวัสดุ — พิมพ์ครั้งเดียวท้ายการ์ด แทนที่จะซ้ำทุกแถว
+  const legendCodes: string[] = [];
+  for (const it of all) {
+    if (legendCodes.indexOf(it.itemCode) < 0) legendCodes.push(it.itemCode);
+  }
+  legendCodes.sort();
+  const legend: CardLegend[] = legendCodes.map(c => {
+    return { itemCode: c, itemName: TARGET_ITEMS[c] || "" };
   });
 
   const isMA = dataSet === "MA";
   const meta: CardMeta = {
     title: "Report Material Optimize&MA_NER",
     subtitle: "",                          // ตัดบรรทัดคำอธิบายรหัสวัสดุออกแล้ว
+    hasLegend: legend.length > 0,
     period: targetPeriod || "-",
     prevPeriod: prevPeriod || "-",
     dataSet: dataSet,
@@ -360,7 +516,7 @@ function buildPayload(
   };
 
   // คืนทั้ง zones (การ์ดหลัก) และ items (การ์ดแบบง่าย) เผื่อเลือกใช้ได้ทั้งสองแบบ
-  return { meta: meta, zones: zones, items: shown };
+  return { meta: meta, zones: zones, items: shown, legend: legend };
 }
 
 // ===========================================================================
@@ -392,8 +548,9 @@ const CARD_TEMPLATE: object = {
                 {
                   "type": "TextBlock",
                   "text": "${meta.dataSetEmoji}",
-                  "size": "extraLarge",
-                  "wrap": false
+                  "size": "large",
+                  "wrap": false,
+                  "spacing": "none"
                 }
               ]
             },
@@ -406,7 +563,15 @@ const CARD_TEMPLATE: object = {
                   "type": "TextBlock",
                   "text": "${meta.title}",
                   "weight": "bolder",
-                  "size": "large",
+                  "size": "medium",
+                  "wrap": true,
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "${meta.dataSetLabel}",
+                  "size": "small",
+                  "isSubtle": true,
                   "wrap": true,
                   "spacing": "none"
                 }
@@ -418,7 +583,7 @@ const CARD_TEMPLATE: object = {
     },
     {
       "type": "ColumnSet",
-      "spacing": "medium",
+      "spacing": "small",
       "columns": [
         {
           "type": "Column",
@@ -426,7 +591,7 @@ const CARD_TEMPLATE: object = {
           "items": [
             {
               "type": "TextBlock",
-              "text": "🗓️ รอบจัดสรร (Distribution period)",
+              "text": "🗓️ รอบจัดสรร",
               "size": "small",
               "isSubtle": true,
               "wrap": true,
@@ -435,6 +600,7 @@ const CARD_TEMPLATE: object = {
             {
               "type": "TextBlock",
               "text": "**${meta.period}**",
+              "size": "small",
               "color": "accent",
               "wrap": true,
               "spacing": "none"
@@ -447,7 +613,7 @@ const CARD_TEMPLATE: object = {
           "items": [
             {
               "type": "TextBlock",
-              "text": "⏮️ รอบก่อนหน้า (Prev_Period)",
+              "text": "⏮️ รอบก่อนหน้า",
               "size": "small",
               "isSubtle": true,
               "wrap": true,
@@ -456,28 +622,8 @@ const CARD_TEMPLATE: object = {
             {
               "type": "TextBlock",
               "text": "**${meta.prevPeriod}**",
-              "isSubtle": true,
-              "wrap": true,
-              "spacing": "none"
-            }
-          ]
-        },
-        {
-          "type": "Column",
-          "width": "stretch",
-          "items": [
-            {
-              "type": "TextBlock",
-              "text": "🏷️ ชุดข้อมูล (Data_Set)",
               "size": "small",
               "isSubtle": true,
-              "wrap": true,
-              "spacing": "none"
-            },
-            {
-              "type": "TextBlock",
-              "text": "**${meta.dataSetLabel}**",
-              "color": "${meta.dataSetColor}",
               "wrap": true,
               "spacing": "none"
             }
@@ -488,7 +634,7 @@ const CARD_TEMPLATE: object = {
     {
       "type": "Container",
       "$when": "${meta.hasData == false}",
-      "spacing": "large",
+      "spacing": "medium",
       "style": "emphasis",
       "items": [
         {
@@ -526,16 +672,17 @@ const CARD_TEMPLATE: object = {
     {
       "type": "Container",
       "$when": "${meta.hasData}",
-      "spacing": "medium",
+      "spacing": "small",
       "items": [
         {
           "type": "ColumnSet",
+          "style": "emphasis",
+          "bleed": true,
+          "spacing": "small",
           "columns": [
             {
               "type": "Column",
               "width": "stretch",
-              "style": "attention",
-              "spacing": "small",
               "items": [
                 {
                   "type": "TextBlock",
@@ -548,8 +695,9 @@ const CARD_TEMPLATE: object = {
                 {
                   "type": "TextBlock",
                   "text": "${string(meta.riskCount)}",
-                  "size": "extraLarge",
+                  "size": "large",
                   "weight": "bolder",
+                  "color": "attention",
                   "horizontalAlignment": "center",
                   "spacing": "none"
                 }
@@ -558,8 +706,6 @@ const CARD_TEMPLATE: object = {
             {
               "type": "Column",
               "width": "stretch",
-              "style": "warning",
-              "spacing": "small",
               "items": [
                 {
                   "type": "TextBlock",
@@ -572,8 +718,9 @@ const CARD_TEMPLATE: object = {
                 {
                   "type": "TextBlock",
                   "text": "${string(meta.watchCount)}",
-                  "size": "extraLarge",
+                  "size": "large",
                   "weight": "bolder",
+                  "color": "warning",
                   "horizontalAlignment": "center",
                   "spacing": "none"
                 }
@@ -582,8 +729,6 @@ const CARD_TEMPLATE: object = {
             {
               "type": "Column",
               "width": "stretch",
-              "style": "good",
-              "spacing": "small",
               "items": [
                 {
                   "type": "TextBlock",
@@ -596,8 +741,9 @@ const CARD_TEMPLATE: object = {
                 {
                   "type": "TextBlock",
                   "text": "${string(meta.okCount)}",
-                  "size": "extraLarge",
+                  "size": "large",
                   "weight": "bolder",
+                  "color": "good",
                   "horizontalAlignment": "center",
                   "spacing": "none"
                 }
@@ -606,8 +752,6 @@ const CARD_TEMPLATE: object = {
             {
               "type": "Column",
               "width": "stretch",
-              "style": "emphasis",
-              "spacing": "small",
               "items": [
                 {
                   "type": "TextBlock",
@@ -620,7 +764,7 @@ const CARD_TEMPLATE: object = {
                 {
                   "type": "TextBlock",
                   "text": "${string(meta.totalItems)}",
-                  "size": "extraLarge",
+                  "size": "large",
                   "weight": "bolder",
                   "horizontalAlignment": "center",
                   "spacing": "none"
@@ -630,107 +774,119 @@ const CARD_TEMPLATE: object = {
           ]
         },
         {
+          "type": "ColumnSet",
+          "spacing": "medium",
+          "separator": true,
+          "columns": [
+            {
+              "type": "Column",
+              "width": 32,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "Item Code",
+                  "weight": "bolder",
+                  "size": "small",
+                  "color": "accent",
+                  "wrap": true,
+                  "spacing": "none"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 17,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "Onhand",
+                  "weight": "bolder",
+                  "size": "small",
+                  "color": "accent",
+                  "horizontalAlignment": "right",
+                  "wrap": true,
+                  "spacing": "none"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 17,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "เบิก Hub",
+                  "weight": "bolder",
+                  "size": "small",
+                  "color": "accent",
+                  "horizontalAlignment": "right",
+                  "wrap": true,
+                  "spacing": "none"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 17,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "Prev_Before",
+                  "weight": "bolder",
+                  "size": "small",
+                  "color": "accent",
+                  "horizontalAlignment": "right",
+                  "wrap": true,
+                  "spacing": "none"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 17,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "Prev_Recv",
+                  "weight": "bolder",
+                  "size": "small",
+                  "color": "accent",
+                  "horizontalAlignment": "right",
+                  "wrap": true,
+                  "spacing": "none"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "type": "Container",
           "$data": "${zones}",
-          "spacing": "large",
-          "separator": true,
+          "spacing": "none",
           "items": [
             {
-              "type": "ColumnSet",
-              "style": "emphasis",
-              "bleed": true,
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "verticalContentAlignment": "center",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "${zoneEmoji} Zone ${zone}",
-                      "weight": "bolder",
-                      "size": "medium",
-                      "wrap": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "${countLabel}",
-                      "size": "small",
-                      "isSubtle": true,
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": "auto",
-                  "verticalContentAlignment": "center",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "${riskBadge}",
-                      "color": "${riskColor}",
-                      "weight": "bolder",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                }
-              ]
+              "type": "TextBlock",
+              "text": "${zoneHeadline}",
+              "size": "small",
+              "weight": "bolder",
+              "color": "${riskColor}",
+              "wrap": true,
+              "spacing": "small",
+              "separator": true
             },
             {
               "type": "ColumnSet",
-              "targetWidth": "atLeast:standard",
-              "spacing": "small",
-              "separator": true,
+              "spacing": "none",
               "columns": [
                 {
                   "type": "Column",
-                  "width": 34,
+                  "width": 32,
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "Item Code",
-                      "weight": "bolder",
+                      "$data": "${items}",
+                      "text": "${statusEmoji} ${itemCode}${provinceTag}",
                       "size": "small",
-                      "color": "accent",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "OMC-Onhand",
-                      "weight": "bolder",
-                      "size": "small",
-                      "color": "accent",
-                      "horizontalAlignment": "right",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "เบิกจาก Hub",
-                      "weight": "bolder",
-                      "size": "small",
-                      "color": "accent",
-                      "horizontalAlignment": "right",
-                      "wrap": true,
                       "spacing": "none"
                     }
                   ]
@@ -741,128 +897,55 @@ const CARD_TEMPLATE: object = {
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "Prev_Before",
-                      "weight": "bolder",
-                      "size": "small",
-                      "color": "accent",
-                      "horizontalAlignment": "right",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "Prev_Received",
-                      "weight": "bolder",
-                      "size": "small",
-                      "color": "accent",
-                      "horizontalAlignment": "right",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "ColumnSet",
-              "$data": "${items}",
-              "spacing": "small",
-              "separator": true,
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": 34,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "${statusEmoji} **${itemCode}**",
-                      "wrap": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "targetWidth": "atLeast:standard",
-                      "text": "${itemName}",
-                      "size": "small",
-                      "isSubtle": true,
-                      "wrap": true,
-                      "maxLines": 2,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "targetWidth": "atMost:narrow",
-                      "text": "คงเหลือ **${onhand}** · Hub **${fromHub}** · ก่อน ${prevBefore}/รับ ${prevReceived}",
-                      "size": "small",
-                      "wrap": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "${statusShort}",
-                      "size": "small",
-                      "color": "${statusColor}",
-                      "weight": "${rowWeight}",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
+                      "$data": "${items}",
                       "text": "${onhand}",
-                      "horizontalAlignment": "right",
+                      "size": "small",
                       "weight": "${rowWeight}",
-                      "color": "${statusColor}"
+                      "color": "${statusColor}",
+                      "horizontalAlignment": "right",
+                      "spacing": "none"
                     }
                   ]
                 },
                 {
                   "type": "Column",
-                  "width": 16,
-                  "targetWidth": "atLeast:standard",
+                  "width": 17,
                   "items": [
                     {
                       "type": "TextBlock",
+                      "$data": "${items}",
                       "text": "${fromHub}",
-                      "horizontalAlignment": "right"
+                      "size": "small",
+                      "horizontalAlignment": "right",
+                      "spacing": "none"
                     }
                   ]
                 },
                 {
                   "type": "Column",
                   "width": 17,
-                  "targetWidth": "atLeast:standard",
                   "items": [
                     {
                       "type": "TextBlock",
+                      "$data": "${items}",
                       "text": "${prevBefore}",
+                      "size": "small",
                       "horizontalAlignment": "right",
-                      "isSubtle": true
+                      "spacing": "none"
                     }
                   ]
                 },
                 {
                   "type": "Column",
                   "width": 17,
-                  "targetWidth": "atLeast:standard",
                   "items": [
                     {
                       "type": "TextBlock",
+                      "$data": "${items}",
                       "text": "${prevReceived}",
+                      "size": "small",
                       "horizontalAlignment": "right",
-                      "isSubtle": true
+                      "spacing": "none"
                     }
                   ]
                 }
@@ -878,8 +961,34 @@ const CARD_TEMPLATE: object = {
           "isSubtle": true,
           "horizontalAlignment": "center",
           "wrap": true,
-          "spacing": "medium",
+          "spacing": "small",
           "separator": true
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "$when": "${meta.hasLegend}",
+      "spacing": "small",
+      "separator": true,
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "รหัสวัสดุในรายงานนี้",
+          "size": "small",
+          "weight": "bolder",
+          "color": "accent",
+          "wrap": true,
+          "spacing": "none"
+        },
+        {
+          "type": "TextBlock",
+          "$data": "${legend}",
+          "text": "**${itemCode}** · ${itemName}",
+          "size": "small",
+          "isSubtle": true,
+          "wrap": true,
+          "spacing": "none"
         }
       ]
     },
@@ -889,7 +998,7 @@ const CARD_TEMPLATE: object = {
       "size": "small",
       "isSubtle": true,
       "wrap": true,
-      "spacing": "medium",
+      "spacing": "small",
       "separator": true
     }
   ],
@@ -1072,18 +1181,52 @@ function acStripKey(obj: object, key: string): object {
 // ===========================================================================
 // ส่วนที่ 4 — main
 // ===========================================================================
+/** ความยาวจริงเป็นไบต์แบบ UTF-8 — ข้อความไทย 1 ตัวกิน 3 ไบต์ emoji กิน 4 ไบต์
+ *  (String.length นับเป็น UTF-16 code unit จึงต่ำกว่าความจริงมากจนวัดขนาดการ์ดไม่ได้) */
+function utf8Bytes(s: string): number {
+  let n = 0;
+  for (let i = 0; i < s.length; i++) {
+    const c = s.charCodeAt(i);
+    if (c < 0x80) n += 1;
+    else if (c < 0x800) n += 2;
+    else if (c >= 0xD800 && c <= 0xDBFF) { n += 4; i++; }   // surrogate pair
+    else n += 3;
+  }
+  return n;
+}
+
+// Teams ปฏิเสธการ์ดเกิน 28,672 ไบต์แบบเงียบ ๆ — เผื่อไว้ให้เหลือที่หายใจ
+const CARD_SAFE_BYTES = 26000;
+
 function main(
   workbook: ExcelScript.Workbook,
   period: string = "",
-  topRows: number = 12,
+  topRows: number = 40,
   dashboardUrl: string = "",
   sourceFileUrl: string = "",
   generatedAt: string = ""
 ): (string | number | boolean | object) {
 
-  const payload = buildPayload(workbook, period, topRows, dashboardUrl, sourceFileUrl);
-  payload.meta.generatedAt = generatedAt || "";
+  // สร้างการ์ดแล้ววัดขนาดจริง ถ้าเกินงบก็ลดแถวแล้วสร้างใหม่
+  // ทำให้การ์ดปลอดภัยเองไม่ว่ารอบนั้นจะมีกี่ Zone กี่รายการ โดยไม่ต้องมาไล่ปรับ topRows ทีหลัง
+  let rows = topRows;
+  let card: (string | number | boolean | object) = {};
 
-  const card = acExpandNode(CARD_TEMPLATE, { data: payload, root: payload });
-  return card as (string | number | boolean | object);
+  for (let attempt = 0; attempt < 8; attempt++) {
+    const payload = buildPayload(workbook, period, rows, dashboardUrl, sourceFileUrl);
+    payload.meta.generatedAt = generatedAt || "";
+    card = acExpandNode(CARD_TEMPLATE, { data: payload, root: payload });
+
+    const size = utf8Bytes(JSON.stringify(card));
+    const shown = payload.meta.shownItems;
+    if (size <= CARD_SAFE_BYTES || shown <= 4) break;
+
+    // ลดตามสัดส่วนที่เกินงบ แล้วบังคับให้ลดลงอย่างน้อย 1 แถวเสมอ กันวนไม่จบ
+    let next = Math.floor(shown * CARD_SAFE_BYTES / size);
+    if (next >= shown) next = shown - 1;
+    if (next < 1) next = 1;
+    rows = next;
+  }
+
+  return card;
 }

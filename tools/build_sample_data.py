@@ -30,21 +30,25 @@ except ImportError:
     openpyxl = None       # ยังใช้ --from-dump ได้ ถ้าไม่มี openpyxl
 
 # --------------------------------------------------------------------------------------
-# รหัสวัสดุที่การ์ดต้องแสดง — รายการตายตัว 10 รหัส
+# รหัสวัสดุที่การ์ดต้องแสดง — รายการตายตัว 8 รหัส
 # ต้องตรงกับ TARGET_ITEMS ใน office-scripts/buildCardPayload.ts เสมอ
+# ค่าของแต่ละรหัสคือชื่อที่ใช้แสดงในตารางอธิบายท้ายการ์ด
 # --------------------------------------------------------------------------------------
 TARGET_ITEMS = {
-    "50MT004BB",   # Name Plate (Aluminium)
-    "52CL003BB",   # CLOSURE 12 C
-    "52CL004BB",   # CLOSURE 24 C
-    "52CL006BB",   # CLOSURE 48 C
-    "52CL009BB",   # CLOSURE 12 C FOR OFC DROP WIRE (IN LINE)
-    "52CL010BB",   # CLOSURE 60 C
-    "53OF150BB",   # OPTICAL FIBER DROP CABLE 1C, FLAT TYPE
-    "53OF157BB",   # ARSS OPTICAL FIBER CABLE 12c-FIBRE3
-    "53OF158BB",   # ARSS OPTICAL FIBER CABLE 24c-FIBRE3
-    "53OF160BB",   # ARSS OPTICAL FIBER CABLE 60c-FIBRE3
+    "53OF150BB": "OPTICAL FIBER DROP CABLE 1C, FLAT TYPE (G.657A) WITH 2 SC/UPC PRE-CONNECTOR, 3m.",
+    "53OF157BB": "ARSS OPTICAL FIBER CABLE 12c-FIBRE3",
+    "53OF158BB": "ARSS OPTICAL FIBER CABLE 24c-FIBRE3",
+    "53OF160BB": "ARSS OPTICAL FIBER CABLE 60c-FIBRE3",
+    "50MT004BB": "Name Plate (Aluminium)",
+    "52CL003BB": "CLOSURE 12 C",
+    "52CL004BB": "CLOSURE 24 C",
+    "52CL010BB": "CLOSURE 60 C",
 }
+
+# คอลัมน์บล็อกตัวเลขที่ข้อมูลในชีตเลื่อนไปทางขวา 1 ช่องจากหัวตารางของตัวเอง
+# (ชีตมีคอลัมน์ว่างไม่มีหัวแทรกอยู่หลัง OMC-Onhand)
+# ตรวจจับด้วยกฎ  จัดสรร + เบิกจาก Hub + จัดสรรเพิ่ม = รวม 3 รายการ  ใน fix_header_shift()
+SHIFT_COLS = ["จัดสรร", "เบิกจาก Hub", "จัดสรรเพิ่ม", "รวม 3 รายการ"]
 
 SHEET_SOURCE = "MA&Optimize NER"
 HEADER_ROW = 7  # ชีต MA&Optimize NER วางหัวตารางไว้แถวที่ 7
@@ -68,26 +72,32 @@ DATASET_THEME = {
 # ค่าที่พบจริงในไฟล์: "ปกติ", "จัดสรรเกิน (ไม่มีการใช้)",
 #                    "ใช้เกินยอดรับ (ดึงสต็อกเดิม)", "ยอดไม่ตรง (รับนอกระบบ)",
 #                    "- ไม่มีข้อมูลรอบก่อน"
-# statusShort = ป้ายสั้นสำหรับตารางในการ์ด (ข้อความเต็มยาวเกินจนการ์ดชนเพดาน 28 KB)
+# statusShort = "" แปลว่าไม่ต้องพิมพ์คำอธิบายซ้ำบนการ์ด (emoji สื่อความหมายพอแล้ว)
+# ตัดคำอธิบายของ "จัดสรรเกิน" และ "ไม่มีรอบก่อน" ออก เพื่อเหลือที่ให้ข้อมูลจริง
 STATUS_THEME = [
-    ("ปกติ", "✅", "good", "ปกติ"),
-    ("จัดสรรเกิน", "🟡", "warning", "จัดสรรเกิน"),
+    ("ปกติ", "✅", "good", ""),
+    ("จัดสรรเกิน", "🟡", "warning", ""),
     ("ใช้เกินยอดรับ", "🔴", "attention", "ใช้เกินยอดรับ"),
     ("ยอดไม่ตรง", "🟠", "warning", "ยอดไม่ตรง"),
-    ("ไม่มีข้อมูลรอบก่อน", "⚪", "default", "ไม่มีรอบก่อน"),
+    ("ไม่มีข้อมูลรอบก่อน", "⚪", "default", ""),
+]
+
+# ลำดับความรุนแรง ใช้เลือกสถานะตัวแทนตอนรวมหลายจังหวัดเป็นแถวเดียว
+STATUS_RANK = [
+    ("ใช้เกินยอดรับ", 4),
+    ("ยอดไม่ตรง", 3),
+    ("จัดสรรเกิน", 2),
+    ("ปกติ", 1),
 ]
 
 TH_MONTH = ["", "ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.",
             "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."]
 
 # เพดานแถวที่แสดงบนการ์ด — Teams ปฏิเสธ Adaptive Card ที่ใหญ่เกิน 28 KB
-# วัดจริงด้วย tools/test_render_script.js จากข้อมูลในไฟล์:
-#   MA       10 แถว = 23.2 KB | 12 แถว = 25.6 KB
-#   Optimize 10 แถว = 25.0 KB   <- กรณีหนักสุดที่ยังปลอดภัย (5 Zone)
-#   Optimize 11 แถว = 26.3 KB   <- เริ่มเฉียด
-#   Optimize 12 แถว = 27.5 KB   <- เฉียดเพดานมาก
-TOP_ROWS_DEFAULT = 10
-TOP_ROWS_MAX = 10
+# การ์ดรวมแถวซ้ำของแต่ละ Zone แล้ว (1 Zone + 1 Item Code = 1 แถว)
+# จำนวนแถวจริงจึงน้อยกว่าจำนวนแถวดิบมาก และครอบคลุมทั้งรอบได้ในการ์ดใบเดียว
+TOP_ROWS_DEFAULT = 40
+TOP_ROWS_MAX = 40
 
 
 def is_target_item(code):
@@ -100,7 +110,56 @@ def status_theme(status):
     for key, emoji, color, short in STATUS_THEME:
         if key in s:
             return emoji, color, short
-    return "⚪", "default", "ไม่ระบุ"
+    return "⚪", "default", ""
+
+
+def status_rank(status):
+    s = str(status or "").strip()
+    for key, rank in STATUS_RANK:
+        if key in s:
+            return rank
+    return 0
+
+
+def fix_header_shift(header, data_rows):
+    """แก้แนวคอลัมน์เลื่อนในชีตต้นทาง
+
+    ชีต MA&Optimize NER มีคอลัมน์ว่างที่ไม่มีหัวตารางแทรกอยู่หลัง OMC-Onhand
+    ข้อมูลของบล็อก จัดสรร / เบิกจาก Hub / จัดสรรเพิ่ม / รวม 3 รายการ
+    จึงไปอยู่ทางขวาของหัวตารางตัวเอง 1 ช่อง ถ้าอ่านตามชื่อหัวตารางตรง ๆ
+    ค่าที่ได้ในช่อง "เบิกจาก Hub" จะเป็นค่าของ "จัดสรร" แทน
+
+    ตรวจด้วยกฎที่ชีตคำนวณไว้เอง: จัดสรร + เบิกจาก Hub + จัดสรรเพิ่ม = รวม 3 รายการ
+    ถ้าวันหนึ่งชีตถูกแก้ให้ตรงแล้ว ฟังก์ชันนี้จะคืนหัวตารางเดิมโดยไม่เลื่อนอะไร
+    """
+    idx = {}
+    for i, name in enumerate(header):
+        if name and name not in idx:
+            idx[name] = i
+    if not all(n in idx for n in SHIFT_COLS):
+        return header
+
+    for off in (0, 1):
+        checked = agree = 0
+        for r in data_rows[:300]:
+            ia, ib = idx["จัดสรร"] + off, idx["เบิกจาก Hub"] + off
+            ic, isum = idx["จัดสรรเพิ่ม"] + off, idx["รวม 3 รายการ"] + off
+            if isum >= len(r):
+                continue
+            checked += 1
+            if abs(num(r[ia]) + num(r[ib]) + num(r[ic]) - num(r[isum])) < 1e-9:
+                agree += 1
+        if checked and agree == checked:
+            if off == 0:
+                return header
+            fixed = list(header)
+            for n in SHIFT_COLS:            # ปลดชื่อเดิมออกก่อน
+                fixed[idx[n]] = "_spacer_" + n
+            for n in SHIFT_COLS:            # แล้วค่อยวางชื่อไว้ตำแหน่งที่ข้อมูลอยู่จริง
+                if idx[n] + 1 < len(fixed):
+                    fixed[idx[n] + 1] = n
+            return fixed
+    return header
 
 
 def num(v):
@@ -156,8 +215,10 @@ def read_rows_from_dump(dump_path):
         sys.exit("หาหัวตารางแถวที่ {} ในไฟล์ dump ไม่เจอ".format(HEADER_ROW))
 
     header = [str(c).strip() if c is not None else "" for c in values[hdr_idx]]
+    raw = values[hdr_idx + 1:]
+    header = fix_header_shift(header, raw)
     rows = []
-    for r in values[hdr_idx + 1:]:
+    for r in raw:
         rec = dict(zip(header, r))
         if rec.get("Item Code"):
             rows.append(rec)
@@ -173,17 +234,22 @@ def read_rows(xlsm_path):
     ws = wb[SHEET_SOURCE]
 
     header = None
-    rows = []
+    raw = []
     for i, r in enumerate(ws.iter_rows(values_only=True), start=1):
         if i < HEADER_ROW:
             continue
         if i == HEADER_ROW:
             header = [str(c).strip() if c is not None else "" for c in r]
             continue
+        raw.append(r)
+    wb.close()
+
+    header = fix_header_shift(header, raw)
+    rows = []
+    for r in raw:
         rec = dict(zip(header, r))
         if rec.get("Item Code"):
             rows.append(rec)
-    wb.close()
     return rows
 
 
@@ -197,59 +263,107 @@ def build_payload(rows, period=None, dashboard_url="", source_url="", top=TOP_RO
 
     picked = [r for r in rows if is_target_item(r.get("Item Code"))]
 
-    # ถ้าไม่ระบุรอบ ให้ใช้รอบล่าสุดของฝั่ง MA ตามลำดับ Period_Seq
+    # ถ้าไม่ระบุรอบ ให้ใช้รอบล่าสุดของชุด Optimize (รายงานหลัก) ตามลำดับ Period_Seq
+    # ส่งชื่อชุดข้อมูลมาแทนชื่อรอบก็ได้ = "รอบล่าสุดของชุดนั้น"
+    want_set = "Optimize"
+    if period is not None and str(period).strip().lower() in ("ma", "optimize"):
+        want_set = "MA" if str(period).strip().lower() == "ma" else "Optimize"
+        period = None
     if period is None:
-        ma = [r for r in picked if str(r.get("Data_Set")) == "MA"]
-        if ma:
-            period = max(ma, key=lambda r: (num(r.get("Period_Seq")),))["Distribution period"]
+        pool = [r for r in picked if str(r.get("Data_Set")) == want_set] or picked
+        if pool:
+            period = max(pool, key=lambda r: (num(r.get("Period_Seq")),))["Distribution period"]
 
     picked = [r for r in picked if str(r.get("Distribution period")) == str(period)]
 
-    data_set = str(picked[0].get("Data_Set")) if picked else "MA"
-    theme = DATASET_THEME.get(data_set, DATASET_THEME["MA"])
+    data_set = str(picked[0].get("Data_Set")) if picked else "Optimize"
+    theme = DATASET_THEME.get(data_set, DATASET_THEME["Optimize"])
     prev_period = ""
     for r in picked:
         if r.get("Prev_Period"):
             prev_period = str(r["Prev_Period"])
             break
 
-    # ---- แปลงทุกแถวเป็น item ก่อน แล้วค่อยตัด top N ----
+    # ---- รวมแถวซ้ำ: 1 Zone + 1 Item Code = 1 แถว ----
+    # ชีตต้นทางแตกแถวตามจังหวัด รหัสเดียวกันจึงโผล่หลายครั้งในโซนเดียว
+    # การ์ดไม่ได้แสดงจังหวัด จึงบวกยอดทุกจังหวัดเข้าด้วยกันแล้วเก็บจำนวนจังหวัดไว้
+    agg = OrderedDict()
+    for r in picked:
+        zone = str(r.get("Zone") or "-").strip()
+        code = str(r.get("Item Code") or "").strip().upper()
+        key = (zone, code)
+        a = agg.get(key)
+        if a is None:
+            a = {
+                "zone": zone, "itemCode": code,
+                "itemName": TARGET_ITEMS.get(code)
+                            or str(r.get("Description") or r.get("Art No") or "").strip(),
+                "unit": str(r.get("Unit") or "").strip(),
+                "onhand": 0.0, "fromHub": 0.0, "prevBefore": 0.0, "prevReceived": 0.0,
+                "provinces": [], "status": "", "statusRank": -1,
+                "isRisk": False, "riskFlag": "",
+            }
+            agg[key] = a
+
+        a["onhand"] += num(r.get("OMC-Onhand"))
+        a["fromHub"] += num(r.get("เบิกจาก Hub"))
+        a["prevBefore"] += num(r.get("Prev_Before"))
+        a["prevReceived"] += num(r.get("Prev_Received"))
+
+        prov = str(r.get("Province") or "").strip()
+        if prov and prov not in a["provinces"]:
+            a["provinces"].append(prov)
+
+        st = str(r.get("Status") or "").strip()
+        rank = status_rank(st)
+        if rank > a["statusRank"]:
+            a["statusRank"] = rank
+            a["status"] = st
+
+        risk = str(r.get("Risk_Flag") or "").strip()
+        if "เสี่ยง" in risk:
+            a["isRisk"] = True
+            a["riskFlag"] = risk
+        elif risk and not a["riskFlag"]:
+            a["riskFlag"] = risk
+
     all_items = []
     risk_total = watch_total = ok_total = 0
 
-    for r in picked:
-        zone = str(r.get("Zone") or "-").strip()
-        emoji, color, short = status_theme(r.get("Status"))
-        risk = str(r.get("Risk_Flag") or "").strip()
-        is_risk = "เสี่ยง" in risk
-        if is_risk:
+    for a in agg.values():
+        emoji, color, short = status_theme(a["status"])
+        if a["isRisk"]:
             risk_total += 1
-        elif risk:
+        elif a["riskFlag"]:
             watch_total += 1
         else:
             ok_total += 1
 
+        n_prov = len(a["provinces"])
         item = OrderedDict([
-            ("itemCode", str(r.get("Item Code") or "").strip()),
-            ("itemName", str(r.get("Description") or r.get("Art No") or "").strip()[:45]),
-            ("unit", str(r.get("Unit") or "").strip()),
-            ("province", str(r.get("Province") or "-").strip() or "-"),
+            ("itemCode", a["itemCode"]),
+            ("itemName", a["itemName"][:45]),
+            ("unit", a["unit"]),
+            ("province", "{} จังหวัด".format(n_prov) if n_prov else "-"),
+            ("provinceCount", n_prov),
+            # ต่อท้ายรหัสเฉพาะตอนที่ยอดนี้รวมมาจากหลายจังหวัด จะได้รู้ว่าตัวเลขมาจากไหน
+            ("provinceTag", " ·{}จว.".format(n_prov) if n_prov > 1 else ""),
             ("dataSet", data_set),
             ("period", str(period)),
-            ("prevPeriod", str(r.get("Prev_Period") or "-")),
-            ("onhand", fmt_num(r.get("OMC-Onhand"))),
-            ("fromHub", fmt_int(r.get("เบิกจาก Hub"))),
-            ("prevBefore", fmt_num(r.get("Prev_Before"))),
-            ("prevReceived", fmt_num(r.get("Prev_Received"))),
-            ("status", str(r.get("Status") or "-").strip().lstrip("- ").strip() or "-"),
+            ("prevPeriod", prev_period or "-"),
+            ("onhand", fmt_num(a["onhand"])),
+            ("fromHub", fmt_int(a["fromHub"])),
+            ("prevBefore", fmt_num(a["prevBefore"])),
+            ("prevReceived", fmt_num(a["prevReceived"])),
+            ("status", str(a["status"] or "-").strip().lstrip("- ").strip() or "-"),
             ("statusShort", short),
             ("statusEmoji", emoji),
             ("statusColor", color),
-            ("riskFlag", risk or "-"),
-            ("isRisk", is_risk),
-            ("rowWeight", "bolder" if is_risk else "default"),
-            ("zone", zone),
-            ("zoneEmoji", ZONE_EMOJI.get(zone, "🔷")),
+            ("riskFlag", a["riskFlag"] or "-"),
+            ("isRisk", a["isRisk"]),
+            ("rowWeight", "bolder" if a["isRisk"] else "default"),
+            ("zone", a["zone"]),
+            ("zoneEmoji", ZONE_EMOJI.get(a["zone"], "🔷")),
         ])
         all_items.append(item)
 
@@ -296,29 +410,57 @@ def build_payload(rows, period=None, dashboard_url="", source_url="", top=TOP_RO
     for it in shown:
         grouped.setdefault(it["zone"], []).append(it)
 
+    # ยอดรวมของแต่ละ Zone = บวกทุกจังหวัดในโซนนั้น (ไม่ใช่แค่แถวที่แสดง)
+    zone_onhand = OrderedDict()
+    zone_hub = OrderedDict()
+    for it in all_items:
+        z = it["zone"]
+        zone_onhand[z] = zone_onhand.get(z, 0.0) + num(it["onhand"].replace(",", ""))
+        zone_hub[z] = zone_hub.get(z, 0.0) + num(it["fromHub"].replace(",", ""))
+
     zone_list = []
     for zone in sorted(grouped.keys()):
         items = grouped[zone]
         n_risk = zone_risk_totals.get(zone, 0)
         n_all = zone_totals.get(zone, len(items))
+        t_onhand = fmt_num(zone_onhand.get(zone, 0))
+        t_hub = fmt_int(zone_hub.get(zone, 0))
         zone_list.append(OrderedDict([
             ("zone", zone),
             ("zoneEmoji", ZONE_EMOJI.get(zone, "🔷")),
             ("itemCount", n_all),
             ("shownCount", len(items)),
             ("riskCount", n_risk),
-            ("riskBadge", "⚠️ เสี่ยงขาด {} รายการ".format(n_risk) if n_risk else "✅ ไม่มีรายการเสี่ยง"),
+            # ไม่มีรายการเสี่ยง = ไม่ต้องขึ้นป้ายอะไรเลย ปล่อยว่างให้การ์ดโล่ง
+            ("riskBadge", "⚠️ เสี่ยงขาด {}".format(n_risk) if n_risk else ""),
             ("riskColor", "attention" if n_risk else "good"),
             ("countLabel", "{} รายการ".format(n_all) if len(items) == n_all
                            else "แสดง {} จาก {} รายการ".format(len(items), n_all)),
+            ("totalOnhand", t_onhand),
+            ("totalHub", t_hub),
+            ("totalLabel", "คงเหลือ {} · Hub {}".format(t_onhand, t_hub)),
+            # หัวกลุ่มรวมเป็นบรรทัดเดียว — ประหยัดพื้นที่การ์ดได้ราว 0.5 KB ต่อ Zone
+            ("zoneHeadline", "{} {} · {} · คงเหลือ {} · Hub {}{}".format(
+                ZONE_EMOJI.get(zone, "🔷"), zone,
+                "{} รายการ".format(n_all) if len(items) == n_all
+                else "แสดง {}/{}".format(len(items), n_all),
+                t_onhand, t_hub,
+                " · ⚠️ เสี่ยงขาด {}".format(n_risk) if n_risk else "")),
             ("items", items),
         ]))
+
+    # ตารางอธิบายรหัสวัสดุ — พิมพ์ครั้งเดียวท้ายการ์ด แทนที่จะซ้ำทุกแถว
+    legend = [
+        OrderedDict([("itemCode", c), ("itemName", TARGET_ITEMS.get(c, ""))])
+        for c in sorted({it["itemCode"] for it in all_items})
+    ]
 
     cutoff = ""
 
     meta = OrderedDict([
         ("title", "Report Material Optimize&MA_NER"),
         ("subtitle", ""),
+        ("hasLegend", len(legend) > 0),
         ("period", str(period or "-")),
         ("prevPeriod", prev_period or "-"),
         ("dataSet", data_set),
@@ -346,8 +488,8 @@ def build_payload(rows, period=None, dashboard_url="", source_url="", top=TOP_RO
     flat = [OrderedDict(it) for it in shown]
 
     return (
-        OrderedDict([("meta", meta), ("zones", zone_list)]),
-        OrderedDict([("meta", meta), ("items", flat)]),
+        OrderedDict([("meta", meta), ("zones", zone_list), ("legend", legend)]),
+        OrderedDict([("meta", meta), ("items", flat), ("legend", legend)]),
     )
 
 
@@ -381,7 +523,9 @@ def main():
         "riskCount": 0, "watchCount": 0, "okCount": 0,
         "hasMore": False, "moreCount": 0, "moreText": "",
     })
+    empty["meta"]["hasLegend"] = False
     empty["zones"] = []
+    empty["legend"] = []
 
     out = {
         "sample-data-main.json": main_payload,

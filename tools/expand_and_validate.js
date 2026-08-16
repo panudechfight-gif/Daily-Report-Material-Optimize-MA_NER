@@ -103,7 +103,17 @@ for (const c of CASES) {
 
   // 4. $when
   const hasEmptyMarker = text.includes("ไม่มีรายการวัสดุในรอบนี้");
-  const columnSets = countType(expanded, "ColumnSet");
+
+  // นับแถวจาก "รหัสวัสดุที่โผล่จริงในผลลัพธ์" ไม่ผูกกับชนิด element
+  // (การ์ดแต่ละใบวางแถวคนละแบบ: ColumnSet ต่อแถว, คอลัมน์ละหลาย TextBlock, หรือบรรทัดเดียวจบ)
+  const rowsExpanded = (() => {
+    const codes = new Set((data.items || []).map(i => i.itemCode));
+    for (const z of data.zones || []) for (const i of z.items || []) codes.add(i.itemCode);
+    let n = 0;
+    for (const code of codes) if (text.includes(code)) n++;
+    return n;
+  })();
+
   if (c.expectEmpty) {
     if (hasEmptyMarker) pass("$when แสดง empty state ถูกต้อง");
     else fail("ควรแสดง empty state แต่ไม่พบ");
@@ -112,7 +122,7 @@ for (const c of CASES) {
   } else {
     if (!hasEmptyMarker) pass("$when ซ่อน empty state ถูกต้อง");
     else fail("มีข้อมูลแต่ยังแสดง empty state");
-    if (columnSets > 3) pass(`ขยายแถวข้อมูลแล้ว (ColumnSet ${columnSets} ชุด)`);
+    if (rowsExpanded > 0) pass(`ขยายแถวข้อมูลแล้ว (รหัสวัสดุ ${rowsExpanded} รหัส)`);
     else fail("ไม่พบแถวข้อมูลหลัง expand");
   }
 

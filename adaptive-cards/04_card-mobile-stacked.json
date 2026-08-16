@@ -87,71 +87,22 @@
       "items": [
         {
           "type": "TextBlock",
-          "text": "${zoneEmoji} **Zone ${zone}** · ${countLabel}",
+          "text": "${zoneHeadline}",
+          "size": "small",
+          "weight": "bolder",
+          "color": "${riskColor}",
           "wrap": true,
-          "spacing": "none"
+          "spacing": "small",
+          "separator": true
         },
         {
-          "type": "Container",
+          "type": "TextBlock",
           "$data": "${items}",
-          "style": "emphasis",
-          "spacing": "small",
-          "separator": true,
-          "items": [
-            {
-              "type": "TextBlock",
-              "text": "${statusEmoji} **${itemCode}**",
-              "wrap": true,
-              "spacing": "none"
-            },
-            {
-              "type": "TextBlock",
-              "text": "${itemName}",
-              "size": "small",
-              "isSubtle": true,
-              "wrap": true,
-              "maxLines": 1,
-              "spacing": "none"
-            },
-            {
-              "type": "ColumnSet",
-              "spacing": "small",
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    { "type": "TextBlock", "text": "OMC-Onhand", "size": "small", "isSubtle": true, "spacing": "none" },
-                    { "type": "TextBlock", "text": "${onhand}", "weight": "bolder", "color": "${statusColor}", "spacing": "none" }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    { "type": "TextBlock", "text": "เบิกจาก Hub", "size": "small", "isSubtle": true, "spacing": "none" },
-                    { "type": "TextBlock", "text": "${fromHub}", "weight": "bolder", "spacing": "none" }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    { "type": "TextBlock", "text": "รอบก่อน", "size": "small", "isSubtle": true, "spacing": "none" },
-                    { "type": "TextBlock", "text": "${prevBefore} / ${prevReceived}", "spacing": "none" }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "TextBlock",
-              "text": "${statusEmoji} ${status}",
-              "size": "small",
-              "color": "${statusColor}",
-              "wrap": true,
-              "spacing": "small"
-            }
-          ]
+          "text": "${statusEmoji} **${itemCode}${provinceTag}** — คงเหลือ **${onhand}** · Hub **${fromHub}** · ก่อน ${prevBefore} / รับ ${prevReceived}",
+          "size": "small",
+          "color": "${statusColor}",
+          "wrap": true,
+          "spacing": "none"
         }
       ]
     },

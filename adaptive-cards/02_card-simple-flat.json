@@ -62,23 +62,14 @@
         },
         {
           "type": "ColumnSet",
-          "$data": "${items}",
           "separator": true,
           "spacing": "small",
           "columns": [
-            {
-              "type": "Column",
-              "width": 40,
-              "items": [
-                { "type": "TextBlock", "text": "${statusEmoji} **${itemCode}**", "wrap": true, "spacing": "none" },
-                { "type": "TextBlock", "text": "${zoneEmoji} ${zone}", "size": "small", "isSubtle": true, "wrap": true, "spacing": "none" },
-                { "type": "TextBlock", "text": "${statusShort}", "size": "small", "color": "${statusColor}", "wrap": true, "spacing": "none" }
-              ]
-            },
-            { "type": "Column", "width": 15, "items": [ { "type": "TextBlock", "text": "${onhand}", "horizontalAlignment": "right", "color": "${statusColor}", "weight": "${rowWeight}" } ] },
-            { "type": "Column", "width": 15, "items": [ { "type": "TextBlock", "text": "${fromHub}", "horizontalAlignment": "right" } ] },
-            { "type": "Column", "width": 15, "items": [ { "type": "TextBlock", "text": "${prevBefore}", "horizontalAlignment": "right", "isSubtle": true } ] },
-            { "type": "Column", "width": 15, "items": [ { "type": "TextBlock", "text": "${prevReceived}", "horizontalAlignment": "right", "isSubtle": true } ] }
+            { "type": "Column", "width": 40, "items": [ { "type": "TextBlock", "$data": "${items}", "text": "${statusEmoji} ${zoneEmoji} ${zone} · ${itemCode}", "size": "small", "spacing": "none" } ] },
+            { "type": "Column", "width": 15, "items": [ { "type": "TextBlock", "$data": "${items}", "text": "${onhand}", "size": "small", "color": "${statusColor}", "weight": "${rowWeight}", "horizontalAlignment": "right", "spacing": "none" } ] },
+            { "type": "Column", "width": 15, "items": [ { "type": "TextBlock", "$data": "${items}", "text": "${fromHub}", "size": "small", "horizontalAlignment": "right", "spacing": "none" } ] },
+            { "type": "Column", "width": 15, "items": [ { "type": "TextBlock", "$data": "${items}", "text": "${prevBefore}", "size": "small", "horizontalAlignment": "right", "spacing": "none" } ] },
+            { "type": "Column", "width": 15, "items": [ { "type": "TextBlock", "$data": "${items}", "text": "${prevReceived}", "size": "small", "horizontalAlignment": "right", "spacing": "none" } ] }
           ]
         },
         {

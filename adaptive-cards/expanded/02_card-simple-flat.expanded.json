@@ -9,19 +9,19 @@
   "body": [
     {
       "type": "Container",
-      "style": "accent",
+      "style": "good",
       "bleed": true,
       "items": [
         {
           "type": "TextBlock",
-          "text": "📦 Report Material Optimize&MA_NER",
+          "text": "🗃️ Report Material Optimize&MA_NER",
           "weight": "bolder",
           "size": "large",
           "wrap": true
         },
         {
           "type": "TextBlock",
-          "text": "🗓️ รอบ **MA (17 Aug 26)**  •  ⏮️ รอบก่อน MA (10 Aug 26)  •  🏷️ MA",
+          "text": "🗓️ รอบ **Optimize(3 Aug 26)**  •  ⏮️ รอบก่อน Optimize(6 July 26)  •  🏷️ Optimize",
           "wrap": true,
           "spacing": "none"
         }
@@ -29,7 +29,7 @@
     },
     {
       "type": "TextBlock",
-      "text": "⚠️ เสี่ยงขาด **0**  •  🟡 พอใช้ **0**  •  ✅ ปกติ **91**  •  📦 รวม **91** รายการ / 4 Zone",
+      "text": "⚠️ เสี่ยงขาด **11**  •  🟡 พอใช้ **0**  •  ✅ ปกติ **24**  •  📦 รวม **35** รายการ / 5 Zone",
       "wrap": true,
       "spacing": "medium"
     },
@@ -128,24 +128,212 @@
               "items": [
                 {
                   "type": "TextBlock",
-                  "text": "🟡 **52CL003BB**",
-                  "wrap": true,
+                  "text": "🔴 🟦 RC2-NMA · 52CL010BB",
+                  "size": "small",
                   "spacing": "none"
                 },
                 {
                   "type": "TextBlock",
-                  "text": "🟦 RC2-NMA",
+                  "text": "🔴 🟩 RC2-UBN · 52CL003BB",
                   "size": "small",
-                  "isSubtle": true,
-                  "wrap": true,
                   "spacing": "none"
                 },
                 {
                   "type": "TextBlock",
-                  "text": "จัดสรรเกิน",
+                  "text": "🔴 🟨 RC3-KKN · 53OF157BB",
                   "size": "small",
-                  "color": "warning",
-                  "wrap": true,
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟡 🟪 RC3-SNK · 50MT004BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🔴 🟧 RC3-UDN · 52CL003BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🔴 🟦 RC2-NMA · 53OF157BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🔴 🟩 RC2-UBN · 52CL004BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟡 🟨 RC3-KKN · 50MT004BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟡 🟪 RC3-SNK · 52CL003BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🔴 🟧 RC3-UDN · 53OF157BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🔴 🟦 RC2-NMA · 53OF158BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🔴 🟩 RC2-UBN · 52CL010BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟡 🟨 RC3-KKN · 52CL003BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟡 🟪 RC3-SNK · 52CL004BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟡 🟧 RC3-UDN · 50MT004BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟡 🟦 RC2-NMA · 50MT004BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🔴 🟩 RC2-UBN · 53OF150BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟡 🟨 RC3-KKN · 52CL004BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟡 🟪 RC3-SNK · 52CL010BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟡 🟧 RC3-UDN · 52CL004BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟡 🟦 RC2-NMA · 52CL003BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🔴 🟩 RC2-UBN · 53OF157BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟡 🟨 RC3-KKN · 52CL010BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟡 🟪 RC3-SNK · 53OF150BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟡 🟧 RC3-UDN · 52CL010BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟡 🟦 RC2-NMA · 52CL004BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟡 🟩 RC2-UBN · 50MT004BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟡 🟨 RC3-KKN · 53OF150BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟡 🟪 RC3-SNK · 53OF157BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟡 🟧 RC3-UDN · 53OF150BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟡 🟦 RC2-NMA · 53OF150BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟡 🟩 RC2-UBN · 53OF158BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟡 🟨 RC3-KKN · 53OF158BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟡 🟪 RC3-SNK · 53OF158BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟡 🟧 RC3-UDN · 53OF158BB",
+                  "size": "small",
                   "spacing": "none"
                 }
               ]
@@ -157,20 +345,317 @@
                 {
                   "type": "TextBlock",
                   "text": "0",
+                  "size": "small",
+                  "color": "attention",
+                  "weight": "bolder",
                   "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "color": "attention",
+                  "weight": "bolder",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "color": "attention",
+                  "weight": "bolder",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
                   "color": "warning",
-                  "weight": "default"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 15,
-              "items": [
+                  "weight": "default",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
                 {
                   "type": "TextBlock",
-                  "text": "1",
-                  "horizontalAlignment": "right"
+                  "text": "0",
+                  "size": "small",
+                  "color": "attention",
+                  "weight": "bolder",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "color": "attention",
+                  "weight": "bolder",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "color": "attention",
+                  "weight": "bolder",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "color": "warning",
+                  "weight": "default",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "color": "warning",
+                  "weight": "default",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "color": "attention",
+                  "weight": "bolder",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "color": "attention",
+                  "weight": "bolder",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "color": "attention",
+                  "weight": "bolder",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "color": "warning",
+                  "weight": "default",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "color": "warning",
+                  "weight": "default",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "color": "warning",
+                  "weight": "default",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "color": "warning",
+                  "weight": "default",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "color": "attention",
+                  "weight": "bolder",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "color": "warning",
+                  "weight": "default",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "color": "warning",
+                  "weight": "default",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "color": "warning",
+                  "weight": "default",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "color": "warning",
+                  "weight": "default",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "color": "attention",
+                  "weight": "bolder",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "color": "warning",
+                  "weight": "default",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "color": "warning",
+                  "weight": "default",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "color": "warning",
+                  "weight": "default",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "color": "warning",
+                  "weight": "default",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "color": "warning",
+                  "weight": "default",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "color": "warning",
+                  "weight": "default",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "color": "warning",
+                  "weight": "default",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "color": "warning",
+                  "weight": "default",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "color": "warning",
+                  "weight": "default",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "color": "warning",
+                  "weight": "default",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "color": "warning",
+                  "weight": "default",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "color": "warning",
+                  "weight": "default",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "color": "warning",
+                  "weight": "default",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
                 }
               ]
             },
@@ -181,8 +666,498 @@
                 {
                   "type": "TextBlock",
                   "text": "0",
+                  "size": "small",
                   "horizontalAlignment": "right",
-                  "isSubtle": true
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "8",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "114",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "3,340",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "158",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "345",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "7",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "28,000",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "500",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "7",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "50",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "60,000",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
                 }
               ]
             },
@@ -193,768 +1168,251 @@
                 {
                   "type": "TextBlock",
                   "text": "0",
+                  "size": "small",
                   "horizontalAlignment": "right",
-                  "isSubtle": true
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
                 }
               ]
             }
           ]
-        },
-        {
-          "type": "ColumnSet",
-          "separator": true,
-          "spacing": "small",
-          "columns": [
-            {
-              "type": "Column",
-              "width": 40,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "⚪ **50MT004BB**",
-                  "wrap": true,
-                  "spacing": "none"
-                },
-                {
-                  "type": "TextBlock",
-                  "text": "🟩 RC2-UBN",
-                  "size": "small",
-                  "isSubtle": true,
-                  "wrap": true,
-                  "spacing": "none"
-                },
-                {
-                  "type": "TextBlock",
-                  "text": "ไม่มีรอบก่อน",
-                  "size": "small",
-                  "color": "default",
-                  "wrap": true,
-                  "spacing": "none"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 15,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "0",
-                  "horizontalAlignment": "right",
-                  "color": "default",
-                  "weight": "default"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 15,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "1",
-                  "horizontalAlignment": "right"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 15,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "0",
-                  "horizontalAlignment": "right",
-                  "isSubtle": true
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 15,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "0",
-                  "horizontalAlignment": "right",
-                  "isSubtle": true
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "ColumnSet",
-          "separator": true,
-          "spacing": "small",
-          "columns": [
-            {
-              "type": "Column",
-              "width": 40,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "🟡 **52CL003BB**",
-                  "wrap": true,
-                  "spacing": "none"
-                },
-                {
-                  "type": "TextBlock",
-                  "text": "🟨 RC3-KKN",
-                  "size": "small",
-                  "isSubtle": true,
-                  "wrap": true,
-                  "spacing": "none"
-                },
-                {
-                  "type": "TextBlock",
-                  "text": "จัดสรรเกิน",
-                  "size": "small",
-                  "color": "warning",
-                  "wrap": true,
-                  "spacing": "none"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 15,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "0",
-                  "horizontalAlignment": "right",
-                  "color": "warning",
-                  "weight": "default"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 15,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "11",
-                  "horizontalAlignment": "right"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 15,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "0",
-                  "horizontalAlignment": "right",
-                  "isSubtle": true
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 15,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "0",
-                  "horizontalAlignment": "right",
-                  "isSubtle": true
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "ColumnSet",
-          "separator": true,
-          "spacing": "small",
-          "columns": [
-            {
-              "type": "Column",
-              "width": 40,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "🟡 **52CL003BB**",
-                  "wrap": true,
-                  "spacing": "none"
-                },
-                {
-                  "type": "TextBlock",
-                  "text": "🟧 RC3-UDN",
-                  "size": "small",
-                  "isSubtle": true,
-                  "wrap": true,
-                  "spacing": "none"
-                },
-                {
-                  "type": "TextBlock",
-                  "text": "จัดสรรเกิน",
-                  "size": "small",
-                  "color": "warning",
-                  "wrap": true,
-                  "spacing": "none"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 15,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "0",
-                  "horizontalAlignment": "right",
-                  "color": "warning",
-                  "weight": "default"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 15,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "1",
-                  "horizontalAlignment": "right"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 15,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "0",
-                  "horizontalAlignment": "right",
-                  "isSubtle": true
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 15,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "0",
-                  "horizontalAlignment": "right",
-                  "isSubtle": true
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "ColumnSet",
-          "separator": true,
-          "spacing": "small",
-          "columns": [
-            {
-              "type": "Column",
-              "width": 40,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "🟡 **52CL010BB**",
-                  "wrap": true,
-                  "spacing": "none"
-                },
-                {
-                  "type": "TextBlock",
-                  "text": "🟦 RC2-NMA",
-                  "size": "small",
-                  "isSubtle": true,
-                  "wrap": true,
-                  "spacing": "none"
-                },
-                {
-                  "type": "TextBlock",
-                  "text": "จัดสรรเกิน",
-                  "size": "small",
-                  "color": "warning",
-                  "wrap": true,
-                  "spacing": "none"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 15,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "0",
-                  "horizontalAlignment": "right",
-                  "color": "warning",
-                  "weight": "default"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 15,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "1",
-                  "horizontalAlignment": "right"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 15,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "0",
-                  "horizontalAlignment": "right",
-                  "isSubtle": true
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 15,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "0",
-                  "horizontalAlignment": "right",
-                  "isSubtle": true
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "ColumnSet",
-          "separator": true,
-          "spacing": "small",
-          "columns": [
-            {
-              "type": "Column",
-              "width": 40,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "⚪ **53OF150BB**",
-                  "wrap": true,
-                  "spacing": "none"
-                },
-                {
-                  "type": "TextBlock",
-                  "text": "🟩 RC2-UBN",
-                  "size": "small",
-                  "isSubtle": true,
-                  "wrap": true,
-                  "spacing": "none"
-                },
-                {
-                  "type": "TextBlock",
-                  "text": "ไม่มีรอบก่อน",
-                  "size": "small",
-                  "color": "default",
-                  "wrap": true,
-                  "spacing": "none"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 15,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "0",
-                  "horizontalAlignment": "right",
-                  "color": "default",
-                  "weight": "default"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 15,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "3",
-                  "horizontalAlignment": "right"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 15,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "0",
-                  "horizontalAlignment": "right",
-                  "isSubtle": true
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 15,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "0",
-                  "horizontalAlignment": "right",
-                  "isSubtle": true
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "ColumnSet",
-          "separator": true,
-          "spacing": "small",
-          "columns": [
-            {
-              "type": "Column",
-              "width": 40,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "⚪ **52CL006BB**",
-                  "wrap": true,
-                  "spacing": "none"
-                },
-                {
-                  "type": "TextBlock",
-                  "text": "🟨 RC3-KKN",
-                  "size": "small",
-                  "isSubtle": true,
-                  "wrap": true,
-                  "spacing": "none"
-                },
-                {
-                  "type": "TextBlock",
-                  "text": "ไม่มีรอบก่อน",
-                  "size": "small",
-                  "color": "default",
-                  "wrap": true,
-                  "spacing": "none"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 15,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "0",
-                  "horizontalAlignment": "right",
-                  "color": "default",
-                  "weight": "default"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 15,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "0",
-                  "horizontalAlignment": "right"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 15,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "0",
-                  "horizontalAlignment": "right",
-                  "isSubtle": true
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 15,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "0",
-                  "horizontalAlignment": "right",
-                  "isSubtle": true
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "ColumnSet",
-          "separator": true,
-          "spacing": "small",
-          "columns": [
-            {
-              "type": "Column",
-              "width": 40,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "🟡 **52CL003BB**",
-                  "wrap": true,
-                  "spacing": "none"
-                },
-                {
-                  "type": "TextBlock",
-                  "text": "🟧 RC3-UDN",
-                  "size": "small",
-                  "isSubtle": true,
-                  "wrap": true,
-                  "spacing": "none"
-                },
-                {
-                  "type": "TextBlock",
-                  "text": "จัดสรรเกิน",
-                  "size": "small",
-                  "color": "warning",
-                  "wrap": true,
-                  "spacing": "none"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 15,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "0",
-                  "horizontalAlignment": "right",
-                  "color": "warning",
-                  "weight": "default"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 15,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "2",
-                  "horizontalAlignment": "right"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 15,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "0",
-                  "horizontalAlignment": "right",
-                  "isSubtle": true
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 15,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "0",
-                  "horizontalAlignment": "right",
-                  "isSubtle": true
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "ColumnSet",
-          "separator": true,
-          "spacing": "small",
-          "columns": [
-            {
-              "type": "Column",
-              "width": 40,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "⚪ **53OF150BB**",
-                  "wrap": true,
-                  "spacing": "none"
-                },
-                {
-                  "type": "TextBlock",
-                  "text": "🟦 RC2-NMA",
-                  "size": "small",
-                  "isSubtle": true,
-                  "wrap": true,
-                  "spacing": "none"
-                },
-                {
-                  "type": "TextBlock",
-                  "text": "ไม่มีรอบก่อน",
-                  "size": "small",
-                  "color": "default",
-                  "wrap": true,
-                  "spacing": "none"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 15,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "0",
-                  "horizontalAlignment": "right",
-                  "color": "default",
-                  "weight": "default"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 15,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "14",
-                  "horizontalAlignment": "right"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 15,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "0",
-                  "horizontalAlignment": "right",
-                  "isSubtle": true
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 15,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "0",
-                  "horizontalAlignment": "right",
-                  "isSubtle": true
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "ColumnSet",
-          "separator": true,
-          "spacing": "small",
-          "columns": [
-            {
-              "type": "Column",
-              "width": 40,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "⚪ **53OF150BB**",
-                  "wrap": true,
-                  "spacing": "none"
-                },
-                {
-                  "type": "TextBlock",
-                  "text": "🟩 RC2-UBN",
-                  "size": "small",
-                  "isSubtle": true,
-                  "wrap": true,
-                  "spacing": "none"
-                },
-                {
-                  "type": "TextBlock",
-                  "text": "ไม่มีรอบก่อน",
-                  "size": "small",
-                  "color": "default",
-                  "wrap": true,
-                  "spacing": "none"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 15,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "0",
-                  "horizontalAlignment": "right",
-                  "color": "default",
-                  "weight": "default"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 15,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "6",
-                  "horizontalAlignment": "right"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 15,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "0",
-                  "horizontalAlignment": "right",
-                  "isSubtle": true
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 15,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "0",
-                  "horizontalAlignment": "right",
-                  "isSubtle": true
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "TextBlock",
-          "text": "…และอีก 81 รายการ — กด “📊 Dashboard” เพื่อดูทั้งหมด",
-          "size": "small",
-          "isSubtle": true,
-          "horizontalAlignment": "center",
-          "wrap": true,
-          "spacing": "medium"
         }
       ]
     },

@@ -200,18 +200,52 @@ function acStripKey(obj: object, key: string): object {
 // ===========================================================================
 // ส่วนที่ 4 — main
 // ===========================================================================
+/** ความยาวจริงเป็นไบต์แบบ UTF-8 — ข้อความไทย 1 ตัวกิน 3 ไบต์ emoji กิน 4 ไบต์
+ *  (String.length นับเป็น UTF-16 code unit จึงต่ำกว่าความจริงมากจนวัดขนาดการ์ดไม่ได้) */
+function utf8Bytes(s: string): number {
+  let n = 0;
+  for (let i = 0; i < s.length; i++) {
+    const c = s.charCodeAt(i);
+    if (c < 0x80) n += 1;
+    else if (c < 0x800) n += 2;
+    else if (c >= 0xD800 && c <= 0xDBFF) { n += 4; i++; }   // surrogate pair
+    else n += 3;
+  }
+  return n;
+}
+
+// Teams ปฏิเสธการ์ดเกิน 28,672 ไบต์แบบเงียบ ๆ — เผื่อไว้ให้เหลือที่หายใจ
+const CARD_SAFE_BYTES = 26000;
+
 function main(
   workbook: ExcelScript.Workbook,
   period: string = "",
-  topRows: number = 12,
+  topRows: number = 40,
   dashboardUrl: string = "",
   sourceFileUrl: string = "",
   generatedAt: string = ""
 ): (string | number | boolean | object) {
 
-  const payload = buildPayload(workbook, period, topRows, dashboardUrl, sourceFileUrl);
-  payload.meta.generatedAt = generatedAt || "";
+  // สร้างการ์ดแล้ววัดขนาดจริง ถ้าเกินงบก็ลดแถวแล้วสร้างใหม่
+  // ทำให้การ์ดปลอดภัยเองไม่ว่ารอบนั้นจะมีกี่ Zone กี่รายการ โดยไม่ต้องมาไล่ปรับ topRows ทีหลัง
+  let rows = topRows;
+  let card: (string | number | boolean | object) = {};
 
-  const card = acExpandNode(CARD_TEMPLATE, { data: payload, root: payload });
-  return card as (string | number | boolean | object);
+  for (let attempt = 0; attempt < 8; attempt++) {
+    const payload = buildPayload(workbook, period, rows, dashboardUrl, sourceFileUrl);
+    payload.meta.generatedAt = generatedAt || "";
+    card = acExpandNode(CARD_TEMPLATE, { data: payload, root: payload });
+
+    const size = utf8Bytes(JSON.stringify(card));
+    const shown = payload.meta.shownItems;
+    if (size <= CARD_SAFE_BYTES || shown <= 4) break;
+
+    // ลดตามสัดส่วนที่เกินงบ แล้วบังคับให้ลดลงอย่างน้อย 1 แถวเสมอ กันวนไม่จบ
+    let next = Math.floor(shown * CARD_SAFE_BYTES / size);
+    if (next >= shown) next = shown - 1;
+    if (next < 1) next = 1;
+    rows = next;
+  }
+
+  return card;
 }

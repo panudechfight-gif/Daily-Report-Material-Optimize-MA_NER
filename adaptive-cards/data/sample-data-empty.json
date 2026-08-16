@@ -2,13 +2,14 @@
   "meta": {
     "title": "Report Material Optimize&MA_NER",
     "subtitle": "",
-    "period": "MA (17 Aug 26)",
-    "prevPeriod": "MA (10 Aug 26)",
-    "dataSet": "MA",
-    "dataSetLabel": "MA — Weekly Allocation",
-    "dataSetEmoji": "📦",
-    "dataSetStyle": "accent",
-    "dataSetColor": "accent",
+    "hasLegend": false,
+    "period": "Optimize(3 Aug 26)",
+    "prevPeriod": "Optimize(6 July 26)",
+    "dataSet": "Optimize",
+    "dataSetLabel": "OPTIMIZE — Allocation Plan",
+    "dataSetEmoji": "🗃️",
+    "dataSetStyle": "good",
+    "dataSetColor": "good",
     "cutoffDate": "",
     "generatedAt": "",
     "totalItems": 0,
@@ -24,5 +25,6 @@
     "dashboardUrl": "https://app.powerbi.com/CHANGE-ME",
     "sourceFileUrl": "https://contoso.sharepoint.com/CHANGE-ME"
   },
-  "zones": []
+  "zones": [],
+  "legend": []
 }

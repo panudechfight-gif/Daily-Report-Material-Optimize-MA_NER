@@ -62,12 +62,12 @@ const FILE = "https://contoso.sharepoint.com/sites/NER/Shared%20Documents/Optimi
 
 // เคสทดสอบ: รอบปกติ, รอบที่มีรายการเสี่ยง, รอบที่ไม่มีข้อมูล (empty state)
 const CASES = [
-  { name: "รอบล่าสุด (MA 17 Aug 26)", period: "", top: 12 },
-  { name: "รอบที่มีรายการเสี่ยงขาด (MA 10 Aug 26)", period: "MA (10 Aug 26)", top: 12 },
-  { name: "รอบ Optimize", period: "Optimize(3 Aug 26)", top: 12 },
-  { name: "รอบที่ไม่มีข้อมูล -> empty state", period: "ไม่มีรอบนี้จริง", top: 12 },
-  // ขอ 20 แถว แต่สคริปต์ต้องบีบลงเหลือ TOP_ROWS_MAX (12) เอง ไม่ให้การ์ดชนเพดาน
-  { name: "ขอเกินเพดาน (top=20) ต้องถูกบีบเหลือ 10", period: "Optimize(3 Aug 26)", top: 20 },
+  { name: "รอบล่าสุด (ค่าตั้งต้น = Optimize)", period: "", top: 40 },
+  { name: "รอบที่มีรายการเสี่ยงขาด (MA 10 Aug 26)", period: "MA (10 Aug 26)", top: 40 },
+  { name: "รอบ MA เต็มรอบ (17 Aug 26)", period: "MA (17 Aug 26)", top: 40 },
+  { name: "รอบที่ไม่มีข้อมูล -> empty state", period: "ไม่มีรอบนี้จริง", top: 40 },
+  // ขอเกิน TOP_ROWS_MAX สคริปต์ต้องบีบลงให้เอง ไม่ให้การ์ดชนเพดาน
+  { name: "ขอเกินเพดาน (top=99) ต้องถูกบีบเหลือ 40", period: "Optimize(3 Aug 26)", top: 99 },
 ];
 
 for (const c of CASES) {

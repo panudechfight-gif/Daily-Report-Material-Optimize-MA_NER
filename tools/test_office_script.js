@@ -55,7 +55,7 @@ const fail = (m) => { failures++; console.log("  ❌ " + m); };
 console.log("▶ รัน buildCardPayload (จำลอง ExcelScript)");
 let out;
 try {
-  out = main(wb, "", 12, "https://dash.example/x", "https://sp.example/f.xlsx");
+  out = main(wb, "", 40, "https://dash.example/x", "https://sp.example/f.xlsx");
   pass("สคริปต์รันผ่าน ไม่มี exception");
 } catch (e) {
   fail("สคริปต์ error: " + e.message);

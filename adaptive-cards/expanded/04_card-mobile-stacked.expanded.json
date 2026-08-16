@@ -49,7 +49,7 @@
             },
             {
               "type": "TextBlock",
-              "text": "9",
+              "text": "6",
               "size": "large",
               "weight": "bolder",
               "horizontalAlignment": "center",
@@ -70,7 +70,7 @@
             },
             {
               "type": "TextBlock",
-              "text": "6",
+              "text": "1",
               "size": "large",
               "weight": "bolder",
               "horizontalAlignment": "center",
@@ -91,7 +91,7 @@
             },
             {
               "type": "TextBlock",
-              "text": "15",
+              "text": "7",
               "size": "large",
               "weight": "bolder",
               "horizontalAlignment": "center",
@@ -108,291 +108,29 @@
       "items": [
         {
           "type": "TextBlock",
-          "text": "🟦 **Zone RC2-NMA** · 3 รายการ",
+          "text": "🟦 RC2-NMA · 2 รายการ · คงเหลือ 0 · Hub 2 · ⚠️ เสี่ยงขาด 1",
+          "size": "small",
+          "weight": "bolder",
+          "color": "attention",
+          "wrap": true,
+          "spacing": "small",
+          "separator": true
+        },
+        {
+          "type": "TextBlock",
+          "text": "🔴 **52CL003BB** — คงเหลือ **0** · Hub **1** · ก่อน 24 / รับ 0",
+          "size": "small",
+          "color": "attention",
           "wrap": true,
           "spacing": "none"
         },
         {
-          "type": "Container",
-          "style": "emphasis",
-          "spacing": "small",
-          "separator": true,
-          "items": [
-            {
-              "type": "TextBlock",
-              "text": "🔴 **52CL003BB**",
-              "wrap": true,
-              "spacing": "none"
-            },
-            {
-              "type": "TextBlock",
-              "text": "Closure OFC 12 core",
-              "size": "small",
-              "isSubtle": true,
-              "wrap": true,
-              "maxLines": 1,
-              "spacing": "none"
-            },
-            {
-              "type": "ColumnSet",
-              "spacing": "small",
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "OMC-Onhand",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "weight": "bolder",
-                      "color": "attention",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "เบิกจาก Hub",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "weight": "bolder",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "รอบก่อน",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "24 / 0",
-                      "spacing": "none"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "TextBlock",
-              "text": "🔴 ใช้เกินยอดรับ (ดึงสต็อกเดิม)",
-              "size": "small",
-              "color": "attention",
-              "wrap": true,
-              "spacing": "small"
-            }
-          ]
-        },
-        {
-          "type": "Container",
-          "style": "emphasis",
-          "spacing": "small",
-          "separator": true,
-          "items": [
-            {
-              "type": "TextBlock",
-              "text": "🟡 **52CL010BB**",
-              "wrap": true,
-              "spacing": "none"
-            },
-            {
-              "type": "TextBlock",
-              "text": "CLOSURE 60F",
-              "size": "small",
-              "isSubtle": true,
-              "wrap": true,
-              "maxLines": 1,
-              "spacing": "none"
-            },
-            {
-              "type": "ColumnSet",
-              "spacing": "small",
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "OMC-Onhand",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "weight": "bolder",
-                      "color": "warning",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "เบิกจาก Hub",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "weight": "bolder",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "รอบก่อน",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0 / 0",
-                      "spacing": "none"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "TextBlock",
-              "text": "🟡 จัดสรรเกิน (ไม่มีการใช้)",
-              "size": "small",
-              "color": "warning",
-              "wrap": true,
-              "spacing": "small"
-            }
-          ]
-        },
-        {
-          "type": "Container",
-          "style": "emphasis",
-          "spacing": "small",
-          "separator": true,
-          "items": [
-            {
-              "type": "TextBlock",
-              "text": "⚪ **52CL009BB**",
-              "wrap": true,
-              "spacing": "none"
-            },
-            {
-              "type": "TextBlock",
-              "text": "Closure FIBRE3_12F",
-              "size": "small",
-              "isSubtle": true,
-              "wrap": true,
-              "maxLines": 1,
-              "spacing": "none"
-            },
-            {
-              "type": "ColumnSet",
-              "spacing": "small",
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "OMC-Onhand",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "39",
-                      "weight": "bolder",
-                      "color": "default",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "เบิกจาก Hub",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "weight": "bolder",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "รอบก่อน",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0 / 0",
-                      "spacing": "none"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "TextBlock",
-              "text": "⚪ ไม่มีข้อมูลรอบก่อน",
-              "size": "small",
-              "color": "default",
-              "wrap": true,
-              "spacing": "small"
-            }
-          ]
+          "type": "TextBlock",
+          "text": "🟡 **52CL010BB** — คงเหลือ **0** · Hub **1** · ก่อน 0 / รับ 0",
+          "size": "small",
+          "color": "warning",
+          "wrap": true,
+          "spacing": "none"
         }
       ]
     },
@@ -403,385 +141,29 @@
       "items": [
         {
           "type": "TextBlock",
-          "text": "🟨 **Zone RC3-KKN** · แสดง 4 จาก 6 รายการ",
+          "text": "🟨 RC3-KKN · 2 รายการ · คงเหลือ 900 · Hub 4,000 · ⚠️ เสี่ยงขาด 2",
+          "size": "small",
+          "weight": "bolder",
+          "color": "attention",
+          "wrap": true,
+          "spacing": "small",
+          "separator": true
+        },
+        {
+          "type": "TextBlock",
+          "text": "🔴 **52CL003BB** — คงเหลือ **0** · Hub **0** · ก่อน 81 / รับ 0",
+          "size": "small",
+          "color": "attention",
           "wrap": true,
           "spacing": "none"
         },
         {
-          "type": "Container",
-          "style": "emphasis",
-          "spacing": "small",
-          "separator": true,
-          "items": [
-            {
-              "type": "TextBlock",
-              "text": "🔴 **52CL003BB**",
-              "wrap": true,
-              "spacing": "none"
-            },
-            {
-              "type": "TextBlock",
-              "text": "Closure OFC 12 core",
-              "size": "small",
-              "isSubtle": true,
-              "wrap": true,
-              "maxLines": 1,
-              "spacing": "none"
-            },
-            {
-              "type": "ColumnSet",
-              "spacing": "small",
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "OMC-Onhand",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "weight": "bolder",
-                      "color": "attention",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "เบิกจาก Hub",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "11",
-                      "weight": "bolder",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "รอบก่อน",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "81 / 0",
-                      "spacing": "none"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "TextBlock",
-              "text": "🔴 ใช้เกินยอดรับ (ดึงสต็อกเดิม)",
-              "size": "small",
-              "color": "attention",
-              "wrap": true,
-              "spacing": "small"
-            }
-          ]
-        },
-        {
-          "type": "Container",
-          "style": "emphasis",
-          "spacing": "small",
-          "separator": true,
-          "items": [
-            {
-              "type": "TextBlock",
-              "text": "🔴 **52CL009BB**",
-              "wrap": true,
-              "spacing": "none"
-            },
-            {
-              "type": "TextBlock",
-              "text": "Closure FIBRE3_12F",
-              "size": "small",
-              "isSubtle": true,
-              "wrap": true,
-              "maxLines": 1,
-              "spacing": "none"
-            },
-            {
-              "type": "ColumnSet",
-              "spacing": "small",
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "OMC-Onhand",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "weight": "bolder",
-                      "color": "attention",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "เบิกจาก Hub",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "weight": "bolder",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "รอบก่อน",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "117 / 0",
-                      "spacing": "none"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "TextBlock",
-              "text": "🔴 ใช้เกินยอดรับ (ดึงสต็อกเดิม)",
-              "size": "small",
-              "color": "attention",
-              "wrap": true,
-              "spacing": "small"
-            }
-          ]
-        },
-        {
-          "type": "Container",
-          "style": "emphasis",
-          "spacing": "small",
-          "separator": true,
-          "items": [
-            {
-              "type": "TextBlock",
-              "text": "🔴 **52CL009BB**",
-              "wrap": true,
-              "spacing": "none"
-            },
-            {
-              "type": "TextBlock",
-              "text": "Closure FIBRE3_12F",
-              "size": "small",
-              "isSubtle": true,
-              "wrap": true,
-              "maxLines": 1,
-              "spacing": "none"
-            },
-            {
-              "type": "ColumnSet",
-              "spacing": "small",
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "OMC-Onhand",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "weight": "bolder",
-                      "color": "attention",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "เบิกจาก Hub",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "25",
-                      "weight": "bolder",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "รอบก่อน",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "127 / 0",
-                      "spacing": "none"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "TextBlock",
-              "text": "🔴 ใช้เกินยอดรับ (ดึงสต็อกเดิม)",
-              "size": "small",
-              "color": "attention",
-              "wrap": true,
-              "spacing": "small"
-            }
-          ]
-        },
-        {
-          "type": "Container",
-          "style": "emphasis",
-          "spacing": "small",
-          "separator": true,
-          "items": [
-            {
-              "type": "TextBlock",
-              "text": "🔴 **52CL009BB**",
-              "wrap": true,
-              "spacing": "none"
-            },
-            {
-              "type": "TextBlock",
-              "text": "Closure FIBRE3_12F",
-              "size": "small",
-              "isSubtle": true,
-              "wrap": true,
-              "maxLines": 1,
-              "spacing": "none"
-            },
-            {
-              "type": "ColumnSet",
-              "spacing": "small",
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "OMC-Onhand",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "11",
-                      "weight": "bolder",
-                      "color": "attention",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "เบิกจาก Hub",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "weight": "bolder",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "รอบก่อน",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "406 / 0",
-                      "spacing": "none"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "TextBlock",
-              "text": "🔴 ใช้เกินยอดรับ (ดึงสต็อกเดิม)",
-              "size": "small",
-              "color": "attention",
-              "wrap": true,
-              "spacing": "small"
-            }
-          ]
+          "type": "TextBlock",
+          "text": "🔴 **53OF157BB** — คงเหลือ **900** · Hub **4,000** · ก่อน 34,601 / รับ 0",
+          "size": "small",
+          "color": "attention",
+          "wrap": true,
+          "spacing": "none"
         }
       ]
     },
@@ -792,302 +174,39 @@
       "items": [
         {
           "type": "TextBlock",
-          "text": "🟧 **Zone RC3-UDN** · แสดง 3 จาก 6 รายการ",
+          "text": "🟧 RC3-UDN · 3 รายการ · คงเหลือ 1 · Hub 15 · ⚠️ เสี่ยงขาด 3",
+          "size": "small",
+          "weight": "bolder",
+          "color": "attention",
+          "wrap": true,
+          "spacing": "small",
+          "separator": true
+        },
+        {
+          "type": "TextBlock",
+          "text": "🔴 **52CL004BB** — คงเหลือ **0** · Hub **1** · ก่อน 3 / รับ 0",
+          "size": "small",
+          "color": "attention",
           "wrap": true,
           "spacing": "none"
         },
         {
-          "type": "Container",
-          "style": "emphasis",
-          "spacing": "small",
-          "separator": true,
-          "items": [
-            {
-              "type": "TextBlock",
-              "text": "🔴 **52CL003BB**",
-              "wrap": true,
-              "spacing": "none"
-            },
-            {
-              "type": "TextBlock",
-              "text": "Closure OFC 12 core",
-              "size": "small",
-              "isSubtle": true,
-              "wrap": true,
-              "maxLines": 1,
-              "spacing": "none"
-            },
-            {
-              "type": "ColumnSet",
-              "spacing": "small",
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "OMC-Onhand",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "weight": "bolder",
-                      "color": "attention",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "เบิกจาก Hub",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "weight": "bolder",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "รอบก่อน",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "1 / 0",
-                      "spacing": "none"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "TextBlock",
-              "text": "🔴 ใช้เกินยอดรับ (ดึงสต็อกเดิม)",
-              "size": "small",
-              "color": "attention",
-              "wrap": true,
-              "spacing": "small"
-            }
-          ]
+          "type": "TextBlock",
+          "text": "🔴 **52CL010BB** — คงเหลือ **0** · Hub **1** · ก่อน 6 / รับ 0",
+          "size": "small",
+          "color": "attention",
+          "wrap": true,
+          "spacing": "none"
         },
         {
-          "type": "Container",
-          "style": "emphasis",
-          "spacing": "small",
-          "separator": true,
-          "items": [
-            {
-              "type": "TextBlock",
-              "text": "🔴 **52CL004BB**",
-              "wrap": true,
-              "spacing": "none"
-            },
-            {
-              "type": "TextBlock",
-              "text": "Closure OFC 24 core",
-              "size": "small",
-              "isSubtle": true,
-              "wrap": true,
-              "maxLines": 1,
-              "spacing": "none"
-            },
-            {
-              "type": "ColumnSet",
-              "spacing": "small",
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "OMC-Onhand",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "weight": "bolder",
-                      "color": "attention",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "เบิกจาก Hub",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "weight": "bolder",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "รอบก่อน",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "3 / 0",
-                      "spacing": "none"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "TextBlock",
-              "text": "🔴 ใช้เกินยอดรับ (ดึงสต็อกเดิม)",
-              "size": "small",
-              "color": "attention",
-              "wrap": true,
-              "spacing": "small"
-            }
-          ]
-        },
-        {
-          "type": "Container",
-          "style": "emphasis",
-          "spacing": "small",
-          "separator": true,
-          "items": [
-            {
-              "type": "TextBlock",
-              "text": "🔴 **52CL010BB**",
-              "wrap": true,
-              "spacing": "none"
-            },
-            {
-              "type": "TextBlock",
-              "text": "CLOSURE 60F",
-              "size": "small",
-              "isSubtle": true,
-              "wrap": true,
-              "maxLines": 1,
-              "spacing": "none"
-            },
-            {
-              "type": "ColumnSet",
-              "spacing": "small",
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "OMC-Onhand",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "weight": "bolder",
-                      "color": "attention",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "เบิกจาก Hub",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "weight": "bolder",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "รอบก่อน",
-                      "size": "small",
-                      "isSubtle": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "6 / 0",
-                      "spacing": "none"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "TextBlock",
-              "text": "🔴 ใช้เกินยอดรับ (ดึงสต็อกเดิม)",
-              "size": "small",
-              "color": "attention",
-              "wrap": true,
-              "spacing": "small"
-            }
-          ]
+          "type": "TextBlock",
+          "text": "🔴 **52CL003BB ·4จว.** — คงเหลือ **1** · Hub **13** · ก่อน 1 / รับ 0",
+          "size": "small",
+          "color": "attention",
+          "wrap": true,
+          "spacing": "none"
         }
       ]
-    },
-    {
-      "type": "TextBlock",
-      "text": "…และอีก 5 รายการ — กด “📊 Dashboard” เพื่อดูทั้งหมด",
-      "size": "small",
-      "isSubtle": true,
-      "horizontalAlignment": "center",
-      "wrap": true,
-      "spacing": "medium"
     },
     {
       "type": "TextBlock",

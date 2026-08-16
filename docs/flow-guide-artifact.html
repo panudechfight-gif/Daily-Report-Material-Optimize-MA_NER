@@ -416,7 +416,7 @@
       ส่งรายงานวัสดุคงคลังเข้าห้อง Teams อัตโนมัติทุกวันจันทร์ 08:00 น.
       คู่มือทีละขั้นสำหรับมือใหม่ — ทำตามได้เองใน 4 Action
     </p>
-    <div class="stamp">🔄 ปรับปรุงล่าสุด 16 ส.ค. 2026</div>
+    <div class="stamp">🔄 ปรับปรุงล่าสุด 16 ส.ค. 2026 · รายงานหลัก = OPTIMIZE</div>
   </header>
 
   <!-- ===== WHAT CHANGED ===== -->
@@ -434,61 +434,105 @@
       <div class="note stop">
         <span class="ico">❗</span>
         <div>
-          <strong>ถ้าคุณตั้ง Flow ไว้แล้ว ให้แก้ 2 ช่องนี้ใน Action 3</strong>
+          <strong>ถ้าคุณตั้ง Flow ไว้แล้ว ต้องแก้ 2 ช่องใน Action 3 และวางสคริปต์ใหม่</strong>
           <div>
-            <code>period</code> เว้นว่างไม่ได้อีกแล้ว → ใส่ <code>-</code> &nbsp;·&nbsp;
-            <code>topRows</code> จาก <code>12</code> → <code>10</code>
+            <code>period</code> ใส่ <code>-</code> &nbsp;·&nbsp;
+            <code>topRows</code> เปลี่ยนเป็น <code>40</code> &nbsp;·&nbsp;
+            คัดลอก <code>renderAdaptiveCard.ts</code> ตัวล่าสุดไปวางทับใน Excel
           </div>
         </div>
       </div>
 
       <ul class="changes">
         <li>
-          <span class="tag">พารามิเตอร์</span>
+          <span class="tag">แก้บั๊ก</span>
           <div>
-            <b><code>period</code> ต้องใส่ <code>-</code> แทนการเว้นว่าง</b>
-            <span>Power Automate บังคับให้ทุกพารามิเตอร์มีค่า ถ้าเว้นว่างจะขึ้น error
-              <code>'ScriptParameters/period' is required</code> — สคริปต์อ่าน <code>-</code> ว่า "ไม่ระบุรอบ"
-              แล้วไปหยิบรอบล่าสุดให้เอง</span>
+            <b>ค่า "เบิกจาก Hub" เคยผิด 179 จาก 217 แถว — แก้แล้ว</b>
+            <span>ชีตต้นทางมีคอลัมน์ว่างไม่มีหัวตารางแทรกอยู่หลัง <code>OMC-Onhand</code>
+              ข้อมูลของ <code>จัดสรร</code> / <code>เบิกจาก Hub</code> / <code>จัดสรรเพิ่ม</code> /
+              <code>รวม 3 รายการ</code> จึงอยู่ทางขวาของหัวตารางตัวเอง 1 ช่อง
+              การ์ดเดิมจึงเอาค่าของ <b>จัดสรร</b> มาแสดงในช่อง <b>เบิกจาก Hub</b>
+              — ตอนนี้สคริปต์ตรวจเองด้วยกฎ
+              <code>จัดสรร + เบิกจาก Hub + จัดสรรเพิ่ม = รวม 3 รายการ</code>
+              แล้วเลือกคอลัมน์ที่ถูกให้อัตโนมัติ</span>
           </div>
         </li>
         <li>
-          <span class="tag">พารามิเตอร์</span>
+          <span class="tag">ตรวจแล้ว</span>
           <div>
-            <b><code>topRows</code> ลดจาก 12 เหลือ 10</b>
-            <span>การ์ดแสดงหัวกลุ่มครบทุก Zone แล้ว ซึ่งกินที่ราว 1.5 KB ต่อ Zone
-              รอบที่มี 5 Zone จึงต้องเหลือที่ให้แถวน้อยลง เพื่อไม่ชนเพดาน 28 KB ของ Teams</span>
-          </div>
-        </li>
-        <li>
-          <span class="tag">การ์ด</span>
-          <div>
-            <b>ทุก Zone มีที่บนการ์ดเสมอ</b>
-            <span>เปลี่ยนวิธีเลือกแถวเป็นแบบวนรอบ — เอาอันดับ 1 ของทุก Zone ก่อน แล้วค่อยวนอันดับ 2
-              เดิมเรียงยาวรวดเดียวแล้วตัด ทำให้ Zone ท้าย ๆ หลุดหายไปทั้งกลุ่ม</span>
-          </div>
-        </li>
-        <li>
-          <span class="tag">การ์ด</span>
-          <div>
-            <b>คอลัมน์ "เบิกจาก Hub" เป็นจำนวนเต็ม</b>
-            <span>ยอดเบิกเป็นจำนวนหน่วยจริง จึงตัดทศนิยมออกทั้งคอลัมน์ ส่วนคอลัมน์อื่นยังคงทศนิยมตามเดิม</span>
+            <b>ทั้ง 4 คอลัมน์ตรงกับชีต 100%</b>
+            <span><code>OMC-Onhand</code>, <code>เบิกจาก Hub</code>, <code>Prev_Before</code>,
+              <code>Prev_Received</code> — ตรวจ 115 แถวจาก 5 รอบ ไม่มีแถวไหนคลาดเคลื่อน
+              (<code>OMC-Onhand</code>, <code>Prev_Before</code>, <code>Prev_Received</code>
+              อยู่ตรงตำแหน่งอยู่แล้ว ไม่โดนบั๊กคอลัมน์เลื่อน)</span>
           </div>
         </li>
         <li>
           <span class="tag">การ์ด</span>
           <div>
-            <b>เอา Province ออกจากแถว และเปลี่ยนป้ายชุดข้อมูล</b>
-            <span>ที่ว่างที่ได้เอาไปใส่หัวกลุ่ม Zone แทน · ป้ายใหม่คือ 📦 <b>MA — Weekly Allocation</b>
-              และ 🗃️ <b>OPTIMIZE — Allocation Plan</b> · ตัดข้อความ "เฉพาะสายเคเบิล 53OF และตู้พักสาย 52CL" ทิ้ง</span>
+            <b>รหัสวัสดุไม่ซ้ำใน Zone เดียวกันแล้ว</b>
+            <span>ชีตแตกแถวตามจังหวัด รหัสเดียวกันเคยโผล่ติดกันหลายแถวโดยไม่บอกว่าจังหวัดไหน
+              ตอนนี้รวมเป็นแถวเดียวต่อโซนโดยบวกยอดของทุกจังหวัดเข้าด้วยกัน
+              แถวที่รวมมาจากหลายจังหวัดมีป้ายต่อท้าย เช่น <code>53OF157BB ·3จว.</code></span>
+          </div>
+        </li>
+        <li>
+          <span class="tag">การ์ด</span>
+          <div>
+            <b>หัวกลุ่ม Zone แสดงยอดรวมทั้งโซน</b>
+            <span>เช่น <code>🟦 RC2-NMA · 8 รายการ · คงเหลือ 42,749 · Hub 0</code>
+              เป็นผลบวกของทุกจังหวัดในโซน ไม่ใช่แค่แถวที่แสดง</span>
+          </div>
+        </li>
+        <li>
+          <span class="tag">การ์ด</span>
+          <div>
+            <b>ตัวอักษรเล็กลง ใส่ข้อมูลได้ทั้งรอบในการ์ดใบเดียว</b>
+            <span>ปรับโครงการ์ดใหม่ทั้งใบให้กินที่น้อยลงราว 3 เท่าต่อแถว
+              รอบ Optimize 35 แถว 5 Zone ตอนนี้ลงได้ครบที่ 24.9 KB
+              และรอบ MA (17 Aug 26) จาก 74 แถวดิบเหลือ 24 แถว ลงครบที่ 19.4 KB
+              — ไม่มีการตัดทิ้งอีกแล้ว</span>
+          </div>
+        </li>
+        <li>
+          <span class="tag">การ์ด</span>
+          <div>
+            <b>ชื่อวัสดุย้ายไปไว้ท้ายการ์ดครั้งเดียว</b>
+            <span>เดิมพิมพ์ชื่อยาวต่อท้ายทุกแถว ตอนนี้เป็นตารางอธิบายรหัส 8 บรรทัดท้ายการ์ด
+              อ่านง่ายกว่าและประหยัดที่</span>
+          </div>
+        </li>
+        <li>
+          <span class="tag">การ์ด</span>
+          <div>
+            <b>ตัดคำอธิบายสถานะที่ไม่จำเป็นออก</b>
+            <span>"จัดสรรเกิน", "ไม่มีรอบก่อน" และป้าย "✅ ไม่มีรายการเสี่ยง" ที่หัว Zone
+              ไม่แสดงแล้ว — emoji สื่อความหมายพอ เหลือที่ให้ตัวเลขมากขึ้น</span>
           </div>
         </li>
         <li>
           <span class="tag">ข้อมูล</span>
           <div>
-            <b>คัดรหัสวัสดุจากรายการตายตัว 10 รหัส</b>
-            <span>เดิมจับด้วยรูปแบบรหัส (ทุกอย่างที่ขึ้นต้น 53OF / 52CL) ตอนนี้ระบุเป็นรายการชัดเจน
-              ดูรายชื่อทั้งหมดในหัวข้อ "รหัสวัสดุที่รายงาน" ข้างล่าง</span>
+            <b>รหัสวัสดุเหลือ 8 รหัส</b>
+            <span>ตัด <code>52CL006BB</code> (CLOSURE 48 C) และ
+              <code>52CL009BB</code> (CLOSURE 12 C FOR OFC DROP WIRE) ออก
+              ดูรายการเต็มในหัวข้อ "รหัสวัสดุที่รายงาน" ข้างล่าง</span>
+          </div>
+        </li>
+        <li>
+          <span class="tag">พารามิเตอร์</span>
+          <div>
+            <b>รายงานหลักเปลี่ยนเป็น OPTIMIZE — Allocation Plan</b>
+            <span>ใส่ <code>-</code> ในช่อง <code>period</code> จะได้รอบ Optimize ล่าสุด
+              ถ้าอยากได้ MA ให้พิมพ์ <code>MA</code> ลงไปตรง ๆ ไม่ต้องรู้ชื่อรอบ</span>
+          </div>
+        </li>
+        <li>
+          <span class="tag">พารามิเตอร์</span>
+          <div>
+            <b><code>topRows</code> ไม่ต้องคำนวณเองแล้ว</b>
+            <span>สคริปต์ประกอบการ์ดแล้ววัดขนาดเป็นไบต์จริง ถ้าเกินงบ 26,000 ไบต์
+              ก็ลดแถวแล้วประกอบใหม่ให้เอง ใส่ <code>40</code> ไว้เป็นเพดานก็พอ</span>
           </div>
         </li>
       </ul>
@@ -641,7 +685,7 @@
       <div class="note info">
         <span class="ico">ℹ️</span>
         <div>Action เดียวนี้ทำครบ 3 อย่าง: อ่านชีต <code>MA&amp;Optimize NER</code> →
-          คัดเฉพาะ 10 รหัสที่กำหนด → คืน Adaptive Card ที่แทนค่าเสร็จแล้วพร้อมโพสต์</div>
+          คัดเฉพาะ 8 รหัสที่กำหนด → รวมแถวซ้ำ → คืน Adaptive Card ที่แทนค่าเสร็จแล้วพร้อมโพสต์</div>
       </div>
 
       <div class="block">
@@ -667,7 +711,7 @@
 
         <dl class="field">
           <dt>period</dt>
-          <dd><strong>-</strong><span>ขีดเดียว = ไม่ระบุรอบ สคริปต์จะไปหยิบรอบ MA ล่าสุดให้เอง</span></dd>
+          <dd><strong>-</strong><span>ขีดเดียว = ไม่ระบุรอบ สคริปต์จะไปหยิบรอบ <b>Optimize</b> ล่าสุดให้เอง</span></dd>
         </dl>
 
         <div class="note stop">
@@ -676,8 +720,20 @@
             <strong>ช่อง period เว้นว่างไม่ได้</strong>
             <div>ถ้าเว้นว่างจะขึ้น error ตอนกด Save:
               <code>Invalid parameter for 'Run script'. Error: 'ScriptParameters/period' is required.</code></div>
-            <div>สคริปต์รู้จักค่าเหล่านี้ว่าแปลว่า "ไม่ระบุรอบ" ทั้งหมด (พิมพ์เล็กใหญ่ไม่สำคัญ):
-              <code>-</code> <code>auto</code> <code>latest</code> <code>null</code></div>
+            <div class="scroller">
+              <table>
+                <thead><tr><th>ใส่อะไร</th><th>ได้อะไร</th></tr></thead>
+                <tbody>
+                  <tr><td><code>-</code> <code>auto</code> <code>latest</code> <code>null</code></td><td>รอบ <b>Optimize</b> ล่าสุด (รายงานหลัก)</td></tr>
+                  <tr><td><code>Optimize</code></td><td>รอบ Optimize ล่าสุด</td></tr>
+                  <tr><td><code>MA</code></td><td>รอบ <b>MA</b> ล่าสุด</td></tr>
+                  <tr><td><code>Optimize(3 Aug 26)</code></td><td>เจาะจงรอบนั้น</td></tr>
+                  <tr><td><code>MA (17 Aug 26)</code></td><td>เจาะจงรอบนั้น</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div>คำสั่ง (<code>-</code>, <code>auto</code>, <code>ma</code>, <code>optimize</code>)
+              พิมพ์เล็กใหญ่ไม่สำคัญ แต่ชื่อรอบต้องตรงเป๊ะรวมวงเล็บและช่องว่าง</div>
             <div>อย่าใช้ <b>fx</b> แล้วใส่ <code>''</code> — Power Automate ยังนับว่าเป็นค่าว่างและ error เหมือนเดิม
               ให้พิมพ์ <code>-</code> ลงในช่องตรง ๆ เป็นข้อความธรรมดา</div>
           </div>
@@ -685,28 +741,28 @@
 
         <dl class="field">
           <dt>topRows</dt>
-          <dd><strong>10</strong><span>จำนวนแถวสูงสุดบนการ์ด — ห้ามเกิน 10</span></dd>
+          <dd><strong>40</strong><span>เพดานแถว — สคริปต์วัดขนาดการ์ดจริงแล้วลดให้เองถ้าจำเป็น</span></dd>
         </dl>
 
-        <div class="note warn">
-          <span class="ico">⚠️</span>
+        <div class="note info">
+          <span class="ico">💡</span>
           <div>
-            <strong>ทำไม topRows ห้ามเกิน 10</strong>
-            <div>Teams ปฏิเสธ Adaptive Card ที่ใหญ่เกิน <b>28 KB</b> แบบเงียบ ๆ —
-              Flow ยังขึ้นเขียวแต่การ์ดไม่โผล่ ขนาดที่วัดจริงจากข้อมูลในไฟล์:</div>
+            <strong>topRows ไม่ต้องคำนวณเองแล้ว</strong>
+            <div>Teams ปฏิเสธการ์ดที่ใหญ่เกิน <b>28 KB</b> แบบเงียบ ๆ — Flow ยังขึ้นเขียวแต่การ์ดไม่โผล่
+              สคริปต์จึงประกอบการ์ดแล้ว <b>วัดขนาดเป็นไบต์จริง</b> ถ้าเกินงบ 26,000 ไบต์
+              ก็ลดแถวแล้วประกอบใหม่ให้เอง ใส่ <code>40</code> ไว้เป็นเพดานก็พอ</div>
             <div class="scroller">
               <table>
-                <thead><tr><th>จำนวนแถว</th><th>MA (4 Zone)</th><th>Optimize (5 Zone)</th></tr></thead>
+                <thead><tr><th>รอบ</th><th>Zone</th><th>แถวดิบ</th><th>แถวบนการ์ด</th><th>ขนาด</th></tr></thead>
                 <tbody>
-                  <tr><td class="num">8</td><td class="num">20.6 KB ✅</td><td class="num">22.5 KB ✅</td></tr>
-                  <tr><td class="num">10</td><td class="num">23.2 KB ✅</td><td class="num">25.0 KB ✅</td></tr>
-                  <tr><td class="num">11</td><td class="num">24.4 KB ✅</td><td class="num">26.3 KB ⚠️</td></tr>
-                  <tr><td class="num">12</td><td class="num">25.6 KB ✅</td><td class="num">27.5 KB ⚠️</td></tr>
+                  <tr><td>Optimize (3 Aug 26)</td><td class="num">5</td><td class="num">35</td><td class="num">35</td><td class="num">24.9 KB ✅</td></tr>
+                  <tr><td>MA (17 Aug 26)</td><td class="num">4</td><td class="num">74</td><td class="num">24</td><td class="num">19.4 KB ✅</td></tr>
+                  <tr><td>MA (10 Aug 26)</td><td class="num">3</td><td class="num">10</td><td class="num">7</td><td class="num">10.1 KB ✅</td></tr>
                 </tbody>
               </table>
             </div>
-            <div>หัวกลุ่ม Zone กินที่คงที่ราว 1.5 KB ต่อ Zone รอบที่มี 5 Zone จึงเหลือที่ให้แถวข้อมูลน้อยกว่า
-              สคริปต์บีบค่าลงเหลือ 10 ให้เองอยู่แล้ว แต่ใส่ 10 ไว้จะชัดเจนกว่า</div>
+            <div><b>ทุกรอบลงการ์ดใบเดียวได้ครบ ไม่มีการตัดทิ้ง</b> เพราะการ์ดรวมแถวซ้ำให้แล้ว
+              (1 Zone + 1 Item Code = 1 แถว — ยอดของทุกจังหวัดถูกบวกเข้าด้วยกัน)</div>
           </div>
         </div>
 
@@ -727,7 +783,7 @@
       </div>
 
       <div class="block">
-        <h3>รหัสวัสดุที่รายงาน (10 รหัส)</h3>
+        <h3>รหัสวัสดุที่รายงาน (8 รหัส)</h3>
         <p style="margin:0; color: var(--muted); font-size: .9rem;">
           สคริปต์คัดเฉพาะรหัสเหล่านี้เท่านั้น รหัสอื่นในชีตจะถูกข้ามไปทั้งหมด
         </p>
@@ -738,10 +794,8 @@
               <tr><td><code>50MT004BB</code></td><td>Name Plate (Aluminium)</td></tr>
               <tr><td><code>52CL003BB</code></td><td>CLOSURE 12 C</td></tr>
               <tr><td><code>52CL004BB</code></td><td>CLOSURE 24 C</td></tr>
-              <tr><td><code>52CL006BB</code></td><td>CLOSURE 48 C</td></tr>
-              <tr><td><code>52CL009BB</code></td><td>CLOSURE 12 C FOR OFC DROP WIRE (IN LINE)</td></tr>
               <tr><td><code>52CL010BB</code></td><td>CLOSURE 60 C</td></tr>
-              <tr><td><code>53OF150BB</code></td><td>OPTICAL FIBER DROP CABLE 1C, FLAT TYPE (G.657A) 2 SC/UPC, 3m.</td></tr>
+              <tr><td><code>53OF150BB</code></td><td>OPTICAL FIBER DROP CABLE 1C, FLAT TYPE (G.657A) WITH 2 SC/UPC PRE-CONNECTOR, 3m.</td></tr>
               <tr><td><code>53OF157BB</code></td><td>ARSS OPTICAL FIBER CABLE 12c-FIBRE3</td></tr>
               <tr><td><code>53OF158BB</code></td><td>ARSS OPTICAL FIBER CABLE 24c-FIBRE3</td></tr>
               <tr><td><code>53OF160BB</code></td><td>ARSS OPTICAL FIBER CABLE 60c-FIBRE3</td></tr>
@@ -875,8 +929,9 @@
           <div class="check"><input type="checkbox" id="c1"><label for="c1">
             หัวการ์ดเขียนว่า <b>Report Material Optimize&amp;MA_NER</b></label></div>
           <div class="check"><input type="checkbox" id="c2"><label for="c2">
-            ป้ายชุดข้อมูลถูกต้อง — 📦 <b>MA — Weekly Allocation</b> (ฟ้า) หรือ
-            🗃️ <b>OPTIMIZE — Allocation Plan</b> (เขียว)</label></div>
+            ป้ายชุดข้อมูลเป็น 🗃️ <b>OPTIMIZE — Allocation Plan</b> (เขียว)
+            เมื่อ <code>period</code> = <code>-</code> &nbsp;·&nbsp;
+            เป็น 📦 <b>MA — Weekly Allocation</b> (ฟ้า) เมื่อใส่ <code>MA</code></label></div>
           <div class="check"><input type="checkbox" id="c3"><label for="c3">
             แถบ 3 ช่อง: รอบจัดสรร / รอบก่อนหน้า / ชุดข้อมูล</label></div>
           <div class="check"><input type="checkbox" id="c4"><label for="c4">
@@ -890,10 +945,22 @@
             — <b>ไม่มี Province</b></label></div>
           <div class="check"><input type="checkbox" id="c7"><label for="c7">
             คอลัมน์ <b>เบิกจาก Hub เป็นจำนวนเต็ม</b> ไม่มีจุดทศนิยม</label></div>
+          <div class="check"><input type="checkbox" id="c7b"><label for="c7b">
+            <b>ค่า "เบิกจาก Hub" ตรงกับชีต</b> — เปิดชีตแล้วบวก 3 ช่องซ้ายของ
+            <code>รวม 3 รายการ</code> ต้องได้เท่ากับค่าในช่องนั้น</label></div>
+          <div class="check"><input type="checkbox" id="c7c"><label for="c7c">
+            <b>รหัสวัสดุไม่ซ้ำ</b> ภายใน Zone เดียวกัน — แต่ละรหัสขึ้นแถวเดียวต่อโซน</label></div>
+          <div class="check"><input type="checkbox" id="c7d"><label for="c7d">
+            แถวที่รวมหลายจังหวัดมีป้ายต่อท้ายรหัส เช่น <code>53OF157BB ·3จว.</code></label></div>
+          <div class="check"><input type="checkbox" id="c7e"><label for="c7e">
+            หัวกลุ่ม Zone แสดงยอดรวมทั้งโซน เช่น
+            <code>🟦 RC2-NMA · 8 รายการ · คงเหลือ 42,749 · Hub 0</code></label></div>
+          <div class="check"><input type="checkbox" id="c7f"><label for="c7f">
+            ตารางอธิบายรหัสวัสดุ <b>8 รหัส</b> อยู่ท้ายการ์ด</label></div>
           <div class="check"><input type="checkbox" id="c8"><label for="c8">
             รายการเสี่ยงขาดขึ้นก่อนและเป็นตัวหนาในแต่ละ Zone</label></div>
           <div class="check"><input type="checkbox" id="c9"><label for="c9">
-            บรรทัด "…และอีก N รายการ" ขึ้นถูก (N = ยอดรวม − 10)</label></div>
+            ปกติจะ <b>ไม่มี</b> บรรทัด "…และอีก N รายการ" — ทั้งรอบลงการ์ดใบเดียวได้ครบ</label></div>
           <div class="check"><input type="checkbox" id="c10"><label for="c10">
             ปุ่ม 📊 Dashboard และ 📁 Open the source file. กดแล้วเปิดถูกที่</label></div>
           <div class="check"><input type="checkbox" id="c11"><label for="c11">
@@ -921,8 +988,12 @@
                   <td>เอา template ดิบไปวาง</td><td>ช่อง Adaptive Card ต้องเป็น <code>string(body('Run_script')?['result'])</code></td></tr>
               <tr><td>Zone บางโซนหายไปทั้งกลุ่ม</td>
                   <td>ใช้สคริปต์เวอร์ชันเก่า</td><td>คัดลอก <code>renderAdaptiveCard.ts</code> ตัวล่าสุดไปวางทับใน Excel</td></tr>
-              <tr><td>เบิกจาก Hub ยังมีทศนิยม</td>
-                  <td>ใช้สคริปต์เวอร์ชันเก่า</td><td>คัดลอก <code>renderAdaptiveCard.ts</code> ตัวล่าสุดไปวางทับใน Excel</td></tr>
+              <tr><td>เบิกจาก Hub ยังมีทศนิยม หรือค่าไม่ตรงกับชีต</td>
+                  <td>ใช้สคริปต์เวอร์ชันเก่า (อ่านคอลัมน์ <code>จัดสรร</code> มาแสดงแทน)</td>
+                  <td>คัดลอก <code>renderAdaptiveCard.ts</code> ตัวล่าสุดไปวางทับใน Excel</td></tr>
+              <tr><td>รหัสวัสดุเดิมโผล่ซ้ำหลายแถวในโซนเดียว</td>
+                  <td>ใช้สคริปต์เวอร์ชันเก่าที่ยังไม่รวมแถวตามจังหวัด</td>
+                  <td>คัดลอก <code>renderAdaptiveCard.ts</code> ตัวล่าสุดไปวางทับใน Excel</td></tr>
               <tr><td>Run script แดง: ไม่พบชีต</td>
                   <td>ชื่อชีตไม่ตรง</td><td>ต้องเป็น <code>MA&amp;Optimize NER</code> เป๊ะ ๆ รวมเครื่องหมาย &amp; และช่องว่าง</td></tr>
               <tr><td>Run script แดง: ไม่พบคอลัมน์</td>
@@ -943,6 +1014,61 @@
           <div>Flow จะทำงานเองทุกวันจันทร์ 08:00 น. ตามที่ตั้งไว้ใน Recurrence</div>
           <div>สิ่งเดียวที่ต้องทำทุกสัปดาห์คือ <b>Refresh ใน .xlsm แล้ว Save As ทับไฟล์ .xlsx บน SharePoint</b>
             ถ้าลืม การ์ดจะยังมาตามเวลาแต่เป็นข้อมูลของสัปดาห์ก่อน</div>
+        </div>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="card">
+    <summary>
+      <span class="card-icon">🗺️</span>
+      <span class="card-head">
+        <h2>แนวทางรายงาน OPTIMIZE (เดือน) กับ MA (สัปดาห์)</h2>
+        <p>สองชุดตอบคำถามคนละข้อ — ถ้าส่งเหมือนกัน คนอ่านจะข้ามทั้งสองใบ</p>
+      </span>
+      <span class="chev">▼</span>
+    </summary>
+    <div class="card-body">
+
+      <div class="scroller">
+        <table>
+          <thead><tr><th></th><th>🗃️ OPTIMIZE — รอบเดือน</th><th>📦 MA — รอบสัปดาห์</th></tr></thead>
+          <tbody>
+            <tr><td><b>ตอบคำถาม</b></td><td>"เดือนหน้าต้องเตรียมของเท่าไร"</td><td>"สัปดาห์นี้มีอะไรจะขาด"</td></tr>
+            <tr><td><b>คนอ่าน</b></td><td>หัวหน้าโซน / คนวางแผนจัดซื้อ</td><td>หน้างาน / คนเบิกของ</td></tr>
+            <tr><td><b>สิ่งที่ควรเด่น</b></td><td>ยอดรวมทั้งโซน เทียบรอบก่อน</td><td>รายการเสี่ยงขาด ต้องเติมด่วน</td></tr>
+            <tr><td><b>จังหวะที่แนะนำ</b></td><td>วันที่ 1 ของเดือน 08:00</td><td>ทุกวันจันทร์ 08:00</td></tr>
+            <tr><td><b><code>period</code></b></td><td><code>Optimize</code> (หรือ <code>-</code>)</td><td><code>MA</code></td></tr>
+            <tr><td><b>ควรทำอะไรต่อ</b></td><td>อนุมัติแผนจัดสรรรอบถัดไป</td><td>เร่งเบิก / ย้ายของระหว่างจังหวัด</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="block">
+        <h3>ข้อแนะนำที่ใช้ได้จริง</h3>
+        <ol class="steps">
+          <li><b>แยกเป็น 2 Flow</b> อย่ายัดรวมใบเดียว — คนละกลุ่มผู้อ่าน คนละความถี่
+            ถ้ารวมกัน คนหน้างานต้องเลื่อนผ่านข้อมูลรายเดือนทุกสัปดาห์</li>
+          <li><b>แยกห้อง Teams</b> หรืออย่างน้อยแยก thread — MA อยู่ห้องปฏิบัติการ
+            OPTIMIZE อยู่ห้องวางแผน คนจะได้ไม่ต้องกรองเอง</li>
+          <li><b>MA ควรสั้น</b> สัปดาห์ไหนไม่มีรายการเสี่ยงเลย การ์ดที่บอกว่า "ปกติทั้งหมด"
+            หนึ่งบรรทัดมีค่ากว่าตารางยาว ๆ — ทำได้ด้วย Condition เช็ก <code>riskCount</code>
+            จาก Run script ก่อนโพสต์</li>
+          <li><b>OPTIMIZE ควรมีการเทียบ</b> ให้ผู้อ่านดู <code>Prev_Before</code> /
+            <code>Prev_Received</code> คู่กับ <code>OMC-Onhand</code> เสมอ
+            ถ้าอยากได้กราฟแนวโน้มจริง ๆ ให้ลิงก์ไป Dashboard แทนการยัดลงการ์ด</li>
+          <li><b>ให้ทั้งสองใบชี้ไป Dashboard เดียวกัน</b> การ์ดคือ "สัญญาณเตือน" ไม่ใช่รายงานฉบับเต็ม
+            อะไรที่ต้องกรอง/ไล่ดูรายจังหวัด ให้จบที่ Dashboard</li>
+        </ol>
+      </div>
+
+      <div class="note warn">
+        <span class="ico">⚠️</span>
+        <div>
+          <strong>เรื่องที่คนมักพลาดตอนเทียบสองชุด</strong>
+          <div>ยอดบนการ์ดเป็น <b>ผลรวมทุกจังหวัดในโซน</b> แล้ว
+            การเทียบรายจังหวัดต้องไปดูที่ Dashboard</div>
         </div>
       </div>
 

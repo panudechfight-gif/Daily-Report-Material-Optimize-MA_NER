@@ -6,11 +6,11 @@
     "width": "Full"
   },
   "fallbackText": "Report Material Optimize&MA_NER (อุปกรณ์ของคุณแสดงการ์ดนี้ไม่ได้ กรุณาเปิดจาก Dashboard)",
-  "speak": "Report Material MA รอบ MA (17 Aug 26) มี 0 รายการ เสี่ยงขาด 0 รายการ",
+  "speak": "Report Material Optimize รอบ Optimize(3 Aug 26) มี 0 รายการ เสี่ยงขาด 0 รายการ",
   "body": [
     {
       "type": "Container",
-      "style": "accent",
+      "style": "good",
       "bleed": true,
       "items": [
         {
@@ -23,9 +23,10 @@
               "items": [
                 {
                   "type": "TextBlock",
-                  "text": "📦",
-                  "size": "extraLarge",
-                  "wrap": false
+                  "text": "🗃️",
+                  "size": "large",
+                  "wrap": false,
+                  "spacing": "none"
                 }
               ]
             },
@@ -38,7 +39,15 @@
                   "type": "TextBlock",
                   "text": "Report Material Optimize&MA_NER",
                   "weight": "bolder",
-                  "size": "large",
+                  "size": "medium",
+                  "wrap": true,
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "OPTIMIZE — Allocation Plan",
+                  "size": "small",
+                  "isSubtle": true,
                   "wrap": true,
                   "spacing": "none"
                 }
@@ -50,7 +59,7 @@
     },
     {
       "type": "ColumnSet",
-      "spacing": "medium",
+      "spacing": "small",
       "columns": [
         {
           "type": "Column",
@@ -58,7 +67,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "🗓️ รอบจัดสรร (Distribution period)",
+              "text": "🗓️ รอบจัดสรร",
               "size": "small",
               "isSubtle": true,
               "wrap": true,
@@ -66,7 +75,8 @@
             },
             {
               "type": "TextBlock",
-              "text": "**MA (17 Aug 26)**",
+              "text": "**Optimize(3 Aug 26)**",
+              "size": "small",
               "color": "accent",
               "wrap": true,
               "spacing": "none"
@@ -79,7 +89,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "⏮️ รอบก่อนหน้า (Prev_Period)",
+              "text": "⏮️ รอบก่อนหน้า",
               "size": "small",
               "isSubtle": true,
               "wrap": true,
@@ -87,29 +97,9 @@
             },
             {
               "type": "TextBlock",
-              "text": "**MA (10 Aug 26)**",
-              "isSubtle": true,
-              "wrap": true,
-              "spacing": "none"
-            }
-          ]
-        },
-        {
-          "type": "Column",
-          "width": "stretch",
-          "items": [
-            {
-              "type": "TextBlock",
-              "text": "🏷️ ชุดข้อมูล (Data_Set)",
+              "text": "**Optimize(6 July 26)**",
               "size": "small",
               "isSubtle": true,
-              "wrap": true,
-              "spacing": "none"
-            },
-            {
-              "type": "TextBlock",
-              "text": "**MA — Weekly Allocation**",
-              "color": "accent",
               "wrap": true,
               "spacing": "none"
             }
@@ -119,7 +109,7 @@
     },
     {
       "type": "Container",
-      "spacing": "large",
+      "spacing": "medium",
       "style": "emphasis",
       "items": [
         {
@@ -140,7 +130,7 @@
         },
         {
           "type": "TextBlock",
-          "text": "ไม่พบรหัสวัสดุที่กำหนดไว้ในรอบ **MA (17 Aug 26)**",
+          "text": "ไม่พบรหัสวัสดุที่กำหนดไว้ในรอบ **Optimize(3 Aug 26)**",
           "horizontalAlignment": "center",
           "isSubtle": true,
           "wrap": true,
@@ -156,11 +146,11 @@
     },
     {
       "type": "TextBlock",
-      "text": "🕗 สร้างรายงานเมื่อ 16 ส.ค. 2569 08:00 น. • ที่มา: MA / MA (17 Aug 26)",
+      "text": "🕗 สร้างรายงานเมื่อ 16 ส.ค. 2569 08:00 น. • ที่มา: Optimize / Optimize(3 Aug 26)",
       "size": "small",
       "isSubtle": true,
       "wrap": true,
-      "spacing": "medium",
+      "spacing": "small",
       "separator": true
     }
   ],

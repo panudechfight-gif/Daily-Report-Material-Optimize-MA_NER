@@ -6,7 +6,7 @@
     "width": "Full"
   },
   "fallbackText": "Report Material Optimize&MA_NER (อุปกรณ์ของคุณแสดงการ์ดนี้ไม่ได้ กรุณาเปิดจาก Dashboard)",
-  "speak": "Report Material MA รอบ MA (10 Aug 26) มี 15 รายการ เสี่ยงขาด 9 รายการ",
+  "speak": "Report Material MA รอบ MA (10 Aug 26) มี 7 รายการ เสี่ยงขาด 6 รายการ",
   "body": [
     {
       "type": "Container",
@@ -24,8 +24,9 @@
                 {
                   "type": "TextBlock",
                   "text": "📦",
-                  "size": "extraLarge",
-                  "wrap": false
+                  "size": "large",
+                  "wrap": false,
+                  "spacing": "none"
                 }
               ]
             },
@@ -38,7 +39,15 @@
                   "type": "TextBlock",
                   "text": "Report Material Optimize&MA_NER",
                   "weight": "bolder",
-                  "size": "large",
+                  "size": "medium",
+                  "wrap": true,
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "MA — Weekly Allocation",
+                  "size": "small",
+                  "isSubtle": true,
                   "wrap": true,
                   "spacing": "none"
                 }
@@ -50,7 +59,7 @@
     },
     {
       "type": "ColumnSet",
-      "spacing": "medium",
+      "spacing": "small",
       "columns": [
         {
           "type": "Column",
@@ -58,7 +67,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "🗓️ รอบจัดสรร (Distribution period)",
+              "text": "🗓️ รอบจัดสรร",
               "size": "small",
               "isSubtle": true,
               "wrap": true,
@@ -67,6 +76,7 @@
             {
               "type": "TextBlock",
               "text": "**MA (10 Aug 26)**",
+              "size": "small",
               "color": "accent",
               "wrap": true,
               "spacing": "none"
@@ -79,7 +89,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "⏮️ รอบก่อนหน้า (Prev_Period)",
+              "text": "⏮️ รอบก่อนหน้า",
               "size": "small",
               "isSubtle": true,
               "wrap": true,
@@ -88,28 +98,8 @@
             {
               "type": "TextBlock",
               "text": "**MA (3 Aug 26)**",
-              "isSubtle": true,
-              "wrap": true,
-              "spacing": "none"
-            }
-          ]
-        },
-        {
-          "type": "Column",
-          "width": "stretch",
-          "items": [
-            {
-              "type": "TextBlock",
-              "text": "🏷️ ชุดข้อมูล (Data_Set)",
               "size": "small",
               "isSubtle": true,
-              "wrap": true,
-              "spacing": "none"
-            },
-            {
-              "type": "TextBlock",
-              "text": "**MA — Weekly Allocation**",
-              "color": "accent",
               "wrap": true,
               "spacing": "none"
             }
@@ -119,16 +109,17 @@
     },
     {
       "type": "Container",
-      "spacing": "medium",
+      "spacing": "small",
       "items": [
         {
           "type": "ColumnSet",
+          "style": "emphasis",
+          "bleed": true,
+          "spacing": "small",
           "columns": [
             {
               "type": "Column",
               "width": "stretch",
-              "style": "attention",
-              "spacing": "small",
               "items": [
                 {
                   "type": "TextBlock",
@@ -140,9 +131,10 @@
                 },
                 {
                   "type": "TextBlock",
-                  "text": "9",
-                  "size": "extraLarge",
+                  "text": "6",
+                  "size": "large",
                   "weight": "bolder",
+                  "color": "attention",
                   "horizontalAlignment": "center",
                   "spacing": "none"
                 }
@@ -151,8 +143,6 @@
             {
               "type": "Column",
               "width": "stretch",
-              "style": "warning",
-              "spacing": "small",
               "items": [
                 {
                   "type": "TextBlock",
@@ -165,8 +155,9 @@
                 {
                   "type": "TextBlock",
                   "text": "0",
-                  "size": "extraLarge",
+                  "size": "large",
                   "weight": "bolder",
+                  "color": "warning",
                   "horizontalAlignment": "center",
                   "spacing": "none"
                 }
@@ -175,8 +166,6 @@
             {
               "type": "Column",
               "width": "stretch",
-              "style": "good",
-              "spacing": "small",
               "items": [
                 {
                   "type": "TextBlock",
@@ -188,9 +177,10 @@
                 },
                 {
                   "type": "TextBlock",
-                  "text": "6",
-                  "size": "extraLarge",
+                  "text": "1",
+                  "size": "large",
                   "weight": "bolder",
+                  "color": "good",
                   "horizontalAlignment": "center",
                   "spacing": "none"
                 }
@@ -199,8 +189,6 @@
             {
               "type": "Column",
               "width": "stretch",
-              "style": "emphasis",
-              "spacing": "small",
               "items": [
                 {
                   "type": "TextBlock",
@@ -212,8 +200,8 @@
                 },
                 {
                   "type": "TextBlock",
-                  "text": "15",
-                  "size": "extraLarge",
+                  "text": "7",
+                  "size": "large",
                   "weight": "bolder",
                   "horizontalAlignment": "center",
                   "spacing": "none"
@@ -223,541 +211,147 @@
           ]
         },
         {
-          "type": "Container",
-          "spacing": "large",
+          "type": "ColumnSet",
+          "spacing": "medium",
           "separator": true,
+          "columns": [
+            {
+              "type": "Column",
+              "width": 32,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "Item Code",
+                  "weight": "bolder",
+                  "size": "small",
+                  "color": "accent",
+                  "wrap": true,
+                  "spacing": "none"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 17,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "Onhand",
+                  "weight": "bolder",
+                  "size": "small",
+                  "color": "accent",
+                  "horizontalAlignment": "right",
+                  "wrap": true,
+                  "spacing": "none"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 17,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "เบิก Hub",
+                  "weight": "bolder",
+                  "size": "small",
+                  "color": "accent",
+                  "horizontalAlignment": "right",
+                  "wrap": true,
+                  "spacing": "none"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 17,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "Prev_Before",
+                  "weight": "bolder",
+                  "size": "small",
+                  "color": "accent",
+                  "horizontalAlignment": "right",
+                  "wrap": true,
+                  "spacing": "none"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 17,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "Prev_Recv",
+                  "weight": "bolder",
+                  "size": "small",
+                  "color": "accent",
+                  "horizontalAlignment": "right",
+                  "wrap": true,
+                  "spacing": "none"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Container",
+          "spacing": "none",
           "items": [
             {
+              "type": "TextBlock",
+              "text": "🟦 RC2-NMA · 2 รายการ · คงเหลือ 0 · Hub 2 · ⚠️ เสี่ยงขาด 1",
+              "size": "small",
+              "weight": "bolder",
+              "color": "attention",
+              "wrap": true,
+              "spacing": "small",
+              "separator": true
+            },
+            {
               "type": "ColumnSet",
-              "style": "emphasis",
-              "bleed": true,
+              "spacing": "none",
               "columns": [
                 {
                   "type": "Column",
-                  "width": "stretch",
-                  "verticalContentAlignment": "center",
+                  "width": 32,
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "🟦 Zone RC2-NMA",
-                      "weight": "bolder",
-                      "size": "medium",
-                      "wrap": true,
+                      "text": "🔴 52CL003BB",
+                      "size": "small",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "3 รายการ",
+                      "text": "🟡 52CL010BB",
                       "size": "small",
-                      "isSubtle": true,
-                      "wrap": true,
                       "spacing": "none"
                     }
                   ]
                 },
                 {
                   "type": "Column",
-                  "width": "auto",
-                  "verticalContentAlignment": "center",
+                  "width": 17,
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "⚠️ เสี่ยงขาด 1 รายการ",
+                      "text": "0",
+                      "size": "small",
+                      "weight": "bolder",
                       "color": "attention",
-                      "weight": "bolder",
-                      "size": "small",
                       "horizontalAlignment": "right",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "ColumnSet",
-              "targetWidth": "atLeast:standard",
-              "spacing": "small",
-              "separator": true,
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": 34,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "Item Code",
-                      "weight": "bolder",
-                      "size": "small",
-                      "color": "accent",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "OMC-Onhand",
-                      "weight": "bolder",
-                      "size": "small",
-                      "color": "accent",
-                      "horizontalAlignment": "right",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "เบิกจาก Hub",
-                      "weight": "bolder",
-                      "size": "small",
-                      "color": "accent",
-                      "horizontalAlignment": "right",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "Prev_Before",
-                      "weight": "bolder",
-                      "size": "small",
-                      "color": "accent",
-                      "horizontalAlignment": "right",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "Prev_Received",
-                      "weight": "bolder",
-                      "size": "small",
-                      "color": "accent",
-                      "horizontalAlignment": "right",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "ColumnSet",
-              "spacing": "small",
-              "separator": true,
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": 34,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "🔴 **52CL003BB**",
-                      "wrap": true,
                       "spacing": "none"
                     },
-                    {
-                      "type": "TextBlock",
-                      "targetWidth": "atLeast:standard",
-                      "text": "Closure OFC 12 core",
-                      "size": "small",
-                      "isSubtle": true,
-                      "wrap": true,
-                      "maxLines": 2,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "targetWidth": "atMost:narrow",
-                      "text": "คงเหลือ **0** · Hub **0** · ก่อน 24/รับ 0",
-                      "size": "small",
-                      "wrap": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "ใช้เกินยอดรับ",
-                      "size": "small",
-                      "color": "attention",
-                      "weight": "bolder",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
                     {
                       "type": "TextBlock",
                       "text": "0",
-                      "horizontalAlignment": "right",
-                      "weight": "bolder",
-                      "color": "attention"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "24",
-                      "horizontalAlignment": "right",
-                      "isSubtle": true
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right",
-                      "isSubtle": true
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "ColumnSet",
-              "spacing": "small",
-              "separator": true,
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": 34,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "🟡 **52CL010BB**",
-                      "wrap": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "targetWidth": "atLeast:standard",
-                      "text": "CLOSURE 60F",
                       "size": "small",
-                      "isSubtle": true,
-                      "wrap": true,
-                      "maxLines": 2,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "targetWidth": "atMost:narrow",
-                      "text": "คงเหลือ **0** · Hub **0** · ก่อน 0/รับ 0",
-                      "size": "small",
-                      "wrap": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "จัดสรรเกิน",
-                      "size": "small",
+                      "weight": "default",
                       "color": "warning",
-                      "weight": "default",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
                       "horizontalAlignment": "right",
-                      "weight": "default",
-                      "color": "warning"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right",
-                      "isSubtle": true
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right",
-                      "isSubtle": true
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "ColumnSet",
-              "spacing": "small",
-              "separator": true,
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": 34,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "⚪ **52CL009BB**",
-                      "wrap": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "targetWidth": "atLeast:standard",
-                      "text": "Closure FIBRE3_12F",
-                      "size": "small",
-                      "isSubtle": true,
-                      "wrap": true,
-                      "maxLines": 2,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "targetWidth": "atMost:narrow",
-                      "text": "คงเหลือ **39** · Hub **0** · ก่อน 0/รับ 0",
-                      "size": "small",
-                      "wrap": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "ไม่มีรอบก่อน",
-                      "size": "small",
-                      "color": "default",
-                      "weight": "default",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "39",
-                      "horizontalAlignment": "right",
-                      "weight": "default",
-                      "color": "default"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right",
-                      "isSubtle": true
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right",
-                      "isSubtle": true
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "Container",
-          "spacing": "large",
-          "separator": true,
-          "items": [
-            {
-              "type": "ColumnSet",
-              "style": "emphasis",
-              "bleed": true,
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "verticalContentAlignment": "center",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "🟨 Zone RC3-KKN",
-                      "weight": "bolder",
-                      "size": "medium",
-                      "wrap": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "แสดง 4 จาก 6 รายการ",
-                      "size": "small",
-                      "isSubtle": true,
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": "auto",
-                  "verticalContentAlignment": "center",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "⚠️ เสี่ยงขาด 5 รายการ",
-                      "color": "attention",
-                      "weight": "bolder",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "ColumnSet",
-              "targetWidth": "atLeast:standard",
-              "spacing": "small",
-              "separator": true,
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": 34,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "Item Code",
-                      "weight": "bolder",
-                      "size": "small",
-                      "color": "accent",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "OMC-Onhand",
-                      "weight": "bolder",
-                      "size": "small",
-                      "color": "accent",
-                      "horizontalAlignment": "right",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "เบิกจาก Hub",
-                      "weight": "bolder",
-                      "size": "small",
-                      "color": "accent",
-                      "horizontalAlignment": "right",
-                      "wrap": true,
                       "spacing": "none"
                     }
                   ]
@@ -765,859 +359,60 @@
                 {
                   "type": "Column",
                   "width": 17,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "Prev_Before",
-                      "weight": "bolder",
-                      "size": "small",
-                      "color": "accent",
-                      "horizontalAlignment": "right",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "Prev_Received",
-                      "weight": "bolder",
-                      "size": "small",
-                      "color": "accent",
-                      "horizontalAlignment": "right",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "ColumnSet",
-              "spacing": "small",
-              "separator": true,
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": 34,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "🔴 **52CL003BB**",
-                      "wrap": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "targetWidth": "atLeast:standard",
-                      "text": "Closure OFC 12 core",
-                      "size": "small",
-                      "isSubtle": true,
-                      "wrap": true,
-                      "maxLines": 2,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "targetWidth": "atMost:narrow",
-                      "text": "คงเหลือ **0** · Hub **11** · ก่อน 81/รับ 0",
-                      "size": "small",
-                      "wrap": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "ใช้เกินยอดรับ",
-                      "size": "small",
-                      "color": "attention",
-                      "weight": "bolder",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right",
-                      "weight": "bolder",
-                      "color": "attention"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "11",
-                      "horizontalAlignment": "right"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "81",
-                      "horizontalAlignment": "right",
-                      "isSubtle": true
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right",
-                      "isSubtle": true
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "ColumnSet",
-              "spacing": "small",
-              "separator": true,
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": 34,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "🔴 **52CL009BB**",
-                      "wrap": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "targetWidth": "atLeast:standard",
-                      "text": "Closure FIBRE3_12F",
-                      "size": "small",
-                      "isSubtle": true,
-                      "wrap": true,
-                      "maxLines": 2,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "targetWidth": "atMost:narrow",
-                      "text": "คงเหลือ **0** · Hub **0** · ก่อน 117/รับ 0",
-                      "size": "small",
-                      "wrap": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "ใช้เกินยอดรับ",
-                      "size": "small",
-                      "color": "attention",
-                      "weight": "bolder",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right",
-                      "weight": "bolder",
-                      "color": "attention"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "117",
-                      "horizontalAlignment": "right",
-                      "isSubtle": true
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right",
-                      "isSubtle": true
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "ColumnSet",
-              "spacing": "small",
-              "separator": true,
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": 34,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "🔴 **52CL009BB**",
-                      "wrap": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "targetWidth": "atLeast:standard",
-                      "text": "Closure FIBRE3_12F",
-                      "size": "small",
-                      "isSubtle": true,
-                      "wrap": true,
-                      "maxLines": 2,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "targetWidth": "atMost:narrow",
-                      "text": "คงเหลือ **0** · Hub **25** · ก่อน 127/รับ 0",
-                      "size": "small",
-                      "wrap": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "ใช้เกินยอดรับ",
-                      "size": "small",
-                      "color": "attention",
-                      "weight": "bolder",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right",
-                      "weight": "bolder",
-                      "color": "attention"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "25",
-                      "horizontalAlignment": "right"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "127",
-                      "horizontalAlignment": "right",
-                      "isSubtle": true
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right",
-                      "isSubtle": true
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "ColumnSet",
-              "spacing": "small",
-              "separator": true,
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": 34,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "🔴 **52CL009BB**",
-                      "wrap": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "targetWidth": "atLeast:standard",
-                      "text": "Closure FIBRE3_12F",
-                      "size": "small",
-                      "isSubtle": true,
-                      "wrap": true,
-                      "maxLines": 2,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "targetWidth": "atMost:narrow",
-                      "text": "คงเหลือ **11** · Hub **0** · ก่อน 406/รับ 0",
-                      "size": "small",
-                      "wrap": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "ใช้เกินยอดรับ",
-                      "size": "small",
-                      "color": "attention",
-                      "weight": "bolder",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "11",
-                      "horizontalAlignment": "right",
-                      "weight": "bolder",
-                      "color": "attention"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "406",
-                      "horizontalAlignment": "right",
-                      "isSubtle": true
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right",
-                      "isSubtle": true
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "Container",
-          "spacing": "large",
-          "separator": true,
-          "items": [
-            {
-              "type": "ColumnSet",
-              "style": "emphasis",
-              "bleed": true,
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "verticalContentAlignment": "center",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "🟧 Zone RC3-UDN",
-                      "weight": "bolder",
-                      "size": "medium",
-                      "wrap": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "แสดง 3 จาก 6 รายการ",
-                      "size": "small",
-                      "isSubtle": true,
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": "auto",
-                  "verticalContentAlignment": "center",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "⚠️ เสี่ยงขาด 3 รายการ",
-                      "color": "attention",
-                      "weight": "bolder",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "ColumnSet",
-              "targetWidth": "atLeast:standard",
-              "spacing": "small",
-              "separator": true,
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": 34,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "Item Code",
-                      "weight": "bolder",
-                      "size": "small",
-                      "color": "accent",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "OMC-Onhand",
-                      "weight": "bolder",
-                      "size": "small",
-                      "color": "accent",
-                      "horizontalAlignment": "right",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "เบิกจาก Hub",
-                      "weight": "bolder",
-                      "size": "small",
-                      "color": "accent",
-                      "horizontalAlignment": "right",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "Prev_Before",
-                      "weight": "bolder",
-                      "size": "small",
-                      "color": "accent",
-                      "horizontalAlignment": "right",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "Prev_Received",
-                      "weight": "bolder",
-                      "size": "small",
-                      "color": "accent",
-                      "horizontalAlignment": "right",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "ColumnSet",
-              "spacing": "small",
-              "separator": true,
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": 34,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "🔴 **52CL003BB**",
-                      "wrap": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "targetWidth": "atLeast:standard",
-                      "text": "Closure OFC 12 core",
-                      "size": "small",
-                      "isSubtle": true,
-                      "wrap": true,
-                      "maxLines": 2,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "targetWidth": "atMost:narrow",
-                      "text": "คงเหลือ **0** · Hub **0** · ก่อน 1/รับ 0",
-                      "size": "small",
-                      "wrap": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "ใช้เกินยอดรับ",
-                      "size": "small",
-                      "color": "attention",
-                      "weight": "bolder",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right",
-                      "weight": "bolder",
-                      "color": "attention"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "targetWidth": "atLeast:standard",
                   "items": [
                     {
                       "type": "TextBlock",
                       "text": "1",
+                      "size": "small",
                       "horizontalAlignment": "right",
-                      "isSubtle": true
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "1",
+                      "size": "small",
+                      "horizontalAlignment": "right",
+                      "spacing": "none"
                     }
                   ]
                 },
                 {
                   "type": "Column",
                   "width": 17,
-                  "targetWidth": "atLeast:standard",
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "0",
+                      "text": "24",
+                      "size": "small",
                       "horizontalAlignment": "right",
-                      "isSubtle": true
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "ColumnSet",
-              "spacing": "small",
-              "separator": true,
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": 34,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "🔴 **52CL004BB**",
-                      "wrap": true,
                       "spacing": "none"
                     },
-                    {
-                      "type": "TextBlock",
-                      "targetWidth": "atLeast:standard",
-                      "text": "Closure OFC 24 core",
-                      "size": "small",
-                      "isSubtle": true,
-                      "wrap": true,
-                      "maxLines": 2,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "targetWidth": "atMost:narrow",
-                      "text": "คงเหลือ **0** · Hub **0** · ก่อน 3/รับ 0",
-                      "size": "small",
-                      "wrap": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "ใช้เกินยอดรับ",
-                      "size": "small",
-                      "color": "attention",
-                      "weight": "bolder",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
                     {
                       "type": "TextBlock",
                       "text": "0",
+                      "size": "small",
                       "horizontalAlignment": "right",
-                      "weight": "bolder",
-                      "color": "attention"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right"
+                      "spacing": "none"
                     }
                   ]
                 },
                 {
                   "type": "Column",
                   "width": 17,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "3",
-                      "horizontalAlignment": "right",
-                      "isSubtle": true
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "targetWidth": "atLeast:standard",
                   "items": [
                     {
                       "type": "TextBlock",
                       "text": "0",
+                      "size": "small",
                       "horizontalAlignment": "right",
-                      "isSubtle": true
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "ColumnSet",
-              "spacing": "small",
-              "separator": true,
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": 34,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "🔴 **52CL010BB**",
-                      "wrap": true,
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "targetWidth": "atLeast:standard",
-                      "text": "CLOSURE 60F",
-                      "size": "small",
-                      "isSubtle": true,
-                      "wrap": true,
-                      "maxLines": 2,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "targetWidth": "atMost:narrow",
-                      "text": "คงเหลือ **0** · Hub **0** · ก่อน 6/รับ 0",
-                      "size": "small",
-                      "wrap": true,
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "ใช้เกินยอดรับ",
-                      "size": "small",
-                      "color": "attention",
-                      "weight": "bolder",
-                      "wrap": true,
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
                       "text": "0",
+                      "size": "small",
                       "horizontalAlignment": "right",
-                      "weight": "bolder",
-                      "color": "attention"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 16,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "6",
-                      "horizontalAlignment": "right",
-                      "isSubtle": true
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "targetWidth": "atLeast:standard",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "horizontalAlignment": "right",
-                      "isSubtle": true
+                      "spacing": "none"
                     }
                   ]
                 }
@@ -1626,14 +421,336 @@
           ]
         },
         {
+          "type": "Container",
+          "spacing": "none",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "🟨 RC3-KKN · 2 รายการ · คงเหลือ 900 · Hub 4,000 · ⚠️ เสี่ยงขาด 2",
+              "size": "small",
+              "weight": "bolder",
+              "color": "attention",
+              "wrap": true,
+              "spacing": "small",
+              "separator": true
+            },
+            {
+              "type": "ColumnSet",
+              "spacing": "none",
+              "columns": [
+                {
+                  "type": "Column",
+                  "width": 32,
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "🔴 52CL003BB",
+                      "size": "small",
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "🔴 53OF157BB",
+                      "size": "small",
+                      "spacing": "none"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 17,
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "0",
+                      "size": "small",
+                      "weight": "bolder",
+                      "color": "attention",
+                      "horizontalAlignment": "right",
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "900",
+                      "size": "small",
+                      "weight": "bolder",
+                      "color": "attention",
+                      "horizontalAlignment": "right",
+                      "spacing": "none"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 17,
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "0",
+                      "size": "small",
+                      "horizontalAlignment": "right",
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "4,000",
+                      "size": "small",
+                      "horizontalAlignment": "right",
+                      "spacing": "none"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 17,
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "81",
+                      "size": "small",
+                      "horizontalAlignment": "right",
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "34,601",
+                      "size": "small",
+                      "horizontalAlignment": "right",
+                      "spacing": "none"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 17,
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "0",
+                      "size": "small",
+                      "horizontalAlignment": "right",
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "0",
+                      "size": "small",
+                      "horizontalAlignment": "right",
+                      "spacing": "none"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Container",
+          "spacing": "none",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "🟧 RC3-UDN · 3 รายการ · คงเหลือ 1 · Hub 15 · ⚠️ เสี่ยงขาด 3",
+              "size": "small",
+              "weight": "bolder",
+              "color": "attention",
+              "wrap": true,
+              "spacing": "small",
+              "separator": true
+            },
+            {
+              "type": "ColumnSet",
+              "spacing": "none",
+              "columns": [
+                {
+                  "type": "Column",
+                  "width": 32,
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "🔴 52CL004BB",
+                      "size": "small",
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "🔴 52CL010BB",
+                      "size": "small",
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "🔴 52CL003BB ·4จว.",
+                      "size": "small",
+                      "spacing": "none"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 17,
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "0",
+                      "size": "small",
+                      "weight": "bolder",
+                      "color": "attention",
+                      "horizontalAlignment": "right",
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "0",
+                      "size": "small",
+                      "weight": "bolder",
+                      "color": "attention",
+                      "horizontalAlignment": "right",
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "1",
+                      "size": "small",
+                      "weight": "bolder",
+                      "color": "attention",
+                      "horizontalAlignment": "right",
+                      "spacing": "none"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 17,
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "1",
+                      "size": "small",
+                      "horizontalAlignment": "right",
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "1",
+                      "size": "small",
+                      "horizontalAlignment": "right",
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "13",
+                      "size": "small",
+                      "horizontalAlignment": "right",
+                      "spacing": "none"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 17,
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "3",
+                      "size": "small",
+                      "horizontalAlignment": "right",
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "6",
+                      "size": "small",
+                      "horizontalAlignment": "right",
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "1",
+                      "size": "small",
+                      "horizontalAlignment": "right",
+                      "spacing": "none"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 17,
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "0",
+                      "size": "small",
+                      "horizontalAlignment": "right",
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "0",
+                      "size": "small",
+                      "horizontalAlignment": "right",
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "0",
+                      "size": "small",
+                      "horizontalAlignment": "right",
+                      "spacing": "none"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "spacing": "small",
+      "separator": true,
+      "items": [
+        {
           "type": "TextBlock",
-          "text": "…และอีก 5 รายการ — กด “📊 Dashboard” เพื่อดูทั้งหมด",
+          "text": "รหัสวัสดุในรายงานนี้",
+          "size": "small",
+          "weight": "bolder",
+          "color": "accent",
+          "wrap": true,
+          "spacing": "none"
+        },
+        {
+          "type": "TextBlock",
+          "text": "**52CL003BB** · CLOSURE 12 C",
           "size": "small",
           "isSubtle": true,
-          "horizontalAlignment": "center",
           "wrap": true,
-          "spacing": "medium",
-          "separator": true
+          "spacing": "none"
+        },
+        {
+          "type": "TextBlock",
+          "text": "**52CL004BB** · CLOSURE 24 C",
+          "size": "small",
+          "isSubtle": true,
+          "wrap": true,
+          "spacing": "none"
+        },
+        {
+          "type": "TextBlock",
+          "text": "**52CL010BB** · CLOSURE 60 C",
+          "size": "small",
+          "isSubtle": true,
+          "wrap": true,
+          "spacing": "none"
+        },
+        {
+          "type": "TextBlock",
+          "text": "**53OF157BB** · ARSS OPTICAL FIBER CABLE 12c-FIBRE3",
+          "size": "small",
+          "isSubtle": true,
+          "wrap": true,
+          "spacing": "none"
         }
       ]
     },
@@ -1643,7 +760,7 @@
       "size": "small",
       "isSubtle": true,
       "wrap": true,
-      "spacing": "medium",
+      "spacing": "small",
       "separator": true
     }
   ],
