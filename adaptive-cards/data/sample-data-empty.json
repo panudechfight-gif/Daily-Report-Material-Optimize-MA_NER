@@ -1,0 +1,28 @@
+{
+  "meta": {
+    "title": "รายงานวัสดุคงคลัง MA & Optimize — NER",
+    "subtitle": "เฉพาะสายเคเบิล 53OF และตู้พักสาย 52CL",
+    "period": "MA (17 Aug 26)",
+    "prevPeriod": "MA (10 Aug 26)",
+    "dataSet": "MA",
+    "dataSetLabel": "MA (งานซ่อมบำรุง)",
+    "dataSetEmoji": "🛠️",
+    "dataSetStyle": "accent",
+    "dataSetColor": "accent",
+    "cutoffDate": "",
+    "generatedAt": "",
+    "totalItems": 0,
+    "shownItems": 0,
+    "totalZones": 0,
+    "riskCount": 0,
+    "watchCount": 0,
+    "okCount": 0,
+    "hasData": false,
+    "hasMore": false,
+    "moreCount": 0,
+    "moreText": "",
+    "dashboardUrl": "https://app.powerbi.com/CHANGE-ME",
+    "sourceFileUrl": "https://contoso.sharepoint.com/CHANGE-ME"
+  },
+  "zones": []
+}

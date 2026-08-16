@@ -1,0 +1,14 @@
+{
+  "name": "daily-report-material-optimize-ma-ner",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Adaptive Card + Power Automate flow สำหรับรายงานวัสดุคงคลัง MA & Optimize NER เข้า Microsoft Teams",
+  "scripts": {
+    "build": "node tools/build_office_script.js",
+    "test": "node tools/expand_and_validate.js && node tools/test_office_script.js && node tools/test_render_script.js"
+  },
+  "devDependencies": {
+    "adaptivecards-templating": "^2.3.1",
+    "typescript": "^5.9.3"
+  }
+}

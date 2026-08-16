@@ -1,0 +1,110 @@
+{
+  "type": "AdaptiveCard",
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.5",
+  "msteams": { "width": "Full" },
+  "fallbackText": "รายงานวัสดุคงคลัง MA & Optimize — NER",
+  "body": [
+    {
+      "type": "Container",
+      "style": "${meta.dataSetStyle}",
+      "bleed": true,
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "${meta.dataSetEmoji} ${meta.title}",
+          "weight": "bolder",
+          "size": "large",
+          "wrap": true
+        },
+        {
+          "type": "TextBlock",
+          "text": "🗓️ รอบ **${meta.period}**  •  ⏮️ รอบก่อน ${meta.prevPeriod}  •  🏷️ ${meta.dataSet}",
+          "wrap": true,
+          "spacing": "none"
+        }
+      ]
+    },
+    {
+      "type": "TextBlock",
+      "text": "⚠️ เสี่ยงขาด **${string(meta.riskCount)}**  •  🟡 พอใช้ **${string(meta.watchCount)}**  •  ✅ ปกติ **${string(meta.okCount)}**  •  📦 รวม **${string(meta.totalItems)}** รายการ / ${string(meta.totalZones)} Zone",
+      "wrap": true,
+      "spacing": "medium"
+    },
+
+    {
+      "type": "Container",
+      "$when": "${meta.hasData == false}",
+      "style": "emphasis",
+      "spacing": "medium",
+      "items": [
+        { "type": "TextBlock", "text": "🗂️", "size": "extraLarge", "horizontalAlignment": "center" },
+        { "type": "TextBlock", "text": "ไม่มีรายการวัสดุในรอบนี้", "size": "large", "weight": "bolder", "horizontalAlignment": "center", "wrap": true, "spacing": "small" },
+        { "type": "TextBlock", "text": "ไม่พบรหัส 53OF หรือ 52CL ในรอบ **${meta.period}** — ตรวจว่ารีเฟรชข้อมูลและรัน BuildExportTable แล้วหรือยัง", "horizontalAlignment": "center", "isSubtle": true, "wrap": true, "spacing": "small" }
+      ]
+    },
+
+    {
+      "type": "Container",
+      "$when": "${meta.hasData}",
+      "spacing": "medium",
+      "items": [
+        {
+          "type": "ColumnSet",
+          "separator": true,
+          "columns": [
+            { "type": "Column", "width": 40, "items": [ { "type": "TextBlock", "text": "Zone / Item Code", "weight": "bolder", "size": "small", "color": "accent", "wrap": true } ] },
+            { "type": "Column", "width": 15, "items": [ { "type": "TextBlock", "text": "Onhand", "weight": "bolder", "size": "small", "color": "accent", "horizontalAlignment": "right", "wrap": true } ] },
+            { "type": "Column", "width": 15, "items": [ { "type": "TextBlock", "text": "Hub", "weight": "bolder", "size": "small", "color": "accent", "horizontalAlignment": "right", "wrap": true } ] },
+            { "type": "Column", "width": 15, "items": [ { "type": "TextBlock", "text": "ก่อน", "weight": "bolder", "size": "small", "color": "accent", "horizontalAlignment": "right", "wrap": true } ] },
+            { "type": "Column", "width": 15, "items": [ { "type": "TextBlock", "text": "รับ", "weight": "bolder", "size": "small", "color": "accent", "horizontalAlignment": "right", "wrap": true } ] }
+          ]
+        },
+        {
+          "type": "ColumnSet",
+          "$data": "${items}",
+          "separator": true,
+          "spacing": "small",
+          "columns": [
+            {
+              "type": "Column",
+              "width": 40,
+              "items": [
+                { "type": "TextBlock", "text": "${statusEmoji} **${itemCode}**", "wrap": true, "spacing": "none" },
+                { "type": "TextBlock", "text": "${zoneEmoji} ${zone} · ${province}", "size": "small", "isSubtle": true, "wrap": true, "spacing": "none" },
+                { "type": "TextBlock", "text": "${statusShort}", "size": "small", "color": "${statusColor}", "wrap": true, "spacing": "none" }
+              ]
+            },
+            { "type": "Column", "width": 15, "items": [ { "type": "TextBlock", "text": "${onhand}", "horizontalAlignment": "right", "color": "${statusColor}", "weight": "${rowWeight}" } ] },
+            { "type": "Column", "width": 15, "items": [ { "type": "TextBlock", "text": "${fromHub}", "horizontalAlignment": "right" } ] },
+            { "type": "Column", "width": 15, "items": [ { "type": "TextBlock", "text": "${prevBefore}", "horizontalAlignment": "right", "isSubtle": true } ] },
+            { "type": "Column", "width": 15, "items": [ { "type": "TextBlock", "text": "${prevReceived}", "horizontalAlignment": "right", "isSubtle": true } ] }
+          ]
+        },
+        {
+          "type": "TextBlock",
+          "$when": "${meta.hasMore}",
+          "text": "${meta.moreText}",
+          "size": "small",
+          "isSubtle": true,
+          "horizontalAlignment": "center",
+          "wrap": true,
+          "spacing": "medium"
+        }
+      ]
+    },
+    {
+      "type": "TextBlock",
+      "text": "🕗 ${meta.generatedAt} • เฉพาะรหัส 53OF & 52CL • ก่อน = Prev_Before, รับ = Prev_Received",
+      "size": "small",
+      "isSubtle": true,
+      "wrap": true,
+      "separator": true,
+      "spacing": "medium"
+    }
+  ],
+  "actions": [
+    { "type": "Action.OpenUrl", "title": "📊 Dashboard", "url": "${meta.dashboardUrl}" },
+    { "type": "Action.OpenUrl", "title": "📁 Open the source file. (Excel / SharePoint)", "url": "${meta.sourceFileUrl}" }
+  ]
+}

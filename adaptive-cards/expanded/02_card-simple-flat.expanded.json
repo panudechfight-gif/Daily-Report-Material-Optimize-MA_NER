@@ -1,0 +1,1149 @@
+{
+  "type": "AdaptiveCard",
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.5",
+  "msteams": {
+    "width": "Full"
+  },
+  "fallbackText": "รายงานวัสดุคงคลัง MA & Optimize — NER",
+  "body": [
+    {
+      "type": "Container",
+      "style": "accent",
+      "bleed": true,
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "🛠️ รายงานวัสดุคงคลัง MA & Optimize — NER",
+          "weight": "bolder",
+          "size": "large",
+          "wrap": true
+        },
+        {
+          "type": "TextBlock",
+          "text": "🗓️ รอบ **MA (17 Aug 26)**  •  ⏮️ รอบก่อน MA (10 Aug 26)  •  🏷️ MA",
+          "wrap": true,
+          "spacing": "none"
+        }
+      ]
+    },
+    {
+      "type": "TextBlock",
+      "text": "⚠️ เสี่ยงขาด **0**  •  🟡 พอใช้ **0**  •  ✅ ปกติ **126**  •  📦 รวม **126** รายการ / 4 Zone",
+      "wrap": true,
+      "spacing": "medium"
+    },
+    {
+      "type": "Container",
+      "spacing": "medium",
+      "items": [
+        {
+          "type": "ColumnSet",
+          "separator": true,
+          "columns": [
+            {
+              "type": "Column",
+              "width": 40,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "Zone / Item Code",
+                  "weight": "bolder",
+                  "size": "small",
+                  "color": "accent",
+                  "wrap": true
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "Onhand",
+                  "weight": "bolder",
+                  "size": "small",
+                  "color": "accent",
+                  "horizontalAlignment": "right",
+                  "wrap": true
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "Hub",
+                  "weight": "bolder",
+                  "size": "small",
+                  "color": "accent",
+                  "horizontalAlignment": "right",
+                  "wrap": true
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "ก่อน",
+                  "weight": "bolder",
+                  "size": "small",
+                  "color": "accent",
+                  "horizontalAlignment": "right",
+                  "wrap": true
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "รับ",
+                  "weight": "bolder",
+                  "size": "small",
+                  "color": "accent",
+                  "horizontalAlignment": "right",
+                  "wrap": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "ColumnSet",
+          "separator": true,
+          "spacing": "small",
+          "columns": [
+            {
+              "type": "Column",
+              "width": 40,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "🟡 **52CL003BB**",
+                  "wrap": true,
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟦 RC2-NMA · Chaiyaphum",
+                  "size": "small",
+                  "isSubtle": true,
+                  "wrap": true,
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "จัดสรรเกิน",
+                  "size": "small",
+                  "color": "warning",
+                  "wrap": true,
+                  "spacing": "none"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "horizontalAlignment": "right",
+                  "color": "warning",
+                  "weight": "default"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "1.20",
+                  "horizontalAlignment": "right"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "horizontalAlignment": "right",
+                  "isSubtle": true
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "horizontalAlignment": "right",
+                  "isSubtle": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "ColumnSet",
+          "separator": true,
+          "spacing": "small",
+          "columns": [
+            {
+              "type": "Column",
+              "width": 40,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "🟡 **52CL010BB**",
+                  "wrap": true,
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟦 RC2-NMA · Surin",
+                  "size": "small",
+                  "isSubtle": true,
+                  "wrap": true,
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "จัดสรรเกิน",
+                  "size": "small",
+                  "color": "warning",
+                  "wrap": true,
+                  "spacing": "none"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "horizontalAlignment": "right",
+                  "color": "warning",
+                  "weight": "default"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "0.53",
+                  "horizontalAlignment": "right"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "horizontalAlignment": "right",
+                  "isSubtle": true
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "horizontalAlignment": "right",
+                  "isSubtle": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "ColumnSet",
+          "separator": true,
+          "spacing": "small",
+          "columns": [
+            {
+              "type": "Column",
+              "width": 40,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "⚪ **53OF111BB**",
+                  "wrap": true,
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟦 RC2-NMA · Chaiyaphum",
+                  "size": "small",
+                  "isSubtle": true,
+                  "wrap": true,
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "ไม่มีรอบก่อน",
+                  "size": "small",
+                  "color": "default",
+                  "wrap": true,
+                  "spacing": "none"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "horizontalAlignment": "right",
+                  "color": "default",
+                  "weight": "default"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "53.33",
+                  "horizontalAlignment": "right"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "horizontalAlignment": "right",
+                  "isSubtle": true
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "horizontalAlignment": "right",
+                  "isSubtle": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "ColumnSet",
+          "separator": true,
+          "spacing": "small",
+          "columns": [
+            {
+              "type": "Column",
+              "width": 40,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "⚪ **53OF111BB**",
+                  "wrap": true,
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟦 RC2-NMA · NakhonRatchasima",
+                  "size": "small",
+                  "isSubtle": true,
+                  "wrap": true,
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "ไม่มีรอบก่อน",
+                  "size": "small",
+                  "color": "default",
+                  "wrap": true,
+                  "spacing": "none"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "horizontalAlignment": "right",
+                  "color": "default",
+                  "weight": "default"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "264",
+                  "horizontalAlignment": "right"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "horizontalAlignment": "right",
+                  "isSubtle": true
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "horizontalAlignment": "right",
+                  "isSubtle": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "ColumnSet",
+          "separator": true,
+          "spacing": "small",
+          "columns": [
+            {
+              "type": "Column",
+              "width": 40,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "⚪ **53OF121BB**",
+                  "wrap": true,
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟦 RC2-NMA · Chaiyaphum",
+                  "size": "small",
+                  "isSubtle": true,
+                  "wrap": true,
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "ไม่มีรอบก่อน",
+                  "size": "small",
+                  "color": "default",
+                  "wrap": true,
+                  "spacing": "none"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "horizontalAlignment": "right",
+                  "color": "default",
+                  "weight": "default"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "26.67",
+                  "horizontalAlignment": "right"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "horizontalAlignment": "right",
+                  "isSubtle": true
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "horizontalAlignment": "right",
+                  "isSubtle": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "ColumnSet",
+          "separator": true,
+          "spacing": "small",
+          "columns": [
+            {
+              "type": "Column",
+              "width": 40,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "⚪ **53OF121BB**",
+                  "wrap": true,
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟦 RC2-NMA · NakhonRatchasima",
+                  "size": "small",
+                  "isSubtle": true,
+                  "wrap": true,
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "ไม่มีรอบก่อน",
+                  "size": "small",
+                  "color": "default",
+                  "wrap": true,
+                  "spacing": "none"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "horizontalAlignment": "right",
+                  "color": "default",
+                  "weight": "default"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "69.33",
+                  "horizontalAlignment": "right"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "horizontalAlignment": "right",
+                  "isSubtle": true
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "horizontalAlignment": "right",
+                  "isSubtle": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "ColumnSet",
+          "separator": true,
+          "spacing": "small",
+          "columns": [
+            {
+              "type": "Column",
+              "width": 40,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "⚪ **53OF150BB**",
+                  "wrap": true,
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟦 RC2-NMA · Chaiyaphum",
+                  "size": "small",
+                  "isSubtle": true,
+                  "wrap": true,
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "ไม่มีรอบก่อน",
+                  "size": "small",
+                  "color": "default",
+                  "wrap": true,
+                  "spacing": "none"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "horizontalAlignment": "right",
+                  "color": "default",
+                  "weight": "default"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "14.13",
+                  "horizontalAlignment": "right"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "horizontalAlignment": "right",
+                  "isSubtle": true
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "horizontalAlignment": "right",
+                  "isSubtle": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "ColumnSet",
+          "separator": true,
+          "spacing": "small",
+          "columns": [
+            {
+              "type": "Column",
+              "width": 40,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "⚪ **53OF155BB**",
+                  "wrap": true,
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟦 RC2-NMA · NakhonRatchasima",
+                  "size": "small",
+                  "isSubtle": true,
+                  "wrap": true,
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "ไม่มีรอบก่อน",
+                  "size": "small",
+                  "color": "default",
+                  "wrap": true,
+                  "spacing": "none"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "horizontalAlignment": "right",
+                  "color": "default",
+                  "weight": "default"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "172.53",
+                  "horizontalAlignment": "right"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "horizontalAlignment": "right",
+                  "isSubtle": true
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "horizontalAlignment": "right",
+                  "isSubtle": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "ColumnSet",
+          "separator": true,
+          "spacing": "small",
+          "columns": [
+            {
+              "type": "Column",
+              "width": 40,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "⚪ **53OF158BB**",
+                  "wrap": true,
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟦 RC2-NMA · Chaiyaphum",
+                  "size": "small",
+                  "isSubtle": true,
+                  "wrap": true,
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "ไม่มีรอบก่อน",
+                  "size": "small",
+                  "color": "default",
+                  "wrap": true,
+                  "spacing": "none"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "horizontalAlignment": "right",
+                  "color": "default",
+                  "weight": "default"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "10.67",
+                  "horizontalAlignment": "right"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "horizontalAlignment": "right",
+                  "isSubtle": true
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "horizontalAlignment": "right",
+                  "isSubtle": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "ColumnSet",
+          "separator": true,
+          "spacing": "small",
+          "columns": [
+            {
+              "type": "Column",
+              "width": 40,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "⚪ **53OF121BB**",
+                  "wrap": true,
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟩 RC2-UBN · Sisaket",
+                  "size": "small",
+                  "isSubtle": true,
+                  "wrap": true,
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "ไม่มีรอบก่อน",
+                  "size": "small",
+                  "color": "default",
+                  "wrap": true,
+                  "spacing": "none"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "horizontalAlignment": "right",
+                  "color": "default",
+                  "weight": "default"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "2.67",
+                  "horizontalAlignment": "right"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "horizontalAlignment": "right",
+                  "isSubtle": true
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "horizontalAlignment": "right",
+                  "isSubtle": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "ColumnSet",
+          "separator": true,
+          "spacing": "small",
+          "columns": [
+            {
+              "type": "Column",
+              "width": 40,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "⚪ **53OF150BB**",
+                  "wrap": true,
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟩 RC2-UBN · Sisaket",
+                  "size": "small",
+                  "isSubtle": true,
+                  "wrap": true,
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "ไม่มีรอบก่อน",
+                  "size": "small",
+                  "color": "default",
+                  "wrap": true,
+                  "spacing": "none"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "horizontalAlignment": "right",
+                  "color": "default",
+                  "weight": "default"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "3.47",
+                  "horizontalAlignment": "right"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "horizontalAlignment": "right",
+                  "isSubtle": true
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "horizontalAlignment": "right",
+                  "isSubtle": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "ColumnSet",
+          "separator": true,
+          "spacing": "small",
+          "columns": [
+            {
+              "type": "Column",
+              "width": 40,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "⚪ **53OF150BB**",
+                  "wrap": true,
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟩 RC2-UBN · Yasothon",
+                  "size": "small",
+                  "isSubtle": true,
+                  "wrap": true,
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "ไม่มีรอบก่อน",
+                  "size": "small",
+                  "color": "default",
+                  "wrap": true,
+                  "spacing": "none"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "horizontalAlignment": "right",
+                  "color": "default",
+                  "weight": "default"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "6.40",
+                  "horizontalAlignment": "right"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "horizontalAlignment": "right",
+                  "isSubtle": true
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "horizontalAlignment": "right",
+                  "isSubtle": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "TextBlock",
+          "text": "…และอีก 114 รายการ — กด “📊 Dashboard” เพื่อดูทั้งหมด",
+          "size": "small",
+          "isSubtle": true,
+          "horizontalAlignment": "center",
+          "wrap": true,
+          "spacing": "medium"
+        }
+      ]
+    },
+    {
+      "type": "TextBlock",
+      "text": "🕗 16 ส.ค. 2569 08:00 น. • เฉพาะรหัส 53OF & 52CL • ก่อน = Prev_Before, รับ = Prev_Received",
+      "size": "small",
+      "isSubtle": true,
+      "wrap": true,
+      "separator": true,
+      "spacing": "medium"
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.OpenUrl",
+      "title": "📊 Dashboard",
+      "url": "https://app.powerbi.com/groups/me/reports/demo"
+    },
+    {
+      "type": "Action.OpenUrl",
+      "title": "📁 Open the source file. (Excel / SharePoint)",
+      "url": "https://contoso.sharepoint.com/sites/NER/Shared%20Documents/Optimize_HiringMA.xlsx"
+    }
+  ]
+}

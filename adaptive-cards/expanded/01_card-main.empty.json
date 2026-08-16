@@ -1,0 +1,186 @@
+{
+  "type": "AdaptiveCard",
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.5",
+  "msteams": {
+    "width": "Full"
+  },
+  "fallbackText": "รายงานวัสดุคงคลัง MA & Optimize — NER (อุปกรณ์ของคุณแสดงการ์ดนี้ไม่ได้ กรุณาเปิดจาก Dashboard)",
+  "speak": "รายงานวัสดุคงคลัง MA รอบ MA (17 Aug 26) มี 0 รายการ เสี่ยงขาด 0 รายการ",
+  "body": [
+    {
+      "type": "Container",
+      "style": "accent",
+      "bleed": true,
+      "items": [
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "auto",
+              "verticalContentAlignment": "center",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "🛠️",
+                  "size": "extraLarge",
+                  "wrap": false
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": "stretch",
+              "verticalContentAlignment": "center",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "รายงานวัสดุคงคลัง MA & Optimize — NER",
+                  "weight": "bolder",
+                  "size": "large",
+                  "wrap": true,
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "เฉพาะสายเคเบิล 53OF และตู้พักสาย 52CL",
+                  "isSubtle": true,
+                  "wrap": true,
+                  "spacing": "none"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ColumnSet",
+      "spacing": "medium",
+      "columns": [
+        {
+          "type": "Column",
+          "width": "stretch",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "🗓️ รอบจัดสรร (Distribution period)",
+              "size": "small",
+              "isSubtle": true,
+              "wrap": true,
+              "spacing": "none"
+            },
+            {
+              "type": "TextBlock",
+              "text": "**MA (17 Aug 26)**",
+              "color": "accent",
+              "wrap": true,
+              "spacing": "none"
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": "stretch",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "⏮️ รอบก่อนหน้า (Prev_Period)",
+              "size": "small",
+              "isSubtle": true,
+              "wrap": true,
+              "spacing": "none"
+            },
+            {
+              "type": "TextBlock",
+              "text": "**MA (10 Aug 26)**",
+              "isSubtle": true,
+              "wrap": true,
+              "spacing": "none"
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": "stretch",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "🏷️ ชุดข้อมูล (Data_Set)",
+              "size": "small",
+              "isSubtle": true,
+              "wrap": true,
+              "spacing": "none"
+            },
+            {
+              "type": "TextBlock",
+              "text": "**MA (งานซ่อมบำรุง)**",
+              "color": "accent",
+              "wrap": true,
+              "spacing": "none"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "spacing": "large",
+      "style": "emphasis",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "🗂️",
+          "size": "extraLarge",
+          "horizontalAlignment": "center",
+          "wrap": false
+        },
+        {
+          "type": "TextBlock",
+          "text": "ไม่มีรายการวัสดุในรอบนี้",
+          "size": "large",
+          "weight": "bolder",
+          "horizontalAlignment": "center",
+          "wrap": true,
+          "spacing": "small"
+        },
+        {
+          "type": "TextBlock",
+          "text": "ไม่พบรหัสวัสดุกลุ่ม **53OF** (สายเคเบิล) หรือ **52CL** (ตู้พักสาย) ในรอบ **MA (17 Aug 26)**",
+          "horizontalAlignment": "center",
+          "isSubtle": true,
+          "wrap": true,
+          "spacing": "small"
+        },
+        {
+          "type": "TextBlock",
+          "text": "สิ่งที่ควรตรวจสอบ:\n\n1. กดปุ่ม **Refresh Data New Sheet** ในไฟล์ Excel แล้วรัน **BuildExportTable** ใหม่\n2. ตรวจว่าเลือก Sheet ต้นทางถูกรอบหรือยัง (เซลล์ C2 / C4 ของชีต MA&Optimize NER)\n3. ตรวจว่าไฟล์ถูกบันทึกกลับขึ้น SharePoint แล้ว",
+          "wrap": true,
+          "spacing": "medium"
+        }
+      ]
+    },
+    {
+      "type": "TextBlock",
+      "text": "🕗 สร้างรายงานเมื่อ 16 ส.ค. 2569 08:00 น. • ที่มา: MA / MA (17 Aug 26) • เฉพาะรหัส 53OF & 52CL",
+      "size": "small",
+      "isSubtle": true,
+      "wrap": true,
+      "spacing": "medium",
+      "separator": true
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.OpenUrl",
+      "title": "📊 Dashboard",
+      "url": "https://app.powerbi.com/groups/me/reports/demo"
+    },
+    {
+      "type": "Action.OpenUrl",
+      "title": "📁 Open the source file. (Excel / SharePoint)",
+      "url": "https://contoso.sharepoint.com/sites/NER/Shared%20Documents/Optimize_HiringMA.xlsx"
+    }
+  ]
+}

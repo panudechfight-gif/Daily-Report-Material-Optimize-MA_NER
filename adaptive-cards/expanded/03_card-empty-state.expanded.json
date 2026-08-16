@@ -1,0 +1,88 @@
+{
+  "type": "AdaptiveCard",
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.5",
+  "msteams": {
+    "width": "Full"
+  },
+  "fallbackText": "ไม่มีรายการวัสดุในรอบนี้ — รายงาน MA & Optimize NER",
+  "body": [
+    {
+      "type": "Container",
+      "style": "warning",
+      "bleed": true,
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "🗂️ ไม่มีรายการวัสดุในรอบนี้",
+          "weight": "bolder",
+          "size": "large",
+          "wrap": true
+        },
+        {
+          "type": "TextBlock",
+          "text": "รายงานวัสดุคงคลัง MA & Optimize — NER",
+          "isSubtle": true,
+          "wrap": true,
+          "spacing": "none"
+        }
+      ]
+    },
+    {
+      "type": "FactSet",
+      "spacing": "medium",
+      "facts": [
+        {
+          "title": "🗓️ รอบจัดสรร",
+          "value": "MA (17 Aug 26)"
+        },
+        {
+          "title": "⏮️ รอบก่อนหน้า",
+          "value": "MA (10 Aug 26)"
+        },
+        {
+          "title": "🏷️ ชุดข้อมูล",
+          "value": "MA"
+        },
+        {
+          "title": "📦 รายการที่พบ",
+          "value": "0 รายการ"
+        },
+        {
+          "title": "🕗 ตรวจเมื่อ",
+          "value": "16 ส.ค. 2569 08:00 น."
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "style": "emphasis",
+      "spacing": "medium",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "ระบบไม่พบรหัสวัสดุกลุ่ม **53OF** (สายเคเบิลใยแก้ว) หรือ **52CL** (ตู้พักสาย) ในรอบนี้",
+          "wrap": true
+        },
+        {
+          "type": "TextBlock",
+          "text": "**ตรวจสอบตามลำดับนี้**\n\n1. เปิดไฟล์ Excel → ชีต **MA&Optimize NER** → ตรวจว่าเซลล์ C2 (Sheet ต้นทาง MA) และ C4 (Sheet ต้นทาง Optimize) เลือกรอบถูกต้อง\n2. กดปุ่ม **Refresh Data New Sheet**\n3. รันมาโคร **BuildExportTable** เพื่อสร้างชีต PA_Export ใหม่\n4. บันทึกไฟล์กลับขึ้น SharePoint แล้วรอ Flow รอบถัดไป (หรือกด Run ด้วยมือ)\n\nถ้ายังไม่มีข้อมูลหลังทำครบ 4 ข้อ แปลว่ารอบนี้ไม่มีการเบิกวัสดุกลุ่มนี้จริง ๆ",
+          "wrap": true,
+          "spacing": "medium"
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.OpenUrl",
+      "title": "📊 Dashboard",
+      "url": "https://app.powerbi.com/groups/me/reports/demo"
+    },
+    {
+      "type": "Action.OpenUrl",
+      "title": "📁 Open the source file. (Excel / SharePoint)",
+      "url": "https://contoso.sharepoint.com/sites/NER/Shared%20Documents/Optimize_HiringMA.xlsx"
+    }
+  ]
+}

@@ -1,0 +1,364 @@
+{
+  "type": "AdaptiveCard",
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.5",
+  "msteams": { "width": "Full" },
+  "fallbackText": "รายงานวัสดุคงคลัง MA & Optimize — NER (อุปกรณ์ของคุณแสดงการ์ดนี้ไม่ได้ กรุณาเปิดจาก Dashboard)",
+  "speak": "รายงานวัสดุคงคลัง ${meta.dataSet} รอบ ${meta.period} มี ${meta.totalItems} รายการ เสี่ยงขาด ${meta.riskCount} รายการ",
+  "body": [
+    {
+      "type": "Container",
+      "style": "${meta.dataSetStyle}",
+      "bleed": true,
+      "items": [
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "auto",
+              "verticalContentAlignment": "center",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "${meta.dataSetEmoji}",
+                  "size": "extraLarge",
+                  "wrap": false
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": "stretch",
+              "verticalContentAlignment": "center",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "${meta.title}",
+                  "weight": "bolder",
+                  "size": "large",
+                  "wrap": true,
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "${meta.subtitle}",
+                  "isSubtle": true,
+                  "wrap": true,
+                  "spacing": "none"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "type": "ColumnSet",
+      "spacing": "medium",
+      "columns": [
+        {
+          "type": "Column",
+          "width": "stretch",
+          "items": [
+            { "type": "TextBlock", "text": "🗓️ รอบจัดสรร (Distribution period)", "size": "small", "isSubtle": true, "wrap": true, "spacing": "none" },
+            { "type": "TextBlock", "text": "**${meta.period}**", "color": "accent", "wrap": true, "spacing": "none" }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": "stretch",
+          "items": [
+            { "type": "TextBlock", "text": "⏮️ รอบก่อนหน้า (Prev_Period)", "size": "small", "isSubtle": true, "wrap": true, "spacing": "none" },
+            { "type": "TextBlock", "text": "**${meta.prevPeriod}**", "isSubtle": true, "wrap": true, "spacing": "none" }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": "stretch",
+          "items": [
+            { "type": "TextBlock", "text": "🏷️ ชุดข้อมูล (Data_Set)", "size": "small", "isSubtle": true, "wrap": true, "spacing": "none" },
+            { "type": "TextBlock", "text": "**${meta.dataSetLabel}**", "color": "${meta.dataSetColor}", "wrap": true, "spacing": "none" }
+          ]
+        }
+      ]
+    },
+
+    {
+      "type": "Container",
+      "$when": "${meta.hasData == false}",
+      "spacing": "large",
+      "style": "emphasis",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "🗂️",
+          "size": "extraLarge",
+          "horizontalAlignment": "center",
+          "wrap": false
+        },
+        {
+          "type": "TextBlock",
+          "text": "ไม่มีรายการวัสดุในรอบนี้",
+          "size": "large",
+          "weight": "bolder",
+          "horizontalAlignment": "center",
+          "wrap": true,
+          "spacing": "small"
+        },
+        {
+          "type": "TextBlock",
+          "text": "ไม่พบรหัสวัสดุกลุ่ม **53OF** (สายเคเบิล) หรือ **52CL** (ตู้พักสาย) ในรอบ **${meta.period}**",
+          "horizontalAlignment": "center",
+          "isSubtle": true,
+          "wrap": true,
+          "spacing": "small"
+        },
+        {
+          "type": "TextBlock",
+          "text": "สิ่งที่ควรตรวจสอบ:\n\n1. กดปุ่ม **Refresh Data New Sheet** ในไฟล์ Excel แล้วรัน **BuildExportTable** ใหม่\n2. ตรวจว่าเลือก Sheet ต้นทางถูกรอบหรือยัง (เซลล์ C2 / C4 ของชีต MA&Optimize NER)\n3. ตรวจว่าไฟล์ถูกบันทึกกลับขึ้น SharePoint แล้ว",
+          "wrap": true,
+          "spacing": "medium"
+        }
+      ]
+    },
+
+    {
+      "type": "Container",
+      "$when": "${meta.hasData}",
+      "spacing": "medium",
+      "items": [
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "stretch",
+              "style": "attention",
+              "spacing": "small",
+              "items": [
+                { "type": "TextBlock", "text": "⚠️ เสี่ยงขาด", "size": "small", "horizontalAlignment": "center", "wrap": true, "spacing": "none" },
+                { "type": "TextBlock", "text": "${string(meta.riskCount)}", "size": "extraLarge", "weight": "bolder", "horizontalAlignment": "center", "spacing": "none" }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": "stretch",
+              "style": "warning",
+              "spacing": "small",
+              "items": [
+                { "type": "TextBlock", "text": "🟡 พอใช้", "size": "small", "horizontalAlignment": "center", "wrap": true, "spacing": "none" },
+                { "type": "TextBlock", "text": "${string(meta.watchCount)}", "size": "extraLarge", "weight": "bolder", "horizontalAlignment": "center", "spacing": "none" }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": "stretch",
+              "style": "good",
+              "spacing": "small",
+              "items": [
+                { "type": "TextBlock", "text": "✅ ปกติ", "size": "small", "horizontalAlignment": "center", "wrap": true, "spacing": "none" },
+                { "type": "TextBlock", "text": "${string(meta.okCount)}", "size": "extraLarge", "weight": "bolder", "horizontalAlignment": "center", "spacing": "none" }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": "stretch",
+              "style": "emphasis",
+              "spacing": "small",
+              "items": [
+                { "type": "TextBlock", "text": "📦 รวม", "size": "small", "horizontalAlignment": "center", "wrap": true, "spacing": "none" },
+                { "type": "TextBlock", "text": "${string(meta.totalItems)}", "size": "extraLarge", "weight": "bolder", "horizontalAlignment": "center", "spacing": "none" }
+              ]
+            }
+          ]
+        },
+
+        {
+          "type": "Container",
+          "$data": "${zones}",
+          "spacing": "large",
+          "separator": true,
+          "items": [
+            {
+              "type": "ColumnSet",
+              "style": "emphasis",
+              "bleed": true,
+              "columns": [
+                {
+                  "type": "Column",
+                  "width": "stretch",
+                  "verticalContentAlignment": "center",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "${zoneEmoji} Zone ${zone}",
+                      "weight": "bolder",
+                      "size": "medium",
+                      "wrap": true,
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "${countLabel}",
+                      "size": "small",
+                      "isSubtle": true,
+                      "wrap": true,
+                      "spacing": "none"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": "auto",
+                  "verticalContentAlignment": "center",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "${riskBadge}",
+                      "color": "${riskColor}",
+                      "weight": "bolder",
+                      "size": "small",
+                      "horizontalAlignment": "right",
+                      "wrap": true,
+                      "spacing": "none"
+                    }
+                  ]
+                }
+              ]
+            },
+
+            {
+              "type": "ColumnSet",
+              "targetWidth": "atLeast:standard",
+              "spacing": "small",
+              "separator": true,
+              "columns": [
+                { "type": "Column", "width": 34, "items": [ { "type": "TextBlock", "text": "Item Code", "weight": "bolder", "size": "small", "color": "accent", "wrap": true, "spacing": "none" } ] },
+                { "type": "Column", "width": 16, "items": [ { "type": "TextBlock", "text": "OMC-Onhand", "weight": "bolder", "size": "small", "color": "accent", "horizontalAlignment": "right", "wrap": true, "spacing": "none" } ] },
+                { "type": "Column", "width": 16, "items": [ { "type": "TextBlock", "text": "เบิกจาก Hub", "weight": "bolder", "size": "small", "color": "accent", "horizontalAlignment": "right", "wrap": true, "spacing": "none" } ] },
+                { "type": "Column", "width": 17, "items": [ { "type": "TextBlock", "text": "Prev_Before", "weight": "bolder", "size": "small", "color": "accent", "horizontalAlignment": "right", "wrap": true, "spacing": "none" } ] },
+                { "type": "Column", "width": 17, "items": [ { "type": "TextBlock", "text": "Prev_Received", "weight": "bolder", "size": "small", "color": "accent", "horizontalAlignment": "right", "wrap": true, "spacing": "none" } ] }
+              ]
+            },
+
+            {
+              "type": "ColumnSet",
+              "$data": "${items}",
+              "spacing": "small",
+              "separator": true,
+              "columns": [
+                {
+                  "type": "Column",
+                  "width": 34,
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "${statusEmoji} **${itemCode}** · ${province}",
+                      "wrap": true,
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "targetWidth": "atLeast:standard",
+                      "text": "${itemName}",
+                      "size": "small",
+                      "isSubtle": true,
+                      "wrap": true,
+                      "maxLines": 2,
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "targetWidth": "atMost:narrow",
+                      "text": "คงเหลือ **${onhand}** · Hub **${fromHub}** · ก่อน ${prevBefore}/รับ ${prevReceived}",
+                      "size": "small",
+                      "wrap": true,
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "${statusShort}",
+                      "size": "small",
+                      "color": "${statusColor}",
+                      "weight": "${rowWeight}",
+                      "wrap": true,
+                      "spacing": "none"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 16,
+                  "targetWidth": "atLeast:standard",
+                  "items": [
+                    { "type": "TextBlock", "text": "${onhand}", "horizontalAlignment": "right", "weight": "${rowWeight}", "color": "${statusColor}" }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 16,
+                  "targetWidth": "atLeast:standard",
+                  "items": [
+                    { "type": "TextBlock", "text": "${fromHub}", "horizontalAlignment": "right" }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 17,
+                  "targetWidth": "atLeast:standard",
+                  "items": [
+                    { "type": "TextBlock", "text": "${prevBefore}", "horizontalAlignment": "right", "isSubtle": true }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 17,
+                  "targetWidth": "atLeast:standard",
+                  "items": [
+                    { "type": "TextBlock", "text": "${prevReceived}", "horizontalAlignment": "right", "isSubtle": true }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+
+        {
+          "type": "TextBlock",
+          "$when": "${meta.hasMore}",
+          "text": "${meta.moreText}",
+          "size": "small",
+          "isSubtle": true,
+          "horizontalAlignment": "center",
+          "wrap": true,
+          "spacing": "medium",
+          "separator": true
+        }
+      ]
+    },
+
+    {
+      "type": "TextBlock",
+      "text": "🕗 สร้างรายงานเมื่อ ${meta.generatedAt} • ที่มา: ${meta.dataSet} / ${meta.period} • เฉพาะรหัส 53OF & 52CL",
+      "size": "small",
+      "isSubtle": true,
+      "wrap": true,
+      "spacing": "medium",
+      "separator": true
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.OpenUrl",
+      "title": "📊 Dashboard",
+      "url": "${meta.dashboardUrl}"
+    },
+    {
+      "type": "Action.OpenUrl",
+      "title": "📁 Open the source file. (Excel / SharePoint)",
+      "url": "${meta.sourceFileUrl}"
+    }
+  ]
+}

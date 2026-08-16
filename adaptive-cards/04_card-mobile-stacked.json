@@ -1,0 +1,182 @@
+{
+  "type": "AdaptiveCard",
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.5",
+  "fallbackText": "รายงานวัสดุคงคลัง MA & Optimize — NER (มือถือ)",
+  "body": [
+    {
+      "type": "Container",
+      "style": "${meta.dataSetStyle}",
+      "bleed": true,
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "${meta.dataSetEmoji} วัสดุคงคลัง NER",
+          "weight": "bolder",
+          "size": "large",
+          "wrap": true
+        },
+        {
+          "type": "TextBlock",
+          "text": "🗓️ ${meta.period}",
+          "wrap": true,
+          "spacing": "none"
+        },
+        {
+          "type": "TextBlock",
+          "text": "⏮️ เทียบรอบก่อน: ${meta.prevPeriod}",
+          "size": "small",
+          "isSubtle": true,
+          "wrap": true,
+          "spacing": "none"
+        }
+      ]
+    },
+    {
+      "type": "ColumnSet",
+      "spacing": "medium",
+      "columns": [
+        {
+          "type": "Column",
+          "width": "stretch",
+          "style": "attention",
+          "items": [
+            { "type": "TextBlock", "text": "⚠️ เสี่ยง", "size": "small", "horizontalAlignment": "center" },
+            { "type": "TextBlock", "text": "${string(meta.riskCount)}", "size": "large", "weight": "bolder", "horizontalAlignment": "center", "spacing": "none" }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": "stretch",
+          "style": "good",
+          "items": [
+            { "type": "TextBlock", "text": "✅ ปกติ", "size": "small", "horizontalAlignment": "center" },
+            { "type": "TextBlock", "text": "${string(meta.okCount)}", "size": "large", "weight": "bolder", "horizontalAlignment": "center", "spacing": "none" }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": "stretch",
+          "style": "emphasis",
+          "items": [
+            { "type": "TextBlock", "text": "📦 รวม", "size": "small", "horizontalAlignment": "center" },
+            { "type": "TextBlock", "text": "${string(meta.totalItems)}", "size": "large", "weight": "bolder", "horizontalAlignment": "center", "spacing": "none" }
+          ]
+        }
+      ]
+    },
+
+    {
+      "type": "Container",
+      "$when": "${meta.hasData == false}",
+      "style": "emphasis",
+      "spacing": "medium",
+      "items": [
+        { "type": "TextBlock", "text": "🗂️", "size": "extraLarge", "horizontalAlignment": "center" },
+        { "type": "TextBlock", "text": "ไม่มีรายการวัสดุในรอบนี้", "weight": "bolder", "horizontalAlignment": "center", "wrap": true, "spacing": "small" },
+        { "type": "TextBlock", "text": "ตรวจว่ารีเฟรชข้อมูลและรัน BuildExportTable แล้วหรือยัง", "size": "small", "isSubtle": true, "horizontalAlignment": "center", "wrap": true, "spacing": "none" }
+      ]
+    },
+
+    {
+      "type": "Container",
+      "$when": "${$root.meta.hasData}",
+      "$data": "${zones}",
+      "spacing": "medium",
+      "separator": true,
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "${zoneEmoji} **Zone ${zone}** · ${countLabel}",
+          "wrap": true,
+          "spacing": "none"
+        },
+        {
+          "type": "Container",
+          "$data": "${items}",
+          "style": "emphasis",
+          "spacing": "small",
+          "separator": true,
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "${statusEmoji} **${itemCode}** · ${province}",
+              "wrap": true,
+              "spacing": "none"
+            },
+            {
+              "type": "TextBlock",
+              "text": "${itemName}",
+              "size": "small",
+              "isSubtle": true,
+              "wrap": true,
+              "maxLines": 1,
+              "spacing": "none"
+            },
+            {
+              "type": "ColumnSet",
+              "spacing": "small",
+              "columns": [
+                {
+                  "type": "Column",
+                  "width": "stretch",
+                  "items": [
+                    { "type": "TextBlock", "text": "OMC-Onhand", "size": "small", "isSubtle": true, "spacing": "none" },
+                    { "type": "TextBlock", "text": "${onhand}", "weight": "bolder", "color": "${statusColor}", "spacing": "none" }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": "stretch",
+                  "items": [
+                    { "type": "TextBlock", "text": "เบิกจาก Hub", "size": "small", "isSubtle": true, "spacing": "none" },
+                    { "type": "TextBlock", "text": "${fromHub}", "weight": "bolder", "spacing": "none" }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": "stretch",
+                  "items": [
+                    { "type": "TextBlock", "text": "รอบก่อน", "size": "small", "isSubtle": true, "spacing": "none" },
+                    { "type": "TextBlock", "text": "${prevBefore} / ${prevReceived}", "spacing": "none" }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "TextBlock",
+              "text": "${statusEmoji} ${status}",
+              "size": "small",
+              "color": "${statusColor}",
+              "wrap": true,
+              "spacing": "small"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "TextBlock",
+      "$when": "${meta.hasMore}",
+      "text": "${meta.moreText}",
+      "size": "small",
+      "isSubtle": true,
+      "horizontalAlignment": "center",
+      "wrap": true,
+      "spacing": "medium"
+    },
+    {
+      "type": "TextBlock",
+      "text": "🕗 ${meta.generatedAt}",
+      "size": "small",
+      "isSubtle": true,
+      "wrap": true,
+      "separator": true,
+      "spacing": "medium"
+    }
+  ],
+  "actions": [
+    { "type": "Action.OpenUrl", "title": "📊 Dashboard", "url": "${meta.dashboardUrl}" },
+    { "type": "Action.OpenUrl", "title": "📁 Open the source file. (Excel / SharePoint)", "url": "${meta.sourceFileUrl}" }
+  ]
+}

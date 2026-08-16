@@ -1,0 +1,11 @@
+node_modules/
+package-lock.json
+
+# ค่าที่ดึงจากชีตไว้ทดสอบ — สร้างใหม่ได้ด้วย tools/dump_sheet_values.py
+tools/.sheet-values.json
+
+# ไฟล์ Excel ต้นทาง ไม่ควรอยู่ใน repo
+*.xlsm
+*.xlsx
+
+.DS_Store
