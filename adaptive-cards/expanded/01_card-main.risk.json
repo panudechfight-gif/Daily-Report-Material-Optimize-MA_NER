@@ -6,7 +6,7 @@
     "width": "Full"
   },
   "fallbackText": "Report Material Optimize&MA_NER (อุปกรณ์ของคุณแสดงการ์ดนี้ไม่ได้ กรุณาเปิดจาก Dashboard)",
-  "speak": "Report Material MA รอบ MA (10 Aug 26) มี 7 รายการ เสี่ยงขาด 6 รายการ",
+  "speak": "Report Material MA รอบ MA (10 Aug 26) มี 9 รายการ เสี่ยงขาด 7 รายการ",
   "body": [
     {
       "type": "Container",
@@ -131,7 +131,7 @@
                 },
                 {
                   "type": "TextBlock",
-                  "text": "6",
+                  "text": "7",
                   "size": "large",
                   "weight": "bolder",
                   "color": "attention",
@@ -177,7 +177,7 @@
                 },
                 {
                   "type": "TextBlock",
-                  "text": "1",
+                  "text": "2",
                   "size": "large",
                   "weight": "bolder",
                   "color": "good",
@@ -200,7 +200,7 @@
                 },
                 {
                   "type": "TextBlock",
-                  "text": "7",
+                  "text": "9",
                   "size": "large",
                   "weight": "bolder",
                   "horizontalAlignment": "center",
@@ -217,11 +217,11 @@
           "columns": [
             {
               "type": "Column",
-              "width": 40,
+              "width": 42,
               "items": [
                 {
                   "type": "TextBlock",
-                  "text": "Item Code",
+                  "text": "Item",
                   "weight": "bolder",
                   "size": "small",
                   "color": "accent",
@@ -232,43 +232,11 @@
             },
             {
               "type": "Column",
-              "width": 20,
+              "width": 58,
               "items": [
                 {
                   "type": "TextBlock",
-                  "text": "Onhand",
-                  "weight": "bolder",
-                  "size": "small",
-                  "color": "accent",
-                  "horizontalAlignment": "right",
-                  "wrap": true,
-                  "spacing": "none"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 20,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "กระจาย",
-                  "weight": "bolder",
-                  "size": "small",
-                  "color": "accent",
-                  "horizontalAlignment": "right",
-                  "wrap": true,
-                  "spacing": "none"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 20,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "เบิก Hub",
+                  "text": "Onhand · กระจาย · เบิก Hub",
                   "weight": "bolder",
                   "size": "small",
                   "color": "accent",
@@ -286,7 +254,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "🟦 RC2-NMA · 2 รายการ · Onhand 0 · กระจาย 0 · เบิก Hub 2 · ⚠️ เสี่ยงขาด 1",
+              "text": "🟦 RC2-NMA · 3 รายการ · Onhand 39 · กระจาย 0 · เบิก Hub 108 · ⚠️ เสี่ยงขาด 1",
               "size": "small",
               "weight": "bolder",
               "color": "attention",
@@ -300,80 +268,55 @@
               "columns": [
                 {
                   "type": "Column",
-                  "width": 40,
+                  "width": 42,
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "🔗 52CL003BB",
-                      "size": "small",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "🔗 52CL010BB",
-                      "size": "small",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 20,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
+                      "text": "🧰 · Closure 12C",
                       "size": "small",
                       "weight": "bolder",
                       "color": "attention",
-                      "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
+                      "text": "🧰 · Closure 60C",
                       "size": "small",
                       "weight": "default",
                       "color": "warning",
-                      "horizontalAlignment": "right",
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "🧰 · Closure 12C Inline",
+                      "size": "small",
+                      "weight": "default",
+                      "color": "default",
                       "spacing": "none"
                     }
                   ]
                 },
                 {
                   "type": "Column",
-                  "width": 20,
+                  "width": 58,
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "0",
+                      "text": "Onhand 0 · กระจาย 0 · Hub 1",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 20,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "1",
+                      "text": "Onhand 0 · กระจาย 0 · Hub 1",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "1",
+                      "text": "Onhand 39 · กระจาย 0 · Hub 106",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
@@ -390,7 +333,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "🟨 RC3-KKN · 2 รายการ · Onhand 900 · กระจาย 11 · เบิก Hub 4,000 · ⚠️ เสี่ยงขาด 2",
+              "text": "🟨 RC3-KKN · 3 รายการ · Onhand 932 · กระจาย 38 · เบิก Hub 4,053 · ⚠️ เสี่ยงขาด 3",
               "size": "small",
               "weight": "bolder",
               "color": "attention",
@@ -404,80 +347,55 @@
               "columns": [
                 {
                   "type": "Column",
-                  "width": 40,
+                  "width": 42,
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "🔗 52CL003BB",
-                      "size": "small",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "🧶 53OF157BB",
-                      "size": "small",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 20,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
+                      "text": "🧰 · Closure 12C",
                       "size": "small",
                       "weight": "bolder",
                       "color": "attention",
-                      "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "900",
+                      "text": "🧰 · Closure 12C Inline ·4จว.",
                       "size": "small",
                       "weight": "bolder",
                       "color": "attention",
-                      "horizontalAlignment": "right",
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "🧶 · ARSS Fiber Cable 12C",
+                      "size": "small",
+                      "weight": "bolder",
+                      "color": "attention",
                       "spacing": "none"
                     }
                   ]
                 },
                 {
                   "type": "Column",
-                  "width": 20,
+                  "width": 58,
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "11",
+                      "text": "Onhand 0 · กระจาย 11 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 20,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
+                      "text": "Onhand 32 · กระจาย 27 · Hub 53",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "4,000",
+                      "text": "Onhand 900 · กระจาย 0 · Hub 4,000",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
@@ -508,109 +426,55 @@
               "columns": [
                 {
                   "type": "Column",
-                  "width": 40,
+                  "width": 42,
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "🔗 52CL004BB",
+                      "text": "🧰 · Closure 24C",
                       "size": "small",
+                      "weight": "bolder",
+                      "color": "attention",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🔗 52CL010BB",
+                      "text": "🧰 · Closure 60C",
                       "size": "small",
+                      "weight": "bolder",
+                      "color": "attention",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🔗 52CL003BB ·4จว.",
+                      "text": "🧰 · Closure 12C ·4จว.",
                       "size": "small",
+                      "weight": "bolder",
+                      "color": "attention",
                       "spacing": "none"
                     }
                   ]
                 },
                 {
                   "type": "Column",
-                  "width": 20,
+                  "width": 58,
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "weight": "bolder",
-                      "color": "attention",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "weight": "bolder",
-                      "color": "attention",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "1",
-                      "size": "small",
-                      "weight": "bolder",
-                      "color": "attention",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 20,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
+                      "text": "Onhand 0 · กระจาย 0 · Hub 1",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
+                      "text": "Onhand 0 · กระจาย 0 · Hub 1",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 20,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "1",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "1",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "13",
+                      "text": "Onhand 1 · กระจาย 0 · Hub 13",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
@@ -630,7 +494,7 @@
       "items": [
         {
           "type": "TextBlock",
-          "text": "สัญลักษณ์หน้ารหัสวัสดุ",
+          "text": "สัญลักษณ์หน้ารายการ · Item Code เต็ม",
           "size": "small",
           "weight": "bolder",
           "color": "accent",
@@ -638,20 +502,46 @@
           "spacing": "none"
         },
         {
-          "type": "TextBlock",
-          "text": "🔗 **52CL003BB · CLOSURE 12 C, 52CL004BB · CLOSURE 24 C, 52CL010BB · CLOSURE 60 C** = หัวต่อ CLOSURE สำหรับตัดต่อ Cable Optic",
-          "size": "small",
-          "isSubtle": true,
-          "wrap": true,
-          "spacing": "none"
+          "type": "Container",
+          "spacing": "small",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "🧰 **CLOSURE** — หัวต่อ CLOSURE สำหรับตัดต่อ Cable Optic",
+              "size": "small",
+              "wrap": true,
+              "spacing": "none"
+            },
+            {
+              "type": "TextBlock",
+              "text": "52CL003BB=Closure 12C · 52CL004BB=Closure 24C · 52CL009BB=Closure 12C Inline · 52CL010BB=Closure 60C",
+              "size": "small",
+              "isSubtle": true,
+              "wrap": true,
+              "spacing": "none"
+            }
+          ]
         },
         {
-          "type": "TextBlock",
-          "text": "🧶 **53OF157BB · ARSS OPTICAL FIBER CABLE 12c-FIBRE3** = สาย Cable Fiber Optic",
-          "size": "small",
-          "isSubtle": true,
-          "wrap": true,
-          "spacing": "none"
+          "type": "Container",
+          "spacing": "small",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "🧶 **ARSS FIBER CABLE** — สาย Cable Fiber Optic",
+              "size": "small",
+              "wrap": true,
+              "spacing": "none"
+            },
+            {
+              "type": "TextBlock",
+              "text": "53OF157BB=ARSS Fiber Cable 12C",
+              "size": "small",
+              "isSubtle": true,
+              "wrap": true,
+              "spacing": "none"
+            }
+          ]
         }
       ]
     },

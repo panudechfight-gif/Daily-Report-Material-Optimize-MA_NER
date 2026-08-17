@@ -30,33 +30,56 @@
 
 const SHEET_SOURCE = "MA&Optimize NER";
 const HEADER_ROW = 7;           // หัวตารางอยู่แถวที่ 7 (แถว 1-6 เป็นปุ่ม/คำอธิบาย)
-// เพดานแถวที่ปลอดภัย วัดจริงจากข้อมูลในไฟล์ (ดู tools/test_render_script.js)
-// การ์ดรวมแถวซ้ำของแต่ละ Zone แล้ว จำนวนแถวจริงจึงน้อยกว่าจำนวนแถวดิบมาก
-// (เช่น MA (17 Aug 26) 74 แถวดิบ -> 24 แถวหลังรวม) เพดานนี้จึงครอบคลุมทั้งรอบได้
-const TOP_ROWS_MAX = 40;
+// เพดานแถวขั้นสูงสุดที่เป็นไปได้จริง = จำนวน Zone x จำนวนรหัสเป้าหมาย
+// (10 รหัส x 5 Zone = 50 แถวเป็นอย่างมาก) เพดานนี้กันไม่ให้พารามิเตอร์ topRows
+// จาก Power Automate ถูกตั้งเกินจริงเท่านั้น — ตัวที่บังคับให้การ์ดพอดี 28 KB
+// จริง ๆ คือ CARD_SAFE_BYTES ใน _renderAdaptiveCard.skeleton.ts
+// (การ์ดรวมแถวซ้ำของแต่ละ Zone แล้ว จำนวนแถวจริงจึงน้อยกว่าจำนวนแถวดิบมาก
+//  เช่น MA (17 Aug 26) 91 แถวดิบ -> 29 แถวหลังรวม)
+const TOP_ROWS_MAX = 60;
 
 // ---------------------------------------------------------------------------
-// รหัสวัสดุที่การ์ดต้องแสดง — กำหนดเป็นรายการตายตัว 8 รหัส
+// รหัสวัสดุที่การ์ดต้องแสดง — กำหนดเป็นรายการตายตัว 10 รหัส
 // เพิ่ม/ลดรหัส ให้แก้ที่นี่ที่เดียว (แล้วแก้ TARGET_ITEMS ใน tools/build_sample_data.py ตามกัน)
 //
-//   icon  = สัญลักษณ์หน้ารหัสในตาราง บอกว่าของชิ้นนี้คืออะไรตั้งแต่แรกเห็น
-//   name  = ชื่อทางการของวัสดุ (ใช้ในตารางอธิบายท้ายการ์ด)
-//   about = คำอธิบายภาษาไทยว่าเอาไปทำอะไร (ใช้คู่กับ icon ในตารางอธิบาย)
+//   icon  = สัญลักษณ์ประจำ "กลุ่ม" — 🏷️ ป้ายชื่อ / 🧰 CLOSURE / 🔌 Drop Cable / 🧶 ARSS Fiber Cable
+//           ของกลุ่มเดียวกันใช้ icon เดียวกันเสมอ ให้กวาดสายตาแยกกลุ่มได้ทันที
+//   group = ชื่อกลุ่มภาษาอังกฤษ (หัวข้อในตารางอธิบายท้ายการ์ด) — 1 icon ต่อ 1 group เท่านั้น
+//   short = ชื่อย่อที่ใช้แทน Item Code บนแถวข้อมูล แสดงเป็น "icon · short"
+//   name  = ชื่อทางการเต็ม (ไม่ได้ใช้บนการ์ดแล้ว เก็บไว้เผื่ออ้างอิง)
+//   about = คำอธิบายภาษาไทยของทั้งกลุ่ม (พิมพ์ครั้งเดียวต่อกลุ่มในตารางอธิบาย)
 //
-// รหัสที่ใช้ icon เดียวกันคือของประเภทเดียวกัน คำอธิบายจึงเขียนเหมือนกันได้
-// ตารางอธิบายท้ายการ์ดจะยุบรหัสที่ icon+about ตรงกันให้เหลือบรรทัดเดียว
+// แถวข้อมูลแสดง "icon · short" (เช่น 🧰 · Closure 12C) ส่วน Item Code เต็มไปอยู่ใน
+// ตารางอธิบายท้ายการ์ดแทน (เช่น 52CL003BB=Closure 12C) ใครจะกลับไปหาในไฟล์ Excel
+// ก็เปิดตารางอธิบายดูได้ ไม่ต้องพิมพ์รหัสเต็มซ้ำทุกแถว
 // ---------------------------------------------------------------------------
-interface TargetItem { icon: string; name: string; about: string; }
+interface TargetItem { icon: string; group: string; short: string; name: string; about: string; }
 
 const TARGET_ITEMS: { [k: string]: TargetItem } = {
-  "53OF150BB": { icon: "🧵", name: "OPTICAL FIBER DROP CABLE 1C, FLAT TYPE (G.657A) WITH 2 SC/UPC PRE-CONNECTOR, 3m.", about: "สาย Pigtail Patch สำหรับ Splice เชื่อมต่อ" },
-  "53OF157BB": { icon: "🧶", name: "ARSS OPTICAL FIBER CABLE 12c-FIBRE3", about: "สาย Cable Fiber Optic" },
-  "53OF158BB": { icon: "🧶", name: "ARSS OPTICAL FIBER CABLE 24c-FIBRE3", about: "สาย Cable Fiber Optic" },
-  "53OF160BB": { icon: "🧶", name: "ARSS OPTICAL FIBER CABLE 60c-FIBRE3", about: "สาย Cable Fiber Optic" },
-  "50MT004BB": { icon: "🏷️", name: "Name Plate (Aluminium)", about: "ป้ายชื่อติดอุปกรณ์" },
-  "52CL003BB": { icon: "🔗", name: "CLOSURE 12 C", about: "หัวต่อ CLOSURE สำหรับตัดต่อ Cable Optic" },
-  "52CL004BB": { icon: "🔗", name: "CLOSURE 24 C", about: "หัวต่อ CLOSURE สำหรับตัดต่อ Cable Optic" },
-  "52CL010BB": { icon: "🔗", name: "CLOSURE 60 C", about: "หัวต่อ CLOSURE สำหรับตัดต่อ Cable Optic" },
+  "50MT004BB": { icon: "🏷️", group: "NAME PLATE", short: "Name Plate Aluminium",
+    name: "Name Plate (Aluminium)", about: "ป้ายชื่อติดอุปกรณ์" },
+
+  "52CL003BB": { icon: "🧰", group: "CLOSURE", short: "Closure 12C",
+    name: "CLOSURE 12 C", about: "หัวต่อ CLOSURE สำหรับตัดต่อ Cable Optic" },
+  "52CL004BB": { icon: "🧰", group: "CLOSURE", short: "Closure 24C",
+    name: "CLOSURE 24 C", about: "หัวต่อ CLOSURE สำหรับตัดต่อ Cable Optic" },
+  "52CL006BB": { icon: "🧰", group: "CLOSURE", short: "Closure 48C",
+    name: "CLOSURE 48 C", about: "หัวต่อ CLOSURE สำหรับตัดต่อ Cable Optic" },
+  "52CL009BB": { icon: "🧰", group: "CLOSURE", short: "Closure 12C Inline",
+    name: "CLOSURE 12 C FOR OFC DROP WIRE (IN LINE)", about: "หัวต่อ CLOSURE สำหรับตัดต่อ Cable Optic" },
+  "52CL010BB": { icon: "🧰", group: "CLOSURE", short: "Closure 60C",
+    name: "CLOSURE 60 C", about: "หัวต่อ CLOSURE สำหรับตัดต่อ Cable Optic" },
+
+  "53OF150BB": { icon: "🔌", group: "DROP CABLE", short: "Drop Cable 1C SC/UPC · 3m",
+    name: "OPTICAL FIBER DROP CABLE 1C, FLAT TYPE (G.657A) WITH 2 SC/UPC PRE-CONNECTOR, 3m.",
+    about: "สาย Pigtail Patch สำหรับ Splice เชื่อมต่อ" },
+
+  "53OF157BB": { icon: "🧶", group: "ARSS FIBER CABLE", short: "ARSS Fiber Cable 12C",
+    name: "ARSS OPTICAL FIBER CABLE 12c-FIBRE3", about: "สาย Cable Fiber Optic" },
+  "53OF158BB": { icon: "🧶", group: "ARSS FIBER CABLE", short: "ARSS Fiber Cable 24C",
+    name: "ARSS OPTICAL FIBER CABLE 24c-FIBRE3", about: "สาย Cable Fiber Optic" },
+  "53OF160BB": { icon: "🧶", group: "ARSS FIBER CABLE", short: "ARSS Fiber Cable 60C",
+    name: "ARSS OPTICAL FIBER CABLE 60c-FIBRE3", about: "สาย Cable Fiber Optic" },
 };
 
 function isTargetItem(code: string): boolean {
@@ -132,10 +155,11 @@ function fmtInt(v: (string | number | boolean)): string {
 }
 
 interface CardItem {
-  itemCode: string; itemName: string; itemIcon: string; unit: string; province: string;
+  itemCode: string; itemName: string; itemIcon: string; itemShort: string;
+  unit: string; province: string;
   provinceCount: number; provinceTag: string;
   dataSet: string; period: string; prevPeriod: string;
-  onhand: string; distribute: string; fromHub: string;
+  onhand: string; distribute: string; fromHub: string; numbersLine: string;
   prevBefore: string; prevReceived: string;
   status: string; statusShort: string; statusEmoji: string; statusColor: string;
   riskFlag: string; isRisk: boolean; rowWeight: string;
@@ -151,11 +175,12 @@ interface CardZone {
 }
 
 /**
- * ตารางอธิบายท้ายการ์ด — พิมพ์ครั้งเดียวแทนการซ้ำชื่อยาวทุกแถว
- * ยุบรหัสที่เป็นของประเภทเดียวกัน (icon + คำอธิบายตรงกัน) ให้เหลือบรรทัดเดียว
- * เช่น CLOSURE 3 รหัสรวมเป็นบรรทัดเดียว ประหยัดที่บนการ์ดได้มาก
+ * ตารางอธิบายท้ายการ์ด — 1 บรรทัดต่อ "กลุ่ม" (CLOSURE / OPTICAL FIBER / NAME PLATE)
+ * ไม่ใช่ 1 บรรทัดต่อรหัส เพราะแถวข้อมูลใช้ icon + ชื่อย่อแทน Item Code ไปแล้ว
+ * ตารางนี้จึงทำหน้าที่ "ถอดรหัส" กลับเป็น Item Code เต็มไว้ที่เดียว
+ * เช่น 🔗 CLOSURE — 52CL003BB=12C · 52CL004BB=24C · 52CL006BB=48C · …
  */
-interface CardLegend { itemIcon: string; itemCodes: string; itemAbout: string; }
+interface CardLegend { itemIcon: string; groupLabel: string; itemAbout: string; pairs: string; }
 
 interface CardMeta {
   title: string; subtitle: string; hasLegend: boolean;
@@ -355,7 +380,8 @@ function buildPayload(
   };
 
   interface Agg {
-    zone: string; itemCode: string; itemName: string; itemIcon: string; unit: string;
+    zone: string; itemCode: string; itemName: string; itemIcon: string; itemShort: string;
+    unit: string;
     onhand: number; distribute: number; fromHub: number;
     prevBefore: number; prevReceived: number;
     provinces: { [k: string]: boolean }; provinceCount: number;
@@ -384,6 +410,7 @@ function buildPayload(
         itemName: spec !== undefined ? spec.name
           : (get(row, "Description") || get(row, "Art No")),
         itemIcon: spec !== undefined ? spec.icon : "▫️",
+        itemShort: spec !== undefined ? spec.short : code,
         unit: get(row, "Unit"),
         onhand: 0, distribute: 0, fromHub: 0, prevBefore: 0, prevReceived: 0,
         provinces: {}, provinceCount: 0,
@@ -429,6 +456,7 @@ function buildPayload(
       itemCode: a.itemCode,
       itemName: a.itemName.length > 45 ? a.itemName.substring(0, 45) : a.itemName,
       itemIcon: a.itemIcon,
+      itemShort: a.itemShort,
       unit: a.unit,
       province: a.provinceCount > 0 ? String(a.provinceCount) + " จังหวัด" : "-",
       provinceCount: a.provinceCount,
@@ -440,6 +468,12 @@ function buildPayload(
       onhand: fmtNum(a.onhand),
       distribute: fmtInt(a.distribute),
       fromHub: fmtInt(a.fromHub),
+      // 3 ตัวเลขรวมเป็นบรรทัดเดียว — ประหยัดโครงสร้าง JSON ของการ์ดได้มาก
+      // (ตัด TextBlock ต่อคอลัมน์ที่ซ้ำกันทุกแถวออก 2 ก้อน) จำเป็นมากขึ้นเมื่อ
+      // รายการวัสดุมี 10 รหัส x 5 Zone แล้ว ไม่งั้นการ์ด Optimize ชนเพดาน 28 KB
+      numbersLine: "Onhand " + fmtNum(a.onhand)
+        + " · กระจาย " + fmtInt(a.distribute)
+        + " · Hub " + fmtInt(a.fromHub),
       prevBefore: fmtNum(a.prevBefore),
       prevReceived: fmtNum(a.prevReceived),
       status: (a.status || "-").replace(/^-\s*/, "") || "-",
@@ -553,10 +587,11 @@ function buildPayload(
     };
   });
 
-  // ตารางอธิบายท้ายการ์ด — บอกว่า icon แต่ละตัวคือของอะไร
+  // ตารางอธิบายท้ายการ์ด — ถอดรหัส icon + ชื่อย่อบนแถวข้อมูลกลับเป็น Item Code เต็ม
   //
-  // รวมรหัสที่เป็นของประเภทเดียวกันไว้บรรทัดเดียว (เช่น CLOSURE 3 รหัส)
-  // แทนที่จะพิมพ์คำอธิบายเดิมซ้ำ 3 รอบ — ได้ที่คืนมาให้แถวข้อมูลจริง
+  // 1 บรรทัดต่อ "กลุ่ม" (CLOSURE / OPTICAL FIBER / NAME PLATE) ไม่ใช่ต่อรหัส
+  // เพราะแถวข้อมูลเปลี่ยนไปแสดง icon + ชื่อย่อ (เช่น 🔗 12C) แทน Item Code แล้ว
+  // ใครต้องการรหัสเต็มไปค้นในไฟล์ Excel ก็ไล่ดูที่นี่ที่เดียว
   const legendCodes: string[] = [];
   for (const it of all) {
     if (legendCodes.indexOf(it.itemCode) < 0) legendCodes.push(it.itemCode);
@@ -564,21 +599,20 @@ function buildPayload(
   legendCodes.sort();
 
   const legend: CardLegend[] = [];
-  const legendSeen: { [k: string]: number } = {};   // icon+about -> ตำแหน่งใน legend
+  const legendSeen: { [k: string]: number } = {};   // group -> ตำแหน่งใน legend
   for (const c of legendCodes) {
     const spec = TARGET_ITEMS[c];
     const icon = spec !== undefined ? spec.icon : "▫️";
+    const group = spec !== undefined ? spec.group : "อื่น ๆ";
     const about = spec !== undefined ? spec.about : "";
-    let name = spec !== undefined ? spec.name : "";
-    if (name.length > 50) name = name.substring(0, 50);
-    const key = icon + "|" + about;
-    const label = c + (name !== "" ? " · " + name : "");
-    if (legendSeen[key] === undefined) {
-      legendSeen[key] = legend.length;
-      legend.push({ itemIcon: icon, itemCodes: label, itemAbout: about });
+    const short = spec !== undefined ? spec.short : c;
+    const pair = c + "=" + short;
+    if (legendSeen[group] === undefined) {
+      legendSeen[group] = legend.length;
+      legend.push({ itemIcon: icon, groupLabel: group, itemAbout: about, pairs: pair });
     } else {
-      const at = legendSeen[key];
-      legend[at].itemCodes = legend[at].itemCodes + ", " + label;
+      const at = legendSeen[group];
+      legend[at].pairs = legend[at].pairs + " · " + pair;
     }
   }
 

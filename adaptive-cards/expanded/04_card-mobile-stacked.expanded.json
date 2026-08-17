@@ -49,7 +49,7 @@
             },
             {
               "type": "TextBlock",
-              "text": "6",
+              "text": "7",
               "size": "large",
               "weight": "bolder",
               "horizontalAlignment": "center",
@@ -70,7 +70,7 @@
             },
             {
               "type": "TextBlock",
-              "text": "1",
+              "text": "2",
               "size": "large",
               "weight": "bolder",
               "horizontalAlignment": "center",
@@ -91,7 +91,7 @@
             },
             {
               "type": "TextBlock",
-              "text": "7",
+              "text": "9",
               "size": "large",
               "weight": "bolder",
               "horizontalAlignment": "center",
@@ -108,7 +108,7 @@
       "items": [
         {
           "type": "TextBlock",
-          "text": "🟦 RC2-NMA · 2 รายการ · Onhand 0 · กระจาย 0 · เบิก Hub 2 · ⚠️ เสี่ยงขาด 1",
+          "text": "🟦 RC2-NMA · 3 รายการ · Onhand 39 · กระจาย 0 · เบิก Hub 108 · ⚠️ เสี่ยงขาด 1",
           "size": "small",
           "weight": "bolder",
           "color": "attention",
@@ -131,6 +131,14 @@
           "color": "warning",
           "wrap": true,
           "spacing": "none"
+        },
+        {
+          "type": "TextBlock",
+          "text": "⚪ **52CL009BB** — คงเหลือ **39** · Hub **106** · ก่อน 0 / รับ 0",
+          "size": "small",
+          "color": "default",
+          "wrap": true,
+          "spacing": "none"
         }
       ]
     },
@@ -141,7 +149,7 @@
       "items": [
         {
           "type": "TextBlock",
-          "text": "🟨 RC3-KKN · 2 รายการ · Onhand 900 · กระจาย 11 · เบิก Hub 4,000 · ⚠️ เสี่ยงขาด 2",
+          "text": "🟨 RC3-KKN · 3 รายการ · Onhand 932 · กระจาย 38 · เบิก Hub 4,053 · ⚠️ เสี่ยงขาด 3",
           "size": "small",
           "weight": "bolder",
           "color": "attention",
@@ -152,6 +160,14 @@
         {
           "type": "TextBlock",
           "text": "🔴 **52CL003BB** — คงเหลือ **0** · Hub **0** · ก่อน 81 / รับ 0",
+          "size": "small",
+          "color": "attention",
+          "wrap": true,
+          "spacing": "none"
+        },
+        {
+          "type": "TextBlock",
+          "text": "🔴 **52CL009BB ·4จว.** — คงเหลือ **32** · Hub **53** · ก่อน 650 / รับ 0",
           "size": "small",
           "color": "attention",
           "wrap": true,

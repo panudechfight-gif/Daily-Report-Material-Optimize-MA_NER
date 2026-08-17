@@ -30,19 +30,36 @@ except ImportError:
     openpyxl = None       # ยังใช้ --from-dump ได้ ถ้าไม่มี openpyxl
 
 # --------------------------------------------------------------------------------------
-# รหัสวัสดุที่การ์ดต้องแสดง — รายการตายตัว 8 รหัส
+# รหัสวัสดุที่การ์ดต้องแสดง — รายการตายตัว 10 รหัส
 # ต้องตรงกับ TARGET_ITEMS ใน office-scripts/buildCardPayload.ts เสมอ
-# ค่าของแต่ละรหัสคือชื่อที่ใช้แสดงในตารางอธิบายท้ายการ์ด
+# แถวข้อมูลแสดงเป็น "icon · short" — 1 icon ต่อ 1 group เท่านั้น
 # --------------------------------------------------------------------------------------
 TARGET_ITEMS = {
-    "53OF150BB": {"icon": "\U0001F9F5", "name": "OPTICAL FIBER DROP CABLE 1C, FLAT TYPE (G.657A) WITH 2 SC/UPC PRE-CONNECTOR, 3m.", "about": "สาย Pigtail Patch สำหรับ Splice เชื่อมต่อ"},
-    "53OF157BB": {"icon": "\U0001F9F6", "name": "ARSS OPTICAL FIBER CABLE 12c-FIBRE3", "about": "สาย Cable Fiber Optic"},
-    "53OF158BB": {"icon": "\U0001F9F6", "name": "ARSS OPTICAL FIBER CABLE 24c-FIBRE3", "about": "สาย Cable Fiber Optic"},
-    "53OF160BB": {"icon": "\U0001F9F6", "name": "ARSS OPTICAL FIBER CABLE 60c-FIBRE3", "about": "สาย Cable Fiber Optic"},
-    "50MT004BB": {"icon": "\U0001F3F7\uFE0F", "name": "Name Plate (Aluminium)", "about": "ป้ายชื่อติดอุปกรณ์"},
-    "52CL003BB": {"icon": "\U0001F517", "name": "CLOSURE 12 C", "about": "หัวต่อ CLOSURE สำหรับตัดต่อ Cable Optic"},
-    "52CL004BB": {"icon": "\U0001F517", "name": "CLOSURE 24 C", "about": "หัวต่อ CLOSURE สำหรับตัดต่อ Cable Optic"},
-    "52CL010BB": {"icon": "\U0001F517", "name": "CLOSURE 60 C", "about": "หัวต่อ CLOSURE สำหรับตัดต่อ Cable Optic"},
+    "50MT004BB": {"icon": "\U0001F3F7\uFE0F", "group": "NAME PLATE", "short": "Name Plate Aluminium",
+                  "name": "Name Plate (Aluminium)", "about": "ป้ายชื่อติดอุปกรณ์"},
+
+    "52CL003BB": {"icon": "\U0001F9F0", "group": "CLOSURE", "short": "Closure 12C",
+                  "name": "CLOSURE 12 C", "about": "หัวต่อ CLOSURE สำหรับตัดต่อ Cable Optic"},
+    "52CL004BB": {"icon": "\U0001F9F0", "group": "CLOSURE", "short": "Closure 24C",
+                  "name": "CLOSURE 24 C", "about": "หัวต่อ CLOSURE สำหรับตัดต่อ Cable Optic"},
+    "52CL006BB": {"icon": "\U0001F9F0", "group": "CLOSURE", "short": "Closure 48C",
+                  "name": "CLOSURE 48 C", "about": "หัวต่อ CLOSURE สำหรับตัดต่อ Cable Optic"},
+    "52CL009BB": {"icon": "\U0001F9F0", "group": "CLOSURE", "short": "Closure 12C Inline",
+                  "name": "CLOSURE 12 C FOR OFC DROP WIRE (IN LINE)",
+                  "about": "หัวต่อ CLOSURE สำหรับตัดต่อ Cable Optic"},
+    "52CL010BB": {"icon": "\U0001F9F0", "group": "CLOSURE", "short": "Closure 60C",
+                  "name": "CLOSURE 60 C", "about": "หัวต่อ CLOSURE สำหรับตัดต่อ Cable Optic"},
+
+    "53OF150BB": {"icon": "\U0001F50C", "group": "DROP CABLE", "short": "Drop Cable 1C SC/UPC · 3m",
+                  "name": "OPTICAL FIBER DROP CABLE 1C, FLAT TYPE (G.657A) WITH 2 SC/UPC PRE-CONNECTOR, 3m.",
+                  "about": "สาย Pigtail Patch สำหรับ Splice เชื่อมต่อ"},
+
+    "53OF157BB": {"icon": "\U0001F9F6", "group": "ARSS FIBER CABLE", "short": "ARSS Fiber Cable 12C",
+                  "name": "ARSS OPTICAL FIBER CABLE 12c-FIBRE3", "about": "สาย Cable Fiber Optic"},
+    "53OF158BB": {"icon": "\U0001F9F6", "group": "ARSS FIBER CABLE", "short": "ARSS Fiber Cable 24C",
+                  "name": "ARSS OPTICAL FIBER CABLE 24c-FIBRE3", "about": "สาย Cable Fiber Optic"},
+    "53OF160BB": {"icon": "\U0001F9F6", "group": "ARSS FIBER CABLE", "short": "ARSS Fiber Cable 60C",
+                  "name": "ARSS OPTICAL FIBER CABLE 60c-FIBRE3", "about": "สาย Cable Fiber Optic"},
 }
 
 # หัวตารางที่ยอมรับได้ของแต่ละคอลัมน์ (ชีตเคยเปลี่ยนชื่อมาแล้ว) — ชื่อใหม่อยู่หน้าสุด
@@ -314,6 +331,7 @@ def build_payload(rows, period=None, dashboard_url="", source_url="", top=TOP_RO
                 "itemName": (TARGET_ITEMS[code]["name"] if code in TARGET_ITEMS
                              else str(r.get("Description") or r.get("Art No") or "").strip()),
                 "itemIcon": TARGET_ITEMS[code]["icon"] if code in TARGET_ITEMS else "\u25AB\uFE0F",
+                "itemShort": TARGET_ITEMS[code]["short"] if code in TARGET_ITEMS else code,
                 "unit": str(r.get("Unit") or "").strip(),
                 "onhand": 0.0, "distribute": 0.0, "fromHub": 0.0,
                 "prevBefore": 0.0, "prevReceived": 0.0,
@@ -362,6 +380,7 @@ def build_payload(rows, period=None, dashboard_url="", source_url="", top=TOP_RO
             ("itemCode", a["itemCode"]),
             ("itemName", a["itemName"][:45]),
             ("itemIcon", a["itemIcon"]),
+            ("itemShort", a["itemShort"]),
             ("unit", a["unit"]),
             ("province", "{} จังหวัด".format(n_prov) if n_prov else "-"),
             ("provinceCount", n_prov),
@@ -373,6 +392,8 @@ def build_payload(rows, period=None, dashboard_url="", source_url="", top=TOP_RO
             ("onhand", fmt_num(a["onhand"])),
             ("distribute", fmt_int(a["distribute"])),
             ("fromHub", fmt_int(a["fromHub"])),
+            ("numbersLine", "Onhand {} · กระจาย {} · Hub {}".format(
+                fmt_num(a["onhand"]), fmt_int(a["distribute"]), fmt_int(a["fromHub"]))),
             ("prevBefore", fmt_num(a["prevBefore"])),
             ("prevReceived", fmt_num(a["prevReceived"])),
             ("status", str(a["status"] or "-").strip().lstrip("- ").strip() or "-"),
@@ -474,23 +495,25 @@ def build_payload(rows, period=None, dashboard_url="", source_url="", top=TOP_RO
             ("items", items),
         ]))
 
-    # ตารางอธิบายรหัสวัสดุ — พิมพ์ครั้งเดียวท้ายการ์ด แทนที่จะซ้ำทุกแถว
+    # ตารางอธิบายท้ายการ์ด — ถอดรหัส icon + ชื่อย่อบนแถวข้อมูลกลับเป็น Item Code เต็ม
+    # 1 บรรทัดต่อ "กลุ่ม" (CLOSURE / OPTICAL FIBER / NAME PLATE) ไม่ใช่ต่อรหัส
     legend = []
     legend_seen = {}
     for c in sorted({it["itemCode"] for it in all_items}):
         spec = TARGET_ITEMS.get(c)
-        icon = spec["icon"] if spec else "\u25AB\uFE0F"
+        icon = spec["icon"] if spec else "▫️"
+        group = spec["group"] if spec else "อื่น ๆ"
         about = spec["about"] if spec else ""
-        name = (spec["name"] if spec else "")[:50]
-        label = c + (" · " + name if name else "")
-        key = icon + "|" + about
-        if key not in legend_seen:
-            legend_seen[key] = len(legend)
+        short = spec["short"] if spec else c
+        pair = c + "=" + short
+        if group not in legend_seen:
+            legend_seen[group] = len(legend)
             legend.append(OrderedDict([
-                ("itemIcon", icon), ("itemCodes", label), ("itemAbout", about)]))
+                ("itemIcon", icon), ("groupLabel", group),
+                ("itemAbout", about), ("pairs", pair)]))
         else:
-            at = legend_seen[key]
-            legend[at]["itemCodes"] = legend[at]["itemCodes"] + ", " + label
+            at = legend_seen[group]
+            legend[at]["pairs"] = legend[at]["pairs"] + " · " + pair
 
     cutoff = ""
 

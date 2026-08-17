@@ -6,7 +6,7 @@
     "width": "Full"
   },
   "fallbackText": "Report Material Optimize&MA_NER (อุปกรณ์ของคุณแสดงการ์ดนี้ไม่ได้ กรุณาเปิดจาก Dashboard)",
-  "speak": "Report Material Optimize รอบ Optimize(3 Aug 26) มี 35 รายการ เสี่ยงขาด 11 รายการ",
+  "speak": "Report Material Optimize รอบ Optimize(3 Aug 26) มี 45 รายการ เสี่ยงขาด 12 รายการ",
   "body": [
     {
       "type": "Container",
@@ -131,7 +131,7 @@
                 },
                 {
                   "type": "TextBlock",
-                  "text": "11",
+                  "text": "12",
                   "size": "large",
                   "weight": "bolder",
                   "color": "attention",
@@ -177,7 +177,7 @@
                 },
                 {
                   "type": "TextBlock",
-                  "text": "24",
+                  "text": "33",
                   "size": "large",
                   "weight": "bolder",
                   "color": "good",
@@ -200,7 +200,7 @@
                 },
                 {
                   "type": "TextBlock",
-                  "text": "35",
+                  "text": "45",
                   "size": "large",
                   "weight": "bolder",
                   "horizontalAlignment": "center",
@@ -217,11 +217,11 @@
           "columns": [
             {
               "type": "Column",
-              "width": 40,
+              "width": 42,
               "items": [
                 {
                   "type": "TextBlock",
-                  "text": "Item Code",
+                  "text": "Item",
                   "weight": "bolder",
                   "size": "small",
                   "color": "accent",
@@ -232,43 +232,11 @@
             },
             {
               "type": "Column",
-              "width": 20,
+              "width": 58,
               "items": [
                 {
                   "type": "TextBlock",
-                  "text": "Onhand",
-                  "weight": "bolder",
-                  "size": "small",
-                  "color": "accent",
-                  "horizontalAlignment": "right",
-                  "wrap": true,
-                  "spacing": "none"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 20,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "กระจาย",
-                  "weight": "bolder",
-                  "size": "small",
-                  "color": "accent",
-                  "horizontalAlignment": "right",
-                  "wrap": true,
-                  "spacing": "none"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 20,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "เบิก Hub",
+                  "text": "Onhand · กระจาย · เบิก Hub",
                   "weight": "bolder",
                   "size": "small",
                   "color": "accent",
@@ -286,7 +254,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "🟦 RC2-NMA · 7 รายการ · Onhand 0 · กระจาย 32,022 · เบิก Hub 0 · ⚠️ เสี่ยงขาด 3",
+              "text": "🟦 RC2-NMA · แสดง 8/9 · Onhand 0 · กระจาย 32,090 · เบิก Hub 0 · ⚠️ เสี่ยงขาด 3",
               "size": "small",
               "weight": "bolder",
               "color": "attention",
@@ -300,225 +268,130 @@
               "columns": [
                 {
                   "type": "Column",
-                  "width": 40,
+                  "width": 42,
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "🔗 52CL010BB",
+                      "text": "🧰 · Closure 60C",
                       "size": "small",
+                      "weight": "bolder",
+                      "color": "attention",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🧶 53OF157BB",
+                      "text": "🧶 · ARSS Fiber Cable 12C",
                       "size": "small",
+                      "weight": "bolder",
+                      "color": "attention",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🧶 53OF158BB",
+                      "text": "🧶 · ARSS Fiber Cable 24C",
                       "size": "small",
+                      "weight": "bolder",
+                      "color": "attention",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🏷️ 50MT004BB",
+                      "text": "🏷️ · Name Plate Aluminium",
                       "size": "small",
+                      "weight": "default",
+                      "color": "warning",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🔗 52CL003BB",
+                      "text": "🧰 · Closure 12C",
                       "size": "small",
+                      "weight": "default",
+                      "color": "warning",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🔗 52CL004BB",
+                      "text": "🧰 · Closure 24C",
                       "size": "small",
+                      "weight": "default",
+                      "color": "warning",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🧵 53OF150BB",
+                      "text": "🧰 · Closure 48C",
                       "size": "small",
+                      "weight": "default",
+                      "color": "default",
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "🧰 · Closure 12C Inline",
+                      "size": "small",
+                      "weight": "default",
+                      "color": "warning",
                       "spacing": "none"
                     }
                   ]
                 },
                 {
                   "type": "Column",
-                  "width": 20,
+                  "width": 58,
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "weight": "bolder",
-                      "color": "attention",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "weight": "bolder",
-                      "color": "attention",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "weight": "bolder",
-                      "color": "attention",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "weight": "default",
-                      "color": "warning",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "weight": "default",
-                      "color": "warning",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "weight": "default",
-                      "color": "warning",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "weight": "default",
-                      "color": "warning",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 20,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "3",
+                      "text": "Onhand 0 · กระจาย 3 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "32,000",
+                      "text": "Onhand 0 · กระจาย 32,000 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
+                      "text": "Onhand 0 · กระจาย 0 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
+                      "text": "Onhand 0 · กระจาย 0 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "16",
+                      "text": "Onhand 0 · กระจาย 16 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "3",
+                      "text": "Onhand 0 · กระจาย 3 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 20,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
+                      "text": "Onhand 0 · กระจาย 0 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
+                      "text": "Onhand 0 · กระจาย 68 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
@@ -535,7 +408,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "🟩 RC2-UBN · 7 รายการ · Onhand 0 · กระจาย 24,020 · เบิก Hub 0 · ⚠️ เสี่ยงขาด 5",
+              "text": "🟩 RC2-UBN · แสดง 8/9 · Onhand 0 · กระจาย 24,071 · เบิก Hub 0 · ⚠️ เสี่ยงขาด 6",
               "size": "small",
               "weight": "bolder",
               "color": "attention",
@@ -549,225 +422,130 @@
               "columns": [
                 {
                   "type": "Column",
-                  "width": 40,
+                  "width": 42,
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "🔗 52CL003BB",
-                      "size": "small",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "🔗 52CL004BB",
-                      "size": "small",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "🔗 52CL010BB",
-                      "size": "small",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "🧵 53OF150BB",
-                      "size": "small",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "🧶 53OF157BB",
-                      "size": "small",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "🏷️ 50MT004BB",
-                      "size": "small",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "🧶 53OF158BB",
-                      "size": "small",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 20,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
+                      "text": "🧰 · Closure 12C",
                       "size": "small",
                       "weight": "bolder",
                       "color": "attention",
-                      "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
+                      "text": "🧰 · Closure 24C",
                       "size": "small",
                       "weight": "bolder",
                       "color": "attention",
-                      "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
+                      "text": "🧰 · Closure 12C Inline",
                       "size": "small",
                       "weight": "bolder",
                       "color": "attention",
-                      "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
+                      "text": "🧰 · Closure 60C",
                       "size": "small",
                       "weight": "bolder",
                       "color": "attention",
-                      "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
+                      "text": "🔌 · Drop Cable 1C SC/UPC · 3m",
                       "size": "small",
                       "weight": "bolder",
                       "color": "attention",
-                      "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
+                      "text": "🧶 · ARSS Fiber Cable 12C",
+                      "size": "small",
+                      "weight": "bolder",
+                      "color": "attention",
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "🏷️ · Name Plate Aluminium",
                       "size": "small",
                       "weight": "default",
                       "color": "warning",
-                      "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
+                      "text": "🧰 · Closure 48C",
                       "size": "small",
                       "weight": "default",
-                      "color": "warning",
-                      "horizontalAlignment": "right",
+                      "color": "default",
                       "spacing": "none"
                     }
                   ]
                 },
                 {
                   "type": "Column",
-                  "width": 20,
+                  "width": 58,
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "15",
+                      "text": "Onhand 0 · กระจาย 15 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "2",
+                      "text": "Onhand 0 · กระจาย 2 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "3",
+                      "text": "Onhand 0 · กระจาย 51 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
+                      "text": "Onhand 0 · กระจาย 3 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "24,000",
+                      "text": "Onhand 0 · กระจาย 0 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
+                      "text": "Onhand 0 · กระจาย 24,000 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 20,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
+                      "text": "Onhand 0 · กระจาย 0 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
+                      "text": "Onhand 0 · กระจาย 0 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
@@ -784,7 +562,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "🟨 RC3-KKN · 7 รายการ · Onhand 0 · กระจาย 32,022 · เบิก Hub 0 · ⚠️ เสี่ยงขาด 1",
+              "text": "🟨 RC3-KKN · แสดง 8/9 · Onhand 0 · กระจาย 32,091 · เบิก Hub 0 · ⚠️ เสี่ยงขาด 1",
               "size": "small",
               "weight": "bolder",
               "color": "attention",
@@ -798,225 +576,130 @@
               "columns": [
                 {
                   "type": "Column",
-                  "width": 40,
+                  "width": 42,
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "🧶 53OF157BB",
-                      "size": "small",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "🏷️ 50MT004BB",
-                      "size": "small",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "🔗 52CL003BB",
-                      "size": "small",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "🔗 52CL004BB",
-                      "size": "small",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "🔗 52CL010BB",
-                      "size": "small",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "🧵 53OF150BB",
-                      "size": "small",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "🧶 53OF158BB",
-                      "size": "small",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 20,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
+                      "text": "🧶 · ARSS Fiber Cable 12C",
                       "size": "small",
                       "weight": "bolder",
                       "color": "attention",
-                      "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
+                      "text": "🏷️ · Name Plate Aluminium",
                       "size": "small",
                       "weight": "default",
                       "color": "warning",
-                      "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
+                      "text": "🧰 · Closure 12C",
                       "size": "small",
                       "weight": "default",
                       "color": "warning",
-                      "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
+                      "text": "🧰 · Closure 24C",
                       "size": "small",
                       "weight": "default",
                       "color": "warning",
-                      "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
+                      "text": "🧰 · Closure 48C",
                       "size": "small",
                       "weight": "default",
-                      "color": "warning",
-                      "horizontalAlignment": "right",
+                      "color": "default",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
+                      "text": "🧰 · Closure 12C Inline",
                       "size": "small",
                       "weight": "default",
                       "color": "warning",
-                      "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
+                      "text": "🧰 · Closure 60C",
                       "size": "small",
                       "weight": "default",
                       "color": "warning",
-                      "horizontalAlignment": "right",
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "🔌 · Drop Cable 1C SC/UPC · 3m",
+                      "size": "small",
+                      "weight": "default",
+                      "color": "warning",
                       "spacing": "none"
                     }
                   ]
                 },
                 {
                   "type": "Column",
-                  "width": 20,
+                  "width": 58,
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "32,000",
+                      "text": "Onhand 0 · กระจาย 32,000 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
+                      "text": "Onhand 0 · กระจาย 0 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "17",
+                      "text": "Onhand 0 · กระจาย 17 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "2",
+                      "text": "Onhand 0 · กระจาย 2 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "3",
+                      "text": "Onhand 0 · กระจาย 0 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
+                      "text": "Onhand 0 · กระจาย 69 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 20,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
+                      "text": "Onhand 0 · กระจาย 3 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
+                      "text": "Onhand 0 · กระจาย 0 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
@@ -1033,7 +716,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "🟪 RC3-SNK · 7 รายการ · Onhand 0 · กระจาย 24,000 · เบิก Hub 0",
+              "text": "🟪 RC3-SNK · แสดง 8/9 · Onhand 0 · กระจาย 24,056 · เบิก Hub 0",
               "size": "small",
               "weight": "bolder",
               "color": "good",
@@ -1047,225 +730,130 @@
               "columns": [
                 {
                   "type": "Column",
-                  "width": 40,
+                  "width": 42,
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "🏷️ 50MT004BB",
+                      "text": "🏷️ · Name Plate Aluminium",
                       "size": "small",
+                      "weight": "default",
+                      "color": "warning",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🔗 52CL003BB",
+                      "text": "🧰 · Closure 12C",
                       "size": "small",
+                      "weight": "default",
+                      "color": "warning",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🔗 52CL004BB",
+                      "text": "🧰 · Closure 24C",
                       "size": "small",
+                      "weight": "default",
+                      "color": "warning",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🔗 52CL010BB",
+                      "text": "🧰 · Closure 48C",
                       "size": "small",
+                      "weight": "default",
+                      "color": "default",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🧵 53OF150BB",
+                      "text": "🧰 · Closure 12C Inline",
                       "size": "small",
+                      "weight": "default",
+                      "color": "warning",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🧶 53OF157BB",
+                      "text": "🧰 · Closure 60C",
                       "size": "small",
+                      "weight": "default",
+                      "color": "warning",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🧶 53OF158BB",
+                      "text": "🔌 · Drop Cable 1C SC/UPC · 3m",
                       "size": "small",
+                      "weight": "default",
+                      "color": "warning",
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "🧶 · ARSS Fiber Cable 12C",
+                      "size": "small",
+                      "weight": "default",
+                      "color": "warning",
                       "spacing": "none"
                     }
                   ]
                 },
                 {
                   "type": "Column",
-                  "width": 20,
+                  "width": 58,
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "weight": "default",
-                      "color": "warning",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "weight": "default",
-                      "color": "warning",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "weight": "default",
-                      "color": "warning",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "weight": "default",
-                      "color": "warning",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "weight": "default",
-                      "color": "warning",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "weight": "default",
-                      "color": "warning",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "weight": "default",
-                      "color": "warning",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 20,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
+                      "text": "Onhand 0 · กระจาย 0 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
+                      "text": "Onhand 0 · กระจาย 0 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
+                      "text": "Onhand 0 · กระจาย 0 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
+                      "text": "Onhand 0 · กระจาย 0 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
+                      "text": "Onhand 0 · กระจาย 56 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "24,000",
+                      "text": "Onhand 0 · กระจาย 0 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 20,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
+                      "text": "Onhand 0 · กระจาย 0 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
+                      "text": "Onhand 0 · กระจาย 24,000 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
@@ -1282,7 +870,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "🟧 RC3-UDN · 7 รายการ · Onhand 0 · กระจาย 32,025 · เบิก Hub 0 · ⚠️ เสี่ยงขาด 2",
+              "text": "🟧 RC3-UDN · แสดง 8/9 · Onhand 0 · กระจาย 32,096 · เบิก Hub 0 · ⚠️ เสี่ยงขาด 2",
               "size": "small",
               "weight": "bolder",
               "color": "attention",
@@ -1296,225 +884,130 @@
               "columns": [
                 {
                   "type": "Column",
-                  "width": 40,
+                  "width": 42,
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "🔗 52CL003BB",
-                      "size": "small",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "🧶 53OF157BB",
-                      "size": "small",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "🏷️ 50MT004BB",
-                      "size": "small",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "🔗 52CL004BB",
-                      "size": "small",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "🔗 52CL010BB",
-                      "size": "small",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "🧵 53OF150BB",
-                      "size": "small",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "🧶 53OF158BB",
-                      "size": "small",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 20,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
+                      "text": "🧰 · Closure 12C",
                       "size": "small",
                       "weight": "bolder",
                       "color": "attention",
-                      "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
+                      "text": "🧶 · ARSS Fiber Cable 12C",
                       "size": "small",
                       "weight": "bolder",
                       "color": "attention",
-                      "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
+                      "text": "🏷️ · Name Plate Aluminium",
                       "size": "small",
                       "weight": "default",
                       "color": "warning",
-                      "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
+                      "text": "🧰 · Closure 24C",
                       "size": "small",
                       "weight": "default",
                       "color": "warning",
-                      "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
+                      "text": "🧰 · Closure 48C",
                       "size": "small",
                       "weight": "default",
-                      "color": "warning",
-                      "horizontalAlignment": "right",
+                      "color": "default",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
+                      "text": "🧰 · Closure 12C Inline",
                       "size": "small",
                       "weight": "default",
                       "color": "warning",
-                      "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
+                      "text": "🧰 · Closure 60C",
                       "size": "small",
                       "weight": "default",
                       "color": "warning",
-                      "horizontalAlignment": "right",
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "🔌 · Drop Cable 1C SC/UPC · 3m",
+                      "size": "small",
+                      "weight": "default",
+                      "color": "warning",
                       "spacing": "none"
                     }
                   ]
                 },
                 {
                   "type": "Column",
-                  "width": 20,
+                  "width": 58,
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "20",
+                      "text": "Onhand 0 · กระจาย 20 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "32,000",
+                      "text": "Onhand 0 · กระจาย 32,000 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
+                      "text": "Onhand 0 · กระจาย 0 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "2",
+                      "text": "Onhand 0 · กระจาย 2 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "3",
+                      "text": "Onhand 0 · กระจาย 0 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
+                      "text": "Onhand 0 · กระจาย 71 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 20,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
+                      "text": "Onhand 0 · กระจาย 3 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
+                      "text": "Onhand 0 · กระจาย 0 · Hub 0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
@@ -1534,7 +1027,7 @@
       "items": [
         {
           "type": "TextBlock",
-          "text": "สัญลักษณ์หน้ารหัสวัสดุ",
+          "text": "สัญลักษณ์หน้ารายการ · Item Code เต็ม",
           "size": "small",
           "weight": "bolder",
           "color": "accent",
@@ -1542,36 +1035,88 @@
           "spacing": "none"
         },
         {
-          "type": "TextBlock",
-          "text": "🏷️ **50MT004BB · Name Plate (Aluminium)** = ป้ายชื่อติดอุปกรณ์",
-          "size": "small",
-          "isSubtle": true,
-          "wrap": true,
-          "spacing": "none"
+          "type": "Container",
+          "spacing": "small",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "🏷️ **NAME PLATE** — ป้ายชื่อติดอุปกรณ์",
+              "size": "small",
+              "wrap": true,
+              "spacing": "none"
+            },
+            {
+              "type": "TextBlock",
+              "text": "50MT004BB=Name Plate Aluminium",
+              "size": "small",
+              "isSubtle": true,
+              "wrap": true,
+              "spacing": "none"
+            }
+          ]
         },
         {
-          "type": "TextBlock",
-          "text": "🔗 **52CL003BB · CLOSURE 12 C, 52CL004BB · CLOSURE 24 C, 52CL010BB · CLOSURE 60 C** = หัวต่อ CLOSURE สำหรับตัดต่อ Cable Optic",
-          "size": "small",
-          "isSubtle": true,
-          "wrap": true,
-          "spacing": "none"
+          "type": "Container",
+          "spacing": "small",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "🧰 **CLOSURE** — หัวต่อ CLOSURE สำหรับตัดต่อ Cable Optic",
+              "size": "small",
+              "wrap": true,
+              "spacing": "none"
+            },
+            {
+              "type": "TextBlock",
+              "text": "52CL003BB=Closure 12C · 52CL004BB=Closure 24C · 52CL006BB=Closure 48C · 52CL009BB=Closure 12C Inline · 52CL010BB=Closure 60C",
+              "size": "small",
+              "isSubtle": true,
+              "wrap": true,
+              "spacing": "none"
+            }
+          ]
         },
         {
-          "type": "TextBlock",
-          "text": "🧵 **53OF150BB · OPTICAL FIBER DROP CABLE 1C, FLAT TYPE (G.657A) WI** = สาย Pigtail Patch สำหรับ Splice เชื่อมต่อ",
-          "size": "small",
-          "isSubtle": true,
-          "wrap": true,
-          "spacing": "none"
+          "type": "Container",
+          "spacing": "small",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "🔌 **DROP CABLE** — สาย Pigtail Patch สำหรับ Splice เชื่อมต่อ",
+              "size": "small",
+              "wrap": true,
+              "spacing": "none"
+            },
+            {
+              "type": "TextBlock",
+              "text": "53OF150BB=Drop Cable 1C SC/UPC · 3m",
+              "size": "small",
+              "isSubtle": true,
+              "wrap": true,
+              "spacing": "none"
+            }
+          ]
         },
         {
-          "type": "TextBlock",
-          "text": "🧶 **53OF157BB · ARSS OPTICAL FIBER CABLE 12c-FIBRE3, 53OF158BB · ARSS OPTICAL FIBER CABLE 24c-FIBRE3** = สาย Cable Fiber Optic",
-          "size": "small",
-          "isSubtle": true,
-          "wrap": true,
-          "spacing": "none"
+          "type": "Container",
+          "spacing": "small",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "🧶 **ARSS FIBER CABLE** — สาย Cable Fiber Optic",
+              "size": "small",
+              "wrap": true,
+              "spacing": "none"
+            },
+            {
+              "type": "TextBlock",
+              "text": "53OF157BB=ARSS Fiber Cable 12C · 53OF158BB=ARSS Fiber Cable 24C",
+              "size": "small",
+              "isSubtle": true,
+              "wrap": true,
+              "spacing": "none"
+            }
+          ]
         }
       ]
     },

@@ -29,7 +29,7 @@
     },
     {
       "type": "TextBlock",
-      "text": "⚠️ เสี่ยงขาด **11**  •  🟡 พอใช้ **0**  •  ✅ ปกติ **24**  •  📦 รวม **35** รายการ / 5 Zone",
+      "text": "⚠️ เสี่ยงขาด **12**  •  🟡 พอใช้ **0**  •  ✅ ปกติ **33**  •  📦 รวม **45** รายการ / 5 Zone",
       "wrap": true,
       "spacing": "medium"
     },
@@ -194,7 +194,7 @@
                 },
                 {
                   "type": "TextBlock",
-                  "text": "🔴 🟩 RC2-UBN · 52CL010BB",
+                  "text": "🔴 🟩 RC2-UBN · 52CL009BB",
                   "size": "small",
                   "spacing": "none"
                 },
@@ -224,7 +224,7 @@
                 },
                 {
                   "type": "TextBlock",
-                  "text": "🔴 🟩 RC2-UBN · 53OF150BB",
+                  "text": "🔴 🟩 RC2-UBN · 52CL010BB",
                   "size": "small",
                   "spacing": "none"
                 },
@@ -236,7 +236,7 @@
                 },
                 {
                   "type": "TextBlock",
-                  "text": "🟡 🟪 RC3-SNK · 52CL010BB",
+                  "text": "⚪ 🟪 RC3-SNK · 52CL006BB",
                   "size": "small",
                   "spacing": "none"
                 },
@@ -254,7 +254,67 @@
                 },
                 {
                   "type": "TextBlock",
+                  "text": "🔴 🟩 RC2-UBN · 53OF150BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "⚪ 🟨 RC3-KKN · 52CL006BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟡 🟪 RC3-SNK · 52CL009BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "⚪ 🟧 RC3-UDN · 52CL006BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟡 🟦 RC2-NMA · 52CL004BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
                   "text": "🔴 🟩 RC2-UBN · 53OF157BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟡 🟨 RC3-KKN · 52CL009BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟡 🟪 RC3-SNK · 52CL010BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟡 🟧 RC3-UDN · 52CL009BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "⚪ 🟦 RC2-NMA · 52CL006BB",
+                  "size": "small",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "🟡 🟩 RC2-UBN · 50MT004BB",
                   "size": "small",
                   "spacing": "none"
                 },
@@ -278,13 +338,13 @@
                 },
                 {
                   "type": "TextBlock",
-                  "text": "🟡 🟦 RC2-NMA · 52CL004BB",
+                  "text": "🟡 🟦 RC2-NMA · 52CL009BB",
                   "size": "small",
                   "spacing": "none"
                 },
                 {
                   "type": "TextBlock",
-                  "text": "🟡 🟩 RC2-UBN · 50MT004BB",
+                  "text": "⚪ 🟩 RC2-UBN · 52CL006BB",
                   "size": "small",
                   "spacing": "none"
                 },
@@ -305,36 +365,6 @@
                   "text": "🟡 🟧 RC3-UDN · 53OF150BB",
                   "size": "small",
                   "spacing": "none"
-                },
-                {
-                  "type": "TextBlock",
-                  "text": "🟡 🟦 RC2-NMA · 53OF150BB",
-                  "size": "small",
-                  "spacing": "none"
-                },
-                {
-                  "type": "TextBlock",
-                  "text": "🟡 🟩 RC2-UBN · 53OF158BB",
-                  "size": "small",
-                  "spacing": "none"
-                },
-                {
-                  "type": "TextBlock",
-                  "text": "🟡 🟨 RC3-KKN · 53OF158BB",
-                  "size": "small",
-                  "spacing": "none"
-                },
-                {
-                  "type": "TextBlock",
-                  "text": "🟡 🟪 RC3-SNK · 53OF158BB",
-                  "size": "small",
-                  "spacing": "none"
-                },
-                {
-                  "type": "TextBlock",
-                  "text": "🟡 🟧 RC3-UDN · 53OF158BB",
-                  "size": "small",
-                  "spacing": "none"
                 }
               ]
             },
@@ -508,6 +538,15 @@
                   "type": "TextBlock",
                   "text": "0",
                   "size": "small",
+                  "color": "default",
+                  "weight": "default",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
                   "color": "warning",
                   "weight": "default",
                   "horizontalAlignment": "right",
@@ -518,6 +557,42 @@
                   "text": "0",
                   "size": "small",
                   "color": "warning",
+                  "weight": "default",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "color": "attention",
+                  "weight": "bolder",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "color": "default",
+                  "weight": "default",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "color": "warning",
+                  "weight": "default",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "color": "default",
                   "weight": "default",
                   "horizontalAlignment": "right",
                   "spacing": "none"
@@ -571,7 +646,7 @@
                   "type": "TextBlock",
                   "text": "0",
                   "size": "small",
-                  "color": "warning",
+                  "color": "default",
                   "weight": "default",
                   "horizontalAlignment": "right",
                   "spacing": "none"
@@ -625,7 +700,7 @@
                   "type": "TextBlock",
                   "text": "0",
                   "size": "small",
-                  "color": "warning",
+                  "color": "default",
                   "weight": "default",
                   "horizontalAlignment": "right",
                   "spacing": "none"
@@ -663,6 +738,41 @@
               "type": "Column",
               "width": 15,
               "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
                 {
                   "type": "TextBlock",
                   "text": "0",
@@ -987,6 +1097,41 @@
                 {
                   "type": "TextBlock",
                   "text": "500",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "15",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
                   "size": "small",
                   "horizontalAlignment": "right",
                   "spacing": "none"
@@ -1409,10 +1554,54 @@
                   "size": "small",
                   "horizontalAlignment": "right",
                   "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "0",
+                  "size": "small",
+                  "horizontalAlignment": "right",
+                  "spacing": "none"
                 }
               ]
             }
           ]
+        },
+        {
+          "type": "TextBlock",
+          "text": "",
+          "size": "small",
+          "isSubtle": true,
+          "horizontalAlignment": "center",
+          "wrap": true,
+          "spacing": "medium"
         }
       ]
     },

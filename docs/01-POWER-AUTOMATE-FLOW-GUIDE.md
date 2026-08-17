@@ -1,8 +1,8 @@
 # คู่มือสร้าง Flow ส่ง Adaptive Card เข้า Microsoft Teams
 ### ฉบับมือใหม่ ทำตามได้เอง ทีละขั้น
 
-Report Material Optimize&MA_NER
-เฉพาะรหัสวัสดุ **8 รหัส** ที่กำหนดไว้ (ดู [ข้อ 5.2](#52-เปลี่ยนรหัสวัสดุที่แสดง))
+Report Stock Allocation Cable&Material NER
+เฉพาะรหัสวัสดุ **10 รหัส** ที่กำหนดไว้ (ดู [ข้อ 5.2](#52-เปลี่ยนรหัสวัสดุที่แสดง))
 
 > 📄 มีฉบับหน้าเว็บแบบพับเก็บได้ทีละ Action ที่ [`flow-guide-artifact.html`](flow-guide-artifact.html)
 
@@ -35,7 +35,7 @@ Report Material Optimize&MA_NER
       อ่านชีต "MA&Optimize NER"
             │
             ▼
-   🔍 คัดเฉพาะ 8 รหัสที่กำหนด
+   🔍 คัดเฉพาะ 10 รหัสที่กำหนด
       ของรอบล่าสุด แล้วจัดกลุ่มตาม Zone
             │
             ▼
@@ -114,8 +114,8 @@ Report Material Optimize&MA_NER
 - [ ] มีชีตชื่อ **`MA&Optimize NER`** (ชื่อต้องตรงเป๊ะ รวมเครื่องหมาย `&`)
 - [ ] **แถวที่ 7** คือหัวตาราง — เซลล์ A7 ต้องเป็นคำว่า `Distribution period`
 - [ ] แถวที่ 8 เป็นต้นไปเป็นข้อมูล
-- [ ] มีคอลัมน์ครบ: `Zone`, `Item Code`, `Onhand`, `จัดสรร(เบิก Hub)`,
-      `Prev_Period`, `Prev_Before`, `Prev_Received`, `Status`, `Risk_Flag`, `Data_Set`
+- [ ] มีคอลัมน์ครบ: `Zone`, `Item Code`, `Onhand`, `จัดสรร(กระจาย)`,
+      `จัดสรร(เบิก Hub)`, `Prev_Period`, `Status`, `Risk_Flag`, `Data_Set`
 
 ---
 
@@ -229,7 +229,7 @@ concat(
 | พารามิเตอร์ | ใส่ค่า | ความหมาย |
 |---|---|---|
 | `period` | เว้นว่าง (หรือ `-`) | รอบ **Optimize** ล่าสุดอัตโนมัติ (ดูกล่องข้างล่าง) |
-| `topRows` | `40` หรือเว้นว่าง | เพดานแถว — สคริปต์วัดขนาดแล้วลดให้เองถ้าจำเป็น (เว้นว่าง = 40) |
+| `topRows` | `50` หรือเว้นว่าง | เพดานแถว — สคริปต์วัดขนาดแล้วลดให้เองถ้าจำเป็น (เว้นว่าง = 60) |
 | `dashboardUrl` | ลิงก์ Dashboard ของคุณ | ใช้กับปุ่ม 📊 |
 | `sourceFileUrl` | ลิงก์ไฟล์ Excel จากข้อ 1.2 | ใช้กับปุ่ม 📁 |
 | `generatedAt` | เลือก **Outputs** ของ `GeneratedAt` | เวลาที่สร้างรายงาน |
@@ -263,22 +263,20 @@ concat(
 >
 > Teams ปฏิเสธข้อความที่ใหญ่เกิน **28 KB** ด้วย error `RequestEntityTooLarge`
 > สคริปต์จึงประกอบการ์ดแล้ว **วัดขนาดแบบแย่ที่สุดที่เป็นไปได้** ถ้าเกินงบ
-> 20,000 ไบต์ ก็ลดแถวแล้วประกอบใหม่ให้เอง
+> 24,500 ไบต์ ก็ลดแถวแล้วประกอบใหม่ให้เอง
 >
-> ใส่ `40` ไว้เป็นเพดานก็พอ ขนาดจริงที่วัดได้:
+> ใส่ `50` ไว้เป็นเพดานก็พอ (เว้นว่างได้ค่าเดียวกับใส่ `60` ซึ่งเป็นเพดานสูงสุด
+> ที่เป็นไปได้จริง — 10 รหัสวัสดุ x 5 Zone) ขนาดจริงที่วัดได้:
 >
-> | รอบ | Zone | แถวดิบ | UTF-8 | worst case |
+> | รอบ | Zone | รหัสวัสดุ (10 รหัส) | UTF-8 | worst case |
 > |---|---|---|---|---|
-> | Optimize (3 Aug 26) | 5 | 35 | ~17.8 KB | 19.1 KB ✅ |
-> | MA (17 Aug 26) | 4 | 74 | ~18.3 KB | 19.5 KB ✅ |
+> | Optimize (3 Aug 26) | 5 | **45 ครบ** | 19.0 KB | 22.0 KB ✅ |
+> | MA (17 Aug 26) | 4 | **29 ครบ** | 14.7 KB | 17.1 KB ✅ |
 >
-> รอบที่ใหญ่เกินงบจะถูกตัดแถวท้าย ๆ ออก แล้วสรุปเป็นบรรทัด
-> *"…และอีก N รายการ"* พร้อมปุ่มไป Dashboard — ดูข้อ 1 ใน
+> ทุกรอบลงการ์ดใบเดียวได้ครบ ไม่มีการตัดแถวทิ้ง ถ้าวันหนึ่งข้อมูลโตจนเกินงบ
+> จริง ๆ ส่วนที่ถูกตัดจะเห็นเป็น `แสดง n/N` บนหัวกลุ่ม Zone — ดูข้อ 1 ใน
 > [04-TROUBLESHOOTING.md](04-TROUBLESHOOTING.md) ถ้าอยากได้แถวมากกว่านี้
 > (1 Zone + 1 Item Code = 1 แถว — ยอดของทุกจังหวัดถูกบวกเข้าด้วยกัน)
->
-> ถ้ารอบไหนใหญ่จนต้องตัดจริง ๆ ส่วนที่เหลือจะสรุปเป็นบรรทัด
-> *"…และอีก N รายการ"* พร้อมปุ่มไป Dashboard
 
 ---
 
@@ -342,17 +340,20 @@ string(body('Run_script')?['result'])
 
 เปิดห้อง Teams ที่ตั้งไว้ ต้องเห็นการ์ดที่มี:
 
-- [ ] หัวการ์ดเขียนว่า **Report Material Optimize&MA_NER**
-- [ ] ป้ายชุดข้อมูลถูกต้อง — 📦 **MA — Weekly Allocation** (ฟ้า)
-      หรือ 🗃️ **OPTIMIZE — Allocation Plan** (เขียว)
+- [ ] หัวการ์ดเขียนว่า 🏬 **Report Stock Allocation Cable&Material NER**
+- [ ] ป้ายชุดข้อมูลถูกต้อง — **MA — Weekly Allocation** (ฟ้า)
+      หรือ **Optimize — Allocation Plan** (เขียว)
 - [ ] แถบ 3 ช่อง: รอบจัดสรร / รอบก่อนหน้า / ชุดข้อมูล
 - [ ] แถบตัวเลข 4 กล่อง: ⚠️ เสี่ยงขาด, 🟡 พอใช้, ✅ ปกติ, 📦 รวม
 - [ ] **หัวกลุ่มขึ้นครบทุก Zone** พร้อม emoji
       (🟦 RC2-NMA, 🟩 RC2-UBN, 🟨 RC3-KKN, 🟧 RC3-UDN, 🟪 RC3-SNK — เท่าที่รอบนั้นมีข้อมูล)
-- [ ] ตาราง 5 คอลัมน์: Item Code / Onhand / จัดสรร(เบิก Hub) / Prev_Before / Prev_Received
-      — **ไม่มี Province**
-- [ ] คอลัมน์ **จัดสรร(เบิก Hub) เป็นจำนวนเต็ม** ไม่มีจุดทศนิยม
-- [ ] บรรทัด "…และอีก N รายการ"
+- [ ] แถวข้อมูล 2 คอลัมน์: **icon · ชื่อย่อ** (เช่น `🧰 · Closure 12C`) กับ
+      ตัวเลขรวมบรรทัดเดียว **Onhand · กระจาย · เบิก Hub** — **ไม่มี Province**
+- [ ] ตัวเลข **เบิก Hub เป็นจำนวนเต็ม** ไม่มีจุดทศนิยม
+- [ ] **ไม่มี** บรรทัด "…และอีก N รายการ" (ทุกรหัสควรลงครบ — ถ้าเห็นบรรทัดนี้
+      แปลว่าการ์ดถูกตัดแถว ดูข้อ 1 ใน [04-TROUBLESHOOTING.md](04-TROUBLESHOOTING.md))
+- [ ] ตารางอธิบายท้ายการ์ดมี 4 กลุ่ม: 🏷️ NAME PLATE · 🧰 CLOSURE ·
+      🔌 DROP CABLE · 🧶 ARSS FIBER CABLE
 - [ ] ปุ่ม **📊 Dashboard** และ **📁 Open the source file. (Excel / SharePoint)**
 
 **เปิดดูบนมือถือด้วย** — Teams บนมือถือจะสลับเป็นเลย์เอาต์แนวตั้ง
@@ -365,14 +366,15 @@ string(body('Run_script')?['result'])
 | ช่อง `period` / `reportType` ขึ้นดอกจันบังคับกรอก หรือขึ้น `'ScriptParameters/period' is required` | Flow ยังจำลายเซ็นสคริปต์ตัวเก่าที่ประกาศพารามิเตอร์ด้วย default value | วางสคริปต์ตัวล่าสุดทับใน Excel แล้ว **ลบ action `Run script` เพิ่มใหม่** (หรือใส่ `-` ไปก่อนก็ผ่าน) |
 | การ์ดไม่ขึ้นเลย แต่ Flow เขียว | ใช้สคริปต์เก่าที่ยังไม่วัดขนาดเอง | คัดลอก `renderAdaptiveCard.ts` ตัวล่าสุดไปวางทับใน Excel |
 | Zone บางโซนหายไปทั้งกลุ่ม | ใช้สคริปต์เวอร์ชันเก่า | คัดลอก `renderAdaptiveCard.ts` ตัวล่าสุดไปวางทับใน Excel |
-| จัดสรร(เบิก Hub) ยังมีทศนิยม | ใช้สคริปต์เวอร์ชันเก่า | คัดลอก `renderAdaptiveCard.ts` ตัวล่าสุดไปวางทับใน Excel |
+| เบิก Hub ยังมีทศนิยม | ใช้สคริปต์เวอร์ชันเก่า | คัดลอก `renderAdaptiveCard.ts` ตัวล่าสุดไปวางทับใน Excel |
 | การ์ดขึ้นเป็นข้อความ `${meta.period}` | เอา template ดิบไปวางในช่อง Adaptive Card | ต้องใช้ `string(body('Run_script')?['result'])` |
 | `Run script` แดง: ไม่พบชีต | ชื่อชีตไม่ตรง | ต้องเป็น `MA&Optimize NER` เป๊ะ ๆ |
 | `Run script` แดง: ไม่พบคอลัมน์ | หัวตารางไม่ได้อยู่แถว 7 | ตรวจว่า A7 = `Distribution period` |
 | การ์ดขึ้น empty state ทั้งที่มีข้อมูล | ไฟล์ .xlsx ยังเป็นข้อมูลเก่า | Refresh ใน .xlsm แล้ว Save As ทับ .xlsx ใหม่ |
 | Flow ยิงตอนบ่าย 3 | ไม่ได้ตั้ง Time zone | Recurrence → Time zone = Bangkok |
 | Flow ยิง 60 ครั้ง | ไม่ได้ตั้ง At these minutes | ใส่ `0` |
-| ตัวเลข Prev_Before ผิดคอลัมน์ | ไปดึงจากชีต PA_Export ที่มีบั๊ก | ดู [docs/03-DATA-MAPPING.md](03-DATA-MAPPING.md) |
+| ตัวเลข Onhand / กระจาย / เบิก Hub ผิดคอลัมน์ | ไปดึงจากชีต PA_Export ที่มีบั๊ก | ดู [docs/03-DATA-MAPPING.md](03-DATA-MAPPING.md) |
+| ขึ้น icon "▫️" หน้ารายการ | เพิ่มรหัสใหม่ใน `TARGET_ITEMS` แต่ลืมใส่ `icon`/`group` | เติมทั้ง 5 ฟิลด์ให้ครบ ดูข้อ 5.2 |
 
 รายละเอียดเพิ่มเติม: [docs/04-TROUBLESHOOTING.md](04-TROUBLESHOOTING.md)
 
@@ -388,23 +390,43 @@ Recurrence → แก้ **On these days** / **At these hours**
 ### 5.2 เปลี่ยนรหัสวัสดุที่แสดง
 
 รหัสที่รายงานถูกกำหนดเป็นรายการตายตัวใน `TARGET_ITEMS` — แก้ที่นี่ที่เดียว
-ค่าของแต่ละรหัสคือชื่อที่ใช้แสดงในตารางอธิบายท้ายการ์ด:
+แต่ละรหัสมี 5 ค่า:
+
+| ฟิลด์ | ความหมาย |
+|---|---|
+| `icon` | สัญลักษณ์ประจำ**กลุ่ม** — รหัสในกลุ่มเดียวกันต้องใช้ icon เดียวกันเสมอ |
+| `group` | ชื่อกลุ่มภาษาอังกฤษ (หัวข้อในตารางอธิบายท้ายการ์ด) — 1 icon ต่อ 1 group |
+| `short` | ข้อความที่แสดงบนแถวข้อมูล ("icon · short") แทน Item Code เต็ม |
+| `name` | ชื่อทางการเต็ม (เก็บไว้เผื่ออ้างอิง ไม่ได้ใช้บนการ์ดแล้ว) |
+| `about` | คำอธิบายของทั้งกลุ่ม พิมพ์ครั้งเดียวในตารางอธิบายท้ายการ์ด |
 
 ```typescript
-const TARGET_ITEMS: { [k: string]: string } = {
-  "53OF150BB": "OPTICAL FIBER DROP CABLE 1C, FLAT TYPE (G.657A) WITH 2 SC/UPC PRE-CONNECTOR, 3m.",
-  "53OF157BB": "ARSS OPTICAL FIBER CABLE 12c-FIBRE3",
-  "53OF158BB": "ARSS OPTICAL FIBER CABLE 24c-FIBRE3",
-  "53OF160BB": "ARSS OPTICAL FIBER CABLE 60c-FIBRE3",
-  "50MT004BB": "Name Plate (Aluminium)",
-  "52CL003BB": "CLOSURE 12 C",
-  "52CL004BB": "CLOSURE 24 C",
-  "52CL010BB": "CLOSURE 60 C",
+const TARGET_ITEMS: { [k: string]: TargetItem } = {
+  "50MT004BB": { icon: "🏷️", group: "NAME PLATE", short: "Name Plate Aluminium",
+    name: "Name Plate (Aluminium)", about: "ป้ายชื่อติดอุปกรณ์" },
+
+  "52CL003BB": { icon: "🧰", group: "CLOSURE", short: "Closure 12C",
+    name: "CLOSURE 12 C", about: "หัวต่อ CLOSURE สำหรับตัดต่อ Cable Optic" },
+  // ... 52CL004BB / 52CL006BB / 52CL009BB / 52CL010BB เหมือนกัน
+
+  "53OF150BB": { icon: "🔌", group: "DROP CABLE", short: "Drop Cable 1C SC/UPC · 3m",
+    name: "OPTICAL FIBER DROP CABLE 1C, FLAT TYPE (G.657A) WITH 2 SC/UPC PRE-CONNECTOR, 3m.",
+    about: "สาย Pigtail Patch สำหรับ Splice เชื่อมต่อ" },
+
+  "53OF157BB": { icon: "🧶", group: "ARSS FIBER CABLE", short: "ARSS Fiber Cable 12C",
+    name: "ARSS OPTICAL FIBER CABLE 12c-FIBRE3", about: "สาย Cable Fiber Optic" },
+  // ... 53OF158BB / 53OF160BB เหมือนกัน
 };
 ```
 
-**เพิ่มรหัส** ให้ใส่บรรทัดใหม่พร้อมชื่อ เช่น `"53OF155BB": "ชื่อวัสดุ",`
-**ลบรหัส** ให้ลบบรรทัดนั้นทิ้ง
+**เพิ่มรหัส** ให้ใส่บรรทัดใหม่ครบทั้ง 5 ค่า ถ้าเป็นของกลุ่มเดิม ใช้ `icon`/`group`/`about`
+เดิมได้เลย ตั้งแค่ `short` ให้ต่างจากรหัสอื่นในกลุ่ม
+**ลบรหัส** ให้ลบบรรทัดนั้นทิ้ง — ถ้าลบจนกลุ่มว่าง แถวหัวข้อของกลุ่มนั้นในตาราง
+อธิบายจะหายไปเองอัตโนมัติ
+
+> ⚠️ **ระวังขนาดการ์ด** ยิ่งเพิ่มรหัส/Zone มาก การ์ดยิ่งมีแถวมากตาม
+> (Zone x รหัส = แถวสูงสุดที่เป็นไปได้) ถ้าเพิ่มจน `topRows` ไม่พอ ให้ดูข้อ 1
+> ใน [04-TROUBLESHOOTING.md](04-TROUBLESHOOTING.md) เรื่องงบขนาดการ์ด
 
 > 💡 ถ้าแก้ในโปรเจกต์ (ไม่ใช่แก้ในกล่อง Excel ตรง ๆ) ให้แก้ที่
 > `office-scripts/buildCardPayload.ts` และ `tools/build_sample_data.py`
@@ -541,10 +563,9 @@ Optimize ถูกส่งซ้ำทุกสัปดาห์โดยไ�
 | `ItemCode` | Single line of text | Item Code |
 | `Description` | Single line of text | Description |
 | `OnhandBefore` | Number | Onhand |
-| `FromHub` | Number | จัดสรร(เบิก Hub) |
+| `Distribute` | Number | จัดสรร(กระจาย) — ชุด Optimize ลงยอดไว้ที่นี่ |
+| `FromHub` | Number | จัดสรร(เบิก Hub) — ชุด MA ลงยอดไว้ที่นี่ |
 | `PrevPeriod` | Single line of text | Prev_Period |
-| `PrevBefore` | Number | Prev_Before |
-| `PrevReceived` | Number | Prev_Received |
 | `Status` | Single line of text | Status |
 | `RiskFlag` | Single line of text | Risk_Flag |
 | `DataSet` | Choice (MA / Optimize) | Data_Set |
