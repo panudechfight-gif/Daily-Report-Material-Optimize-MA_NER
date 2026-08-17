@@ -1,13 +1,13 @@
 {
   "meta": {
-    "title": "Report Material Optimize&MA_NER",
+    "title": "Report Stock Allocation Cable&Material NER",
     "subtitle": "",
     "hasLegend": true,
     "period": "Optimize(3 Aug 26)",
     "prevPeriod": "Optimize(6 July 26)",
     "dataSet": "Optimize",
-    "dataSetLabel": "OPTIMIZE — Allocation Plan",
-    "dataSetEmoji": "🗃️",
+    "dataSetLabel": "Optimize — Allocation Plan",
+    "dataSetEmoji": "🏬",
     "dataSetStyle": "good",
     "dataSetColor": "good",
     "cutoffDate": "",
@@ -23,7 +23,7 @@
     "moreCount": 0,
     "moreText": "",
     "dashboardUrl": "https://app.powerbi.com/CHANGE-ME",
-    "sourceFileUrl": "https://contoso.sharepoint.com/CHANGE-ME"
+    "sourceFileUrl": "https://mimotech-my.sharepoint.com/:x:/r/personal/panudeck_ais_co_th/Documents/Workflow%20Power%20Automate/JobMonitor_CMTRS_Job_Tracking.xlsx?d=we08d992568d54ab88ef622f150e1cd05&csf=1&web=1&e=8sLq79"
   },
   "zones": [
     {
@@ -36,13 +36,15 @@
       "riskColor": "attention",
       "countLabel": "7 รายการ",
       "totalOnhand": "0",
+      "totalDistribute": "32,022",
       "totalHub": "0",
-      "totalLabel": "คงเหลือ 0 · Hub 0",
-      "zoneHeadline": "🟦 RC2-NMA · 7 รายการ · คงเหลือ 0 · Hub 0 · ⚠️ เสี่ยงขาด 3",
+      "totalLabel": "Onhand 0 · กระจาย 32,022 · เบิก Hub 0",
+      "zoneHeadline": "🟦 RC2-NMA · 7 รายการ · Onhand 0 · กระจาย 32,022 · เบิก Hub 0 · ⚠️ เสี่ยงขาด 3",
       "items": [
         {
           "itemCode": "52CL010BB",
           "itemName": "CLOSURE 60 C",
+          "itemIcon": "🔗",
           "unit": "PCS",
           "province": "-",
           "provinceCount": 0,
@@ -51,6 +53,7 @@
           "period": "Optimize(3 Aug 26)",
           "prevPeriod": "Optimize(6 July 26)",
           "onhand": "0",
+          "distribute": "3",
           "fromHub": "0",
           "prevBefore": "8",
           "prevReceived": "0",
@@ -67,6 +70,7 @@
         {
           "itemCode": "53OF157BB",
           "itemName": "ARSS OPTICAL FIBER CABLE 12c-FIBRE3",
+          "itemIcon": "🧶",
           "unit": "LM",
           "province": "-",
           "provinceCount": 0,
@@ -75,6 +79,7 @@
           "period": "Optimize(3 Aug 26)",
           "prevPeriod": "Optimize(6 July 26)",
           "onhand": "0",
+          "distribute": "32,000",
           "fromHub": "0",
           "prevBefore": "345",
           "prevReceived": "0",
@@ -91,6 +96,7 @@
         {
           "itemCode": "53OF158BB",
           "itemName": "ARSS OPTICAL FIBER CABLE 24c-FIBRE3",
+          "itemIcon": "🧶",
           "unit": "LM",
           "province": "-",
           "provinceCount": 0,
@@ -99,6 +105,7 @@
           "period": "Optimize(3 Aug 26)",
           "prevPeriod": "Optimize(6 July 26)",
           "onhand": "0",
+          "distribute": "0",
           "fromHub": "0",
           "prevBefore": "500",
           "prevReceived": "0",
@@ -115,6 +122,7 @@
         {
           "itemCode": "50MT004BB",
           "itemName": "Name Plate (Aluminium)",
+          "itemIcon": "🏷️",
           "unit": "EA",
           "province": "-",
           "provinceCount": 0,
@@ -123,6 +131,7 @@
           "period": "Optimize(3 Aug 26)",
           "prevPeriod": "Optimize(6 July 26)",
           "onhand": "0",
+          "distribute": "0",
           "fromHub": "0",
           "prevBefore": "0",
           "prevReceived": "0",
@@ -139,6 +148,7 @@
         {
           "itemCode": "52CL003BB",
           "itemName": "CLOSURE 12 C",
+          "itemIcon": "🔗",
           "unit": "PCS",
           "province": "-",
           "provinceCount": 0,
@@ -147,6 +157,7 @@
           "period": "Optimize(3 Aug 26)",
           "prevPeriod": "Optimize(6 July 26)",
           "onhand": "0",
+          "distribute": "16",
           "fromHub": "0",
           "prevBefore": "0",
           "prevReceived": "0",
@@ -163,6 +174,7 @@
         {
           "itemCode": "52CL004BB",
           "itemName": "CLOSURE 24 C",
+          "itemIcon": "🔗",
           "unit": "PCS",
           "province": "-",
           "provinceCount": 0,
@@ -171,6 +183,7 @@
           "period": "Optimize(3 Aug 26)",
           "prevPeriod": "Optimize(6 July 26)",
           "onhand": "0",
+          "distribute": "3",
           "fromHub": "0",
           "prevBefore": "0",
           "prevReceived": "0",
@@ -187,6 +200,7 @@
         {
           "itemCode": "53OF150BB",
           "itemName": "OPTICAL FIBER DROP CABLE 1C, FLAT TYPE (G.657",
+          "itemIcon": "🧵",
           "unit": "EA",
           "province": "-",
           "provinceCount": 0,
@@ -195,6 +209,7 @@
           "period": "Optimize(3 Aug 26)",
           "prevPeriod": "Optimize(6 July 26)",
           "onhand": "0",
+          "distribute": "0",
           "fromHub": "0",
           "prevBefore": "0",
           "prevReceived": "0",
@@ -220,13 +235,15 @@
       "riskColor": "attention",
       "countLabel": "7 รายการ",
       "totalOnhand": "0",
+      "totalDistribute": "24,020",
       "totalHub": "0",
-      "totalLabel": "คงเหลือ 0 · Hub 0",
-      "zoneHeadline": "🟩 RC2-UBN · 7 รายการ · คงเหลือ 0 · Hub 0 · ⚠️ เสี่ยงขาด 5",
+      "totalLabel": "Onhand 0 · กระจาย 24,020 · เบิก Hub 0",
+      "zoneHeadline": "🟩 RC2-UBN · 7 รายการ · Onhand 0 · กระจาย 24,020 · เบิก Hub 0 · ⚠️ เสี่ยงขาด 5",
       "items": [
         {
           "itemCode": "52CL003BB",
           "itemName": "CLOSURE 12 C",
+          "itemIcon": "🔗",
           "unit": "PCS",
           "province": "-",
           "provinceCount": 0,
@@ -235,6 +252,7 @@
           "period": "Optimize(3 Aug 26)",
           "prevPeriod": "Optimize(6 July 26)",
           "onhand": "0",
+          "distribute": "15",
           "fromHub": "0",
           "prevBefore": "114",
           "prevReceived": "0",
@@ -251,6 +269,7 @@
         {
           "itemCode": "52CL004BB",
           "itemName": "CLOSURE 24 C",
+          "itemIcon": "🔗",
           "unit": "PCS",
           "province": "-",
           "provinceCount": 0,
@@ -259,6 +278,7 @@
           "period": "Optimize(3 Aug 26)",
           "prevPeriod": "Optimize(6 July 26)",
           "onhand": "0",
+          "distribute": "2",
           "fromHub": "0",
           "prevBefore": "7",
           "prevReceived": "0",
@@ -275,6 +295,7 @@
         {
           "itemCode": "52CL010BB",
           "itemName": "CLOSURE 60 C",
+          "itemIcon": "🔗",
           "unit": "PCS",
           "province": "-",
           "provinceCount": 0,
@@ -283,6 +304,7 @@
           "period": "Optimize(3 Aug 26)",
           "prevPeriod": "Optimize(6 July 26)",
           "onhand": "0",
+          "distribute": "3",
           "fromHub": "0",
           "prevBefore": "7",
           "prevReceived": "0",
@@ -299,6 +321,7 @@
         {
           "itemCode": "53OF150BB",
           "itemName": "OPTICAL FIBER DROP CABLE 1C, FLAT TYPE (G.657",
+          "itemIcon": "🧵",
           "unit": "EA",
           "province": "-",
           "provinceCount": 0,
@@ -307,6 +330,7 @@
           "period": "Optimize(3 Aug 26)",
           "prevPeriod": "Optimize(6 July 26)",
           "onhand": "0",
+          "distribute": "0",
           "fromHub": "0",
           "prevBefore": "50",
           "prevReceived": "0",
@@ -323,6 +347,7 @@
         {
           "itemCode": "53OF157BB",
           "itemName": "ARSS OPTICAL FIBER CABLE 12c-FIBRE3",
+          "itemIcon": "🧶",
           "unit": "LM",
           "province": "-",
           "provinceCount": 0,
@@ -331,6 +356,7 @@
           "period": "Optimize(3 Aug 26)",
           "prevPeriod": "Optimize(6 July 26)",
           "onhand": "0",
+          "distribute": "24,000",
           "fromHub": "0",
           "prevBefore": "60,000",
           "prevReceived": "0",
@@ -347,6 +373,7 @@
         {
           "itemCode": "50MT004BB",
           "itemName": "Name Plate (Aluminium)",
+          "itemIcon": "🏷️",
           "unit": "EA",
           "province": "-",
           "provinceCount": 0,
@@ -355,6 +382,7 @@
           "period": "Optimize(3 Aug 26)",
           "prevPeriod": "Optimize(6 July 26)",
           "onhand": "0",
+          "distribute": "0",
           "fromHub": "0",
           "prevBefore": "0",
           "prevReceived": "0",
@@ -371,6 +399,7 @@
         {
           "itemCode": "53OF158BB",
           "itemName": "ARSS OPTICAL FIBER CABLE 24c-FIBRE3",
+          "itemIcon": "🧶",
           "unit": "LM",
           "province": "-",
           "provinceCount": 0,
@@ -379,6 +408,7 @@
           "period": "Optimize(3 Aug 26)",
           "prevPeriod": "Optimize(6 July 26)",
           "onhand": "0",
+          "distribute": "0",
           "fromHub": "0",
           "prevBefore": "0",
           "prevReceived": "0",
@@ -404,13 +434,15 @@
       "riskColor": "attention",
       "countLabel": "7 รายการ",
       "totalOnhand": "0",
+      "totalDistribute": "32,022",
       "totalHub": "0",
-      "totalLabel": "คงเหลือ 0 · Hub 0",
-      "zoneHeadline": "🟨 RC3-KKN · 7 รายการ · คงเหลือ 0 · Hub 0 · ⚠️ เสี่ยงขาด 1",
+      "totalLabel": "Onhand 0 · กระจาย 32,022 · เบิก Hub 0",
+      "zoneHeadline": "🟨 RC3-KKN · 7 รายการ · Onhand 0 · กระจาย 32,022 · เบิก Hub 0 · ⚠️ เสี่ยงขาด 1",
       "items": [
         {
           "itemCode": "53OF157BB",
           "itemName": "ARSS OPTICAL FIBER CABLE 12c-FIBRE3",
+          "itemIcon": "🧶",
           "unit": "LM",
           "province": "-",
           "provinceCount": 0,
@@ -419,6 +451,7 @@
           "period": "Optimize(3 Aug 26)",
           "prevPeriod": "Optimize(6 July 26)",
           "onhand": "0",
+          "distribute": "32,000",
           "fromHub": "0",
           "prevBefore": "3,340",
           "prevReceived": "0",
@@ -435,6 +468,7 @@
         {
           "itemCode": "50MT004BB",
           "itemName": "Name Plate (Aluminium)",
+          "itemIcon": "🏷️",
           "unit": "EA",
           "province": "-",
           "provinceCount": 0,
@@ -443,6 +477,7 @@
           "period": "Optimize(3 Aug 26)",
           "prevPeriod": "Optimize(6 July 26)",
           "onhand": "0",
+          "distribute": "0",
           "fromHub": "0",
           "prevBefore": "0",
           "prevReceived": "0",
@@ -459,6 +494,7 @@
         {
           "itemCode": "52CL003BB",
           "itemName": "CLOSURE 12 C",
+          "itemIcon": "🔗",
           "unit": "PCS",
           "province": "-",
           "provinceCount": 0,
@@ -467,6 +503,7 @@
           "period": "Optimize(3 Aug 26)",
           "prevPeriod": "Optimize(6 July 26)",
           "onhand": "0",
+          "distribute": "17",
           "fromHub": "0",
           "prevBefore": "0",
           "prevReceived": "0",
@@ -483,6 +520,7 @@
         {
           "itemCode": "52CL004BB",
           "itemName": "CLOSURE 24 C",
+          "itemIcon": "🔗",
           "unit": "PCS",
           "province": "-",
           "provinceCount": 0,
@@ -491,6 +529,7 @@
           "period": "Optimize(3 Aug 26)",
           "prevPeriod": "Optimize(6 July 26)",
           "onhand": "0",
+          "distribute": "2",
           "fromHub": "0",
           "prevBefore": "0",
           "prevReceived": "0",
@@ -507,6 +546,7 @@
         {
           "itemCode": "52CL010BB",
           "itemName": "CLOSURE 60 C",
+          "itemIcon": "🔗",
           "unit": "PCS",
           "province": "-",
           "provinceCount": 0,
@@ -515,6 +555,7 @@
           "period": "Optimize(3 Aug 26)",
           "prevPeriod": "Optimize(6 July 26)",
           "onhand": "0",
+          "distribute": "3",
           "fromHub": "0",
           "prevBefore": "0",
           "prevReceived": "0",
@@ -531,6 +572,7 @@
         {
           "itemCode": "53OF150BB",
           "itemName": "OPTICAL FIBER DROP CABLE 1C, FLAT TYPE (G.657",
+          "itemIcon": "🧵",
           "unit": "EA",
           "province": "-",
           "provinceCount": 0,
@@ -539,6 +581,7 @@
           "period": "Optimize(3 Aug 26)",
           "prevPeriod": "Optimize(6 July 26)",
           "onhand": "0",
+          "distribute": "0",
           "fromHub": "0",
           "prevBefore": "0",
           "prevReceived": "0",
@@ -555,6 +598,7 @@
         {
           "itemCode": "53OF158BB",
           "itemName": "ARSS OPTICAL FIBER CABLE 24c-FIBRE3",
+          "itemIcon": "🧶",
           "unit": "LM",
           "province": "-",
           "provinceCount": 0,
@@ -563,6 +607,7 @@
           "period": "Optimize(3 Aug 26)",
           "prevPeriod": "Optimize(6 July 26)",
           "onhand": "0",
+          "distribute": "0",
           "fromHub": "0",
           "prevBefore": "0",
           "prevReceived": "0",
@@ -588,13 +633,15 @@
       "riskColor": "good",
       "countLabel": "7 รายการ",
       "totalOnhand": "0",
+      "totalDistribute": "24,000",
       "totalHub": "0",
-      "totalLabel": "คงเหลือ 0 · Hub 0",
-      "zoneHeadline": "🟪 RC3-SNK · 7 รายการ · คงเหลือ 0 · Hub 0",
+      "totalLabel": "Onhand 0 · กระจาย 24,000 · เบิก Hub 0",
+      "zoneHeadline": "🟪 RC3-SNK · 7 รายการ · Onhand 0 · กระจาย 24,000 · เบิก Hub 0",
       "items": [
         {
           "itemCode": "50MT004BB",
           "itemName": "Name Plate (Aluminium)",
+          "itemIcon": "🏷️",
           "unit": "EA",
           "province": "-",
           "provinceCount": 0,
@@ -603,6 +650,7 @@
           "period": "Optimize(3 Aug 26)",
           "prevPeriod": "Optimize(6 July 26)",
           "onhand": "0",
+          "distribute": "0",
           "fromHub": "0",
           "prevBefore": "0",
           "prevReceived": "0",
@@ -619,6 +667,7 @@
         {
           "itemCode": "52CL003BB",
           "itemName": "CLOSURE 12 C",
+          "itemIcon": "🔗",
           "unit": "PCS",
           "province": "-",
           "provinceCount": 0,
@@ -627,6 +676,7 @@
           "period": "Optimize(3 Aug 26)",
           "prevPeriod": "Optimize(6 July 26)",
           "onhand": "0",
+          "distribute": "0",
           "fromHub": "0",
           "prevBefore": "0",
           "prevReceived": "0",
@@ -643,6 +693,7 @@
         {
           "itemCode": "52CL004BB",
           "itemName": "CLOSURE 24 C",
+          "itemIcon": "🔗",
           "unit": "PCS",
           "province": "-",
           "provinceCount": 0,
@@ -651,6 +702,7 @@
           "period": "Optimize(3 Aug 26)",
           "prevPeriod": "Optimize(6 July 26)",
           "onhand": "0",
+          "distribute": "0",
           "fromHub": "0",
           "prevBefore": "0",
           "prevReceived": "0",
@@ -667,6 +719,7 @@
         {
           "itemCode": "52CL010BB",
           "itemName": "CLOSURE 60 C",
+          "itemIcon": "🔗",
           "unit": "PCS",
           "province": "-",
           "provinceCount": 0,
@@ -675,6 +728,7 @@
           "period": "Optimize(3 Aug 26)",
           "prevPeriod": "Optimize(6 July 26)",
           "onhand": "0",
+          "distribute": "0",
           "fromHub": "0",
           "prevBefore": "0",
           "prevReceived": "0",
@@ -691,6 +745,7 @@
         {
           "itemCode": "53OF150BB",
           "itemName": "OPTICAL FIBER DROP CABLE 1C, FLAT TYPE (G.657",
+          "itemIcon": "🧵",
           "unit": "EA",
           "province": "-",
           "provinceCount": 0,
@@ -699,6 +754,7 @@
           "period": "Optimize(3 Aug 26)",
           "prevPeriod": "Optimize(6 July 26)",
           "onhand": "0",
+          "distribute": "0",
           "fromHub": "0",
           "prevBefore": "0",
           "prevReceived": "0",
@@ -715,6 +771,7 @@
         {
           "itemCode": "53OF157BB",
           "itemName": "ARSS OPTICAL FIBER CABLE 12c-FIBRE3",
+          "itemIcon": "🧶",
           "unit": "LM",
           "province": "-",
           "provinceCount": 0,
@@ -723,6 +780,7 @@
           "period": "Optimize(3 Aug 26)",
           "prevPeriod": "Optimize(6 July 26)",
           "onhand": "0",
+          "distribute": "24,000",
           "fromHub": "0",
           "prevBefore": "0",
           "prevReceived": "0",
@@ -739,6 +797,7 @@
         {
           "itemCode": "53OF158BB",
           "itemName": "ARSS OPTICAL FIBER CABLE 24c-FIBRE3",
+          "itemIcon": "🧶",
           "unit": "LM",
           "province": "-",
           "provinceCount": 0,
@@ -747,6 +806,7 @@
           "period": "Optimize(3 Aug 26)",
           "prevPeriod": "Optimize(6 July 26)",
           "onhand": "0",
+          "distribute": "0",
           "fromHub": "0",
           "prevBefore": "0",
           "prevReceived": "0",
@@ -772,13 +832,15 @@
       "riskColor": "attention",
       "countLabel": "7 รายการ",
       "totalOnhand": "0",
+      "totalDistribute": "32,025",
       "totalHub": "0",
-      "totalLabel": "คงเหลือ 0 · Hub 0",
-      "zoneHeadline": "🟧 RC3-UDN · 7 รายการ · คงเหลือ 0 · Hub 0 · ⚠️ เสี่ยงขาด 2",
+      "totalLabel": "Onhand 0 · กระจาย 32,025 · เบิก Hub 0",
+      "zoneHeadline": "🟧 RC3-UDN · 7 รายการ · Onhand 0 · กระจาย 32,025 · เบิก Hub 0 · ⚠️ เสี่ยงขาด 2",
       "items": [
         {
           "itemCode": "52CL003BB",
           "itemName": "CLOSURE 12 C",
+          "itemIcon": "🔗",
           "unit": "PCS",
           "province": "-",
           "provinceCount": 0,
@@ -787,6 +849,7 @@
           "period": "Optimize(3 Aug 26)",
           "prevPeriod": "Optimize(6 July 26)",
           "onhand": "0",
+          "distribute": "20",
           "fromHub": "0",
           "prevBefore": "158",
           "prevReceived": "0",
@@ -803,6 +866,7 @@
         {
           "itemCode": "53OF157BB",
           "itemName": "ARSS OPTICAL FIBER CABLE 12c-FIBRE3",
+          "itemIcon": "🧶",
           "unit": "LM",
           "province": "-",
           "provinceCount": 0,
@@ -811,6 +875,7 @@
           "period": "Optimize(3 Aug 26)",
           "prevPeriod": "Optimize(6 July 26)",
           "onhand": "0",
+          "distribute": "32,000",
           "fromHub": "0",
           "prevBefore": "28,000",
           "prevReceived": "0",
@@ -827,6 +892,7 @@
         {
           "itemCode": "50MT004BB",
           "itemName": "Name Plate (Aluminium)",
+          "itemIcon": "🏷️",
           "unit": "EA",
           "province": "-",
           "provinceCount": 0,
@@ -835,6 +901,7 @@
           "period": "Optimize(3 Aug 26)",
           "prevPeriod": "Optimize(6 July 26)",
           "onhand": "0",
+          "distribute": "0",
           "fromHub": "0",
           "prevBefore": "0",
           "prevReceived": "0",
@@ -851,6 +918,7 @@
         {
           "itemCode": "52CL004BB",
           "itemName": "CLOSURE 24 C",
+          "itemIcon": "🔗",
           "unit": "PCS",
           "province": "-",
           "provinceCount": 0,
@@ -859,6 +927,7 @@
           "period": "Optimize(3 Aug 26)",
           "prevPeriod": "Optimize(6 July 26)",
           "onhand": "0",
+          "distribute": "2",
           "fromHub": "0",
           "prevBefore": "0",
           "prevReceived": "0",
@@ -875,6 +944,7 @@
         {
           "itemCode": "52CL010BB",
           "itemName": "CLOSURE 60 C",
+          "itemIcon": "🔗",
           "unit": "PCS",
           "province": "-",
           "provinceCount": 0,
@@ -883,6 +953,7 @@
           "period": "Optimize(3 Aug 26)",
           "prevPeriod": "Optimize(6 July 26)",
           "onhand": "0",
+          "distribute": "3",
           "fromHub": "0",
           "prevBefore": "0",
           "prevReceived": "0",
@@ -899,6 +970,7 @@
         {
           "itemCode": "53OF150BB",
           "itemName": "OPTICAL FIBER DROP CABLE 1C, FLAT TYPE (G.657",
+          "itemIcon": "🧵",
           "unit": "EA",
           "province": "-",
           "provinceCount": 0,
@@ -907,6 +979,7 @@
           "period": "Optimize(3 Aug 26)",
           "prevPeriod": "Optimize(6 July 26)",
           "onhand": "0",
+          "distribute": "0",
           "fromHub": "0",
           "prevBefore": "0",
           "prevReceived": "0",
@@ -923,6 +996,7 @@
         {
           "itemCode": "53OF158BB",
           "itemName": "ARSS OPTICAL FIBER CABLE 24c-FIBRE3",
+          "itemIcon": "🧶",
           "unit": "LM",
           "province": "-",
           "provinceCount": 0,
@@ -931,6 +1005,7 @@
           "period": "Optimize(3 Aug 26)",
           "prevPeriod": "Optimize(6 July 26)",
           "onhand": "0",
+          "distribute": "0",
           "fromHub": "0",
           "prevBefore": "0",
           "prevReceived": "0",
@@ -949,32 +1024,24 @@
   ],
   "legend": [
     {
-      "itemCode": "50MT004BB",
-      "itemName": "Name Plate (Aluminium)"
+      "itemIcon": "🏷️",
+      "itemCodes": "50MT004BB · Name Plate (Aluminium)",
+      "itemAbout": "ป้ายชื่อติดอุปกรณ์"
     },
     {
-      "itemCode": "52CL003BB",
-      "itemName": "CLOSURE 12 C"
+      "itemIcon": "🔗",
+      "itemCodes": "52CL003BB · CLOSURE 12 C, 52CL004BB · CLOSURE 24 C, 52CL010BB · CLOSURE 60 C",
+      "itemAbout": "หัวต่อ CLOSURE สำหรับตัดต่อ Cable Optic"
     },
     {
-      "itemCode": "52CL004BB",
-      "itemName": "CLOSURE 24 C"
+      "itemIcon": "🧵",
+      "itemCodes": "53OF150BB · OPTICAL FIBER DROP CABLE 1C, FLAT TYPE (G.657A) WI",
+      "itemAbout": "สาย Pigtail Patch สำหรับ Splice เชื่อมต่อ"
     },
     {
-      "itemCode": "52CL010BB",
-      "itemName": "CLOSURE 60 C"
-    },
-    {
-      "itemCode": "53OF150BB",
-      "itemName": "OPTICAL FIBER DROP CABLE 1C, FLAT TYPE (G.657A) WITH 2 SC/UPC PRE-CONNECTOR, 3m."
-    },
-    {
-      "itemCode": "53OF157BB",
-      "itemName": "ARSS OPTICAL FIBER CABLE 12c-FIBRE3"
-    },
-    {
-      "itemCode": "53OF158BB",
-      "itemName": "ARSS OPTICAL FIBER CABLE 24c-FIBRE3"
+      "itemIcon": "🧶",
+      "itemCodes": "53OF157BB · ARSS OPTICAL FIBER CABLE 12c-FIBRE3, 53OF158BB · ARSS OPTICAL FIBER CABLE 24c-FIBRE3",
+      "itemAbout": "สาย Cable Fiber Optic"
     }
   ]
 }

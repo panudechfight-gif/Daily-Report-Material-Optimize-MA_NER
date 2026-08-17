@@ -114,7 +114,7 @@ Report Material Optimize&MA_NER
 - [ ] มีชีตชื่อ **`MA&Optimize NER`** (ชื่อต้องตรงเป๊ะ รวมเครื่องหมาย `&`)
 - [ ] **แถวที่ 7** คือหัวตาราง — เซลล์ A7 ต้องเป็นคำว่า `Distribution period`
 - [ ] แถวที่ 8 เป็นต้นไปเป็นข้อมูล
-- [ ] มีคอลัมน์ครบ: `Zone`, `Item Code`, `OMC-Onhand`, `เบิกจาก Hub`,
+- [ ] มีคอลัมน์ครบ: `Zone`, `Item Code`, `Onhand`, `จัดสรร(เบิก Hub)`,
       `Prev_Period`, `Prev_Before`, `Prev_Received`, `Status`, `Risk_Flag`, `Data_Set`
 
 ---
@@ -349,9 +349,9 @@ string(body('Run_script')?['result'])
 - [ ] แถบตัวเลข 4 กล่อง: ⚠️ เสี่ยงขาด, 🟡 พอใช้, ✅ ปกติ, 📦 รวม
 - [ ] **หัวกลุ่มขึ้นครบทุก Zone** พร้อม emoji
       (🟦 RC2-NMA, 🟩 RC2-UBN, 🟨 RC3-KKN, 🟧 RC3-UDN, 🟪 RC3-SNK — เท่าที่รอบนั้นมีข้อมูล)
-- [ ] ตาราง 5 คอลัมน์: Item Code / OMC-Onhand / เบิกจาก Hub / Prev_Before / Prev_Received
+- [ ] ตาราง 5 คอลัมน์: Item Code / Onhand / จัดสรร(เบิก Hub) / Prev_Before / Prev_Received
       — **ไม่มี Province**
-- [ ] คอลัมน์ **เบิกจาก Hub เป็นจำนวนเต็ม** ไม่มีจุดทศนิยม
+- [ ] คอลัมน์ **จัดสรร(เบิก Hub) เป็นจำนวนเต็ม** ไม่มีจุดทศนิยม
 - [ ] บรรทัด "…และอีก N รายการ"
 - [ ] ปุ่ม **📊 Dashboard** และ **📁 Open the source file. (Excel / SharePoint)**
 
@@ -365,7 +365,7 @@ string(body('Run_script')?['result'])
 | ช่อง `period` / `reportType` ขึ้นดอกจันบังคับกรอก หรือขึ้น `'ScriptParameters/period' is required` | Flow ยังจำลายเซ็นสคริปต์ตัวเก่าที่ประกาศพารามิเตอร์ด้วย default value | วางสคริปต์ตัวล่าสุดทับใน Excel แล้ว **ลบ action `Run script` เพิ่มใหม่** (หรือใส่ `-` ไปก่อนก็ผ่าน) |
 | การ์ดไม่ขึ้นเลย แต่ Flow เขียว | ใช้สคริปต์เก่าที่ยังไม่วัดขนาดเอง | คัดลอก `renderAdaptiveCard.ts` ตัวล่าสุดไปวางทับใน Excel |
 | Zone บางโซนหายไปทั้งกลุ่ม | ใช้สคริปต์เวอร์ชันเก่า | คัดลอก `renderAdaptiveCard.ts` ตัวล่าสุดไปวางทับใน Excel |
-| เบิกจาก Hub ยังมีทศนิยม | ใช้สคริปต์เวอร์ชันเก่า | คัดลอก `renderAdaptiveCard.ts` ตัวล่าสุดไปวางทับใน Excel |
+| จัดสรร(เบิก Hub) ยังมีทศนิยม | ใช้สคริปต์เวอร์ชันเก่า | คัดลอก `renderAdaptiveCard.ts` ตัวล่าสุดไปวางทับใน Excel |
 | การ์ดขึ้นเป็นข้อความ `${meta.period}` | เอา template ดิบไปวางในช่อง Adaptive Card | ต้องใช้ `string(body('Run_script')?['result'])` |
 | `Run script` แดง: ไม่พบชีต | ชื่อชีตไม่ตรง | ต้องเป็น `MA&Optimize NER` เป๊ะ ๆ |
 | `Run script` แดง: ไม่พบคอลัมน์ | หัวตารางไม่ได้อยู่แถว 7 | ตรวจว่า A7 = `Distribution period` |
@@ -470,7 +470,7 @@ Optimize ถูกส่งซ้ำทุกสัปดาห์โดยไ�
    ทำได้ด้วย Condition ใน Flow เช็ก `riskCount` จาก Run script ก่อนโพสต์
 
 4. **OPTIMIZE ควรมีการเทียบ** ตัวเลข `Prev_Before` / `Prev_Received` บนการ์ด
-   คือจุดที่บอกว่า "รอบก่อนใช้ไปเท่าไร" ให้ผู้อ่านดูคู่กับ `OMC-Onhand` เสมอ
+   คือจุดที่บอกว่า "รอบก่อนใช้ไปเท่าไร" ให้ผู้อ่านดูคู่กับ `Onhand` เสมอ
    ถ้าอยากได้กราฟแนวโน้มจริง ๆ ให้ลิงก์ไป Dashboard แทนการยัดลงการ์ด
 
 5. **ให้ทั้งสองใบชี้ไป Dashboard เดียวกัน** การ์ดคือ "สัญญาณเตือน" ไม่ใช่รายงานฉบับเต็ม
@@ -540,8 +540,8 @@ Optimize ถูกส่งซ้ำทุกสัปดาห์โดยไ�
 | `Province` | Single line of text | Province |
 | `ItemCode` | Single line of text | Item Code |
 | `Description` | Single line of text | Description |
-| `OnhandBefore` | Number | OMC-Onhand |
-| `FromHub` | Number | เบิกจาก Hub |
+| `OnhandBefore` | Number | Onhand |
+| `FromHub` | Number | จัดสรร(เบิก Hub) |
 | `PrevPeriod` | Single line of text | Prev_Period |
 | `PrevBefore` | Number | Prev_Before |
 | `PrevReceived` | Number | Prev_Received |

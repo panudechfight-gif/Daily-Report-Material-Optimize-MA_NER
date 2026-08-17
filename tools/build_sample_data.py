@@ -35,20 +35,35 @@ except ImportError:
 # ค่าของแต่ละรหัสคือชื่อที่ใช้แสดงในตารางอธิบายท้ายการ์ด
 # --------------------------------------------------------------------------------------
 TARGET_ITEMS = {
-    "53OF150BB": "OPTICAL FIBER DROP CABLE 1C, FLAT TYPE (G.657A) WITH 2 SC/UPC PRE-CONNECTOR, 3m.",
-    "53OF157BB": "ARSS OPTICAL FIBER CABLE 12c-FIBRE3",
-    "53OF158BB": "ARSS OPTICAL FIBER CABLE 24c-FIBRE3",
-    "53OF160BB": "ARSS OPTICAL FIBER CABLE 60c-FIBRE3",
-    "50MT004BB": "Name Plate (Aluminium)",
-    "52CL003BB": "CLOSURE 12 C",
-    "52CL004BB": "CLOSURE 24 C",
-    "52CL010BB": "CLOSURE 60 C",
+    "53OF150BB": {"icon": "\U0001F9F5", "name": "OPTICAL FIBER DROP CABLE 1C, FLAT TYPE (G.657A) WITH 2 SC/UPC PRE-CONNECTOR, 3m.", "about": "สาย Pigtail Patch สำหรับ Splice เชื่อมต่อ"},
+    "53OF157BB": {"icon": "\U0001F9F6", "name": "ARSS OPTICAL FIBER CABLE 12c-FIBRE3", "about": "สาย Cable Fiber Optic"},
+    "53OF158BB": {"icon": "\U0001F9F6", "name": "ARSS OPTICAL FIBER CABLE 24c-FIBRE3", "about": "สาย Cable Fiber Optic"},
+    "53OF160BB": {"icon": "\U0001F9F6", "name": "ARSS OPTICAL FIBER CABLE 60c-FIBRE3", "about": "สาย Cable Fiber Optic"},
+    "50MT004BB": {"icon": "\U0001F3F7\uFE0F", "name": "Name Plate (Aluminium)", "about": "ป้ายชื่อติดอุปกรณ์"},
+    "52CL003BB": {"icon": "\U0001F517", "name": "CLOSURE 12 C", "about": "หัวต่อ CLOSURE สำหรับตัดต่อ Cable Optic"},
+    "52CL004BB": {"icon": "\U0001F517", "name": "CLOSURE 24 C", "about": "หัวต่อ CLOSURE สำหรับตัดต่อ Cable Optic"},
+    "52CL010BB": {"icon": "\U0001F517", "name": "CLOSURE 60 C", "about": "หัวต่อ CLOSURE สำหรับตัดต่อ Cable Optic"},
 }
+
+# หัวตารางที่ยอมรับได้ของแต่ละคอลัมน์ (ชีตเคยเปลี่ยนชื่อมาแล้ว) — ชื่อใหม่อยู่หน้าสุด
+COL_ALIASES = {
+    "Onhand": ["Onhand", "OMC-Onhand"],
+    "จัดสรร(กระจาย)": ["จัดสรร(กระจาย)", "จัดสรร"],
+    "จัดสรร(เบิก Hub)": ["จัดสรร(เบิก Hub)", "เบิกจาก Hub"],
+}
+
+
+def pick(rec, std):
+    """อ่านค่าจาก record ตามชื่อมาตรฐาน โดยลองชื่อเดิมให้ด้วย"""
+    for alias in COL_ALIASES.get(std, [std]):
+        if alias in rec:
+            return rec.get(alias)
+    return None
 
 # คอลัมน์บล็อกตัวเลขที่ข้อมูลในชีตเลื่อนไปทางขวา 1 ช่องจากหัวตารางของตัวเอง
 # (ชีตมีคอลัมน์ว่างไม่มีหัวแทรกอยู่หลัง OMC-Onhand)
 # ตรวจจับด้วยกฎ  จัดสรร + เบิกจาก Hub + จัดสรรเพิ่ม = รวม 3 รายการ  ใน fix_header_shift()
-SHIFT_COLS = ["จัดสรร", "เบิกจาก Hub", "จัดสรรเพิ่ม", "รวม 3 รายการ"]
+SHIFT_COLS = ["จัดสรร(กระจาย)", "จัดสรร(เบิก Hub)", "จัดสรรเพิ่ม", "รวม 3 รายการ"]
 
 SHEET_SOURCE = "MA&Optimize NER"
 HEADER_ROW = 7  # ชีต MA&Optimize NER วางหัวตารางไว้แถวที่ 7
@@ -65,7 +80,7 @@ ZONE_EMOJI = {
 # Data_Set -> ชุดสี/emoji ของหัวการ์ด (emoji ชุดคลังวัสดุ)
 DATASET_THEME = {
     "MA": {"emoji": "📦", "style": "accent", "color": "accent", "label": "MA — Weekly Allocation"},
-    "Optimize": {"emoji": "🗃️", "style": "good", "color": "good", "label": "OPTIMIZE — Allocation Plan"},
+    "Optimize": {"emoji": "🗃️", "style": "good", "color": "good", "label": "Optimize — Allocation Plan"},
 }
 
 # Status ในไฟล์ -> emoji + สีของ Adaptive Card
@@ -142,7 +157,7 @@ def fix_header_shift(header, data_rows):
     for off in (0, 1):
         checked = agree = 0
         for r in data_rows[:300]:
-            ia, ib = idx["จัดสรร"] + off, idx["เบิกจาก Hub"] + off
+            ia, ib = idx["จัดสรร(กระจาย)"] + off, idx["จัดสรร(เบิก Hub)"] + off
             ic, isum = idx["จัดสรรเพิ่ม"] + off, idx["รวม 3 รายการ"] + off
             if isum >= len(r):
                 continue
@@ -296,17 +311,20 @@ def build_payload(rows, period=None, dashboard_url="", source_url="", top=TOP_RO
         if a is None:
             a = {
                 "zone": zone, "itemCode": code,
-                "itemName": TARGET_ITEMS.get(code)
-                            or str(r.get("Description") or r.get("Art No") or "").strip(),
+                "itemName": (TARGET_ITEMS[code]["name"] if code in TARGET_ITEMS
+                             else str(r.get("Description") or r.get("Art No") or "").strip()),
+                "itemIcon": TARGET_ITEMS[code]["icon"] if code in TARGET_ITEMS else "\u25AB\uFE0F",
                 "unit": str(r.get("Unit") or "").strip(),
-                "onhand": 0.0, "fromHub": 0.0, "prevBefore": 0.0, "prevReceived": 0.0,
+                "onhand": 0.0, "distribute": 0.0, "fromHub": 0.0,
+                "prevBefore": 0.0, "prevReceived": 0.0,
                 "provinces": [], "status": "", "statusRank": -1,
                 "isRisk": False, "riskFlag": "",
             }
             agg[key] = a
 
-        a["onhand"] += num(r.get("OMC-Onhand"))
-        a["fromHub"] += num(r.get("เบิกจาก Hub"))
+        a["onhand"] += num(pick(r, "Onhand"))
+        a["distribute"] += num(pick(r, "จัดสรร(กระจาย)"))
+        a["fromHub"] += num(pick(r, "จัดสรร(เบิก Hub)"))
         a["prevBefore"] += num(r.get("Prev_Before"))
         a["prevReceived"] += num(r.get("Prev_Received"))
 
@@ -343,6 +361,7 @@ def build_payload(rows, period=None, dashboard_url="", source_url="", top=TOP_RO
         item = OrderedDict([
             ("itemCode", a["itemCode"]),
             ("itemName", a["itemName"][:45]),
+            ("itemIcon", a["itemIcon"]),
             ("unit", a["unit"]),
             ("province", "{} จังหวัด".format(n_prov) if n_prov else "-"),
             ("provinceCount", n_prov),
@@ -352,6 +371,7 @@ def build_payload(rows, period=None, dashboard_url="", source_url="", top=TOP_RO
             ("period", str(period)),
             ("prevPeriod", prev_period or "-"),
             ("onhand", fmt_num(a["onhand"])),
+            ("distribute", fmt_int(a["distribute"])),
             ("fromHub", fmt_int(a["fromHub"])),
             ("prevBefore", fmt_num(a["prevBefore"])),
             ("prevReceived", fmt_num(a["prevReceived"])),
@@ -412,10 +432,12 @@ def build_payload(rows, period=None, dashboard_url="", source_url="", top=TOP_RO
 
     # ยอดรวมของแต่ละ Zone = บวกทุกจังหวัดในโซนนั้น (ไม่ใช่แค่แถวที่แสดง)
     zone_onhand = OrderedDict()
+    zone_dist = OrderedDict()
     zone_hub = OrderedDict()
     for it in all_items:
         z = it["zone"]
         zone_onhand[z] = zone_onhand.get(z, 0.0) + num(it["onhand"].replace(",", ""))
+        zone_dist[z] = zone_dist.get(z, 0.0) + num(it["distribute"].replace(",", ""))
         zone_hub[z] = zone_hub.get(z, 0.0) + num(it["fromHub"].replace(",", ""))
 
     zone_list = []
@@ -424,6 +446,7 @@ def build_payload(rows, period=None, dashboard_url="", source_url="", top=TOP_RO
         n_risk = zone_risk_totals.get(zone, 0)
         n_all = zone_totals.get(zone, len(items))
         t_onhand = fmt_num(zone_onhand.get(zone, 0))
+        t_dist = fmt_int(zone_dist.get(zone, 0))
         t_hub = fmt_int(zone_hub.get(zone, 0))
         zone_list.append(OrderedDict([
             ("zone", zone),
@@ -437,35 +460,49 @@ def build_payload(rows, period=None, dashboard_url="", source_url="", top=TOP_RO
             ("countLabel", "{} รายการ".format(n_all) if len(items) == n_all
                            else "แสดง {} จาก {} รายการ".format(len(items), n_all)),
             ("totalOnhand", t_onhand),
+            ("totalDistribute", t_dist),
             ("totalHub", t_hub),
-            ("totalLabel", "คงเหลือ {} · Hub {}".format(t_onhand, t_hub)),
+            ("totalLabel", "Onhand {} · กระจาย {} · เบิก Hub {}".format(
+                t_onhand, t_dist, t_hub)),
             # หัวกลุ่มรวมเป็นบรรทัดเดียว — ประหยัดพื้นที่การ์ดได้ราว 0.5 KB ต่อ Zone
-            ("zoneHeadline", "{} {} · {} · คงเหลือ {} · Hub {}{}".format(
+            ("zoneHeadline", "{} {} · {} · Onhand {} · กระจาย {} · เบิก Hub {}{}".format(
                 ZONE_EMOJI.get(zone, "🔷"), zone,
                 "{} รายการ".format(n_all) if len(items) == n_all
                 else "แสดง {}/{}".format(len(items), n_all),
-                t_onhand, t_hub,
+                t_onhand, t_dist, t_hub,
                 " · ⚠️ เสี่ยงขาด {}".format(n_risk) if n_risk else "")),
             ("items", items),
         ]))
 
     # ตารางอธิบายรหัสวัสดุ — พิมพ์ครั้งเดียวท้ายการ์ด แทนที่จะซ้ำทุกแถว
-    legend = [
-        OrderedDict([("itemCode", c), ("itemName", TARGET_ITEMS.get(c, ""))])
-        for c in sorted({it["itemCode"] for it in all_items})
-    ]
+    legend = []
+    legend_seen = {}
+    for c in sorted({it["itemCode"] for it in all_items}):
+        spec = TARGET_ITEMS.get(c)
+        icon = spec["icon"] if spec else "\u25AB\uFE0F"
+        about = spec["about"] if spec else ""
+        name = (spec["name"] if spec else "")[:50]
+        label = c + (" · " + name if name else "")
+        key = icon + "|" + about
+        if key not in legend_seen:
+            legend_seen[key] = len(legend)
+            legend.append(OrderedDict([
+                ("itemIcon", icon), ("itemCodes", label), ("itemAbout", about)]))
+        else:
+            at = legend_seen[key]
+            legend[at]["itemCodes"] = legend[at]["itemCodes"] + ", " + label
 
     cutoff = ""
 
     meta = OrderedDict([
-        ("title", "Report Material Optimize&MA_NER"),
+        ("title", "Report Stock Allocation Cable&Material NER"),
         ("subtitle", ""),
         ("hasLegend", len(legend) > 0),
         ("period", str(period or "-")),
         ("prevPeriod", prev_period or "-"),
         ("dataSet", data_set),
         ("dataSetLabel", theme["label"]),
-        ("dataSetEmoji", theme["emoji"]),
+        ("dataSetEmoji", "\U0001F3EC"),
         ("dataSetStyle", theme["style"]),
         ("dataSetColor", theme["color"]),
         ("cutoffDate", cutoff),
@@ -479,10 +516,9 @@ def build_payload(rows, period=None, dashboard_url="", source_url="", top=TOP_RO
         ("hasData", len(all_items) > 0),
         ("hasMore", more_count > 0),
         ("moreCount", more_count),
-        ("moreText", "…และอีก {} รายการ — กด “📊 Dashboard” เพื่อดูทั้งหมด".format(more_count)
-                     if more_count > 0 else ""),
+        ("moreText", ""),
         ("dashboardUrl", dashboard_url or "https://app.powerbi.com/CHANGE-ME"),
-        ("sourceFileUrl", source_url or "https://contoso.sharepoint.com/CHANGE-ME"),
+        ("sourceFileUrl", source_url or "https://mimotech-my.sharepoint.com/:x:/r/personal/panudeck_ais_co_th/Documents/Workflow%20Power%20Automate/JobMonitor_CMTRS_Job_Tracking.xlsx?d=we08d992568d54ab88ef622f150e1cd05&csf=1&web=1&e=8sLq79"),
     ])
 
     flat = [OrderedDict(it) for it in shown]

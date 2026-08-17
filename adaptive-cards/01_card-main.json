@@ -123,11 +123,10 @@
           "spacing": "medium",
           "separator": true,
           "columns": [
-            { "type": "Column", "width": 32, "items": [ { "type": "TextBlock", "text": "Item Code", "weight": "bolder", "size": "small", "color": "accent", "wrap": true, "spacing": "none" } ] },
-            { "type": "Column", "width": 17, "items": [ { "type": "TextBlock", "text": "Onhand", "weight": "bolder", "size": "small", "color": "accent", "horizontalAlignment": "right", "wrap": true, "spacing": "none" } ] },
-            { "type": "Column", "width": 17, "items": [ { "type": "TextBlock", "text": "เบิก Hub", "weight": "bolder", "size": "small", "color": "accent", "horizontalAlignment": "right", "wrap": true, "spacing": "none" } ] },
-            { "type": "Column", "width": 17, "items": [ { "type": "TextBlock", "text": "Prev_Before", "weight": "bolder", "size": "small", "color": "accent", "horizontalAlignment": "right", "wrap": true, "spacing": "none" } ] },
-            { "type": "Column", "width": 17, "items": [ { "type": "TextBlock", "text": "Prev_Recv", "weight": "bolder", "size": "small", "color": "accent", "horizontalAlignment": "right", "wrap": true, "spacing": "none" } ] }
+            { "type": "Column", "width": 40, "items": [ { "type": "TextBlock", "text": "Item Code", "weight": "bolder", "size": "small", "color": "accent", "wrap": true, "spacing": "none" } ] },
+            { "type": "Column", "width": 20, "items": [ { "type": "TextBlock", "text": "Onhand", "weight": "bolder", "size": "small", "color": "accent", "horizontalAlignment": "right", "wrap": true, "spacing": "none" } ] },
+            { "type": "Column", "width": 20, "items": [ { "type": "TextBlock", "text": "กระจาย", "weight": "bolder", "size": "small", "color": "accent", "horizontalAlignment": "right", "wrap": true, "spacing": "none" } ] },
+            { "type": "Column", "width": 20, "items": [ { "type": "TextBlock", "text": "เบิก Hub", "weight": "bolder", "size": "small", "color": "accent", "horizontalAlignment": "right", "wrap": true, "spacing": "none" } ] }
           ]
         },
 
@@ -151,26 +150,13 @@
               "type": "ColumnSet",
               "spacing": "none",
               "columns": [
-                { "type": "Column", "width": 32, "items": [ { "type": "TextBlock", "$data": "${items}", "text": "${statusEmoji} ${itemCode}${provinceTag}", "size": "small", "spacing": "none" } ] },
-                { "type": "Column", "width": 17, "items": [ { "type": "TextBlock", "$data": "${items}", "text": "${onhand}", "size": "small", "weight": "${rowWeight}", "color": "${statusColor}", "horizontalAlignment": "right", "spacing": "none" } ] },
-                { "type": "Column", "width": 17, "items": [ { "type": "TextBlock", "$data": "${items}", "text": "${fromHub}", "size": "small", "horizontalAlignment": "right", "spacing": "none" } ] },
-                { "type": "Column", "width": 17, "items": [ { "type": "TextBlock", "$data": "${items}", "text": "${prevBefore}", "size": "small", "horizontalAlignment": "right", "spacing": "none" } ] },
-                { "type": "Column", "width": 17, "items": [ { "type": "TextBlock", "$data": "${items}", "text": "${prevReceived}", "size": "small", "horizontalAlignment": "right", "spacing": "none" } ] }
+                { "type": "Column", "width": 40, "items": [ { "type": "TextBlock", "$data": "${items}", "text": "${itemIcon} ${itemCode}${provinceTag}", "size": "small", "spacing": "none" } ] },
+                { "type": "Column", "width": 20, "items": [ { "type": "TextBlock", "$data": "${items}", "text": "${onhand}", "size": "small", "weight": "${rowWeight}", "color": "${statusColor}", "horizontalAlignment": "right", "spacing": "none" } ] },
+                { "type": "Column", "width": 20, "items": [ { "type": "TextBlock", "$data": "${items}", "text": "${distribute}", "size": "small", "horizontalAlignment": "right", "spacing": "none" } ] },
+                { "type": "Column", "width": 20, "items": [ { "type": "TextBlock", "$data": "${items}", "text": "${fromHub}", "size": "small", "horizontalAlignment": "right", "spacing": "none" } ] }
               ]
             }
           ]
-        },
-
-        {
-          "type": "TextBlock",
-          "$when": "${meta.hasMore}",
-          "text": "${meta.moreText}",
-          "size": "small",
-          "isSubtle": true,
-          "horizontalAlignment": "center",
-          "wrap": true,
-          "spacing": "small",
-          "separator": true
         }
       ]
     },
@@ -181,8 +167,8 @@
       "spacing": "small",
       "separator": true,
       "items": [
-        { "type": "TextBlock", "text": "รหัสวัสดุในรายงานนี้", "size": "small", "weight": "bolder", "color": "accent", "wrap": true, "spacing": "none" },
-        { "type": "TextBlock", "$data": "${legend}", "text": "**${itemCode}** · ${itemName}", "size": "small", "isSubtle": true, "wrap": true, "spacing": "none" }
+        { "type": "TextBlock", "text": "สัญลักษณ์หน้ารหัสวัสดุ", "size": "small", "weight": "bolder", "color": "accent", "wrap": true, "spacing": "none" },
+        { "type": "TextBlock", "$data": "${legend}", "text": "${itemIcon} **${itemCodes}** = ${itemAbout}", "size": "small", "isSubtle": true, "wrap": true, "spacing": "none" }
       ]
     },
 

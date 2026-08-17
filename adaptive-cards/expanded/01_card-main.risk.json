@@ -23,7 +23,7 @@
               "items": [
                 {
                   "type": "TextBlock",
-                  "text": "📦",
+                  "text": "🏬",
                   "size": "large",
                   "wrap": false,
                   "spacing": "none"
@@ -37,7 +37,7 @@
               "items": [
                 {
                   "type": "TextBlock",
-                  "text": "Report Material Optimize&MA_NER",
+                  "text": "Report Stock Allocation Cable&Material NER",
                   "weight": "bolder",
                   "size": "medium",
                   "wrap": true,
@@ -217,7 +217,7 @@
           "columns": [
             {
               "type": "Column",
-              "width": 32,
+              "width": 40,
               "items": [
                 {
                   "type": "TextBlock",
@@ -232,7 +232,7 @@
             },
             {
               "type": "Column",
-              "width": 17,
+              "width": 20,
               "items": [
                 {
                   "type": "TextBlock",
@@ -248,43 +248,27 @@
             },
             {
               "type": "Column",
-              "width": 17,
+              "width": 20,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "กระจาย",
+                  "weight": "bolder",
+                  "size": "small",
+                  "color": "accent",
+                  "horizontalAlignment": "right",
+                  "wrap": true,
+                  "spacing": "none"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 20,
               "items": [
                 {
                   "type": "TextBlock",
                   "text": "เบิก Hub",
-                  "weight": "bolder",
-                  "size": "small",
-                  "color": "accent",
-                  "horizontalAlignment": "right",
-                  "wrap": true,
-                  "spacing": "none"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 17,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "Prev_Before",
-                  "weight": "bolder",
-                  "size": "small",
-                  "color": "accent",
-                  "horizontalAlignment": "right",
-                  "wrap": true,
-                  "spacing": "none"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 17,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "Prev_Recv",
                   "weight": "bolder",
                   "size": "small",
                   "color": "accent",
@@ -302,7 +286,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "🟦 RC2-NMA · 2 รายการ · คงเหลือ 0 · Hub 2 · ⚠️ เสี่ยงขาด 1",
+              "text": "🟦 RC2-NMA · 2 รายการ · Onhand 0 · กระจาย 0 · เบิก Hub 2 · ⚠️ เสี่ยงขาด 1",
               "size": "small",
               "weight": "bolder",
               "color": "attention",
@@ -316,17 +300,17 @@
               "columns": [
                 {
                   "type": "Column",
-                  "width": 32,
+                  "width": 40,
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "🔴 52CL003BB",
+                      "text": "🔗 52CL003BB",
                       "size": "small",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🟡 52CL010BB",
+                      "text": "🔗 52CL010BB",
                       "size": "small",
                       "spacing": "none"
                     }
@@ -334,7 +318,7 @@
                 },
                 {
                   "type": "Column",
-                  "width": 17,
+                  "width": 20,
                   "items": [
                     {
                       "type": "TextBlock",
@@ -358,31 +342,11 @@
                 },
                 {
                   "type": "Column",
-                  "width": 17,
+                  "width": 20,
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "1",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "1",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "24",
+                      "text": "0",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
@@ -398,18 +362,18 @@
                 },
                 {
                   "type": "Column",
-                  "width": 17,
+                  "width": 20,
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "0",
+                      "text": "1",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "0",
+                      "text": "1",
                       "size": "small",
                       "horizontalAlignment": "right",
                       "spacing": "none"
@@ -426,7 +390,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "🟨 RC3-KKN · 2 รายการ · คงเหลือ 900 · Hub 4,000 · ⚠️ เสี่ยงขาด 2",
+              "text": "🟨 RC3-KKN · 2 รายการ · Onhand 900 · กระจาย 11 · เบิก Hub 4,000 · ⚠️ เสี่ยงขาด 2",
               "size": "small",
               "weight": "bolder",
               "color": "attention",
@@ -440,17 +404,17 @@
               "columns": [
                 {
                   "type": "Column",
-                  "width": 32,
+                  "width": 40,
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "🔴 52CL003BB",
+                      "text": "🔗 52CL003BB",
                       "size": "small",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🔴 53OF157BB",
+                      "text": "🧶 53OF157BB",
                       "size": "small",
                       "spacing": "none"
                     }
@@ -458,7 +422,7 @@
                 },
                 {
                   "type": "Column",
-                  "width": 17,
+                  "width": 20,
                   "items": [
                     {
                       "type": "TextBlock",
@@ -482,7 +446,27 @@
                 },
                 {
                   "type": "Column",
-                  "width": 17,
+                  "width": 20,
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "11",
+                      "size": "small",
+                      "horizontalAlignment": "right",
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "0",
+                      "size": "small",
+                      "horizontalAlignment": "right",
+                      "spacing": "none"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 20,
                   "items": [
                     {
                       "type": "TextBlock",
@@ -499,46 +483,6 @@
                       "spacing": "none"
                     }
                   ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "81",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "34,601",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    }
-                  ]
                 }
               ]
             }
@@ -550,7 +494,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "🟧 RC3-UDN · 3 รายการ · คงเหลือ 1 · Hub 15 · ⚠️ เสี่ยงขาด 3",
+              "text": "🟧 RC3-UDN · 3 รายการ · Onhand 1 · กระจาย 0 · เบิก Hub 15 · ⚠️ เสี่ยงขาด 3",
               "size": "small",
               "weight": "bolder",
               "color": "attention",
@@ -564,23 +508,23 @@
               "columns": [
                 {
                   "type": "Column",
-                  "width": 32,
+                  "width": 40,
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "🔴 52CL004BB",
+                      "text": "🔗 52CL004BB",
                       "size": "small",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🔴 52CL010BB",
+                      "text": "🔗 52CL010BB",
                       "size": "small",
                       "spacing": "none"
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🔴 52CL003BB ·4จว.",
+                      "text": "🔗 52CL003BB ·4จว.",
                       "size": "small",
                       "spacing": "none"
                     }
@@ -588,7 +532,7 @@
                 },
                 {
                   "type": "Column",
-                  "width": 17,
+                  "width": 20,
                   "items": [
                     {
                       "type": "TextBlock",
@@ -621,7 +565,34 @@
                 },
                 {
                   "type": "Column",
-                  "width": 17,
+                  "width": 20,
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "0",
+                      "size": "small",
+                      "horizontalAlignment": "right",
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "0",
+                      "size": "small",
+                      "horizontalAlignment": "right",
+                      "spacing": "none"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "0",
+                      "size": "small",
+                      "horizontalAlignment": "right",
+                      "spacing": "none"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 20,
                   "items": [
                     {
                       "type": "TextBlock",
@@ -645,60 +616,6 @@
                       "spacing": "none"
                     }
                   ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "3",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "6",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "1",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "0",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    }
-                  ]
                 }
               ]
             }
@@ -713,7 +630,7 @@
       "items": [
         {
           "type": "TextBlock",
-          "text": "รหัสวัสดุในรายงานนี้",
+          "text": "สัญลักษณ์หน้ารหัสวัสดุ",
           "size": "small",
           "weight": "bolder",
           "color": "accent",
@@ -722,7 +639,7 @@
         },
         {
           "type": "TextBlock",
-          "text": "**52CL003BB** · CLOSURE 12 C",
+          "text": "🔗 **52CL003BB · CLOSURE 12 C, 52CL004BB · CLOSURE 24 C, 52CL010BB · CLOSURE 60 C** = หัวต่อ CLOSURE สำหรับตัดต่อ Cable Optic",
           "size": "small",
           "isSubtle": true,
           "wrap": true,
@@ -730,23 +647,7 @@
         },
         {
           "type": "TextBlock",
-          "text": "**52CL004BB** · CLOSURE 24 C",
-          "size": "small",
-          "isSubtle": true,
-          "wrap": true,
-          "spacing": "none"
-        },
-        {
-          "type": "TextBlock",
-          "text": "**52CL010BB** · CLOSURE 60 C",
-          "size": "small",
-          "isSubtle": true,
-          "wrap": true,
-          "spacing": "none"
-        },
-        {
-          "type": "TextBlock",
-          "text": "**53OF157BB** · ARSS OPTICAL FIBER CABLE 12c-FIBRE3",
+          "text": "🧶 **53OF157BB · ARSS OPTICAL FIBER CABLE 12c-FIBRE3** = สาย Cable Fiber Optic",
           "size": "small",
           "isSubtle": true,
           "wrap": true,

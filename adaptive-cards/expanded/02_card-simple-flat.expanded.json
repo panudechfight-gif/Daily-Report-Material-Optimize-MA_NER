@@ -14,7 +14,7 @@
       "items": [
         {
           "type": "TextBlock",
-          "text": "🗃️ Report Material Optimize&MA_NER",
+          "text": "🏬 Report Stock Allocation Cable&Material NER",
           "weight": "bolder",
           "size": "large",
           "wrap": true

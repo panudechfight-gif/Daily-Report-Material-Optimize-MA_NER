@@ -42,17 +42,25 @@ const TOP_ROWS_MAX = 40;
 // ---------------------------------------------------------------------------
 // รหัสวัสดุที่การ์ดต้องแสดง — กำหนดเป็นรายการตายตัว 8 รหัส
 // เพิ่ม/ลดรหัส ให้แก้ที่นี่ที่เดียว (แล้วแก้ TARGET_ITEMS ใน tools/build_sample_data.py ตามกัน)
-// ค่าของแต่ละรหัสคือชื่อที่ใช้แสดงในตารางอธิบายท้ายการ์ด
+//
+//   icon  = สัญลักษณ์หน้ารหัสในตาราง บอกว่าของชิ้นนี้คืออะไรตั้งแต่แรกเห็น
+//   name  = ชื่อทางการของวัสดุ (ใช้ในตารางอธิบายท้ายการ์ด)
+//   about = คำอธิบายภาษาไทยว่าเอาไปทำอะไร (ใช้คู่กับ icon ในตารางอธิบาย)
+//
+// รหัสที่ใช้ icon เดียวกันคือของประเภทเดียวกัน คำอธิบายจึงเขียนเหมือนกันได้
+// ตารางอธิบายท้ายการ์ดจะยุบรหัสที่ icon+about ตรงกันให้เหลือบรรทัดเดียว
 // ---------------------------------------------------------------------------
-const TARGET_ITEMS: { [k: string]: string } = {
-  "53OF150BB": "OPTICAL FIBER DROP CABLE 1C, FLAT TYPE (G.657A) WITH 2 SC/UPC PRE-CONNECTOR, 3m.",
-  "53OF157BB": "ARSS OPTICAL FIBER CABLE 12c-FIBRE3",
-  "53OF158BB": "ARSS OPTICAL FIBER CABLE 24c-FIBRE3",
-  "53OF160BB": "ARSS OPTICAL FIBER CABLE 60c-FIBRE3",
-  "50MT004BB": "Name Plate (Aluminium)",
-  "52CL003BB": "CLOSURE 12 C",
-  "52CL004BB": "CLOSURE 24 C",
-  "52CL010BB": "CLOSURE 60 C",
+interface TargetItem { icon: string; name: string; about: string; }
+
+const TARGET_ITEMS: { [k: string]: TargetItem } = {
+  "53OF150BB": { icon: "🧵", name: "OPTICAL FIBER DROP CABLE 1C, FLAT TYPE (G.657A) WITH 2 SC/UPC PRE-CONNECTOR, 3m.", about: "สาย Pigtail Patch สำหรับ Splice เชื่อมต่อ" },
+  "53OF157BB": { icon: "🧶", name: "ARSS OPTICAL FIBER CABLE 12c-FIBRE3", about: "สาย Cable Fiber Optic" },
+  "53OF158BB": { icon: "🧶", name: "ARSS OPTICAL FIBER CABLE 24c-FIBRE3", about: "สาย Cable Fiber Optic" },
+  "53OF160BB": { icon: "🧶", name: "ARSS OPTICAL FIBER CABLE 60c-FIBRE3", about: "สาย Cable Fiber Optic" },
+  "50MT004BB": { icon: "🏷️", name: "Name Plate (Aluminium)", about: "ป้ายชื่อติดอุปกรณ์" },
+  "52CL003BB": { icon: "🔗", name: "CLOSURE 12 C", about: "หัวต่อ CLOSURE สำหรับตัดต่อ Cable Optic" },
+  "52CL004BB": { icon: "🔗", name: "CLOSURE 24 C", about: "หัวต่อ CLOSURE สำหรับตัดต่อ Cable Optic" },
+  "52CL010BB": { icon: "🔗", name: "CLOSURE 60 C", about: "หัวต่อ CLOSURE สำหรับตัดต่อ Cable Optic" },
 };
 
 function isTargetItem(code: string): boolean {
@@ -128,10 +136,11 @@ function fmtInt(v: (string | number | boolean)): string {
 }
 
 interface CardItem {
-  itemCode: string; itemName: string; unit: string; province: string;
+  itemCode: string; itemName: string; itemIcon: string; unit: string; province: string;
   provinceCount: number; provinceTag: string;
   dataSet: string; period: string; prevPeriod: string;
-  onhand: string; fromHub: string; prevBefore: string; prevReceived: string;
+  onhand: string; distribute: string; fromHub: string;
+  prevBefore: string; prevReceived: string;
   status: string; statusShort: string; statusEmoji: string; statusColor: string;
   riskFlag: string; isRisk: boolean; rowWeight: string;
   zone: string; zoneEmoji: string;
@@ -140,12 +149,17 @@ interface CardItem {
 interface CardZone {
   zone: string; zoneEmoji: string; itemCount: number; shownCount: number;
   riskCount: number; riskBadge: string; riskColor: string; countLabel: string;
-  totalOnhand: string; totalHub: string; totalLabel: string; zoneHeadline: string;
+  totalOnhand: string; totalDistribute: string; totalHub: string;
+  totalLabel: string; zoneHeadline: string;
   items: CardItem[];
 }
 
-/** ตารางอธิบายรหัสวัสดุท้ายการ์ด — พิมพ์ครั้งเดียวแทนการซ้ำชื่อยาวทุกแถว */
-interface CardLegend { itemCode: string; itemName: string; }
+/**
+ * ตารางอธิบายท้ายการ์ด — พิมพ์ครั้งเดียวแทนการซ้ำชื่อยาวทุกแถว
+ * ยุบรหัสที่เป็นของประเภทเดียวกัน (icon + คำอธิบายตรงกัน) ให้เหลือบรรทัดเดียว
+ * เช่น CLOSURE 3 รหัสรวมเป็นบรรทัดเดียว ประหยัดที่บนการ์ดได้มาก
+ */
+interface CardLegend { itemIcon: string; itemCodes: string; itemAbout: string; }
 
 interface CardMeta {
   title: string; subtitle: string; hasLegend: boolean;
@@ -221,8 +235,31 @@ function buildPayload(
     if (name !== "" && col[name] === undefined) col[name] = c;
   }
 
-  const need = ["Distribution period", "Zone", "Item Code", "OMC-Onhand",
-                "เบิกจาก Hub", "Prev_Period", "Prev_Before", "Prev_Received",
+  // -------------------------------------------------------------------------
+  // หัวตารางบางคอลัมน์เคยถูกเปลี่ยนชื่อมาแล้วในไฟล์ต้นทาง
+  //     OMC-Onhand   -> Onhand
+  //     จัดสรร        -> จัดสรร(กระจาย)
+  //     เบิกจาก Hub   -> จัดสรร(เบิก Hub)
+  //
+  // จึงไม่ยึดชื่อเดียวตายตัว แต่ไล่หาจากรายชื่อที่ยอมรับได้ แล้วผูกกลับเข้า
+  // ชื่อมาตรฐานที่ตรรกะข้างล่างใช้ ถ้าวันหนึ่งชีตเปลี่ยนชื่ออีก ให้เติมชื่อใหม่
+  // ไว้ "ข้างหน้า" ในอาร์เรย์ของคอลัมน์นั้น — ของเดิมยังอ่านได้เหมือนเดิม
+  // -------------------------------------------------------------------------
+  const ALIASES: { [k: string]: string[] } = {
+    "Onhand": ["Onhand", "OMC-Onhand"],
+    "จัดสรร(กระจาย)": ["จัดสรร(กระจาย)", "จัดสรร"],
+    "จัดสรร(เบิก Hub)": ["จัดสรร(เบิก Hub)", "เบิกจาก Hub"],
+    "จัดสรรเพิ่ม": ["จัดสรรเพิ่ม"],
+    "รวม 3 รายการ": ["รวม 3 รายการ"],
+  };
+  for (const std of Object.keys(ALIASES)) {
+    for (const alias of ALIASES[std]) {
+      if (col[alias] !== undefined) { col[std] = col[alias]; break; }
+    }
+  }
+
+  const need = ["Distribution period", "Zone", "Item Code", "Onhand",
+                "จัดสรร(เบิก Hub)", "Prev_Period", "Prev_Before", "Prev_Received",
                 "Status", "Risk_Flag", "Data_Set"];
   const missing = need.filter(n => col[n] === undefined);
   if (missing.length > 0) throw new Error("ไม่พบคอลัมน์: " + missing.join(", "));
@@ -230,16 +267,20 @@ function buildPayload(
   // -------------------------------------------------------------------------
   // แก้แนวคอลัมน์เลื่อนในชีตต้นทาง
   //
-  // ชีต MA&Optimize NER มีคอลัมน์ว่างที่ไม่มีหัวตารางแทรกอยู่หลัง OMC-Onhand
-  // ทำให้ข้อมูลของบล็อก จัดสรร / เบิกจาก Hub / จัดสรรเพิ่ม / รวม 3 รายการ
-  // ไปอยู่ทางขวาของหัวตารางตัวเองอยู่ 1 ช่อง ถ้าอ่านตามชื่อหัวตารางตรง ๆ
-  // ค่าที่ได้ในช่อง "เบิกจาก Hub" จะเป็นค่าของ "จัดสรร" แทน
+  // ชีต MA&Optimize NER มีข้อมูลของบล็อก จัดสรร(กระจาย) / จัดสรร(เบิก Hub) /
+  // จัดสรรเพิ่ม / รวม 3 รายการ วางเลื่อนไปทางขวาของหัวตารางตัวเอง 1 ช่อง
+  // ถ้าอ่านตามชื่อหัวตารางตรง ๆ ค่าที่ได้ในช่อง "จัดสรร(เบิก Hub)"
+  // จะเป็นค่าของ "จัดสรร(กระจาย)" แทน
   //
-  // ตรวจด้วยกฎที่ชีตคำนวณไว้เอง:  จัดสรร + เบิกจาก Hub + จัดสรรเพิ่ม = รวม 3 รายการ
+  // ตรวจด้วยกฎที่ชีตคำนวณไว้เอง:
+  //     จัดสรร(กระจาย) + จัดสรร(เบิก Hub) + จัดสรรเพิ่ม = รวม 3 รายการ
   // ลองทั้งแบบไม่เลื่อนและเลื่อน 1 ช่อง แล้วเลือกแบบที่กฎนี้เป็นจริงทุกแถวที่สุ่มมา
   // ถ้าวันหนึ่งชีตต้นทางถูกแก้ให้ตรงแล้ว ตัวตรวจนี้จะเลือกแบบไม่เลื่อนเองอัตโนมัติ
+  //
+  // (ยืนยันกับไฟล์ V2 ล่าสุดแล้ว: off=1 ทำให้กฎเป็นจริง 2,365/2,365 แถว
+  //  ส่วน off=0 ตรงแค่ 847 แถว — บั๊กนี้ยังอยู่แม้หัวตารางจะถูกเปลี่ยนชื่อแล้ว)
   // -------------------------------------------------------------------------
-  const shiftNames = ["จัดสรร", "เบิกจาก Hub", "จัดสรรเพิ่ม", "รวม 3 รายการ"];
+  const shiftNames = ["จัดสรร(กระจาย)", "จัดสรร(เบิก Hub)", "จัดสรรเพิ่ม", "รวม 3 รายการ"];
   const haveAll = shiftNames.every(n => col[n] !== undefined);
   if (haveAll) {
     let bestOffset = 0;
@@ -248,7 +289,7 @@ function buildPayload(
       for (let r = hdrIdx + 1; r < values.length && checked < 300; r++) {
         const row = values[r];
         if (row === undefined) continue;
-        const ia = col["จัดสรร"] + off, ib = col["เบิกจาก Hub"] + off;
+        const ia = col["จัดสรร(กระจาย)"] + off, ib = col["จัดสรร(เบิก Hub)"] + off;
         const ic = col["จัดสรรเพิ่ม"] + off, is = col["รวม 3 รายการ"] + off;
         if (is >= row.length) continue;
         checked++;
@@ -318,8 +359,9 @@ function buildPayload(
   };
 
   interface Agg {
-    zone: string; itemCode: string; itemName: string; unit: string;
-    onhand: number; fromHub: number; prevBefore: number; prevReceived: number;
+    zone: string; itemCode: string; itemName: string; itemIcon: string; unit: string;
+    onhand: number; distribute: number; fromHub: number;
+    prevBefore: number; prevReceived: number;
     provinces: { [k: string]: boolean }; provinceCount: number;
     status: string; statusRank: number; isRisk: boolean; riskFlag: string;
   }
@@ -340,11 +382,14 @@ function buildPayload(
     const key = zone + "|" + code;
 
     if (aggMap[key] === undefined) {
+      const spec = TARGET_ITEMS[code];
       aggMap[key] = {
         zone: zone, itemCode: code,
-        itemName: TARGET_ITEMS[code] || get(row, "Description") || get(row, "Art No"),
+        itemName: spec !== undefined ? spec.name
+          : (get(row, "Description") || get(row, "Art No")),
+        itemIcon: spec !== undefined ? spec.icon : "▫️",
         unit: get(row, "Unit"),
-        onhand: 0, fromHub: 0, prevBefore: 0, prevReceived: 0,
+        onhand: 0, distribute: 0, fromHub: 0, prevBefore: 0, prevReceived: 0,
         provinces: {}, provinceCount: 0,
         status: "", statusRank: -1, isRisk: false, riskFlag: "",
       };
@@ -352,8 +397,11 @@ function buildPayload(
     }
     const a = aggMap[key];
 
-    a.onhand += numOf(row, "OMC-Onhand");
-    a.fromHub += numOf(row, "เบิกจาก Hub");
+    a.onhand += numOf(row, "Onhand");
+    // ชุด Optimize ลงยอดไว้ที่ "จัดสรร(กระจาย)" ส่วนชุด MA ลงที่ "จัดสรร(เบิก Hub)"
+    // การ์ดจึงต้องแสดงทั้งคู่ ไม่งั้นรอบ Optimize จะขึ้นศูนย์ทั้งใบ
+    a.distribute += numOf(row, "จัดสรร(กระจาย)");
+    a.fromHub += numOf(row, "จัดสรร(เบิก Hub)");
     a.prevBefore += numOf(row, "Prev_Before");
     a.prevReceived += numOf(row, "Prev_Received");
 
@@ -384,6 +432,7 @@ function buildPayload(
     all.push({
       itemCode: a.itemCode,
       itemName: a.itemName.length > 45 ? a.itemName.substring(0, 45) : a.itemName,
+      itemIcon: a.itemIcon,
       unit: a.unit,
       province: a.provinceCount > 0 ? String(a.provinceCount) + " จังหวัด" : "-",
       provinceCount: a.provinceCount,
@@ -393,6 +442,7 @@ function buildPayload(
       period: targetPeriod,
       prevPeriod: prevPeriod || "-",
       onhand: fmtNum(a.onhand),
+      distribute: fmtInt(a.distribute),
       fromHub: fmtInt(a.fromHub),
       prevBefore: fmtNum(a.prevBefore),
       prevReceived: fmtNum(a.prevReceived),
@@ -463,10 +513,13 @@ function buildPayload(
   }
 
   // ยอดรวมของแต่ละ Zone = บวกทุกจังหวัดในโซนนั้น (ไม่ใช่แค่แถวที่แสดง)
+  // ตรงตามโจทย์: Onhand และ จัดสรร(เบิก Hub) รวมต่อ Zone ของรอบที่เลือกอยู่
   const zoneOnhand: { [k: string]: number } = {};
+  const zoneDist: { [k: string]: number } = {};
   const zoneHub: { [k: string]: number } = {};
   for (const it of all) {
     zoneOnhand[it.zone] = (zoneOnhand[it.zone] || 0) + toNum(it.onhand.replace(/,/g, ""));
+    zoneDist[it.zone] = (zoneDist[it.zone] || 0) + toNum(it.distribute.replace(/,/g, ""));
     zoneHub[it.zone] = (zoneHub[it.zone] || 0) + toNum(it.fromHub.replace(/,/g, ""));
   }
 
@@ -488,38 +541,63 @@ function buildPayload(
         : "แสดง " + items.length + " จาก " + nAll + " รายการ",
       // ยอดรวมทั้งโซน แสดงคู่กับหัวกลุ่ม
       totalOnhand: fmtNum(zoneOnhand[z] || 0),
+      totalDistribute: fmtInt(zoneDist[z] || 0),
       totalHub: fmtInt(zoneHub[z] || 0),
-      totalLabel: "คงเหลือ " + fmtNum(zoneOnhand[z] || 0) + " · Hub " + fmtInt(zoneHub[z] || 0),
+      totalLabel: "Onhand " + fmtNum(zoneOnhand[z] || 0)
+        + " · กระจาย " + fmtInt(zoneDist[z] || 0)
+        + " · เบิก Hub " + fmtInt(zoneHub[z] || 0),
       // หัวกลุ่มรวมเป็นบรรทัดเดียว — ประหยัดพื้นที่การ์ดได้ราว 0.5 KB ต่อ Zone
       zoneHeadline: (ZONE_EMOJI[z] || "🔷") + " " + z
         + " · " + (items.length === nAll ? nAll + " รายการ" : "แสดง " + items.length + "/" + nAll)
-        + " · คงเหลือ " + fmtNum(zoneOnhand[z] || 0)
-        + " · Hub " + fmtInt(zoneHub[z] || 0)
+        + " · Onhand " + fmtNum(zoneOnhand[z] || 0)
+        + " · กระจาย " + fmtInt(zoneDist[z] || 0)
+        + " · เบิก Hub " + fmtInt(zoneHub[z] || 0)
         + (nRisk > 0 ? " · ⚠️ เสี่ยงขาด " + nRisk : ""),
       items: items,
     };
   });
 
-  // ตารางอธิบายรหัสวัสดุ — พิมพ์ครั้งเดียวท้ายการ์ด แทนที่จะซ้ำทุกแถว
+  // ตารางอธิบายท้ายการ์ด — บอกว่า icon แต่ละตัวคือของอะไร
+  //
+  // รวมรหัสที่เป็นของประเภทเดียวกันไว้บรรทัดเดียว (เช่น CLOSURE 3 รหัส)
+  // แทนที่จะพิมพ์คำอธิบายเดิมซ้ำ 3 รอบ — ได้ที่คืนมาให้แถวข้อมูลจริง
   const legendCodes: string[] = [];
   for (const it of all) {
     if (legendCodes.indexOf(it.itemCode) < 0) legendCodes.push(it.itemCode);
   }
   legendCodes.sort();
-  const legend: CardLegend[] = legendCodes.map(c => {
-    return { itemCode: c, itemName: TARGET_ITEMS[c] || "" };
-  });
+
+  const legend: CardLegend[] = [];
+  const legendSeen: { [k: string]: number } = {};   // icon+about -> ตำแหน่งใน legend
+  for (const c of legendCodes) {
+    const spec = TARGET_ITEMS[c];
+    const icon = spec !== undefined ? spec.icon : "▫️";
+    const about = spec !== undefined ? spec.about : "";
+    let name = spec !== undefined ? spec.name : "";
+    if (name.length > 50) name = name.substring(0, 50);
+    const key = icon + "|" + about;
+    const label = c + (name !== "" ? " · " + name : "");
+    if (legendSeen[key] === undefined) {
+      legendSeen[key] = legend.length;
+      legend.push({ itemIcon: icon, itemCodes: label, itemAbout: about });
+    } else {
+      const at = legendSeen[key];
+      legend[at].itemCodes = legend[at].itemCodes + ", " + label;
+    }
+  }
 
   const isMA = dataSet === "MA";
   const meta: CardMeta = {
-    title: "Report Material Optimize&MA_NER",
+    title: "Report Stock Allocation Cable&Material NER",
     subtitle: "",                          // ตัดบรรทัดคำอธิบายรหัสวัสดุออกแล้ว
     hasLegend: legend.length > 0,
     period: targetPeriod || "-",
     prevPeriod: prevPeriod || "-",
     dataSet: dataSet,
-    dataSetLabel: isMA ? "MA — Weekly Allocation" : "OPTIMIZE — Allocation Plan",
-    dataSetEmoji: isMA ? "📦" : "🗃️",
+    dataSetLabel: isMA ? "MA — Weekly Allocation" : "Optimize — Allocation Plan",
+    // 🏬 = คลังวัสดุ (Store) ใช้ทั้งสองชุดข้อมูล ให้การ์ดสื่อว่าเป็นรายงานคลัง
+    // ความต่างของ MA / Optimize อ่านได้จากป้ายใต้ชื่อและสีของทั้งการ์ดอยู่แล้ว
+    dataSetEmoji: "🏬",
     dataSetStyle: isMA ? "accent" : "good",
     dataSetColor: isMA ? "accent" : "good",
     generatedAt: "",                       // Power Automate เติมด้วย convertTimeZone()
@@ -530,13 +608,13 @@ function buildPayload(
     watchCount: watchCount,
     okCount: okCount,
     hasData: all.length > 0,
+    // เป้าหมายคือให้ทุกรหัสลงการ์ดครบเสมอ บรรทัด "…และอีก N รายการ" จึงถูกตัดออก
+    // จากหน้าการ์ดแล้ว แต่ยังคำนวณค่าไว้ เผื่อ Flow อื่นหรือการ์ดแบบอื่นเรียกใช้
     hasMore: moreCount > 0,
     moreCount: moreCount,
-    moreText: moreCount > 0
-      ? "…และอีก " + moreCount + " รายการ — กด “📊 Dashboard” เพื่อดูทั้งหมด"
-      : "",
+    moreText: "",
     dashboardUrl: dashboardUrl || "https://app.powerbi.com/CHANGE-ME",
-    sourceFileUrl: sourceFileUrl || "https://contoso.sharepoint.com/CHANGE-ME",
+    sourceFileUrl: sourceFileUrl || "https://mimotech-my.sharepoint.com/:x:/r/personal/panudeck_ais_co_th/Documents/Workflow%20Power%20Automate/JobMonitor_CMTRS_Job_Tracking.xlsx?d=we08d992568d54ab88ef622f150e1cd05&csf=1&web=1&e=8sLq79",
   };
 
   // คืนทั้ง zones (การ์ดหลัก) และ items (การ์ดแบบง่าย) เผื่อเลือกใช้ได้ทั้งสองแบบ
@@ -804,7 +882,7 @@ const CARD_TEMPLATE: object = {
           "columns": [
             {
               "type": "Column",
-              "width": 32,
+              "width": 40,
               "items": [
                 {
                   "type": "TextBlock",
@@ -819,7 +897,7 @@ const CARD_TEMPLATE: object = {
             },
             {
               "type": "Column",
-              "width": 17,
+              "width": 20,
               "items": [
                 {
                   "type": "TextBlock",
@@ -835,43 +913,27 @@ const CARD_TEMPLATE: object = {
             },
             {
               "type": "Column",
-              "width": 17,
+              "width": 20,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "กระจาย",
+                  "weight": "bolder",
+                  "size": "small",
+                  "color": "accent",
+                  "horizontalAlignment": "right",
+                  "wrap": true,
+                  "spacing": "none"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 20,
               "items": [
                 {
                   "type": "TextBlock",
                   "text": "เบิก Hub",
-                  "weight": "bolder",
-                  "size": "small",
-                  "color": "accent",
-                  "horizontalAlignment": "right",
-                  "wrap": true,
-                  "spacing": "none"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 17,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "Prev_Before",
-                  "weight": "bolder",
-                  "size": "small",
-                  "color": "accent",
-                  "horizontalAlignment": "right",
-                  "wrap": true,
-                  "spacing": "none"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 17,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "Prev_Recv",
                   "weight": "bolder",
                   "size": "small",
                   "color": "accent",
@@ -904,12 +966,12 @@ const CARD_TEMPLATE: object = {
               "columns": [
                 {
                   "type": "Column",
-                  "width": 32,
+                  "width": 40,
                   "items": [
                     {
                       "type": "TextBlock",
                       "$data": "${items}",
-                      "text": "${statusEmoji} ${itemCode}${provinceTag}",
+                      "text": "${itemIcon} ${itemCode}${provinceTag}",
                       "size": "small",
                       "spacing": "none"
                     }
@@ -917,7 +979,7 @@ const CARD_TEMPLATE: object = {
                 },
                 {
                   "type": "Column",
-                  "width": 17,
+                  "width": 20,
                   "items": [
                     {
                       "type": "TextBlock",
@@ -933,7 +995,21 @@ const CARD_TEMPLATE: object = {
                 },
                 {
                   "type": "Column",
-                  "width": 17,
+                  "width": 20,
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "$data": "${items}",
+                      "text": "${distribute}",
+                      "size": "small",
+                      "horizontalAlignment": "right",
+                      "spacing": "none"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 20,
                   "items": [
                     {
                       "type": "TextBlock",
@@ -944,49 +1020,10 @@ const CARD_TEMPLATE: object = {
                       "spacing": "none"
                     }
                   ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "$data": "${items}",
-                      "text": "${prevBefore}",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": 17,
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "$data": "${items}",
-                      "text": "${prevReceived}",
-                      "size": "small",
-                      "horizontalAlignment": "right",
-                      "spacing": "none"
-                    }
-                  ]
                 }
               ]
             }
           ]
-        },
-        {
-          "type": "TextBlock",
-          "$when": "${meta.hasMore}",
-          "text": "${meta.moreText}",
-          "size": "small",
-          "isSubtle": true,
-          "horizontalAlignment": "center",
-          "wrap": true,
-          "spacing": "small",
-          "separator": true
         }
       ]
     },
@@ -998,7 +1035,7 @@ const CARD_TEMPLATE: object = {
       "items": [
         {
           "type": "TextBlock",
-          "text": "รหัสวัสดุในรายงานนี้",
+          "text": "สัญลักษณ์หน้ารหัสวัสดุ",
           "size": "small",
           "weight": "bolder",
           "color": "accent",
@@ -1008,7 +1045,7 @@ const CARD_TEMPLATE: object = {
         {
           "type": "TextBlock",
           "$data": "${legend}",
-          "text": "**${itemCode}** · ${itemName}",
+          "text": "${itemIcon} **${itemCodes}** = ${itemAbout}",
           "size": "small",
           "isSubtle": true,
           "wrap": true,
@@ -1232,15 +1269,20 @@ function wireBytes(s: string): number {
 //
 // Teams ปฏิเสธข้อความที่ใหญ่เกิน 28 KB ด้วย error 413 RequestEntityTooLarge
 // แต่ 28 KB นั้นนับ "ทั้งซองข้อความ" ไม่ใช่แค่ตัวการ์ด และส่วนที่หุ้มอยู่
-// สคริปต์มองไม่เห็น จึงต้องเผื่อที่ไว้ให้มากพอ
+// สคริปต์มองไม่เห็น จึงต้องเผื่อที่ไว้
 //
-// ค่าเดิม 26,000 หลวมเกินไป — การ์ดรอบ Optimize ที่วัดได้ 25 KB ถูกปฏิเสธจริง
-// ค่านี้จึงตั้งไว้ที่ราว 70% ของเพดาน โดยวัดแบบ worst case ข้างบน
+// ตัวเลขที่วัดจากไฟล์จริง (หน่วยเป็นไบต์แบบ worst case ตาม wireBytes ข้างบน):
+//     26,859  การ์ดหน้าตาเดิม (5 คอลัมน์) -> Teams ปฏิเสธจริง ❌
+//     23,538  การ์ดหน้าตาปัจจุบัน รอบ Optimize 35 แถวครบทุกรหัส ✅
+//     18,692  รอบ MA 24 แถวครบทุกรหัส ✅
 //
-// ถ้ายังเจอ RequestEntityTooLarge อีก ให้ลดเลขนี้ลงทีละ 2,000
-// ถ้าอยากให้การ์ดจุแถวได้มากขึ้นและ Flow ผ่านสบาย ๆ แล้ว ค่อยเพิ่มขึ้นทีละ 1,000
+// ตั้งไว้ 24,500 เพื่อให้ "ทุกรหัสลงการ์ดครบ" ตามที่ต้องการ โดยยังต่ำกว่า
+// ขนาดที่เคยถูกปฏิเสธจริงอยู่ราว 2,400 ไบต์ และต่ำกว่าเพดาน 28 KB ราว 4 KB
+//
+// ถ้าเจอ RequestEntityTooLarge อีก ให้ลดเลขนี้ลงทีละ 2,000 (แลกกับแถวที่หายไป)
+// ถ้ารอบไหนข้อมูลโตจนถูกตัดแถว จะเห็นเป็น "แสดง n/N" บนหัวกลุ่ม Zone
 // ---------------------------------------------------------------------------
-const CARD_SAFE_BYTES = 20000;
+const CARD_SAFE_BYTES = 24500;
 
 /**
  * พารามิเตอร์ทุกตัวหลัง workbook ประกาศเป็นแบบไม่บังคับ (`?`) โดยตั้งใจ

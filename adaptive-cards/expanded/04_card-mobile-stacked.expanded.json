@@ -11,7 +11,7 @@
       "items": [
         {
           "type": "TextBlock",
-          "text": "📦 วัสดุคงคลัง NER",
+          "text": "🏬 วัสดุคงคลัง NER",
           "weight": "bolder",
           "size": "large",
           "wrap": true
@@ -108,7 +108,7 @@
       "items": [
         {
           "type": "TextBlock",
-          "text": "🟦 RC2-NMA · 2 รายการ · คงเหลือ 0 · Hub 2 · ⚠️ เสี่ยงขาด 1",
+          "text": "🟦 RC2-NMA · 2 รายการ · Onhand 0 · กระจาย 0 · เบิก Hub 2 · ⚠️ เสี่ยงขาด 1",
           "size": "small",
           "weight": "bolder",
           "color": "attention",
@@ -141,7 +141,7 @@
       "items": [
         {
           "type": "TextBlock",
-          "text": "🟨 RC3-KKN · 2 รายการ · คงเหลือ 900 · Hub 4,000 · ⚠️ เสี่ยงขาด 2",
+          "text": "🟨 RC3-KKN · 2 รายการ · Onhand 900 · กระจาย 11 · เบิก Hub 4,000 · ⚠️ เสี่ยงขาด 2",
           "size": "small",
           "weight": "bolder",
           "color": "attention",
@@ -174,7 +174,7 @@
       "items": [
         {
           "type": "TextBlock",
-          "text": "🟧 RC3-UDN · 3 รายการ · คงเหลือ 1 · Hub 15 · ⚠️ เสี่ยงขาด 3",
+          "text": "🟧 RC3-UDN · 3 รายการ · Onhand 1 · กระจาย 0 · เบิก Hub 15 · ⚠️ เสี่ยงขาด 3",
           "size": "small",
           "weight": "bolder",
           "color": "attention",

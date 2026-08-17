@@ -23,7 +23,7 @@
               "items": [
                 {
                   "type": "TextBlock",
-                  "text": "🗃️",
+                  "text": "🏬",
                   "size": "large",
                   "wrap": false,
                   "spacing": "none"
@@ -37,7 +37,7 @@
               "items": [
                 {
                   "type": "TextBlock",
-                  "text": "Report Material Optimize&MA_NER",
+                  "text": "Report Stock Allocation Cable&Material NER",
                   "weight": "bolder",
                   "size": "medium",
                   "wrap": true,
@@ -45,7 +45,7 @@
                 },
                 {
                   "type": "TextBlock",
-                  "text": "OPTIMIZE — Allocation Plan",
+                  "text": "Optimize — Allocation Plan",
                   "size": "small",
                   "isSubtle": true,
                   "wrap": true,

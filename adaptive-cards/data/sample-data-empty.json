@@ -1,13 +1,13 @@
 {
   "meta": {
-    "title": "Report Material Optimize&MA_NER",
+    "title": "Report Stock Allocation Cable&Material NER",
     "subtitle": "",
     "hasLegend": false,
     "period": "Optimize(3 Aug 26)",
     "prevPeriod": "Optimize(6 July 26)",
     "dataSet": "Optimize",
-    "dataSetLabel": "OPTIMIZE — Allocation Plan",
-    "dataSetEmoji": "🗃️",
+    "dataSetLabel": "Optimize — Allocation Plan",
+    "dataSetEmoji": "🏬",
     "dataSetStyle": "good",
     "dataSetColor": "good",
     "cutoffDate": "",
@@ -23,7 +23,7 @@
     "moreCount": 0,
     "moreText": "",
     "dashboardUrl": "https://app.powerbi.com/CHANGE-ME",
-    "sourceFileUrl": "https://contoso.sharepoint.com/CHANGE-ME"
+    "sourceFileUrl": "https://mimotech-my.sharepoint.com/:x:/r/personal/panudeck_ais_co_th/Documents/Workflow%20Power%20Automate/JobMonitor_CMTRS_Job_Tracking.xlsx?d=we08d992568d54ab88ef622f150e1cd05&csf=1&web=1&e=8sLq79"
   },
   "zones": [],
   "legend": []
