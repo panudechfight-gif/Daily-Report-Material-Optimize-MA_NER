@@ -217,25 +217,43 @@ function utf8Bytes(s: string): number {
 // Teams ปฏิเสธการ์ดเกิน 28,672 ไบต์แบบเงียบ ๆ — เผื่อไว้ให้เหลือที่หายใจ
 const CARD_SAFE_BYTES = 26000;
 
+/**
+ * พารามิเตอร์ทุกตัวหลัง workbook ประกาศเป็นแบบไม่บังคับ (`?`) โดยตั้งใจ
+ *
+ * Power Automate ถือว่าพารามิเตอร์ที่ประกาศด้วย default value (`period: string = ""`)
+ * เป็นช่อง "บังคับกรอก" (มีดอกจัน) ปล่อยว่างแล้วขึ้น error
+ *      Invalid parameter for 'Run script'. Error: 'ScriptParameters/period' is required.
+ * มีแต่พารามิเตอร์ที่ประกาศด้วย `?` เท่านั้นที่ Flow ยอมให้เว้นว่างได้
+ * ค่าตั้งต้นจึงย้ายไปเติมด้วย resolveText() / resolveTopRows() แทน
+ *
+ * ⚠️ หลังวางสคริปต์เวอร์ชันนี้ทับของเดิม ต้องลบแล้วเพิ่ม action "Run script"
+ *    ใน Flow ใหม่ (หรือเลือกสคริปต์ซ้ำอีกครั้ง) เพื่อให้ Flow อ่านรายการ
+ *    พารามิเตอร์ชุดใหม่ — ของเดิมจะยังจำว่าเป็นช่องบังคับอยู่
+ */
 function main(
   workbook: ExcelScript.Workbook,
-  period: string = "",
-  topRows: number = 40,
-  dashboardUrl: string = "",
-  sourceFileUrl: string = "",
-  generatedAt: string = "",
-  reportType: string = ""
+  period?: string,
+  topRows?: number,
+  dashboardUrl?: string,
+  sourceFileUrl?: string,
+  generatedAt?: string,
+  reportType?: string
 ): (string | number | boolean | object) {
 
-  // reportType ไม่ใช้ในรอบนี้ แต่ API ต้องการเพื่อความเข้ากันได้
+  // reportType ไม่ใช้ในรอบนี้ แต่คงไว้เพื่อให้ Flow เดิมที่ตั้งค่าไว้แล้วยังใช้ได้
+  const periodText = resolveText(period);
+  const dashUrl = resolveText(dashboardUrl);
+  const srcUrl = resolveText(sourceFileUrl);
+  const genAt = resolveText(generatedAt);
+
   // สร้างการ์ดแล้ววัดขนาดจริง ถ้าเกินงบก็ลดแถวแล้วสร้างใหม่
   // ทำให้การ์ดปลอดภัยเองไม่ว่ารอบนั้นจะมีกี่ Zone กี่รายการ โดยไม่ต้องมาไล่ปรับ topRows ทีหลัง
-  let rows = topRows;
+  let rows = resolveTopRows(topRows);
   let card: (string | number | boolean | object) = {};
 
   for (let attempt = 0; attempt < 8; attempt++) {
-    const payload = buildPayload(workbook, period, rows, dashboardUrl, sourceFileUrl);
-    payload.meta.generatedAt = generatedAt || "";
+    const payload = buildPayload(workbook, periodText, rows, dashUrl, srcUrl);
+    payload.meta.generatedAt = genAt;
     card = acExpandNode(CARD_TEMPLATE, { data: payload, root: payload });
 
     const size = utf8Bytes(JSON.stringify(card));

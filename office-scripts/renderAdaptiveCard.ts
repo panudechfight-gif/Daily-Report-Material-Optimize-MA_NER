@@ -164,6 +164,30 @@ interface CardPayload {
 }
 
 // ---------------------------------------------------------------------------
+// ตัวแปลงค่าพารามิเตอร์ที่ Power Automate ส่งเข้ามา
+//
+// พารามิเตอร์ของ main() ประกาศเป็นแบบไม่บังคับ (`period?: string`) เพื่อไม่ให้
+// Power Automate ขึ้นดอกจันบังคับกรอก ผลคือช่องที่เว้นว่างจะได้ค่า undefined
+// หรือ "" เข้ามา ตัวช่วย 2 ตัวนี้จึงแปลงให้เป็นค่าที่ตรรกะข้างล่างใช้ได้เสมอ
+//
+// หมายเหตุ: ประกาศ `?` พร้อม default value ในตัวเดียวกันไม่ได้ใน TypeScript
+//          การเติมค่าตั้งต้นจึงย้ายมาทำที่นี่แทน
+// ---------------------------------------------------------------------------
+
+/** ข้อความจากช่องที่อาจถูกเว้นว่าง -> คืนสตริงเสมอ (ไม่มี undefined) */
+function resolveText(v: (string | undefined)): string {
+  return v === undefined || v === null ? "" : String(v).trim();
+}
+
+/** จำนวนแถวจากช่องที่อาจถูกเว้นว่างหรือกรอกมาผิดรูปแบบ -> คืนตัวเลขที่ใช้ได้เสมอ */
+function resolveTopRows(v: (number | string | undefined)): number {
+  if (v === undefined || v === null || v === "") return TOP_ROWS_MAX;
+  const n = typeof v === "number" ? v : parseFloat(String(v));
+  if (isNaN(n) || n < 1) return TOP_ROWS_MAX;
+  return n > TOP_ROWS_MAX ? TOP_ROWS_MAX : Math.floor(n);
+}
+
+// ---------------------------------------------------------------------------
 // ตรรกะหลัก แยกออกจาก main() เพื่อให้ renderAdaptiveCard.ts นำไปใช้ซ้ำได้
 // (tools/build_office_script.js คัดลอกทุกอย่างเหนือ main() ไปประกอบร่าง)
 // ---------------------------------------------------------------------------
@@ -1198,25 +1222,43 @@ function utf8Bytes(s: string): number {
 // Teams ปฏิเสธการ์ดเกิน 28,672 ไบต์แบบเงียบ ๆ — เผื่อไว้ให้เหลือที่หายใจ
 const CARD_SAFE_BYTES = 26000;
 
+/**
+ * พารามิเตอร์ทุกตัวหลัง workbook ประกาศเป็นแบบไม่บังคับ (`?`) โดยตั้งใจ
+ *
+ * Power Automate ถือว่าพารามิเตอร์ที่ประกาศด้วย default value (`period: string = ""`)
+ * เป็นช่อง "บังคับกรอก" (มีดอกจัน) ปล่อยว่างแล้วขึ้น error
+ *      Invalid parameter for 'Run script'. Error: 'ScriptParameters/period' is required.
+ * มีแต่พารามิเตอร์ที่ประกาศด้วย `?` เท่านั้นที่ Flow ยอมให้เว้นว่างได้
+ * ค่าตั้งต้นจึงย้ายไปเติมด้วย resolveText() / resolveTopRows() แทน
+ *
+ * ⚠️ หลังวางสคริปต์เวอร์ชันนี้ทับของเดิม ต้องลบแล้วเพิ่ม action "Run script"
+ *    ใน Flow ใหม่ (หรือเลือกสคริปต์ซ้ำอีกครั้ง) เพื่อให้ Flow อ่านรายการ
+ *    พารามิเตอร์ชุดใหม่ — ของเดิมจะยังจำว่าเป็นช่องบังคับอยู่
+ */
 function main(
   workbook: ExcelScript.Workbook,
-  period: string = "",
-  topRows: number = 40,
-  dashboardUrl: string = "",
-  sourceFileUrl: string = "",
-  generatedAt: string = "",
-  reportType: string = ""
+  period?: string,
+  topRows?: number,
+  dashboardUrl?: string,
+  sourceFileUrl?: string,
+  generatedAt?: string,
+  reportType?: string
 ): (string | number | boolean | object) {
 
-  // reportType ไม่ใช้ในรอบนี้ แต่ API ต้องการเพื่อความเข้ากันได้
+  // reportType ไม่ใช้ในรอบนี้ แต่คงไว้เพื่อให้ Flow เดิมที่ตั้งค่าไว้แล้วยังใช้ได้
+  const periodText = resolveText(period);
+  const dashUrl = resolveText(dashboardUrl);
+  const srcUrl = resolveText(sourceFileUrl);
+  const genAt = resolveText(generatedAt);
+
   // สร้างการ์ดแล้ววัดขนาดจริง ถ้าเกินงบก็ลดแถวแล้วสร้างใหม่
   // ทำให้การ์ดปลอดภัยเองไม่ว่ารอบนั้นจะมีกี่ Zone กี่รายการ โดยไม่ต้องมาไล่ปรับ topRows ทีหลัง
-  let rows = topRows;
+  let rows = resolveTopRows(topRows);
   let card: (string | number | boolean | object) = {};
 
   for (let attempt = 0; attempt < 8; attempt++) {
-    const payload = buildPayload(workbook, period, rows, dashboardUrl, sourceFileUrl);
-    payload.meta.generatedAt = generatedAt || "";
+    const payload = buildPayload(workbook, periodText, rows, dashUrl, srcUrl);
+    payload.meta.generatedAt = genAt;
     card = acExpandNode(CARD_TEMPLATE, { data: payload, root: payload });
 
     const size = utf8Bytes(JSON.stringify(card));

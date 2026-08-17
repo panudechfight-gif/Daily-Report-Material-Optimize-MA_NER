@@ -59,17 +59,47 @@ string(body('Run_script')?['result'])
 
 ---
 
-## 2.1 `Invalid parameter for 'Run script'. Error: 'ScriptParameters/period' is required.`
+## 2.1 ช่องพารามิเตอร์ขึ้นดอกจันบังคับกรอก / `'ScriptParameters/period' is required.`
 
-**สาเหตุ:** เว้นช่อง `period` ว่างไว้ — Power Automate บังคับให้พารามิเตอร์ของ
-Run script ต้องมีค่าเสมอ แม้สคริปต์จะประกาศ default ไว้แล้วก็ตาม
+อาการที่เห็นบนจอ — ช่องพารามิเตอร์มีดอกจันแดง ปล่อยว่างแล้ว Flow เซฟไม่ผ่าน:
 
-**วิธีแก้:** ใส่ **`-`** ในช่อง `period`
+```
+ScriptParameters/period*
+ScriptParameters/reportType*
+Invalid parameter for 'Run script'. Error: 'ScriptParameters/period' is required.
+```
 
-สคริปต์รู้จักค่าเหล่านี้ว่าแปลว่า "ไม่ระบุรอบ" แล้วไปหยิบรอบ MA ล่าสุดให้เอง:
-`-`, `auto`, `latest`, `null` (พิมพ์เล็กใหญ่ไม่สำคัญ)
+**สาเหตุ:** Power Automate ถือว่าพารามิเตอร์ที่ประกาศด้วย **default value**
+เป็นช่อง **บังคับกรอก** เสมอ
 
-ถ้าอยากเจาะจงรอบ ให้ใส่ชื่อรอบตรง ๆ เช่น `MA (17 Aug 26)`
+```ts
+function main(workbook: ExcelScript.Workbook, period: string = "")   // ❌ ขึ้นดอกจัน
+function main(workbook: ExcelScript.Workbook, period?: string)       // ✅ เว้นว่างได้
+```
+
+มีแต่พารามิเตอร์ที่ประกาศด้วยเครื่องหมาย **`?`** เท่านั้นที่ Flow ยอมให้เว้นว่าง
+([เอกสาร Office Scripts](https://learn.microsoft.com/office/dev/scripts/develop/power-automate-parameters-returns))
+
+**วิธีแก้ — ทำ 2 ขั้น**
+
+1. **อัปเดตสคริปต์ในไฟล์ Excel** — คัดลอก `office-scripts/renderAdaptiveCard.ts`
+   เวอร์ชันล่าสุดไปวางทับสคริปต์เดิมทั้งไฟล์ แล้วกด **Save script**
+   (เวอร์ชันนี้ประกาศพารามิเตอร์ทุกตัวหลัง `workbook` เป็นแบบ `?` แล้ว)
+
+2. **ให้ Flow อ่านลายเซ็นใหม่** — Power Automate จำรายการพารามิเตอร์ไว้ตั้งแต่ตอน
+   เลือกสคริปต์ครั้งแรก แก้สคริปต์แล้วมันไม่รีเฟรชเอง
+   ให้ **ลบ action `Run script` ทิ้งแล้วเพิ่มใหม่** (Location / Document Library /
+   File / Script เลือกใหม่ให้ครบ) ช่องพารามิเตอร์จะกลับมาแบบไม่มีดอกจัน
+
+> ⚠️ ถ้าลบ action `Run script` ต้องตั้งสูตรในการ์ดใหม่ด้วย เพราะชื่อ action
+> อาจกลายเป็น `Run script 1` ให้ใช้ Dynamic content เลือก **result** แทนการพิมพ์สูตรเอง
+
+**ทางลัดถ้ายังไม่อยากแก้สคริปต์:** กรอกค่าลงไปตรง ๆ ก็ผ่านเหมือนกัน
+
+| ช่อง | ใส่ |
+|---|---|
+| `period` | `-` (หรือ `auto`, `latest`, `null`, `MA`, `Optimize`, ชื่อรอบเต็ม) |
+| `reportType` | `-` (สคริปต์ไม่ได้ใช้ค่านี้ ใส่อะไรก็ได้) |
 
 > ⚠️ **อย่าใช้ `fx` แล้วใส่ `""`** — Power Automate ใช้ single quote
 > และถึงใส่ `''` ได้ ก็ยังนับเป็นค่าว่างซึ่งโดน error เดิมอยู่ดี

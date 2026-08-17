@@ -160,6 +160,30 @@ interface CardPayload {
 }
 
 // ---------------------------------------------------------------------------
+// ตัวแปลงค่าพารามิเตอร์ที่ Power Automate ส่งเข้ามา
+//
+// พารามิเตอร์ของ main() ประกาศเป็นแบบไม่บังคับ (`period?: string`) เพื่อไม่ให้
+// Power Automate ขึ้นดอกจันบังคับกรอก ผลคือช่องที่เว้นว่างจะได้ค่า undefined
+// หรือ "" เข้ามา ตัวช่วย 2 ตัวนี้จึงแปลงให้เป็นค่าที่ตรรกะข้างล่างใช้ได้เสมอ
+//
+// หมายเหตุ: ประกาศ `?` พร้อม default value ในตัวเดียวกันไม่ได้ใน TypeScript
+//          การเติมค่าตั้งต้นจึงย้ายมาทำที่นี่แทน
+// ---------------------------------------------------------------------------
+
+/** ข้อความจากช่องที่อาจถูกเว้นว่าง -> คืนสตริงเสมอ (ไม่มี undefined) */
+function resolveText(v: (string | undefined)): string {
+  return v === undefined || v === null ? "" : String(v).trim();
+}
+
+/** จำนวนแถวจากช่องที่อาจถูกเว้นว่างหรือกรอกมาผิดรูปแบบ -> คืนตัวเลขที่ใช้ได้เสมอ */
+function resolveTopRows(v: (number | string | undefined)): number {
+  if (v === undefined || v === null || v === "") return TOP_ROWS_MAX;
+  const n = typeof v === "number" ? v : parseFloat(String(v));
+  if (isNaN(n) || n < 1) return TOP_ROWS_MAX;
+  return n > TOP_ROWS_MAX ? TOP_ROWS_MAX : Math.floor(n);
+}
+
+// ---------------------------------------------------------------------------
 // ตรรกะหลัก แยกออกจาก main() เพื่อให้ renderAdaptiveCard.ts นำไปใช้ซ้ำได้
 // (tools/build_office_script.js คัดลอกทุกอย่างเหนือ main() ไปประกอบร่าง)
 // ---------------------------------------------------------------------------
@@ -521,12 +545,18 @@ function buildPayload(
 // ---------------------------------------------------------------------------
 function main(
   workbook: ExcelScript.Workbook,
-  period: string = "",
-  topRows: number = 40,
-  dashboardUrl: string = "",
-  sourceFileUrl: string = "",
-  reportType: string = ""
+  period?: string,
+  topRows?: number,
+  dashboardUrl?: string,
+  sourceFileUrl?: string,
+  reportType?: string
 ): CardPayload {
-  // reportType ไม่ใช้ในรอบนี้ แต่ API ต้องการเพื่อความเข้ากันได้
-  return buildPayload(workbook, period, topRows, dashboardUrl, sourceFileUrl);
+  // reportType ไม่ใช้ในรอบนี้ แต่คงไว้เพื่อให้ Flow เดิมที่ตั้งค่าไว้แล้วยังใช้ได้
+  return buildPayload(
+    workbook,
+    resolveText(period),
+    resolveTopRows(topRows),
+    resolveText(dashboardUrl),
+    resolveText(sourceFileUrl)
+  );
 }
