@@ -568,7 +568,7 @@ function buildPayload(
       shownCount: items.length,
       riskCount: nRisk,
       // ไม่มีรายการเสี่ยง = ไม่ต้องขึ้นป้ายอะไรเลย ปล่อยว่างให้การ์ดโล่ง
-      riskBadge: nRisk > 0 ? "⚠️ เสี่ยงขาด " + nRisk : "",
+      riskBadge: nRisk > 0 ? "เสี่ยงขาด " + nRisk : "",
       riskColor: nRisk > 0 ? "attention" : "good",
       countLabel: items.length === nAll
         ? nAll + " รายการ"
@@ -581,12 +581,16 @@ function buildPayload(
         + " · กระจาย " + fmtInt(zoneDist[z] || 0)
         + " · เบิก Hub " + fmtInt(zoneHub[z] || 0),
       // หัวกลุ่มรวมเป็นบรรทัดเดียว — ประหยัดพื้นที่การ์ดได้ราว 0.5 KB ต่อ Zone
-      zoneHeadline: (ZONE_EMOJI[z] || "🔷") + " " + z
+      //
+      // ไม่ใส่ emoji ประจำ Zone ตรงนี้แล้ว ตามนโยบาย "emoji มีเฉพาะหัวการ์ด"
+      // การแยก Zone อาศัยตัวหนา + สีของบรรทัด (riskColor) และเส้นคั่นแทน
+      // ฟิลด์ zoneEmoji ยังคงอยู่ใน payload เพื่อให้การ์ดใบอื่นเรียกใช้ได้เหมือนเดิม
+      zoneHeadline: z
         + " · " + (items.length === nAll ? nAll + " รายการ" : "แสดง " + items.length + "/" + nAll)
         + " · Onhand " + fmtNum(zoneOnhand[z] || 0)
         + " · กระจาย " + fmtInt(zoneDist[z] || 0)
         + " · เบิก Hub " + fmtInt(zoneHub[z] || 0)
-        + (nRisk > 0 ? " · ⚠️ เสี่ยงขาด " + nRisk : ""),
+        + (nRisk > 0 ? " · เสี่ยงขาด " + nRisk : ""),
       items: items,
     };
   });
@@ -665,8 +669,8 @@ const CARD_TEMPLATE: object = {
   "msteams": {
     "width": "Full"
   },
-  "fallbackText": "Report Material Optimize&MA_NER (อุปกรณ์ของคุณแสดงการ์ดนี้ไม่ได้ กรุณาเปิดจาก Dashboard)",
-  "speak": "Report Material ${meta.dataSet} รอบ ${meta.period} มี ${meta.totalItems} รายการ เสี่ยงขาด ${meta.riskCount} รายการ",
+  "fallbackText": "Report Stock Allocation Cable&Material NER (อุปกรณ์ของคุณแสดงการ์ดนี้ไม่ได้ กรุณาเปิดจาก Dashboard)",
+  "speak": "Report Stock Allocation ${meta.dataSet} รอบ ${meta.period} มี ${meta.totalItems} รายการ เสี่ยงขาด ${meta.riskCount} รายการ",
   "body": [
     {
       "type": "Container",
@@ -727,7 +731,7 @@ const CARD_TEMPLATE: object = {
           "items": [
             {
               "type": "TextBlock",
-              "text": "🗓️ รอบจัดสรร",
+              "text": "รอบจัดสรร",
               "size": "small",
               "isSubtle": true,
               "wrap": true,
@@ -749,7 +753,7 @@ const CARD_TEMPLATE: object = {
           "items": [
             {
               "type": "TextBlock",
-              "text": "⏮️ รอบก่อนหน้า",
+              "text": "รอบก่อนหน้า",
               "size": "small",
               "isSubtle": true,
               "wrap": true,
@@ -773,13 +777,6 @@ const CARD_TEMPLATE: object = {
       "spacing": "medium",
       "style": "emphasis",
       "items": [
-        {
-          "type": "TextBlock",
-          "text": "📭",
-          "size": "extraLarge",
-          "horizontalAlignment": "center",
-          "wrap": false
-        },
         {
           "type": "TextBlock",
           "text": "ไม่มีรายการวัสดุในรอบนี้",
@@ -822,7 +819,7 @@ const CARD_TEMPLATE: object = {
               "items": [
                 {
                   "type": "TextBlock",
-                  "text": "⚠️ เสี่ยงขาด",
+                  "text": "เสี่ยงขาด",
                   "size": "small",
                   "horizontalAlignment": "center",
                   "wrap": true,
@@ -845,7 +842,7 @@ const CARD_TEMPLATE: object = {
               "items": [
                 {
                   "type": "TextBlock",
-                  "text": "🟡 พอใช้",
+                  "text": "พอใช้",
                   "size": "small",
                   "horizontalAlignment": "center",
                   "wrap": true,
@@ -868,7 +865,7 @@ const CARD_TEMPLATE: object = {
               "items": [
                 {
                   "type": "TextBlock",
-                  "text": "✅ ปกติ",
+                  "text": "ปกติ",
                   "size": "small",
                   "horizontalAlignment": "center",
                   "wrap": true,
@@ -891,7 +888,7 @@ const CARD_TEMPLATE: object = {
               "items": [
                 {
                   "type": "TextBlock",
-                  "text": "📦 รวม",
+                  "text": "รวม",
                   "size": "small",
                   "horizontalAlignment": "center",
                   "wrap": true,
@@ -973,7 +970,7 @@ const CARD_TEMPLATE: object = {
                     {
                       "type": "TextBlock",
                       "$data": "${items}",
-                      "text": "${itemIcon} · ${itemShort}${provinceTag}",
+                      "text": "${itemShort}${provinceTag}",
                       "size": "small",
                       "weight": "${rowWeight}",
                       "color": "${statusColor}",
@@ -1009,7 +1006,7 @@ const CARD_TEMPLATE: object = {
       "items": [
         {
           "type": "TextBlock",
-          "text": "สัญลักษณ์หน้ารายการ · Item Code เต็ม",
+          "text": "ชื่อย่อบนการ์ด · Item Code เต็ม",
           "size": "small",
           "weight": "bolder",
           "color": "accent",
@@ -1023,7 +1020,7 @@ const CARD_TEMPLATE: object = {
           "items": [
             {
               "type": "TextBlock",
-              "text": "${itemIcon} **${groupLabel}** — ${itemAbout}",
+              "text": "**${groupLabel}** — ${itemAbout}",
               "size": "small",
               "wrap": true,
               "spacing": "none"
@@ -1042,7 +1039,7 @@ const CARD_TEMPLATE: object = {
     },
     {
       "type": "TextBlock",
-      "text": "🕗 สร้างรายงานเมื่อ ${meta.generatedAt} • ที่มา: ${meta.dataSet} / ${meta.period}",
+      "text": "สร้างรายงานเมื่อ ${meta.generatedAt} • ที่มา: ${meta.dataSet} / ${meta.period}",
       "size": "small",
       "isSubtle": true,
       "wrap": true,
@@ -1053,12 +1050,12 @@ const CARD_TEMPLATE: object = {
   "actions": [
     {
       "type": "Action.OpenUrl",
-      "title": "📊 Dashboard",
+      "title": "Dashboard",
       "url": "${meta.dashboardUrl}"
     },
     {
       "type": "Action.OpenUrl",
-      "title": "📁 Open the source file. (Excel / SharePoint)",
+      "title": "Open the source file. (Excel / SharePoint)",
       "url": "${meta.sourceFileUrl}"
     }
   ]

@@ -5,8 +5,8 @@
   "msteams": {
     "width": "Full"
   },
-  "fallbackText": "Report Material Optimize&MA_NER (อุปกรณ์ของคุณแสดงการ์ดนี้ไม่ได้ กรุณาเปิดจาก Dashboard)",
-  "speak": "Report Material Optimize รอบ Optimize(3 Aug 26) มี 45 รายการ เสี่ยงขาด 12 รายการ",
+  "fallbackText": "Report Stock Allocation Cable&Material NER (อุปกรณ์ของคุณแสดงการ์ดนี้ไม่ได้ กรุณาเปิดจาก Dashboard)",
+  "speak": "Report Stock Allocation Optimize รอบ Optimize(3 Aug 26) มี 45 รายการ เสี่ยงขาด 12 รายการ",
   "body": [
     {
       "type": "Container",
@@ -67,7 +67,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "🗓️ รอบจัดสรร",
+              "text": "รอบจัดสรร",
               "size": "small",
               "isSubtle": true,
               "wrap": true,
@@ -89,7 +89,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "⏮️ รอบก่อนหน้า",
+              "text": "รอบก่อนหน้า",
               "size": "small",
               "isSubtle": true,
               "wrap": true,
@@ -123,7 +123,7 @@
               "items": [
                 {
                   "type": "TextBlock",
-                  "text": "⚠️ เสี่ยงขาด",
+                  "text": "เสี่ยงขาด",
                   "size": "small",
                   "horizontalAlignment": "center",
                   "wrap": true,
@@ -146,7 +146,7 @@
               "items": [
                 {
                   "type": "TextBlock",
-                  "text": "🟡 พอใช้",
+                  "text": "พอใช้",
                   "size": "small",
                   "horizontalAlignment": "center",
                   "wrap": true,
@@ -169,7 +169,7 @@
               "items": [
                 {
                   "type": "TextBlock",
-                  "text": "✅ ปกติ",
+                  "text": "ปกติ",
                   "size": "small",
                   "horizontalAlignment": "center",
                   "wrap": true,
@@ -192,7 +192,7 @@
               "items": [
                 {
                   "type": "TextBlock",
-                  "text": "📦 รวม",
+                  "text": "รวม",
                   "size": "small",
                   "horizontalAlignment": "center",
                   "wrap": true,
@@ -254,7 +254,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "🟦 RC2-NMA · แสดง 8/9 · Onhand 0 · กระจาย 32,090 · เบิก Hub 0 · ⚠️ เสี่ยงขาด 3",
+              "text": "RC2-NMA · แสดง 8/9 · Onhand 0 · กระจาย 32,090 · เบิก Hub 0 · เสี่ยงขาด 3",
               "size": "small",
               "weight": "bolder",
               "color": "attention",
@@ -272,7 +272,7 @@
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "🧰 · Closure 60C",
+                      "text": "Closure 60C",
                       "size": "small",
                       "weight": "bolder",
                       "color": "attention",
@@ -280,7 +280,7 @@
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🧶 · ARSS Fiber Cable 12C",
+                      "text": "ARSS Fiber Cable 12C",
                       "size": "small",
                       "weight": "bolder",
                       "color": "attention",
@@ -288,7 +288,7 @@
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🧶 · ARSS Fiber Cable 24C",
+                      "text": "ARSS Fiber Cable 24C",
                       "size": "small",
                       "weight": "bolder",
                       "color": "attention",
@@ -296,7 +296,7 @@
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🏷️ · Name Plate Aluminium",
+                      "text": "Name Plate Aluminium",
                       "size": "small",
                       "weight": "default",
                       "color": "warning",
@@ -304,7 +304,7 @@
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🧰 · Closure 12C",
+                      "text": "Closure 12C",
                       "size": "small",
                       "weight": "default",
                       "color": "warning",
@@ -312,7 +312,7 @@
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🧰 · Closure 24C",
+                      "text": "Closure 24C",
                       "size": "small",
                       "weight": "default",
                       "color": "warning",
@@ -320,7 +320,7 @@
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🧰 · Closure 48C",
+                      "text": "Closure 48C",
                       "size": "small",
                       "weight": "default",
                       "color": "default",
@@ -328,7 +328,7 @@
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🧰 · Closure 12C Inline",
+                      "text": "Closure 12C Inline",
                       "size": "small",
                       "weight": "default",
                       "color": "warning",
@@ -408,7 +408,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "🟩 RC2-UBN · แสดง 8/9 · Onhand 0 · กระจาย 24,071 · เบิก Hub 0 · ⚠️ เสี่ยงขาด 6",
+              "text": "RC2-UBN · แสดง 8/9 · Onhand 0 · กระจาย 24,071 · เบิก Hub 0 · เสี่ยงขาด 6",
               "size": "small",
               "weight": "bolder",
               "color": "attention",
@@ -426,7 +426,7 @@
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "🧰 · Closure 12C",
+                      "text": "Closure 12C",
                       "size": "small",
                       "weight": "bolder",
                       "color": "attention",
@@ -434,7 +434,7 @@
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🧰 · Closure 24C",
+                      "text": "Closure 24C",
                       "size": "small",
                       "weight": "bolder",
                       "color": "attention",
@@ -442,7 +442,7 @@
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🧰 · Closure 12C Inline",
+                      "text": "Closure 12C Inline",
                       "size": "small",
                       "weight": "bolder",
                       "color": "attention",
@@ -450,7 +450,7 @@
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🧰 · Closure 60C",
+                      "text": "Closure 60C",
                       "size": "small",
                       "weight": "bolder",
                       "color": "attention",
@@ -458,7 +458,7 @@
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🔌 · Drop Cable 1C SC/UPC · 3m",
+                      "text": "Drop Cable 1C SC/UPC · 3m",
                       "size": "small",
                       "weight": "bolder",
                       "color": "attention",
@@ -466,7 +466,7 @@
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🧶 · ARSS Fiber Cable 12C",
+                      "text": "ARSS Fiber Cable 12C",
                       "size": "small",
                       "weight": "bolder",
                       "color": "attention",
@@ -474,7 +474,7 @@
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🏷️ · Name Plate Aluminium",
+                      "text": "Name Plate Aluminium",
                       "size": "small",
                       "weight": "default",
                       "color": "warning",
@@ -482,7 +482,7 @@
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🧰 · Closure 48C",
+                      "text": "Closure 48C",
                       "size": "small",
                       "weight": "default",
                       "color": "default",
@@ -562,7 +562,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "🟨 RC3-KKN · แสดง 8/9 · Onhand 0 · กระจาย 32,091 · เบิก Hub 0 · ⚠️ เสี่ยงขาด 1",
+              "text": "RC3-KKN · แสดง 8/9 · Onhand 0 · กระจาย 32,091 · เบิก Hub 0 · เสี่ยงขาด 1",
               "size": "small",
               "weight": "bolder",
               "color": "attention",
@@ -580,7 +580,7 @@
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "🧶 · ARSS Fiber Cable 12C",
+                      "text": "ARSS Fiber Cable 12C",
                       "size": "small",
                       "weight": "bolder",
                       "color": "attention",
@@ -588,7 +588,7 @@
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🏷️ · Name Plate Aluminium",
+                      "text": "Name Plate Aluminium",
                       "size": "small",
                       "weight": "default",
                       "color": "warning",
@@ -596,7 +596,7 @@
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🧰 · Closure 12C",
+                      "text": "Closure 12C",
                       "size": "small",
                       "weight": "default",
                       "color": "warning",
@@ -604,7 +604,7 @@
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🧰 · Closure 24C",
+                      "text": "Closure 24C",
                       "size": "small",
                       "weight": "default",
                       "color": "warning",
@@ -612,7 +612,7 @@
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🧰 · Closure 48C",
+                      "text": "Closure 48C",
                       "size": "small",
                       "weight": "default",
                       "color": "default",
@@ -620,7 +620,7 @@
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🧰 · Closure 12C Inline",
+                      "text": "Closure 12C Inline",
                       "size": "small",
                       "weight": "default",
                       "color": "warning",
@@ -628,7 +628,7 @@
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🧰 · Closure 60C",
+                      "text": "Closure 60C",
                       "size": "small",
                       "weight": "default",
                       "color": "warning",
@@ -636,7 +636,7 @@
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🔌 · Drop Cable 1C SC/UPC · 3m",
+                      "text": "Drop Cable 1C SC/UPC · 3m",
                       "size": "small",
                       "weight": "default",
                       "color": "warning",
@@ -716,7 +716,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "🟪 RC3-SNK · แสดง 8/9 · Onhand 0 · กระจาย 24,056 · เบิก Hub 0",
+              "text": "RC3-SNK · แสดง 8/9 · Onhand 0 · กระจาย 24,056 · เบิก Hub 0",
               "size": "small",
               "weight": "bolder",
               "color": "good",
@@ -734,7 +734,7 @@
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "🏷️ · Name Plate Aluminium",
+                      "text": "Name Plate Aluminium",
                       "size": "small",
                       "weight": "default",
                       "color": "warning",
@@ -742,7 +742,7 @@
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🧰 · Closure 12C",
+                      "text": "Closure 12C",
                       "size": "small",
                       "weight": "default",
                       "color": "warning",
@@ -750,7 +750,7 @@
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🧰 · Closure 24C",
+                      "text": "Closure 24C",
                       "size": "small",
                       "weight": "default",
                       "color": "warning",
@@ -758,7 +758,7 @@
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🧰 · Closure 48C",
+                      "text": "Closure 48C",
                       "size": "small",
                       "weight": "default",
                       "color": "default",
@@ -766,7 +766,7 @@
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🧰 · Closure 12C Inline",
+                      "text": "Closure 12C Inline",
                       "size": "small",
                       "weight": "default",
                       "color": "warning",
@@ -774,7 +774,7 @@
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🧰 · Closure 60C",
+                      "text": "Closure 60C",
                       "size": "small",
                       "weight": "default",
                       "color": "warning",
@@ -782,7 +782,7 @@
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🔌 · Drop Cable 1C SC/UPC · 3m",
+                      "text": "Drop Cable 1C SC/UPC · 3m",
                       "size": "small",
                       "weight": "default",
                       "color": "warning",
@@ -790,7 +790,7 @@
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🧶 · ARSS Fiber Cable 12C",
+                      "text": "ARSS Fiber Cable 12C",
                       "size": "small",
                       "weight": "default",
                       "color": "warning",
@@ -870,7 +870,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "🟧 RC3-UDN · แสดง 8/9 · Onhand 0 · กระจาย 32,096 · เบิก Hub 0 · ⚠️ เสี่ยงขาด 2",
+              "text": "RC3-UDN · แสดง 8/9 · Onhand 0 · กระจาย 32,096 · เบิก Hub 0 · เสี่ยงขาด 2",
               "size": "small",
               "weight": "bolder",
               "color": "attention",
@@ -888,7 +888,7 @@
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "🧰 · Closure 12C",
+                      "text": "Closure 12C",
                       "size": "small",
                       "weight": "bolder",
                       "color": "attention",
@@ -896,7 +896,7 @@
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🧶 · ARSS Fiber Cable 12C",
+                      "text": "ARSS Fiber Cable 12C",
                       "size": "small",
                       "weight": "bolder",
                       "color": "attention",
@@ -904,7 +904,7 @@
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🏷️ · Name Plate Aluminium",
+                      "text": "Name Plate Aluminium",
                       "size": "small",
                       "weight": "default",
                       "color": "warning",
@@ -912,7 +912,7 @@
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🧰 · Closure 24C",
+                      "text": "Closure 24C",
                       "size": "small",
                       "weight": "default",
                       "color": "warning",
@@ -920,7 +920,7 @@
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🧰 · Closure 48C",
+                      "text": "Closure 48C",
                       "size": "small",
                       "weight": "default",
                       "color": "default",
@@ -928,7 +928,7 @@
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🧰 · Closure 12C Inline",
+                      "text": "Closure 12C Inline",
                       "size": "small",
                       "weight": "default",
                       "color": "warning",
@@ -936,7 +936,7 @@
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🧰 · Closure 60C",
+                      "text": "Closure 60C",
                       "size": "small",
                       "weight": "default",
                       "color": "warning",
@@ -944,7 +944,7 @@
                     },
                     {
                       "type": "TextBlock",
-                      "text": "🔌 · Drop Cable 1C SC/UPC · 3m",
+                      "text": "Drop Cable 1C SC/UPC · 3m",
                       "size": "small",
                       "weight": "default",
                       "color": "warning",
@@ -1027,7 +1027,7 @@
       "items": [
         {
           "type": "TextBlock",
-          "text": "สัญลักษณ์หน้ารายการ · Item Code เต็ม",
+          "text": "ชื่อย่อบนการ์ด · Item Code เต็ม",
           "size": "small",
           "weight": "bolder",
           "color": "accent",
@@ -1040,7 +1040,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "🏷️ **NAME PLATE** — ป้ายชื่อติดอุปกรณ์",
+              "text": "**NAME PLATE** — ป้ายชื่อติดอุปกรณ์",
               "size": "small",
               "wrap": true,
               "spacing": "none"
@@ -1061,7 +1061,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "🧰 **CLOSURE** — หัวต่อ CLOSURE สำหรับตัดต่อ Cable Optic",
+              "text": "**CLOSURE** — หัวต่อ CLOSURE สำหรับตัดต่อ Cable Optic",
               "size": "small",
               "wrap": true,
               "spacing": "none"
@@ -1082,7 +1082,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "🔌 **DROP CABLE** — สาย Pigtail Patch สำหรับ Splice เชื่อมต่อ",
+              "text": "**DROP CABLE** — สาย Pigtail Patch สำหรับ Splice เชื่อมต่อ",
               "size": "small",
               "wrap": true,
               "spacing": "none"
@@ -1103,7 +1103,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "🧶 **ARSS FIBER CABLE** — สาย Cable Fiber Optic",
+              "text": "**ARSS FIBER CABLE** — สาย Cable Fiber Optic",
               "size": "small",
               "wrap": true,
               "spacing": "none"
@@ -1122,7 +1122,7 @@
     },
     {
       "type": "TextBlock",
-      "text": "🕗 สร้างรายงานเมื่อ 16 ส.ค. 2569 08:00 น. • ที่มา: Optimize / Optimize(3 Aug 26)",
+      "text": "สร้างรายงานเมื่อ 16 ส.ค. 2569 08:00 น. • ที่มา: Optimize / Optimize(3 Aug 26)",
       "size": "small",
       "isSubtle": true,
       "wrap": true,
@@ -1133,12 +1133,12 @@
   "actions": [
     {
       "type": "Action.OpenUrl",
-      "title": "📊 Dashboard",
+      "title": "Dashboard",
       "url": "https://app.powerbi.com/groups/me/reports/demo"
     },
     {
       "type": "Action.OpenUrl",
-      "title": "📁 Open the source file. (Excel / SharePoint)",
+      "title": "Open the source file. (Excel / SharePoint)",
       "url": "https://contoso.sharepoint.com/sites/NER/Shared%20Documents/Optimize_HiringMA.xlsx"
     }
   ]

@@ -564,7 +564,7 @@ function buildPayload(
       shownCount: items.length,
       riskCount: nRisk,
       // ไม่มีรายการเสี่ยง = ไม่ต้องขึ้นป้ายอะไรเลย ปล่อยว่างให้การ์ดโล่ง
-      riskBadge: nRisk > 0 ? "⚠️ เสี่ยงขาด " + nRisk : "",
+      riskBadge: nRisk > 0 ? "เสี่ยงขาด " + nRisk : "",
       riskColor: nRisk > 0 ? "attention" : "good",
       countLabel: items.length === nAll
         ? nAll + " รายการ"
@@ -577,12 +577,16 @@ function buildPayload(
         + " · กระจาย " + fmtInt(zoneDist[z] || 0)
         + " · เบิก Hub " + fmtInt(zoneHub[z] || 0),
       // หัวกลุ่มรวมเป็นบรรทัดเดียว — ประหยัดพื้นที่การ์ดได้ราว 0.5 KB ต่อ Zone
-      zoneHeadline: (ZONE_EMOJI[z] || "🔷") + " " + z
+      //
+      // ไม่ใส่ emoji ประจำ Zone ตรงนี้แล้ว ตามนโยบาย "emoji มีเฉพาะหัวการ์ด"
+      // การแยก Zone อาศัยตัวหนา + สีของบรรทัด (riskColor) และเส้นคั่นแทน
+      // ฟิลด์ zoneEmoji ยังคงอยู่ใน payload เพื่อให้การ์ดใบอื่นเรียกใช้ได้เหมือนเดิม
+      zoneHeadline: z
         + " · " + (items.length === nAll ? nAll + " รายการ" : "แสดง " + items.length + "/" + nAll)
         + " · Onhand " + fmtNum(zoneOnhand[z] || 0)
         + " · กระจาย " + fmtInt(zoneDist[z] || 0)
         + " · เบิก Hub " + fmtInt(zoneHub[z] || 0)
-        + (nRisk > 0 ? " · ⚠️ เสี่ยงขาด " + nRisk : ""),
+        + (nRisk > 0 ? " · เสี่ยงขาด " + nRisk : ""),
       items: items,
     };
   });

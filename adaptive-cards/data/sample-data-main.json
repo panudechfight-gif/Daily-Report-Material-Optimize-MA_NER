@@ -32,14 +32,14 @@
       "itemCount": 9,
       "shownCount": 8,
       "riskCount": 3,
-      "riskBadge": "⚠️ เสี่ยงขาด 3",
+      "riskBadge": "เสี่ยงขาด 3",
       "riskColor": "attention",
       "countLabel": "แสดง 8 จาก 9 รายการ",
       "totalOnhand": "0",
       "totalDistribute": "32,090",
       "totalHub": "0",
       "totalLabel": "Onhand 0 · กระจาย 32,090 · เบิก Hub 0",
-      "zoneHeadline": "🟦 RC2-NMA · แสดง 8/9 · Onhand 0 · กระจาย 32,090 · เบิก Hub 0 · ⚠️ เสี่ยงขาด 3",
+      "zoneHeadline": "RC2-NMA · แสดง 8/9 · Onhand 0 · กระจาย 32,090 · เบิก Hub 0 · เสี่ยงขาด 3",
       "items": [
         {
           "itemCode": "52CL010BB",
@@ -273,14 +273,14 @@
       "itemCount": 9,
       "shownCount": 8,
       "riskCount": 6,
-      "riskBadge": "⚠️ เสี่ยงขาด 6",
+      "riskBadge": "เสี่ยงขาด 6",
       "riskColor": "attention",
       "countLabel": "แสดง 8 จาก 9 รายการ",
       "totalOnhand": "0",
       "totalDistribute": "24,071",
       "totalHub": "0",
       "totalLabel": "Onhand 0 · กระจาย 24,071 · เบิก Hub 0",
-      "zoneHeadline": "🟩 RC2-UBN · แสดง 8/9 · Onhand 0 · กระจาย 24,071 · เบิก Hub 0 · ⚠️ เสี่ยงขาด 6",
+      "zoneHeadline": "RC2-UBN · แสดง 8/9 · Onhand 0 · กระจาย 24,071 · เบิก Hub 0 · เสี่ยงขาด 6",
       "items": [
         {
           "itemCode": "52CL003BB",
@@ -514,14 +514,14 @@
       "itemCount": 9,
       "shownCount": 8,
       "riskCount": 1,
-      "riskBadge": "⚠️ เสี่ยงขาด 1",
+      "riskBadge": "เสี่ยงขาด 1",
       "riskColor": "attention",
       "countLabel": "แสดง 8 จาก 9 รายการ",
       "totalOnhand": "0",
       "totalDistribute": "32,091",
       "totalHub": "0",
       "totalLabel": "Onhand 0 · กระจาย 32,091 · เบิก Hub 0",
-      "zoneHeadline": "🟨 RC3-KKN · แสดง 8/9 · Onhand 0 · กระจาย 32,091 · เบิก Hub 0 · ⚠️ เสี่ยงขาด 1",
+      "zoneHeadline": "RC3-KKN · แสดง 8/9 · Onhand 0 · กระจาย 32,091 · เบิก Hub 0 · เสี่ยงขาด 1",
       "items": [
         {
           "itemCode": "53OF157BB",
@@ -762,7 +762,7 @@
       "totalDistribute": "24,056",
       "totalHub": "0",
       "totalLabel": "Onhand 0 · กระจาย 24,056 · เบิก Hub 0",
-      "zoneHeadline": "🟪 RC3-SNK · แสดง 8/9 · Onhand 0 · กระจาย 24,056 · เบิก Hub 0",
+      "zoneHeadline": "RC3-SNK · แสดง 8/9 · Onhand 0 · กระจาย 24,056 · เบิก Hub 0",
       "items": [
         {
           "itemCode": "50MT004BB",
@@ -996,14 +996,14 @@
       "itemCount": 9,
       "shownCount": 8,
       "riskCount": 2,
-      "riskBadge": "⚠️ เสี่ยงขาด 2",
+      "riskBadge": "เสี่ยงขาด 2",
       "riskColor": "attention",
       "countLabel": "แสดง 8 จาก 9 รายการ",
       "totalOnhand": "0",
       "totalDistribute": "32,096",
       "totalHub": "0",
       "totalLabel": "Onhand 0 · กระจาย 32,096 · เบิก Hub 0",
-      "zoneHeadline": "🟧 RC3-UDN · แสดง 8/9 · Onhand 0 · กระจาย 32,096 · เบิก Hub 0 · ⚠️ เสี่ยงขาด 2",
+      "zoneHeadline": "RC3-UDN · แสดง 8/9 · Onhand 0 · กระจาย 32,096 · เบิก Hub 0 · เสี่ยงขาด 2",
       "items": [
         {
           "itemCode": "52CL003BB",

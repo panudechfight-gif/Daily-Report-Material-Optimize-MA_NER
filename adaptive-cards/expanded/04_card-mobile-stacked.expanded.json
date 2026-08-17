@@ -108,7 +108,7 @@
       "items": [
         {
           "type": "TextBlock",
-          "text": "🟦 RC2-NMA · 3 รายการ · Onhand 39 · กระจาย 0 · เบิก Hub 108 · ⚠️ เสี่ยงขาด 1",
+          "text": "RC2-NMA · 3 รายการ · Onhand 39 · กระจาย 0 · เบิก Hub 108 · เสี่ยงขาด 1",
           "size": "small",
           "weight": "bolder",
           "color": "attention",
@@ -149,7 +149,7 @@
       "items": [
         {
           "type": "TextBlock",
-          "text": "🟨 RC3-KKN · 3 รายการ · Onhand 932 · กระจาย 38 · เบิก Hub 4,053 · ⚠️ เสี่ยงขาด 3",
+          "text": "RC3-KKN · 3 รายการ · Onhand 932 · กระจาย 38 · เบิก Hub 4,053 · เสี่ยงขาด 3",
           "size": "small",
           "weight": "bolder",
           "color": "attention",
@@ -190,7 +190,7 @@
       "items": [
         {
           "type": "TextBlock",
-          "text": "🟧 RC3-UDN · 3 รายการ · Onhand 1 · กระจาย 0 · เบิก Hub 15 · ⚠️ เสี่ยงขาด 3",
+          "text": "RC3-UDN · 3 รายการ · Onhand 1 · กระจาย 0 · เบิก Hub 15 · เสี่ยงขาด 3",
           "size": "small",
           "weight": "bolder",
           "color": "attention",

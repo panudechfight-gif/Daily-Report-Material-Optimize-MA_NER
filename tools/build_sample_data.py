@@ -476,7 +476,7 @@ def build_payload(rows, period=None, dashboard_url="", source_url="", top=TOP_RO
             ("shownCount", len(items)),
             ("riskCount", n_risk),
             # ไม่มีรายการเสี่ยง = ไม่ต้องขึ้นป้ายอะไรเลย ปล่อยว่างให้การ์ดโล่ง
-            ("riskBadge", "⚠️ เสี่ยงขาด {}".format(n_risk) if n_risk else ""),
+            ("riskBadge", "เสี่ยงขาด {}".format(n_risk) if n_risk else ""),
             ("riskColor", "attention" if n_risk else "good"),
             ("countLabel", "{} รายการ".format(n_all) if len(items) == n_all
                            else "แสดง {} จาก {} รายการ".format(len(items), n_all)),
@@ -486,12 +486,13 @@ def build_payload(rows, period=None, dashboard_url="", source_url="", top=TOP_RO
             ("totalLabel", "Onhand {} · กระจาย {} · เบิก Hub {}".format(
                 t_onhand, t_dist, t_hub)),
             # หัวกลุ่มรวมเป็นบรรทัดเดียว — ประหยัดพื้นที่การ์ดได้ราว 0.5 KB ต่อ Zone
-            ("zoneHeadline", "{} {} · {} · Onhand {} · กระจาย {} · เบิก Hub {}{}".format(
-                ZONE_EMOJI.get(zone, "🔷"), zone,
+            # ไม่ใส่ emoji ประจำ Zone ตามนโยบาย "emoji มีเฉพาะหัวการ์ด"
+            ("zoneHeadline", "{} · {} · Onhand {} · กระจาย {} · เบิก Hub {}{}".format(
+                zone,
                 "{} รายการ".format(n_all) if len(items) == n_all
                 else "แสดง {}/{}".format(len(items), n_all),
                 t_onhand, t_dist, t_hub,
-                " · ⚠️ เสี่ยงขาด {}".format(n_risk) if n_risk else "")),
+                " · เสี่ยงขาด {}".format(n_risk) if n_risk else "")),
             ("items", items),
         ]))
 

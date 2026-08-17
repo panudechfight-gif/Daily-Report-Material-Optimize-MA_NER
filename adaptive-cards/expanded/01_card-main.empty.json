@@ -5,8 +5,8 @@
   "msteams": {
     "width": "Full"
   },
-  "fallbackText": "Report Material Optimize&MA_NER (อุปกรณ์ของคุณแสดงการ์ดนี้ไม่ได้ กรุณาเปิดจาก Dashboard)",
-  "speak": "Report Material Optimize รอบ Optimize(3 Aug 26) มี 0 รายการ เสี่ยงขาด 0 รายการ",
+  "fallbackText": "Report Stock Allocation Cable&Material NER (อุปกรณ์ของคุณแสดงการ์ดนี้ไม่ได้ กรุณาเปิดจาก Dashboard)",
+  "speak": "Report Stock Allocation Optimize รอบ Optimize(3 Aug 26) มี 0 รายการ เสี่ยงขาด 0 รายการ",
   "body": [
     {
       "type": "Container",
@@ -67,7 +67,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "🗓️ รอบจัดสรร",
+              "text": "รอบจัดสรร",
               "size": "small",
               "isSubtle": true,
               "wrap": true,
@@ -89,7 +89,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "⏮️ รอบก่อนหน้า",
+              "text": "รอบก่อนหน้า",
               "size": "small",
               "isSubtle": true,
               "wrap": true,
@@ -112,13 +112,6 @@
       "spacing": "medium",
       "style": "emphasis",
       "items": [
-        {
-          "type": "TextBlock",
-          "text": "📭",
-          "size": "extraLarge",
-          "horizontalAlignment": "center",
-          "wrap": false
-        },
         {
           "type": "TextBlock",
           "text": "ไม่มีรายการวัสดุในรอบนี้",
@@ -146,7 +139,7 @@
     },
     {
       "type": "TextBlock",
-      "text": "🕗 สร้างรายงานเมื่อ 16 ส.ค. 2569 08:00 น. • ที่มา: Optimize / Optimize(3 Aug 26)",
+      "text": "สร้างรายงานเมื่อ 16 ส.ค. 2569 08:00 น. • ที่มา: Optimize / Optimize(3 Aug 26)",
       "size": "small",
       "isSubtle": true,
       "wrap": true,
@@ -157,12 +150,12 @@
   "actions": [
     {
       "type": "Action.OpenUrl",
-      "title": "📊 Dashboard",
+      "title": "Dashboard",
       "url": "https://app.powerbi.com/groups/me/reports/demo"
     },
     {
       "type": "Action.OpenUrl",
-      "title": "📁 Open the source file. (Excel / SharePoint)",
+      "title": "Open the source file. (Excel / SharePoint)",
       "url": "https://contoso.sharepoint.com/sites/NER/Shared%20Documents/Optimize_HiringMA.xlsx"
     }
   ]
