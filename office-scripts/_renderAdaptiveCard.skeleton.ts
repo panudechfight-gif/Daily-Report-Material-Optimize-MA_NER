@@ -200,53 +200,93 @@ function acStripKey(obj: object, key: string): object {
 // ===========================================================================
 // ส่วนที่ 4 — main
 // ===========================================================================
-/** ความยาวจริงเป็นไบต์แบบ UTF-8 — ข้อความไทย 1 ตัวกิน 3 ไบต์ emoji กิน 4 ไบต์
- *  (String.length นับเป็น UTF-16 code unit จึงต่ำกว่าความจริงมากจนวัดขนาดการ์ดไม่ได้) */
-function utf8Bytes(s: string): number {
+/**
+ * ขนาดของการ์ดตอนเดินสายจริง (worst case)
+ *
+ * ตอนส่งขึ้น Teams การ์ดถูกหุ้มอยู่ในซองข้อความอีกชั้น และอักขระนอก ASCII
+ * อาจถูก escape เป็น `\uXXXX` ทำให้ตัวอักษรไทย 1 ตัวที่ปกติกิน 3 ไบต์
+ * กลายเป็น 6 ไบต์ และ emoji 1 ตัวจาก 4 ไบต์กลายเป็น 12 ไบต์
+ *
+ * การ์ดใบนี้เป็นภาษาไทยเกือบทั้งใบ การวัดแบบ UTF-8 ตรง ๆ จึงต่ำกว่าความจริง
+ * จนเคยหลุดเพดานไปแล้ว (Teams ตอบกลับ 413 RequestEntityTooLarge)
+ * ฟังก์ชันนี้จึงนับแบบแย่ที่สุดที่เป็นไปได้ เพื่อให้งบข้างล่างเชื่อถือได้จริง
+ */
+function wireBytes(s: string): number {
   let n = 0;
   for (let i = 0; i < s.length; i++) {
     const c = s.charCodeAt(i);
-    if (c < 0x80) n += 1;
-    else if (c < 0x800) n += 2;
-    else if (c >= 0xD800 && c <= 0xDBFF) { n += 4; i++; }   // surrogate pair
-    else n += 3;
+    if (c < 0x80) n += 1;                                   // ASCII ส่งดิบ 1 ไบต์
+    else if (c >= 0xD800 && c <= 0xDBFF) { n += 12; i++; }  // emoji = \uXXXX 2 ชุด
+    else n += 6;                                            // ไทย/สัญลักษณ์ = \uXXXX
   }
   return n;
 }
 
-// Teams ปฏิเสธการ์ดเกิน 28,672 ไบต์แบบเงียบ ๆ — เผื่อไว้ให้เหลือที่หายใจ
-const CARD_SAFE_BYTES = 26000;
+// ---------------------------------------------------------------------------
+// 🔧 งบขนาดการ์ด — ปรับได้ที่บรรทัดเดียวนี้
+//
+// Teams ปฏิเสธข้อความที่ใหญ่เกิน 28 KB ด้วย error 413 RequestEntityTooLarge
+// แต่ 28 KB นั้นนับ "ทั้งซองข้อความ" ไม่ใช่แค่ตัวการ์ด และส่วนที่หุ้มอยู่
+// สคริปต์มองไม่เห็น จึงต้องเผื่อที่ไว้ให้มากพอ
+//
+// ค่าเดิม 26,000 หลวมเกินไป — การ์ดรอบ Optimize ที่วัดได้ 25 KB ถูกปฏิเสธจริง
+// ค่านี้จึงตั้งไว้ที่ราว 70% ของเพดาน โดยวัดแบบ worst case ข้างบน
+//
+// ถ้ายังเจอ RequestEntityTooLarge อีก ให้ลดเลขนี้ลงทีละ 2,000
+// ถ้าอยากให้การ์ดจุแถวได้มากขึ้นและ Flow ผ่านสบาย ๆ แล้ว ค่อยเพิ่มขึ้นทีละ 1,000
+// ---------------------------------------------------------------------------
+const CARD_SAFE_BYTES = 20000;
 
+/**
+ * พารามิเตอร์ทุกตัวหลัง workbook ประกาศเป็นแบบไม่บังคับ (`?`) โดยตั้งใจ
+ *
+ * Power Automate ถือว่าพารามิเตอร์ที่ประกาศด้วย default value (`period: string = ""`)
+ * เป็นช่อง "บังคับกรอก" (มีดอกจัน) ปล่อยว่างแล้วขึ้น error
+ *      Invalid parameter for 'Run script'. Error: 'ScriptParameters/period' is required.
+ * มีแต่พารามิเตอร์ที่ประกาศด้วย `?` เท่านั้นที่ Flow ยอมให้เว้นว่างได้
+ * ค่าตั้งต้นจึงย้ายไปเติมด้วย resolveText() / resolveTopRows() แทน
+ *
+ * ⚠️ หลังวางสคริปต์เวอร์ชันนี้ทับของเดิม ต้องลบแล้วเพิ่ม action "Run script"
+ *    ใน Flow ใหม่ (หรือเลือกสคริปต์ซ้ำอีกครั้ง) เพื่อให้ Flow อ่านรายการ
+ *    พารามิเตอร์ชุดใหม่ — ของเดิมจะยังจำว่าเป็นช่องบังคับอยู่
+ */
 function main(
   workbook: ExcelScript.Workbook,
-  period: string = "",
-  topRows: number = 40,
-  dashboardUrl: string = "",
-  sourceFileUrl: string = "",
-  generatedAt: string = "",
-  reportType: string = ""
+  period?: string,
+  topRows?: number,
+  dashboardUrl?: string,
+  sourceFileUrl?: string,
+  generatedAt?: string,
+  reportType?: string
 ): (string | number | boolean | object) {
 
-  // reportType ไม่ใช้ในรอบนี้ แต่ API ต้องการเพื่อความเข้ากันได้
-  // สร้างการ์ดแล้ววัดขนาดจริง ถ้าเกินงบก็ลดแถวแล้วสร้างใหม่
-  // ทำให้การ์ดปลอดภัยเองไม่ว่ารอบนั้นจะมีกี่ Zone กี่รายการ โดยไม่ต้องมาไล่ปรับ topRows ทีหลัง
-  let rows = topRows;
-  let card: (string | number | boolean | object) = {};
+  const periodText = resolveText(period);
+  // reportType ใช้ตัดสินว่าจะแสดงคอลัมน์ "จัดสรร(เบิก Hub)" หรือไม่
+  //   "MA"       -> แสดง
+  //   "Optimize" -> ซ่อน
+  //   เว้นว่าง    -> ตัดสินจากชุดข้อมูลจริงที่อ่านได้ (Data_Set)
+  const reportKind = resolveText(reportType).toLowerCase();
+  const dashUrl = resolveText(dashboardUrl);
+  const srcUrl = resolveText(sourceFileUrl);
+  const genAt = resolveText(generatedAt);
 
-  for (let attempt = 0; attempt < 8; attempt++) {
-    const payload = buildPayload(workbook, period, rows, dashboardUrl, sourceFileUrl);
-    payload.meta.generatedAt = generatedAt || "";
+  // สร้างการ์ดแบบกะทัดรัดครั้งเดียว โดยไม่ลดจำนวน Item Code ของ Zone ใด
+  // topRows ยังคงรับไว้เพื่อให้ Run script ใน Flow เดิมไม่เสีย parameter mapping
+  const rows = resolveTopRows(topRows);
+  const payload = buildPayload(workbook, periodText, rows, dashUrl, srcUrl);
+  payload.meta.generatedAt = genAt;
+
+  // ทับค่า showHub ด้วย reportType ที่ Flow ส่งมา (ถ้าส่งมา)
+  if (reportKind === "optimize") payload.meta.showHub = false;
+  else if (reportKind === "ma") payload.meta.showHub = true;
+
+  let card = acExpandNode(CARD_TEMPLATE, { data: payload, root: payload });
+
+  // ถ้าข้อความรอบใดยาวผิดปกติ ให้ตัดเฉพาะ Legend ซึ่งเป็นข้อมูลประกอบ
+  // รายการหลัก 6 Item Code ของทุก Zone จะยังอยู่ครบเสมอ
+  if (wireBytes(JSON.stringify(card)) > CARD_SAFE_BYTES && payload.meta.hasLegend) {
+    payload.meta.hasLegend = false;
     card = acExpandNode(CARD_TEMPLATE, { data: payload, root: payload });
-
-    const size = utf8Bytes(JSON.stringify(card));
-    const shown = payload.meta.shownItems;
-    if (size <= CARD_SAFE_BYTES || shown <= 4) break;
-
-    // ลดตามสัดส่วนที่เกินงบ แล้วบังคับให้ลดลงอย่างน้อย 1 แถวเสมอ กันวนไม่จบ
-    let next = Math.floor(shown * CARD_SAFE_BYTES / size);
-    if (next >= shown) next = shown - 1;
-    if (next < 1) next = 1;
-    rows = next;
   }
 
   return card;

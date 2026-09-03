@@ -2,9 +2,11 @@
   "type": "AdaptiveCard",
   "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
   "version": "1.5",
-  "msteams": { "width": "Full" },
-  "fallbackText": "Report Material Optimize&MA_NER (อุปกรณ์ของคุณแสดงการ์ดนี้ไม่ได้ กรุณาเปิดจาก Dashboard)",
-  "speak": "Report Material ${meta.dataSet} รอบ ${meta.period} มี ${meta.totalItems} รายการ เสี่ยงขาด ${meta.riskCount} รายการ",
+  "msteams": {
+    "width": "Full"
+  },
+  "fallbackText": "Report Stock Allocation Cable&Material NER (อุปกรณ์ของคุณแสดงการ์ดนี้ไม่ได้ กรุณาเปิดจาก Dashboard)",
+  "speak": "Report Stock Allocation ${meta.dataSet} รอบ ${meta.period} มี ${meta.totalItems} รายการ เสี่ยงขาด ${meta.riskCount} รายการ",
   "body": [
     {
       "type": "Container",
@@ -19,7 +21,13 @@
               "width": "auto",
               "verticalContentAlignment": "center",
               "items": [
-                { "type": "TextBlock", "text": "${meta.dataSetEmoji}", "size": "large", "wrap": false, "spacing": "none" }
+                {
+                  "type": "TextBlock",
+                  "text": "${meta.dataSetEmoji}",
+                  "size": "large",
+                  "wrap": false,
+                  "spacing": "none"
+                }
               ]
             },
             {
@@ -27,15 +35,28 @@
               "width": "stretch",
               "verticalContentAlignment": "center",
               "items": [
-                { "type": "TextBlock", "text": "${meta.title}", "weight": "bolder", "size": "medium", "wrap": true, "spacing": "none" },
-                { "type": "TextBlock", "text": "${meta.dataSetLabel}", "size": "small", "isSubtle": true, "wrap": true, "spacing": "none" }
+                {
+                  "type": "TextBlock",
+                  "text": "${meta.title}",
+                  "weight": "bolder",
+                  "size": "medium",
+                  "wrap": true,
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "${meta.dataSetLabel}",
+                  "size": "small",
+                  "isSubtle": true,
+                  "wrap": true,
+                  "spacing": "none"
+                }
               ]
             }
           ]
         }
       ]
     },
-
     {
       "type": "ColumnSet",
       "spacing": "small",
@@ -44,34 +65,86 @@
           "type": "Column",
           "width": "stretch",
           "items": [
-            { "type": "TextBlock", "text": "🗓️ รอบจัดสรร", "size": "small", "isSubtle": true, "wrap": true, "spacing": "none" },
-            { "type": "TextBlock", "text": "**${meta.period}**", "size": "small", "color": "accent", "wrap": true, "spacing": "none" }
+            {
+              "type": "TextBlock",
+              "text": "🗓️ รอบจัดสรร",
+              "size": "small",
+              "isSubtle": true,
+              "wrap": true,
+              "spacing": "none"
+            },
+            {
+              "type": "TextBlock",
+              "text": "**${meta.period}**",
+              "size": "small",
+              "color": "accent",
+              "wrap": true,
+              "spacing": "none"
+            }
           ]
         },
         {
           "type": "Column",
           "width": "stretch",
           "items": [
-            { "type": "TextBlock", "text": "⏮️ รอบก่อนหน้า", "size": "small", "isSubtle": true, "wrap": true, "spacing": "none" },
-            { "type": "TextBlock", "text": "**${meta.prevPeriod}**", "size": "small", "isSubtle": true, "wrap": true, "spacing": "none" }
+            {
+              "type": "TextBlock",
+              "text": "⏮️ รอบก่อนหน้า",
+              "size": "small",
+              "isSubtle": true,
+              "wrap": true,
+              "spacing": "none"
+            },
+            {
+              "type": "TextBlock",
+              "text": "**${meta.prevPeriod}**",
+              "size": "small",
+              "isSubtle": true,
+              "wrap": true,
+              "spacing": "none"
+            }
           ]
         }
       ]
     },
-
     {
       "type": "Container",
       "$when": "${meta.hasData == false}",
       "spacing": "medium",
       "style": "emphasis",
       "items": [
-        { "type": "TextBlock", "text": "📭", "size": "extraLarge", "horizontalAlignment": "center", "wrap": false },
-        { "type": "TextBlock", "text": "ไม่มีรายการวัสดุในรอบนี้", "size": "large", "weight": "bolder", "horizontalAlignment": "center", "wrap": true, "spacing": "small" },
-        { "type": "TextBlock", "text": "ไม่พบรหัสวัสดุที่กำหนดไว้ในรอบ **${meta.period}**", "horizontalAlignment": "center", "isSubtle": true, "wrap": true, "spacing": "small" },
-        { "type": "TextBlock", "text": "สิ่งที่ควรตรวจสอบ:\n\n1. กดปุ่ม **Refresh Data New Sheet** ในไฟล์ Excel แล้วรัน **BuildExportTable** ใหม่\n2. ตรวจว่าเลือก Sheet ต้นทางถูกรอบหรือยัง (เซลล์ C2 / C4 ของชีต MA&Optimize NER)\n3. ตรวจว่าไฟล์ถูกบันทึกกลับขึ้น SharePoint แล้ว", "wrap": true, "spacing": "medium" }
+        {
+          "type": "TextBlock",
+          "text": "📭",
+          "size": "extraLarge",
+          "horizontalAlignment": "center",
+          "wrap": false
+        },
+        {
+          "type": "TextBlock",
+          "text": "ไม่มีรายการวัสดุในรอบนี้",
+          "size": "large",
+          "weight": "bolder",
+          "horizontalAlignment": "center",
+          "wrap": true,
+          "spacing": "small"
+        },
+        {
+          "type": "TextBlock",
+          "text": "ไม่พบรหัสวัสดุที่กำหนดไว้ในรอบ **${meta.period}**",
+          "horizontalAlignment": "center",
+          "isSubtle": true,
+          "wrap": true,
+          "spacing": "small"
+        },
+        {
+          "type": "TextBlock",
+          "text": "สิ่งที่ควรตรวจสอบ:\n\n1. กดปุ่ม **Refresh Data New Sheet** ในไฟล์ Excel แล้วรัน **BuildExportTable** ใหม่\n2. ตรวจว่าเลือก Sheet ต้นทางถูกรอบหรือยัง (เซลล์ C2 / C4 ของชีต MA&Optimize NER)\n3. ตรวจว่าไฟล์ถูกบันทึกกลับขึ้น SharePoint แล้ว",
+          "wrap": true,
+          "spacing": "medium"
+        }
       ]
     },
-
     {
       "type": "Container",
       "$when": "${meta.hasData}",
@@ -87,50 +160,168 @@
               "type": "Column",
               "width": "stretch",
               "items": [
-                { "type": "TextBlock", "text": "⚠️ เสี่ยงขาด", "size": "small", "horizontalAlignment": "center", "wrap": true, "spacing": "none" },
-                { "type": "TextBlock", "text": "${string(meta.riskCount)}", "size": "large", "weight": "bolder", "color": "attention", "horizontalAlignment": "center", "spacing": "none" }
+                {
+                  "type": "TextBlock",
+                  "text": "⚠️ เสี่ยงขาด",
+                  "size": "small",
+                  "horizontalAlignment": "center",
+                  "wrap": true,
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "${string(meta.riskCount)}",
+                  "size": "large",
+                  "weight": "bolder",
+                  "color": "attention",
+                  "horizontalAlignment": "center",
+                  "spacing": "none"
+                }
               ]
             },
             {
               "type": "Column",
               "width": "stretch",
               "items": [
-                { "type": "TextBlock", "text": "🟡 พอใช้", "size": "small", "horizontalAlignment": "center", "wrap": true, "spacing": "none" },
-                { "type": "TextBlock", "text": "${string(meta.watchCount)}", "size": "large", "weight": "bolder", "color": "warning", "horizontalAlignment": "center", "spacing": "none" }
+                {
+                  "type": "TextBlock",
+                  "text": "🟡 พอใช้",
+                  "size": "small",
+                  "horizontalAlignment": "center",
+                  "wrap": true,
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "${string(meta.watchCount)}",
+                  "size": "large",
+                  "weight": "bolder",
+                  "color": "warning",
+                  "horizontalAlignment": "center",
+                  "spacing": "none"
+                }
               ]
             },
             {
               "type": "Column",
               "width": "stretch",
               "items": [
-                { "type": "TextBlock", "text": "✅ ปกติ", "size": "small", "horizontalAlignment": "center", "wrap": true, "spacing": "none" },
-                { "type": "TextBlock", "text": "${string(meta.okCount)}", "size": "large", "weight": "bolder", "color": "good", "horizontalAlignment": "center", "spacing": "none" }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": "stretch",
-              "items": [
-                { "type": "TextBlock", "text": "📦 รวม", "size": "small", "horizontalAlignment": "center", "wrap": true, "spacing": "none" },
-                { "type": "TextBlock", "text": "${string(meta.totalItems)}", "size": "large", "weight": "bolder", "horizontalAlignment": "center", "spacing": "none" }
+                {
+                  "type": "TextBlock",
+                  "text": "✅ ปกติ",
+                  "size": "small",
+                  "horizontalAlignment": "center",
+                  "wrap": true,
+                  "spacing": "none"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "${string(meta.okCount)}",
+                  "size": "large",
+                  "weight": "bolder",
+                  "color": "good",
+                  "horizontalAlignment": "center",
+                  "spacing": "none"
+                }
               ]
             }
           ]
         },
-
+        {
+          "type": "TextBlock",
+          "text": "${meta.statusBasis}",
+          "size": "small",
+          "isSubtle": true,
+          "wrap": true,
+          "spacing": "small"
+        },
         {
           "type": "ColumnSet",
           "spacing": "medium",
           "separator": true,
           "columns": [
-            { "type": "Column", "width": 32, "items": [ { "type": "TextBlock", "text": "Item Code", "weight": "bolder", "size": "small", "color": "accent", "wrap": true, "spacing": "none" } ] },
-            { "type": "Column", "width": 17, "items": [ { "type": "TextBlock", "text": "Onhand", "weight": "bolder", "size": "small", "color": "accent", "horizontalAlignment": "right", "wrap": true, "spacing": "none" } ] },
-            { "type": "Column", "width": 17, "items": [ { "type": "TextBlock", "text": "เบิก Hub", "weight": "bolder", "size": "small", "color": "accent", "horizontalAlignment": "right", "wrap": true, "spacing": "none" } ] },
-            { "type": "Column", "width": 17, "items": [ { "type": "TextBlock", "text": "Prev_Before", "weight": "bolder", "size": "small", "color": "accent", "horizontalAlignment": "right", "wrap": true, "spacing": "none" } ] },
-            { "type": "Column", "width": 17, "items": [ { "type": "TextBlock", "text": "Prev_Recv", "weight": "bolder", "size": "small", "color": "accent", "horizontalAlignment": "right", "wrap": true, "spacing": "none" } ] }
+            {
+              "type": "Column",
+              "width": 40,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "Zone",
+                  "weight": "bolder",
+                  "size": "small",
+                  "color": "accent",
+                  "wrap": true,
+                  "spacing": "none"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 15,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "Onhand",
+                  "weight": "bolder",
+                  "size": "small",
+                  "color": "accent",
+                  "horizontalAlignment": "right",
+                  "wrap": true,
+                  "spacing": "none"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "$when": "${$root.meta.showHub}",
+              "width": 18,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "จัดสรร(เบิก Hub)",
+                  "weight": "bolder",
+                  "size": "small",
+                  "color": "accent",
+                  "horizontalAlignment": "right",
+                  "wrap": true,
+                  "spacing": "none"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 20,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "จัดสรร(กระจาย) รอบก่อน",
+                  "weight": "bolder",
+                  "size": "small",
+                  "color": "accent",
+                  "horizontalAlignment": "right",
+                  "wrap": true,
+                  "spacing": "none"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": 20,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "จัดสรร(กระจาย) รอบนี้",
+                  "weight": "bolder",
+                  "size": "small",
+                  "color": "accent",
+                  "horizontalAlignment": "right",
+                  "wrap": true,
+                  "spacing": "none"
+                }
+              ]
+            }
           ]
         },
-
         {
           "type": "Container",
           "$data": "${zones}",
@@ -146,49 +337,118 @@
               "spacing": "small",
               "separator": true
             },
-
             {
               "type": "ColumnSet",
               "spacing": "none",
               "columns": [
-                { "type": "Column", "width": 32, "items": [ { "type": "TextBlock", "$data": "${items}", "text": "${statusEmoji} ${itemCode}${provinceTag}", "size": "small", "spacing": "none" } ] },
-                { "type": "Column", "width": 17, "items": [ { "type": "TextBlock", "$data": "${items}", "text": "${onhand}", "size": "small", "weight": "${rowWeight}", "color": "${statusColor}", "horizontalAlignment": "right", "spacing": "none" } ] },
-                { "type": "Column", "width": 17, "items": [ { "type": "TextBlock", "$data": "${items}", "text": "${fromHub}", "size": "small", "horizontalAlignment": "right", "spacing": "none" } ] },
-                { "type": "Column", "width": 17, "items": [ { "type": "TextBlock", "$data": "${items}", "text": "${prevBefore}", "size": "small", "horizontalAlignment": "right", "spacing": "none" } ] },
-                { "type": "Column", "width": 17, "items": [ { "type": "TextBlock", "$data": "${items}", "text": "${prevReceived}", "size": "small", "horizontalAlignment": "right", "spacing": "none" } ] }
+                {
+                  "type": "Column",
+                  "width": 40,
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "${itemLines}",
+                      "size": "small",
+                      "wrap": true,
+                      "spacing": "none"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 15,
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "${onhandLines}",
+                      "size": "small",
+                      "weight": "default",
+                      "horizontalAlignment": "right",
+                      "wrap": true,
+                      "spacing": "none"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "$when": "${$root.meta.showHub}",
+                  "width": 18,
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "${fromHubLines}",
+                      "size": "small",
+                      "horizontalAlignment": "right",
+                      "wrap": true,
+                      "spacing": "none"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 20,
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "${prevDistributedLines}",
+                      "size": "small",
+                      "weight": "default",
+                      "isSubtle": true,
+                      "horizontalAlignment": "right",
+                      "wrap": true,
+                      "spacing": "none"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": 20,
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "${distributedLines}",
+                      "size": "small",
+                      "weight": "default",
+                      "horizontalAlignment": "right",
+                      "wrap": true,
+                      "spacing": "none"
+                    }
+                  ]
+                }
               ]
             }
           ]
-        },
-
-        {
-          "type": "TextBlock",
-          "$when": "${meta.hasMore}",
-          "text": "${meta.moreText}",
-          "size": "small",
-          "isSubtle": true,
-          "horizontalAlignment": "center",
-          "wrap": true,
-          "spacing": "small",
-          "separator": true
         }
       ]
     },
-
     {
       "type": "Container",
       "$when": "${meta.hasLegend}",
       "spacing": "small",
       "separator": true,
       "items": [
-        { "type": "TextBlock", "text": "รหัสวัสดุในรายงานนี้", "size": "small", "weight": "bolder", "color": "accent", "wrap": true, "spacing": "none" },
-        { "type": "TextBlock", "$data": "${legend}", "text": "**${itemCode}** · ${itemName}", "size": "small", "isSubtle": true, "wrap": true, "spacing": "none" }
+        {
+          "type": "TextBlock",
+          "text": " 🏷️Item Code · Description ",
+          "size": "small",
+          "weight": "bolder",
+          "color": "accent",
+          "wrap": true,
+          "spacing": "none"
+        },
+        {
+          "type": "TextBlock",
+          "text": "${legendText}",
+          "size": "small",
+          "isSubtle": true,
+          "wrap": true,
+          "spacing": "none"
+        }
       ]
     },
-
     {
       "type": "TextBlock",
-      "text": "🕗 สร้างรายงานเมื่อ ${meta.generatedAt} • ที่มา: ${meta.dataSet} / ${meta.period}",
+      "text": "🔗 Source of information • ที่มา: ${meta.dataSet} / ${meta.period} • ${meta.generatedAt}",
       "size": "small",
       "isSubtle": true,
       "wrap": true,
@@ -197,11 +457,6 @@
     }
   ],
   "actions": [
-    {
-      "type": "Action.OpenUrl",
-      "title": "📊 Dashboard",
-      "url": "${meta.dashboardUrl}"
-    },
     {
       "type": "Action.OpenUrl",
       "title": "📁 Open the source file. (Excel / SharePoint)",
