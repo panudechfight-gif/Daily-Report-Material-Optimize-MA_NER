@@ -195,6 +195,41 @@ function fmtInt(v: (string | number | boolean)): string {
   return addThousandSep(String(rounded));
 }
 
+// ---------------------------------------------------------------------------
+// 🔧 กัน Markdown ของ Teams ตีความบรรทัดในคอลัมน์ตัวเลขผิด
+//
+// การ์ดนี้รวมค่าของทุกรายการในโซนเป็นข้อความก้อนเดียวคั่นด้วย "\n" แล้ววางใน
+// TextBlock เดียว (ทำให้การ์ดเล็กพอจะใส่ได้ทุก Zone) แต่ Teams อ่านข้อความนั้น
+// เป็น Markdown ก่อนเสมอ บรรทัดที่เป็นขีดล้วน ๆ จึงกลายเป็นไวยากรณ์:
+//
+//      0            <- บรรทัดข้อความ
+//      -            <- Teams อ่านเป็น "เส้นใต้หัวข้อ" (setext heading)
+//                      => บรรทัด 0 ข้างบนกลายเป็นหัวข้อ H2 ตัวใหญ่และหนา
+//
+//      -            <- ขีดที่ขึ้นต้นบล็อก => กลายเป็น bullet list (•)
+//
+// นี่คือสาเหตุที่ตัวเลข Onhand / จัดสรร(กระจาย) แสดงใหญ่และหนาผิดปกติบน
+// Teams for Windows ส่วนคอลัมน์ที่มีข้อมูลครบทุกบรรทัด (ไม่มีขีด) แสดงปกติ
+//
+// ทางแก้: ใช้ en dash (–) แทนขีดปกติสำหรับช่องที่ไม่มีข้อมูล — หน้าตาเหมือนเดิม
+// แต่ Markdown ไม่ถือเป็นไวยากรณ์ พร้อมกรองบรรทัดที่เป็นสัญลักษณ์ Markdown ล้วน
+// ทิ้งอีกชั้นหนึ่ง เผื่อค่าจากชีตต้นทางหลุดมาในรูปแบบอื่น
+// ---------------------------------------------------------------------------
+const NO_DATA = "–";           // en dash (U+2013) — Markdown ไม่ตีความ
+
+/** ทำให้ข้อความ 1 บรรทัดปลอดภัยต่อ Markdown ก่อนเอาไปต่อกันด้วย "\n" */
+function mdSafeLine(v: string): string {
+  const s = v === null || v === undefined ? "" : String(v);
+  const t = s.trim();
+  if (t === "") return NO_DATA;
+  // บรรทัดที่มีแต่สัญลักษณ์ Markdown (- = _ * + # > ~) คือ heading / hr / list
+  let onlyMarks = true;
+  for (let i = 0; i < t.length; i++) {
+    if ("-=_*+#>~".indexOf(t.charAt(i)) < 0) { onlyMarks = false; break; }
+  }
+  return onlyMarks ? NO_DATA : s;
+}
+
 interface CardItem {
   itemCode: string; itemName: string; unit: string; province: string;
   provinceCount: number; provinceTag: string;
@@ -481,10 +516,10 @@ function buildPayload(
     }
   }
 
-  /** ยอดรอบก่อนของคู่ Zone|Item — ไม่มีข้อมูลจริงให้แสดง "-" ไม่ใช่ 0 */
+  /** ยอดรอบก่อนของคู่ Zone|Item — ไม่มีข้อมูลจริงให้แสดงขีด ไม่ใช่ 0 */
   const prevDistText = (zoneName: string, code: string): string => {
     const v = prevDistMap[zoneName + "|" + code];
-    return v === undefined ? "-" : fmtNum(v);
+    return v === undefined ? NO_DATA : fmtNum(v);
   };
 
   const all: CardItem[] = [];
@@ -599,9 +634,9 @@ function buildPayload(
           dataSet: dataSet,
           period: targetPeriod,
           prevPeriod: prevPeriod || "-",
-          onhand: "-",
-          fromHub: "-",
-          distributed: "-",
+          onhand: NO_DATA,
+          fromHub: NO_DATA,
+          distributed: NO_DATA,
           // รหัสที่หายไปรอบนี้ อาจเคยมีรอบก่อน — แสดงไว้ให้เห็นว่าเคยกระจายเท่าไหร่
           prevDistributed: prevDistText(z, code),
           status: "ไม่มีข้อมูลในรอบนี้",
@@ -670,7 +705,7 @@ function buildPayload(
       totalOnhand: fmtNum(zoneOnhand[z] || 0),
       totalHub: fmtInt(zoneHub[z] || 0),
       totalLabel: "คงเหลือ " + fmtNum(zoneOnhand[z] || 0),
-      totalPrevDistributed: zPrev === undefined ? "-" : fmtNum(zPrev),
+      totalPrevDistributed: zPrev === undefined ? NO_DATA : fmtNum(zPrev),
       totalDistributed: fmtNum(zNow),
       deltaLabel: deltaText,
       // หัวกลุ่มรวมเป็นบรรทัดเดียว — ประหยัดพื้นที่การ์ดได้ราว 0.5 KB ต่อ Zone
@@ -679,14 +714,16 @@ function buildPayload(
         + (zBadge !== "" ? " · " + zBadge : ""),
       // แสดงเฉพาะ Description ใต้แต่ละ Zone โดย itemName ยังคงอ้างอิง
       // TARGET_ITEMS ตาม Item Code ภายในระบบ ไม่แสดง Item Code ซ้ำบน Card
-      itemLines: items.map(it => it.itemName).join("\n"),
+      // ทุกบรรทัดต้องผ่าน mdSafeLine() ก่อนต่อกันด้วย "\n" เสมอ
+      // ไม่งั้น Teams จะอ่านบรรทัดขีดเป็น heading/bullet แล้วดันตัวเลขให้ใหญ่หนา
+      itemLines: items.map(it => mdSafeLine(it.itemName)).join("\n"),
       // ไม่ใช้ markdown **bold** ที่นี่ เพราะ Teams บน Windows เรนเดอร์ตัวหนา
       // ในบรรทัดที่ถูกรวมหลายบรรทัดด้วยขนาดใหญ่ผิดปกติ (ไม่แคร์ "size": "small")
       // ทำให้ตัวเลขล้นคอลัมน์จนต้องเลื่อนดูทีละส่วน จึงใช้สัญลักษณ์แทนการทำตัวหนา
-      onhandLines: items.map(it => it.isRisk ? "⚠ " + it.onhand : it.onhand).join("\n"),
-      fromHubLines: items.map(it => it.fromHub).join("\n"),
-      prevDistributedLines: items.map(it => it.prevDistributed).join("\n"),
-      distributedLines: items.map(it => it.distributed).join("\n"),
+      onhandLines: items.map(it => mdSafeLine(it.isRisk ? "⚠ " + it.onhand : it.onhand)).join("\n"),
+      fromHubLines: items.map(it => mdSafeLine(it.fromHub)).join("\n"),
+      prevDistributedLines: items.map(it => mdSafeLine(it.prevDistributed)).join("\n"),
+      distributedLines: items.map(it => mdSafeLine(it.distributed)).join("\n"),
       items: items,
     };
   });
